@@ -1,0 +1,65 @@
+# Copyright 2009 Sterling X. Winter <sterling.winter@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PN=${PN/-themes}
+
+SUMMARY="Icon themes for SMPlayer"
+DESCRIPTION="
+Supplemental SMPlayer icon themes:
+  * blackPanther-Light
+  * blackPanther-Real
+  * blackPanther-VistaLike
+  * Breathless
+  * Gartoon
+  * Gnome
+  * Noia
+  * Nuvola
+  * Oxygen-Refit
+  * Play
+  * Silk
+  * Tango
+This is the theme set with OSI-approved licenses. The non-free themes can be
+downloaded from the SMPlayer website.
+"
+HOMEPAGE="http://${MY_PN}.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/${MY_PN}/${PNV}.tar.bz2"
+
+LICENCES="
+    Artistic-2.0
+    CCPL-Attribution-2.5
+    GPL-2
+    LGPL-3
+    public-domain
+"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    run:
+        media/smplayer
+"
+
+REMOTE_IDS="freshmeat:${MY_PN} sourceforge:${MY_PN}"
+
+src_compile() {
+    :
+}
+
+src_install() {
+    insinto /usr/share/${MY_PN}/themes
+    for subdir in blackPanther-Light \
+                  blackPanther-Real \
+                  blackPanther-VistaLike \
+                  Breathless \
+                  Gartoon \
+                  Gnome \
+                  Noia \
+                  Nuvola \
+                  Oxygen-Refit \
+                  Play \
+                  Silk \
+                  Tango ; do
+        doins -r themes/"${subdir}"
+    done
+}
