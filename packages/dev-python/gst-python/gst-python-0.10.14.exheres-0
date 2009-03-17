@@ -25,8 +25,6 @@ DEPENDENCIES="
                >=gnome-bindings/pygobject-2.11.2
                >=gnome-bindings/pygtk-2.6.3
            )
-    run:
-        dev-util/pkg-config
 "
 
 src_unpack() {
@@ -51,10 +49,10 @@ src_install() {
 
 pkg_postinst() {
     python_version
-    python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages
+    python_mod_optimize $(python_get_sitedir)
 }
 
 pkg_postrm() {
     python_version
-    python_mod_cleanup /usr/$(get_libdir)/python${PYVER}/site-packages
+    python_mod_cleanup
 }
