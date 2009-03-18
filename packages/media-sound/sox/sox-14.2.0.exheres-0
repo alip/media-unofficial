@@ -1,0 +1,55 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require multilib
+
+SUMMARY="Swiss Army knife of sound processing programs"
+DESCRIPTION="
+SoX (Sound eXchange) is the Swiss Army knife of sound processing tools: it
+can convert sound files between many different file formats & audio devices,
+and can apply many sound effects & transformations, as well as doing basic
+analysis and providing input to more capable analysis and plotting tools.
+
+SoX is licensed under the GNU GPL and GNU LGPL.  To be precise, the 'sox'
+and 'soxi' programs are distributed under the GPL, while the library
+'libsox' (in which most of SoX's functionality resides) is dual-licensed.
+Note that some optional components of libsox are GPL only: if you use these,
+you must use libsox under the GPL.
+"
+HOMEPAGE="http://sox.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
+
+BUGS_TO="polatel@gmail.com"
+LICENCES="LGPL-2.1 GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="alsa ao debug ffmpeg flac id3tag ladspa lame libsamplerate mad ogg png sndfile wavpack"
+
+DEPENDENCIES="
+    build+run:
+        alsa? ( sys-sound/alsa-lib )
+        ao? ( media-libs/libao )
+        ffmpeg? ( media/ffmpeg )
+        flac? ( media-libs/flac )
+        id3tag? ( media-libs/libid3tag )
+        ladspa? ( media-libs/ladspa-sdk )
+        lame? ( media-sound/lame )
+        libsamplerate? ( media-libs/libsamplerate )
+        mad? ( media-libs/libmad )
+        ogg? ( media-libs/libogg media-libs/libvorbis )
+        png? ( media-libs/libpng )
+        sndfile? ( media-libs/libsndfile )
+        wavpack? ( media-sound/wavpack )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --with-ladspa-path=/usr/$(get_libdir)/ladspa
+    --disable-oss
+    --disable-coreaudio
+    --without-amr-wb
+    --without-amr-nb
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug 'ao libao' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( ffmpeg flac id3tag ladspa lame
+    'libsamplerate samplerate' mad ogg png sndfile wavpack )
+
