@@ -1,0 +1,15 @@
+Source: Gentoo
+Upstream: https://sourceforge.net/tracker/index.php?func=detail&aid=2447869&group_id=86211&atid=578826
+Reason: Fix build with gcc-4.3
+Index: qjackctl-0.3.4/src/qjackctlPatchbayRack.cpp
+===================================================================
+--- qjackctl-0.3.4.orig/src/qjackctlPatchbayRack.cpp
++++ qjackctl-0.3.4/src/qjackctlPatchbayRack.cpp
+@@ -30,6 +30,7 @@
+ //
+ 
+ #include <QHash>
++#include <cstdlib>
+ 
+ class qjackctlPatchbaySnapshot
+ {
