@@ -19,6 +19,7 @@ SCM_REPOSITORY="http://svn.sacredchao.net/svn/quodlibet/trunk/mutagen"
 require scm-svn
 
 BUGS_TO="polatel@gmail.com"
+REMOTE_IDS="pypi:${PN}"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
