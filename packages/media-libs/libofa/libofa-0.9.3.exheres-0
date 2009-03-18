@@ -1,0 +1,52 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Open-source audio fingerprint by MusicIP"
+DESCRIPTION="
+MusicDNS is an acoustic fingerprinting service and a software development kit
+provided by MusicIP. MusicDNS is used by MusicIP Mixer, MusicBrainz Picard, and
+Jaikoz. According to MusicIP, the fingerprint database contains over 22 million
+fingerprints as of August, 2006. It should be noted that MusicDNS has nothing to
+do with domain name system (DNS).
+The fingerprinting client library that looks up and identifies audio files based
+on existing fingerprints is called libofa. While the client library is open
+source and dual-licensed under the GPL as well as APL, the code for performing
+initial music analysis and submitting new fingerprints to the MusicDNS database
+is proprietary as the database also contains data for style similarity analysis
+for use in MusicIP Mixer.
+The MusicDNS client library works by first generating an acoustic fingerprint of
+the analyzed audio file. This acoustic fingerprint is then looked up from the
+MusicDNS web service. If a close enough match is found to an existing
+fingerprint, the service returns an identifier called a PUID (short for Portable
+Unique IDentifier) that unambiguously identifies the matching fingerprint. These
+identifiers can be used by third parties (such as MusicBrainz) to relate
+information to the identified audio file. PUIDs are fully qualified UUIDs and do
+not include any acoustic information.
+"
+HOMEPAGE="http://code.google.com/p/musicip-libofa/"
+DOWNLOADS="http://musicip-libofa.googlecode.com/files/${PNV}.tar.gz"
+BUGS_TO="polatel@gmail.com"
+
+LICENCES="|| ( APL-1.0 GPL-2 )"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/expat
+        net-misc/curl
+        >=sci-libs/fftw-3
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/${PNV}-gcc-4.3.patch
+    -p0 "${FILES}"/${PNV}-gcc-4.patch
+)
+
+src_install() {
+    default
+
+    insinto /usr/share/doc/${PNVR}/examples
+    doins examples/@(*.cpp|*.h)
+}
