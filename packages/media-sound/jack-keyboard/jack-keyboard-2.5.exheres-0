@@ -1,0 +1,29 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Virtual midi keyboard for jack midi"
+DESCRIPTION="
+jack-keyboard is a virtual MIDI keyboard - a program that allows you to send
+JACK MIDI events (play ;-) using your PC keyboard. It's somewhat similar to
+vkeybd, except it uses JACK MIDI instead of ALSA, and the default keyboard
+mapping is much better - it uses the same layout as trackers (like Impulse
+Tracker) did, so you have two and half octaves under your fingers.
+"
+HOMEPAGE="http://pin.if.uz.zgora.pl/~trasz/${PN}/"
+DOWNLOADS="${HOMEPAGE}/${PNV}.tar.gz"
+
+BUGS_TO="polatel@gmail.com"
+LICENCES="public-domain"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="X"
+
+DEPENDENCIES="
+    build+run:
+        media-sound/jack-audio-connection-kit
+        dev-libs/glib
+        x11-libs/gtk+
+        X? ( x11-libs/libX11 )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'X x11' )
