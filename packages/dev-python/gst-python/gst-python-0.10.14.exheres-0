@@ -27,6 +27,9 @@ DEPENDENCIES="
            )
 "
 
+# Tests broken with Python 2.6 and current GObject API
+RESTRICT="test"
+
 src_unpack() {
     unpack ${ARCHIVES}
     cd "${WORK}"
