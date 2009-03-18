@@ -1,0 +1,44 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Based in part upon caps-plugins-0.4.2.ebuild which is:
+#   Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require multilib toolchain-funcs
+
+MY_PNV=caps-${PV}
+SUMMARY="The CAPS Audio Plugin Suite"
+DESCRIPTION="
+LADSPA plugin suite which includes DSP units emulating instrument amplifiers,
+stomp-box classics, versatile 'virtual analogue' oscillators, fractal
+oscillation, reverb, equalization and others
+"
+HOMEPAGE="http://quitte.de/dsp/caps.html"
+DOWNLOADS="http://quitte.de/dsp/caps_${PV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        media-libs/ladspa-sdk
+"
+
+WORK="${WORKBASE}"/${MY_PNV}
+
+src_compile() {
+    emake CFLAGS="${CFLAGS} -fPIC -DPIC" CC=$(tc-getCXX) || die "emake failed"
+}
+
+src_install() {
+    insinto /usr/$(get_libdir)/ladspa
+    insopts -m0755
+    doins *.so
+
+    insinto /usr/share/ladspa/rdf
+    insopts -m0644
+    doins *.rdf
+
+    emagicdocs
+}

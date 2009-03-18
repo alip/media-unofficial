@@ -1,0 +1,45 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Based in part upon amb-plugins-0.3.0.ebuild which is:
+#   Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require multilib toolchain-funcs
+
+MY_PNV="${PNV/amb/AMB}"
+
+SUMMARY="AMB LADSPA filter plugins by Fons Adriaensen"
+DESCRIPTION="
+A set of ambisonics plugins, mainly to be used within Ardour. Mono and stereo to
+B-format panning, horizontal rotator, square, hexagon and cube decoders.
+"
+HOMEPAGE="http://www.kokkinizita.net/linuxaudio/ladspa/"
+#DOWNLOADS="http://www.kokkinizita.net/linuxaudio/downloads/${MY_PNV}.tar.bz2"
+DOWNLOADS="http://alip.anapnea.net/${MY_PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        media-libs/ladspa-sdk
+"
+
+WORK="${WORKBASE}"/${MY_PNV}
+
+src_prepare() {
+    default
+
+    sed -i \
+        -e "s/-O3/${CFLAGS}/" \
+        -e "s/g++/$(tc-getCXX)/" \
+        Makefile || die "failed to set CFLAGS"
+}
+
+src_install() {
+    insinto /usr/$(get_libdir)/ladspa
+    insopts -m0755
+    doins *.so
+    emagicdocs
+}
