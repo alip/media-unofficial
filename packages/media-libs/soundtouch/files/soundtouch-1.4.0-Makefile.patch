@@ -1,0 +1,31 @@
+Source: Gentoo
+Upstream: No
+Reason: Remove strip from LDFLAGS and -O3 & -msse2 from CFLAGS
+diff -ur soundtouch.orig/source/SoundStretch/Makefile.am soundtouch/source/SoundStretch/Makefile.am
+--- soundtouch.orig/source/SoundStretch/Makefile.am	2009-01-25 08:32:53.000000000 -0800
++++ soundtouch/source/SoundStretch/Makefile.am	2009-03-14 03:14:30.418045025 -0700
+@@ -44,10 +44,10 @@
+ soundstretch_LDADD=../SoundTouch/libSoundTouch.la -lm
+ 
+ ## linker flags
+-soundstretch_LDFLAGS=-s
++soundstretch_LDFLAGS=
+ 
+ ## additional compiler flags
+-soundstretch_CXXFLAGS=-O3
++soundstretch_CXXFLAGS=
+ 
+ #clean-local: 
+ #	-rm -f additional-files-to-remove-on-make-clean
+diff -ur soundtouch.orig/source/SoundTouch/Makefile.am soundtouch/source/SoundTouch/Makefile.am
+--- soundtouch.orig/source/SoundTouch/Makefile.am	2009-01-25 08:32:53.000000000 -0800
++++ soundtouch/source/SoundTouch/Makefile.am	2009-03-14 03:15:17.272379543 -0700
+@@ -36,7 +36,7 @@
+ # Note by authore: '-msse2' might not work in non-X86 compilations. If someone can
+ # fix this script to automatically check for CPU architecture, please submit a patch 
+ # to me.
+-AM_CXXFLAGS=-O3 -msse2 -fcheck-new -I../../include
++AM_CXXFLAGS=-fcheck-new -I../../include
+ 
+ 
+ # other linking flags to add
