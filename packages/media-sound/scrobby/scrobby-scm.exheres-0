@@ -1,0 +1,39 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Audioscrobbler mpd client written in C++"
+DESCRIPTION="
+This is yet another audioscrobbler mpd client. Its features include:
+\"now playing\" notifications
+recognizing when one track is being played multiple times
+working in background
+caching not submitted songs
+unix sockets support
+"
+HOMEPAGE="http://unkart.ovh.org/scrobby/"
+DOWNLOADS=""
+SCM_REPOSITORY="git://repo.or.cz/scrobby.git"
+require scm-git
+
+BUGS_TO="polatel@gmail.com"
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/openssl
+        net-misc/curl
+"
+
+src_prepare() {
+    default
+
+    # Correct doc installation path
+    sed -i \
+        -e "/^docdir/s/\$(PACKAGE)/${PNVR}/" \
+        doc/Makefile.am || die "sed in doc/Makefile.am failed"
+
+    NOCONFIGURE=1 ./autogen.sh || die "autogen.sh failed"
+}
