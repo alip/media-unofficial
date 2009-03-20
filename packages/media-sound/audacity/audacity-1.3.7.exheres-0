@@ -3,9 +3,9 @@
 #   Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-require versionator autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
 
-MY_PV=$(replace_version_separator 3 -)
+MY_PV=$(ever replace 3 -)
 MY_PNV="${PN}-src-${MY_PV}"
 MY_T="${PN}-minsrc-${MY_PV}"
 SUMMARY="The Free, Cross-Platform Sound Editor"
