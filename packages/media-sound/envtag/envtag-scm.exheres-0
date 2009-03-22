@@ -16,12 +16,15 @@ BUGS_TO="polatel@gmail.com"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS=""
+MYOPTIONS="lua"
 
 DEPENDENCIES="
     build+run:
         media-libs/taglib
+        lua? ( >=dev-lang/lua-5.1 )
 "
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( lua )
 
 src_prepare() {
     default
