@@ -1,0 +1,22 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Command-line program for playing FLAC audio files. "
+DESCRIPTION="FIXME
+"
+HOMEPAGE="http://flac-tools.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/flac-tools/${PNV}.tar.gz"
+
+BUGS_TO="polatel@gmail.com"
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/popt
+        media-libs/libao
+        media-libs/flac
+        media-libs/libogg
+"
