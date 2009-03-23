@@ -16,7 +16,7 @@ BUGS_TO="polatel@gmail.com"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="lua"
+MYOPTIONS="examples lua"
 
 DEPENDENCIES="
     build+run:
@@ -29,4 +29,18 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( lua )
 src_prepare() {
     default
     ./autogen.sh || die "autogen.sh failed"
+}
+
+src_install() {
+    default
+
+    if option examples; then
+        docinto examples
+        dodoc examples/{mp32ogg,find_tagless.zsh}
+
+        if option lua; then
+            docinto examples/lua
+            dodoc examples/lua/*.lua
+        fi
+    fi
 }
