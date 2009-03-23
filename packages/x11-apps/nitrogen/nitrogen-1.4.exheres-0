@@ -1,0 +1,24 @@
+# Copyright 2009 (c) Gaute Hope <eg@gaute.vetsj.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A background browser and setter for X windows."
+DESCRIPTION="
+Nitrogen is a background browser and setter for X windows. 
+It is written in C++ using the gtkmm toolkit. It can be used 
+in two modes: browser and recall. "
+
+HOMEPAGE="http://projects.l3ib.org/nitrogen/"
+DOWNLOADS="http://projects.l3ib.org/nitrogen/files/nitrogen-1.4.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="xinerama nls inotify"
+
+DEPENDENCIES="
+        build+run:
+            >=dev-libs/glib-2.6
+            >=x11-libs/gtk+-2.10
+            >=gnome-bindings/gtkmm-2.10"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( xinerama nls inotify )
