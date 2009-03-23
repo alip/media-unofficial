@@ -13,7 +13,7 @@ DOWNLOADS="http://resare.com/${PN}/dist/${PNV}.tar.bz2"
 
 LICENCES="MPL-1.1"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES=""
