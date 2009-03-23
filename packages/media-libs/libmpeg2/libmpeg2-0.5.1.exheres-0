@@ -11,9 +11,18 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="sdl X"
 
 DEPENDENCIES="
+    build:
+        X? ( x11-proto/xextproto )
     build+run:
         sdl? ( media-libs/SDL )
-        X? ( x11-libs/libXext x11-libs/libXv )"
+        X? (
+            x11-libs/libICE
+            x11-libs/libSM
+            x11-libs/libX11
+            x11-libs/libXext
+            x11-libs/libXv
+        )
+"
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'sdl' )
 DEFAULT_SRC_CONFGURE_OPTION_WITHS=( 'X x' )
