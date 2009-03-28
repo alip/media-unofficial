@@ -1,0 +1,20 @@
+# Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmus
+
+DOWNLOADS=""
+
+SCM_REPOSITORY="git://repo.or.cz/cmus.git"
+require scm-git
+
+PLATFORMS="~x86"
+MYOPTIONS="audioscrobbler [[ description = [ Apply Audioscrobbler/Last.fm patch from http://www.hci-matters.com/blog/2008/05/06/c-music-player-audioscrobblerlastfm-patch/ ] ]]"
+
+src_prepare() {
+    default
+
+    if option "audioscrobbler" ; then
+        expatch "${FILES}/cmus_audioscrobbler.patch"
+    fi
+}
