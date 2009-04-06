@@ -16,15 +16,19 @@ BUGS_TO="polatel@gmail.com"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="examples lua"
+MYOPTIONS="
+    examples
+    libmagic [[ description = [ enable libmagic based file type detection ] ]]
+"
 
 DEPENDENCIES="
     build+run:
         media-libs/taglib
-        lua? ( >=dev-lang/lua-5.1 )
+        >=dev-lang/lua-5.1
+        libmagic? ( sys-apps/file )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( lua )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( libmagic )
 
 src_prepare() {
     default
@@ -37,10 +41,7 @@ src_install() {
     if option examples; then
         docinto examples
         dodoc examples/{mp32ogg,find_tagless.zsh}
-
-        if option lua; then
-            docinto examples/lua
-            dodoc examples/lua/*.lua
-        fi
+        docinto examples/lua
+        dodoc examples/lua/*.lua
     fi
 }
