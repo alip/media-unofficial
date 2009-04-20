@@ -41,7 +41,5 @@ src_install() {
     if option examples; then
         docinto examples
         dodoc examples/{mp32ogg,find_tagless.zsh}
-        docinto examples/lua
-        dodoc examples/lua/*.lua
     fi
 }
