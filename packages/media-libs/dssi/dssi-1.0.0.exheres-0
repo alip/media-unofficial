@@ -1,0 +1,54 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="API for audio processing plugins"
+DESCRIPTION="
+DSSI (pronounced \"dizzy\") is an API for audio processing plugins, particularly
+useful for software synthesis plugins with user interfaces.
+
+DSSI is an open and well-documented specification developed for use in Linux
+audio applications, although portable to other platforms. It may be thought of
+as LADSPA-for-instruments, or something comparable to VSTi.
+
+DSSI consists of a C language API for use by plugins and hosts, based on the
+LADSPA API, and an OSC (Open Sound Control) API for use in user interface to
+host communications. The DSSI specification consists of an RFC which describes
+the background for the proposal and defines the OSC part of the specification,
+and a documented header file which defines the C API.
+"
+HOMEPAGE="http://dssi.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
+
+LICENCES="LGPL-2.1 BSD"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        sys-sound/alsa-lib
+        media-libs/liblo
+        media-libs/libsndfile
+        media-libs/libsamplerate
+        media-libs/ladspa-sdk
+        media-sound/jack-audio-connection-kit
+"
+
+src_prepare() {
+    default
+
+    # Fix library directory
+    sed -i \
+        -e "s:\(libdir=\).*:\1@libdir@:" \
+        dssi.pc.in || die "sed in dssi.pc.in failed"
+
+    # TODO qt3
+    export QTDIR=/dev/null
+}
+
+src_install() {
+    default
+
+    # Remove empty directories
+    find "${IMAGE}" -type d -depth -print0 | xargs -0 rmdir --ignore-fail-on-non-empty
+}
