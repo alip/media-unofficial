@@ -40,6 +40,6 @@ src_install() {
 
     if option examples; then
         docinto examples
-        dodoc examples/{mp32ogg,find_tagless.zsh}
+        dodoc examples/{flac2ogg,find_tagless.zsh}
     fi
 }
