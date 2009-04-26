@@ -1,0 +1,18 @@
+# Copyright 2009 Thomas Anderson
+# Distributed under the terms of the GNU General Public License v2
+
+HOMEPAGE="http://sourceforge.net/projects/libass/"
+DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+build+run:
+    media-libs/libpng
+    >=media-libs/fontconfig-2.2.0
+    media-libs/freetype:2"
+
+BUGS_TO="gentoofan23@gentoo.org"
