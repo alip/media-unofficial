@@ -3,7 +3,7 @@
 
 SUMMARY="Simple audio tagger for use in shell scripts"
 DESCRIPTION="
-envtag is a simple audio tagger using taglib's c bindings. Interaction is done
+envtag is a simple audio tagger using taglib. Interaction is done
 using environment variables which makes it perfect for shell scripts.
 "
 HOMEPAGE="http://github.com/alip/envtag/tree/master"
@@ -23,7 +23,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-        media-libs/taglib
+        >=media-libs/taglib-1.5
         >=dev-lang/lua-5.1
         libmagic? ( sys-apps/file )
 "
