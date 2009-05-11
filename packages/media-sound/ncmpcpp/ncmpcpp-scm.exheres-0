@@ -1,40 +1,10 @@
 # Copyright 2009 Ali Polatel <polatel@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SUMMARY="An almost exact clone of ncmpc"
-DESCRIPTION="
-Ncmpcpp contains some new features ncmpc doesn't have. It's been also rewritten
-from scratch in C++. New features include:
-* tag editor
-* playlists editor
-* easy to use search screen
-* media library screen
-* lyrics screen
-* possibility of going to any position in currently playing track without rewinding/fastforwarding
-* multi colored main window (if you want)
-* songs can be added to playlist more than once
-* a lot of minor useful functions
-"
-HOMEPAGE="http://unkart.ovh.org/ncmpcpp/"
-DOWNLOADS=""
 SCM_REPOSITORY="git://repo.or.cz/ncmpcpp.git"
-require scm-git
+require ncmpcpp scm-git
 
-BUGS_TO="polatel@gmail.com"
-LICENCES="GPL-2"
-SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="curl
-    taglib [[ description = [ Enable tag editor ] ]]
-"
-
-DEPENDENCIES="
-    build+run:
-        curl? ( net-misc/curl )
-        taglib? ( media-libs/taglib )
-"
-
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( curl taglib )
 
 src_prepare() {
     default
