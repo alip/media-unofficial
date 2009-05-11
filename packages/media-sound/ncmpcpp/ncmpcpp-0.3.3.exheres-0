@@ -1,0 +1,7 @@
+# Copyright 2009 Thomas Anderson <gentoofan23@gentoo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require ncmpcpp
+PLATFORMS="~amd64"
+
+DOWNLOADS="http://unkart.ovh.org/ncmpcpp/${PNV}.tar.bz2"
