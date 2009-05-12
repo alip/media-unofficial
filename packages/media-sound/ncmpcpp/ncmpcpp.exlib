@@ -33,9 +33,15 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( curl taglib )
 
 src_prepare() {
+    default
+
     sed -i \
         -e "s:\(docdir.*\):\1-${PV}:" \
         -e "/^doc_DATA/s:COPYING::" \
         Makefile.am || die "sed in Makefile.am failed"
-    NOCONFIGURE=1 ./autogen.sh || die "autogen.sh failed"
+
+    if [[ ${PV} == scm ]]; then
+        NOCONFIGURE=1 ./autogen.sh || die "autogen.sh failed"
+    fi
 }
+
