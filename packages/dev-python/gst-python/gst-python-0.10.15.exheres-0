@@ -5,7 +5,7 @@
 
 NEED_PYTHON=2.4:=
 
-require multilib python
+require python
 
 SUMMARY="GStreamer Python bindings"
 HOMEPAGE="http://gstreamer.freedesktop.org/"
@@ -14,7 +14,7 @@ DOWNLOADS="http://gstreamer.freedesktop.org/src/${PN}/${PNV}.tar.bz2"
 LICENCES="LGPL-2"
 SLOT="0.10"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="examples"
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
@@ -43,21 +43,10 @@ src_prepare() {
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/gst-python-0.10.9-lazy.patch )
 
-src_install() {
-    default
-
-    if option examples ; then
-        docinto examples
-        dodoc examples/*
-    fi
-}
-
 pkg_postinst() {
-    python_version
     python_mod_optimize $(python_get_sitedir)
 }
 
 pkg_postrm() {
-    python_version
     python_mod_cleanup
 }
