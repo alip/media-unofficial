@@ -12,7 +12,7 @@ MYOPTIONS=""
 DEPENDENCIES="
 build+run:
     media-libs/libpng
-    >=media-libs/fontconfig-2.2.0
+    media-libs/fontconfig[>=2.2.0]
     media-libs/freetype:2"
 
 BUGS_TO="gentoofan23@gentoo.org"

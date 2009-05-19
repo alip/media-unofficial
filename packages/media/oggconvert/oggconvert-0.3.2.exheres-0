@@ -18,10 +18,10 @@ DEPENDENCIES="
     build+run:
           dev-python/gst-python
           gnome-bindings/pygtk
-        >=media-libs/gstreamer-0.10.11
+          media-libs/gstreamer[>=0.10.11]
           media-plugins/gst-plugins-base
-        >=x11-libs/gtk+-2.4
-        dirac? ( >=media-libs/schroedinger-1.0.0[gstreamer] )
+          x11-libs/gtk+[>=2.4]
+          dirac? ( media-libs/schroedinger[>=1.0.0][gstreamer] )
 "
 
 PYTHON_MODNAME="OggConvert"

@@ -19,11 +19,11 @@ MYOPTIONS="examples"
 DEPENDENCIES="
     build+run:
           dev-libs/libxml2
-        >=media-libs/gstreamer-0.10.21
-        >=media-plugins/gst-plugins-base-0.10.21
+        media-libs/gstreamer[>=0.10.21]
+        media-plugins/gst-plugins-base[>=0.10.21]
         || (
-               >=gnome-bindings/pygobject-2.11.2
-               >=gnome-bindings/pygtk-2.6.3
+               gnome-bindings/pygobject[>=2.11.2]
+               gnome-bindings/pygtk[>=2.6.3]
            )
 "
 

@@ -36,7 +36,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/expat
         net-misc/curl
-        >=sci-libs/fftw-3
+        sci-libs/fftw[>=3]
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=(
@@ -50,3 +50,4 @@ src_install() {
     insinto /usr/share/doc/${PNVR}/examples
     doins examples/@(*.cpp|*.h)
 }
+

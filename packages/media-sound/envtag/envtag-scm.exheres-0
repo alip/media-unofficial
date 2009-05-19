@@ -23,8 +23,8 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-        >=media-libs/taglib-1.5
-        >=dev-lang/lua-5.1
+        media-libs/taglib[>=1.5]
+        dev-lang/lua[>=5.1]
         libmagic? ( sys-apps/file )
 "
 

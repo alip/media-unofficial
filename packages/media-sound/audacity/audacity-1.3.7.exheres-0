@@ -35,19 +35,19 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config
     build+run:
-        >=app-arch/zip-2.3
+        app-arch/zip[>=2.3]
         dev-libs/expat
-        >=media-libs/libsamplerate-0.1.2
-        >=media-libs/libsndfile-1.0.0
-        >=x11-libs/wxGTK-2.8
-        vorbis? ( >=media-libs/libvorbis-1.0 )
-        mp3? ( >=media-libs/libmad-0.14.2b )
+        media-libs/libsamplerate[>=0.1.2]
+        media-libs/libsndfile[>=1.0.0]
+        x11-libs/wxGTK[>=2.8]
+        vorbis? ( media-libs/libvorbis[>=1.0] )
+        mp3? ( media-libs/libmad[>=0.14.2b] )
         ffmpeg? ( media/ffmpeg )
         alsa? ( sys-sound/alsa-lib )
-        jack? ( >=media-sound/jack-audio-connection-kit-0.103.0 )
+        jack? ( media-sound/jack-audio-connection-kit[>=0.103.0] )
         soundtouch? ( media-libs/soundtouch )
     run:
-        mp3? ( >=media-sound/lame-3.70 )
+        mp3? ( media-sound/lame[>=3.70] )
 "
 
 WORK="${WORKBASE}/${MY_PNV}"
@@ -73,3 +73,4 @@ src_prepare() {
     default
     AT_M4DIR="${WORK}/m4" eautoreconf
 }
+
