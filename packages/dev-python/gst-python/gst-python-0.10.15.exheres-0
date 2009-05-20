@@ -3,9 +3,7 @@
 # Based in part upon 'gst-python-0.10.13.ebuild' from Gentoo, which is:
 #     Copyright 1999-2008 Gentoo Foundation
 
-NEED_PYTHON=2.4:=
-
-require python
+require python [ python_dep=2.4 ]
 
 SUMMARY="GStreamer Python bindings"
 HOMEPAGE="http://gstreamer.freedesktop.org/"

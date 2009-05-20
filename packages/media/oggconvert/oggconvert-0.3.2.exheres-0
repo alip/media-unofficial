@@ -1,9 +1,7 @@
 # Copyright 2009 Sterling X. Winter <sterling.winter@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-NEED_PYTHON=2.4:=
-
-require distutils python
+require distutils python [ python_dep=2.4 ]
 
 SUMMARY="Converts audio to the Vorbis format, and video to the Theora or Dirac formats"
 HOMEPAGE="http://oggconvert.tristanb.net/"
