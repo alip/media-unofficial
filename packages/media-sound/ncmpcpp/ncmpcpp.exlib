@@ -32,6 +32,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( curl taglib )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-clock' )
 
 src_prepare() {
     sed -i \
