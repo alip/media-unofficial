@@ -15,7 +15,7 @@ MYOPTIONS="aac alsa ao arts ffmpeg flac mad mikmod modplug mp4 mpc oss tremor vo
 
 DEPENDENCIES="
     build:
-        ffmpeg? ( <=media/ffmpeg-0.4.9_pre1_p20090220 )
+        ffmpeg? ( media/ffmpeg[<=0.4.9_pre1_p20090220] )
     run:
         ffmpeg? ( media/ffmpeg )
     build+run:
