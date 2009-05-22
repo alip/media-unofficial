@@ -41,17 +41,6 @@ DEPENDENCIES="
         vorbis? ( media-libs/libvorbis )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --enable-shared
-    --with-largefile
-    --enable-sys-readline
-
-    --disable-arts
-    --disable-oss
-)
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    alsa audiofile debug jack libsamplerate ncurses 'ruby rubyecasound' sndfile
-)
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=( "Documentation/*.txt" )
 
 src_configure() {
@@ -66,8 +55,21 @@ src_configure() {
         pyconf="--disable-pyecasound"
     fi
 
-    DEFAULT_SRC_CONFIGURE_PARAMS+=( $pyconf )
-    default
+    econf \
+        $(option_enable alsa) \
+        $(option_enable audiofile) \
+        $(option_enable debug) \
+        $(option_enable jack) \
+        $(option_enable libsamplerate) \
+        $(option_enable ncurses) \
+        $(option_enable ruby rubyecasound) \
+        $(option_enable sndfile) \
+        --enable-shared \
+        --with-largefile \
+        --enable-sys-readline \
+        --disable-arts \
+        --disable-oss \
+        ${pyconf}
 }
 
 pkg_postinst() {
