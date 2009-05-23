@@ -14,10 +14,11 @@ DOWNLOADS="mirror://sourceforge/freeimage/$PN${PV//./}.zip"
 LICENCES="|| ( GPL-2 FIPL-1.0 )"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="platform: amd64"
+MYOPTIONS=""
 
 DEPENDENCIES="
     build:
+        app-arch/unzip
         dev-util/pkg-config
 "
 
@@ -27,8 +28,9 @@ DEFAULT_SRC_COMPILE_PARAMS+=( -f Makefile.gnu )
 DEFAULT_SRC_INSTALL_EXTRA_DOCS+=( Whatsnew.txt )
 
 src_prepare() {
+    # FIXME: find a way to split static/shared builds or just don't build static at all
     # do not let FreeImage decide upon uname output if -fPIC should be set
-    option platform:amd64 && append-flags -fPIC
+    append-flags -fPIC
 
     # those are external now
     # tiff, jpeg and zlib remain bundled, since they use private implementation details
@@ -40,13 +42,16 @@ src_prepare() {
     # internal ones
     rm -r Source/{OpenEXR,Lib{MNG,OpenJPEG,PNG}} || die "failed to remove bundled libraries"
 
-    sed -e "/^INSTALLDIR ?=/s:/usr/lib:/usr/$(get_libdir)/:" \
+    sed -e "/^CFLAGS += /s:\$(INCLUDE):\$(INCLUDE) $CFLAGS:" \
+        -e "/^CXXFLAGS +=/s:\$(INCLUDE):\$(INCLUDE) $CXXFLAGS:" \
+        -e "/^INSTALLDIR ?=/s:/usr/lib:/usr/$(get_libdir)/:" \
         -i Makefile.gnu \
         || die "sed Makefile.gnu failed"
 }
 
 src_compile() {
     tc-export CC CXX AR
+    unset CFLAGS CXXFLAGS
 
     default
 }
@@ -54,5 +59,6 @@ src_compile() {
 src_install() {
     default
 
+    dosym libfreeimage.so.$(ever major) /usr/$(get_libdir)/libfreeimage.so
     dodoc -r Examples
 }
