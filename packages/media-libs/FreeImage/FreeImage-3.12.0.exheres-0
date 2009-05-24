@@ -3,18 +3,32 @@
 
 require flag-o-matic multilib toolchain-funcs
 
+MYPNV="$PN$(ever delete_all)"
+
 SUMMARY="A library to access popular image formats."
 DESCRIPTION="An Open Source library project for developers who would like to
 support popular graphics image formats like PNG, BMP, JPEG, TIFF and others as
 needed by today's multimedia applications. It is easy to use, fast and
 multithreading safe."
 HOMEPAGE="http://$PN.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/freeimage/$PN${PV//./}.zip"
+DOWNLOADS="
+    mirror://sourceforge/${PN,,}/$MYPNV.zip
+    mirror://sourceforge/${PN,,}/$MYPNV.pdf
+"
 
 LICENCES="|| ( GPL-2 FIPL-1.0 )"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
+
+REMOTE_IDS="freshmeat:$PN sourceforge:$PN"
+
+UPSTREAM_CHANGELOG="$HOMEPAGE/changeslog.html"
+UPSTREAM_DOCUMENTATION="
+$HOMEPAGE/faq.html         [[ lang = en description = [ FAQ ] ]]
+$HOMEPAGE/fip/index.html   [[ lang = en description = [ C++ Wrapper Manual ] ]]
+$HOMEPAGE/fnet/index.html  [[ lang = en description = [ C# Wrapper Manual ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -61,4 +75,5 @@ src_install() {
 
     dosym libfreeimage.so.$(ever major) /usr/$(get_libdir)/libfreeimage.so
     dodoc -r Examples
+    dodoc "$FETCHEDDIR/$MYPNV.pdf"
 }
