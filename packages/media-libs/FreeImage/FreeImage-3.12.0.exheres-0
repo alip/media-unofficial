@@ -34,6 +34,12 @@ DEPENDENCIES="
     build:
         app-arch/unzip
         dev-util/pkg-config
+
+    build+run:
+        media-libs/openexr
+        media-libs/libmng
+        media-libs/libpng
+        media-libs/OpenJPEG
 "
 
 WORK="$WORKBASE/$PN"
