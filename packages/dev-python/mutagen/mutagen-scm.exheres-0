@@ -11,4 +11,4 @@ require scm-svn
 BUGS_TO="polatel@gmail.com"
 
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
