@@ -1,0 +1,14 @@
+Source: Anders Ossowicki <arkanoid@exherbo.org>
+Upstream: No (dead)
+Reason: Fix build with glibc 2.10
+
+--- a/rtphint.cpp
++++ b/rtphint.cpp
+@@ -314,7 +314,7 @@ void MP4RtpHintTrack::GetPayload(
+ 	char **ppEncodingParams)
+ {
+   const char* pRtpMap;
+-  char* pSlash;
++  const char* pSlash;
+   u_int32_t length;
+ 	InitPayload();
