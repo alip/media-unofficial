@@ -9,7 +9,7 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 # Missing: dv(requires libdv)
-MYOPTIONS="X aac doc ffmpeg gtk jpeg lame opengl png vorbis x264"
+MYOPTIONS="X aac doc ffmpeg gtk jpeg lame opengl png vorbis h264"
 
 DEPENDENCIES="
 build+run:
@@ -23,12 +23,12 @@ build+run:
     lame? ( media-sound/lame[>=3.93] )
     png? ( media-libs/libpng[>=1.2.23] )
     vorbis? ( media-libs/libvorbis[>=1.0] )
-    x264? ( media-libs/x264 )
+    h264? ( media-libs/x264 )
 build:
     dev-util/pkg-config"
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'X x' 'aac faac' 'aac faad2' 'doc doxygen' 'ffmpeg' 'ffmpeg swscale' 
-'gtk' 'jpeg libjpeg' 'lame' 'opengl' 'png libpng' 'vorbis' 'x264' )
+'gtk' 'jpeg libjpeg' 'lame' 'opengl' 'png libpng' 'vorbis' 'h264 x264' )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-alsa' )
 
 src_install() {
