@@ -1,6 +1,8 @@
 # Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require multilib
+
 SUMMARY="A console audio player"
 DESCRIPTION="
 cmus is a small and fast text mode music player for Linux and many other UNIX
@@ -36,17 +38,31 @@ DEPENDENCIES="
         wavpack? ( media-sound/wavpack )
 "
 
-src_configure() {
-    local flags=""
+SRC_CONFIGURE_OPTION_CONFIGS=(
+    aac alsa ao arts ffmpeg flac mad mikmod modplug mp4 mpc
+    oss tremor vorbis wav wavpack
+)
 
+option_config() {
     # CONFIG_OPTION=VALUE
-    for f in aac alsa ao arts ffmpeg flac mad mikmod modplug mp4 mpc oss tremor vorbis wav wavpack ; do
-        if option "$f" ; then
-            flags="${flags} CONFIG_$(echo ${f} | tr [:lower:] [:upper:])=y"
-        else
-            flags="${flags} CONFIG_$(echo ${f} | tr [:lower:] [:upper:])=n"
-        fi
-    done
-
-    ./configure ${flags} || die "Configure script failed"
+    if optionq "${1}" ; then
+        echo "CONFIG_$(echo ${2:-${1}} | tr [:lower:] [:upper:])=y"
+    else
+        echo "CONFIG_$(echo ${2:-${1}} | tr [:lower:] [:upper:])=n"
+    fi
 }
+
+src_configure() {
+    local configure_command=(
+        ./configure
+            prefix=/usr
+            libdir=/usr/$(get_libdir)
+            exampledir=/usr/share/doc/${PNV}/examples
+            $(for s in "${SRC_CONFIGURE_OPTION_CONFIGS[@]}" ; do
+                option_config ${s} ;
+            done )
+    )
+    echo "${configure_command[@]}"
+    "${configure_command[@]}" || die "Configure script failed"
+}
+
