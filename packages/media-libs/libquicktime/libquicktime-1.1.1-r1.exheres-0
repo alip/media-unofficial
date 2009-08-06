@@ -9,7 +9,9 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 # Missing: dv(requires libdv)
-MYOPTIONS="X aac doc ffmpeg gtk jpeg lame opengl png vorbis h264"
+MYOPTIONS="X aac doc ffmpeg gtk jpeg opengl png vorbis h264
+    mp3 [[ description = [ Support mp3 encoding with lame ] ]]
+"
 
 DEPENDENCIES="
 build+run:
@@ -20,7 +22,7 @@ build+run:
     ffmpeg? ( media/ffmpeg )
     gtk? ( x11-libs/gtk+:2[>=2.4.0] )
     jpeg? ( media-libs/jpeg[>=6b] )
-    lame? ( media-sound/lame[>=3.93] )
+    mp3? ( media-sound/lame[>=3.93] )
     png? ( media-libs/libpng[>=1.2.23] )
     vorbis? ( media-libs/libvorbis[>=1.0] )
     h264? ( media-libs/x264 )
@@ -28,7 +30,7 @@ build:
     dev-util/pkg-config"
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'X x' 'aac faac' 'aac faad2' 'doc doxygen' 'ffmpeg' 'ffmpeg swscale' 
-'gtk' 'jpeg libjpeg' 'lame' 'opengl' 'png libpng' 'vorbis' 'h264 x264' )
+'gtk' 'jpeg libjpeg' 'mp3 lame' 'opengl' 'png libpng' 'vorbis' 'h264 x264' )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-alsa' )
 
 src_install() {
@@ -38,3 +40,4 @@ src_install() {
         rm -rf "${IMAGE}"/usr/share/man || die "Removing empty directory failed"
     fi
 }
+

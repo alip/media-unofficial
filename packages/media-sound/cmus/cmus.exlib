@@ -13,7 +13,9 @@ DOWNLOADS="http://mirror.greaterscope.net/cmus/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="aac alsa ao arts ffmpeg flac mad mikmod modplug mp4 mpc oss tremor vorbis wav wavpack"
+MYOPTIONS="aac alsa ao arts ffmpeg flac mikmod modplug mp4 mpc oss tremor vorbis wav wavpack
+    mp3 [[ description = [ Support mp3 decoding with mad ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -28,7 +30,7 @@ DEPENDENCIES="
         ao?      ( media-libs/libao )
         arts?    ( kde/kdemultimedia )
         flac?    ( media-libs/flac )
-        mad?     ( media-libs/libmad )
+        mp3?     ( media-libs/libmad )
         mikmod?  ( media-libs/mikmod )
         modplug? ( media-libs/libmodplug )
         mp4?     ( media-sound/mpeg4ip )
@@ -39,7 +41,7 @@ DEPENDENCIES="
 "
 
 SRC_CONFIGURE_OPTION_CONFIGS=(
-    aac alsa ao arts ffmpeg flac mad mikmod modplug mp4 mpc
+    aac alsa ao arts ffmpeg flac "mp3 mad" mikmod modplug mp4 mpc
     oss tremor vorbis wav wavpack
 )
 
