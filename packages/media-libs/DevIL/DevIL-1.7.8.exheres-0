@@ -12,7 +12,7 @@ DOWNLOADS="mirror://sourceforge/openil/$PNV.tar.gz"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="debug examples jpeg jpeg2000 lcms mng openexr opengl png sdl tiff X"
 
 REMOTE_IDS="freshmeat:devil sourceforge:devil"
