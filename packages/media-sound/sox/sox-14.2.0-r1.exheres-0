@@ -23,7 +23,9 @@ BUGS_TO="polatel@gmail.com"
 LICENCES="LGPL-2.1 GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="alsa ao debug ffmpeg flac id3tag ladspa lame libsamplerate mad ogg png sndfile wavpack"
+MYOPTIONS="alsa ao debug ffmpeg flac id3tag ladspa libsamplerate ogg png sndfile wavpack
+    mp3 [[ description = [ Support for mp3 encoding with lame, and decoding with mad ] ]]
+"
 
 DEPENDENCIES="
     build+run:
@@ -33,9 +35,11 @@ DEPENDENCIES="
         flac? ( media-libs/flac )
         id3tag? ( media-libs/libid3tag )
         ladspa? ( media-libs/ladspa-sdk )
-        lame? ( media-sound/lame )
         libsamplerate? ( media-libs/libsamplerate )
-        mad? ( media-libs/libmad )
+        mp3? (
+            media-libs/libmad
+            media-sound/lame
+        )
         ogg? ( media-libs/libogg media-libs/libvorbis )
         png? ( media-libs/libpng )
         sndfile? ( media-libs/libsndfile )
@@ -50,6 +54,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --without-amr-nb
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug 'ao libao' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( ffmpeg flac id3tag ladspa lame
-    'libsamplerate samplerate' mad ogg png sndfile wavpack )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( ffmpeg flac id3tag ladspa
+    'libsamplerate samplerate' 'mp3 lame' 'mp3 mad' ogg png sndfile wavpack )
 

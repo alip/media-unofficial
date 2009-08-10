@@ -10,6 +10,7 @@ from scratch in C++. New features include:
 * easy to use search screen
 * media library screen
 * lyrics screen
+* audio output selection screen
 * possibility of going to any position in currently playing track without rewinding/fastforwarding
 * multi colored main window (if you want)
 * songs can be added to playlist more than once
@@ -32,7 +33,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( curl taglib )
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-clock' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-clock' '--enable-outputs' )
 
 src_prepare() {
     sed -i \
