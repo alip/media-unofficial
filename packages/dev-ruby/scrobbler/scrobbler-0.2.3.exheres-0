@@ -1,0 +1,26 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Wrapper for the audioscrobbler web services"
+DESCRIPTION="
+${SUMMARY}
+"
+HOMEPAGE="http://scrobbler.rubyforge.org/"
+DOWNLOADS="http://rubyforge.org/frs/download.php/54879/${PNV}.gem"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/ruby:=
+        dev-ruby/hpricot[>=0.4.86]
+        dev-ruby/activesupport[>=2.2.2]
+"
+
+BUGS_TO="polatel@gmail.com"
+
