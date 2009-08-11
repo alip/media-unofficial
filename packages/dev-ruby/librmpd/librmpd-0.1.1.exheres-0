@@ -1,0 +1,26 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Simple yet powerful Music Player Daemon library written entirely in Ruby"
+DESCRIPTION="
+librmpd is a simple yet powerful Music Player Daemon library written entirely in
+Ruby. It provides callback functionality to create an event/listener type of
+setup, along with thread safety for threaded apps.
+"
+HOMEPAGE="http://librmpd.rubyforge.org/"
+DOWNLOADS="http://rubyforge.org/frs/download.php/15722/${PNV}.gem"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/ruby:=
+"
+
+BUGS_TO="polatel@gmail.com"
+
