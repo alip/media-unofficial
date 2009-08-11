@@ -1,0 +1,39 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Mpd Hooker"
+DESCRIPTION="
+mpdhooker is a daemon that can be used to add hooks to mpd.
+"
+HOMEPAGE="http://github.com/alip/${PN}/tree/master"
+SCM_REPOSITORY="git://github.com/alip/${PN}.git"
+require scm-git
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        dev-libs/glib[>=2.18.4]
+        dev-libs/libdaemon[>=0.13]
+        media-libs/libmpdclient[~scm]
+"
+
+BUGS_TO="polatel@gmail.com"
+
+src_prepare() {
+    default
+
+    ./autogen.sh || die "autogen.sh failed"
+}
+
+src_install() {
+    default
+
+    dodoc -r conf
+}
+
