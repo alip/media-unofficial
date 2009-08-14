@@ -20,7 +20,6 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib[>=2.18.4]
         dev-libs/libdaemon[>=0.13]
-        media-libs/libmpdclient[~scm]
 "
 
 BUGS_TO="polatel@gmail.com"
