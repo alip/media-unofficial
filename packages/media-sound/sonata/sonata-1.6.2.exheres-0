@@ -1,0 +1,47 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils
+
+SUMMARY="An elegant GTK+ music client for the Music Player Daemon (MPD)"
+DESCRIPTION="
+Features:
+- Expanded and collapsed views
+- Automatic remote and local album art
+- Library browsing by folders, or by genre/artist/album
+- User-configurable columns
+- Automatic fetching of lyrics
+- Playlist and stream support
+- Support for editing song tags
+- Drag and drop to copy files
+- Popup notification
+- Library and playlist searching, filter as you type
+- Audioscrobbler (last.fm) 1.2 support
+- Multiple MPD profiles
+- Keyboard friendly
+- Support for multimedia keys
+- Commandline control
+- Available in 24 languages
+"
+HOMEPAGE="http://sonata.berlios.de/"
+DOWNLOADS="mirror://berlios/${PN}/${PNV}.tar.bz2"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="dbus lyrics"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        x11-libs/gtk+[jpeg]
+        dev-lang/python:=
+        gnome-bindings/pygtk
+        dev-python/python-mpd
+        dbus? ( dev-python/dbus-python )
+        lyrics? ( dev-python/ZSI )
+"
+
+BUGS_TO="polatel@gmail.com"
+
