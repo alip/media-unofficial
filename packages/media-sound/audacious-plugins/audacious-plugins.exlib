@@ -7,14 +7,14 @@ DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
 LICENCES="GPL-2"
 MYOPTIONS="mp3"
 DEPENDENCIES="
-	media-sound/audacious[=${PV}]
-	dev-libs/dbus-glib[>=0.80]
-	dev-libs/glib[>=2.18.4]
-	dev-libs/libxml2
-	gnome-platform/libglade[>=2.6.3]
-	x11-libs/gtk+[>=2.14.7]
-	dev-util/pkg-config[>=0.23]
-	mp3? ( media-libs/libmad ) 
+    media-sound/audacious[=${PV}]
+    dev-libs/dbus-glib[>=0.80]
+    dev-libs/glib[>=2.18.4]
+    dev-libs/libxml2
+    gnome-platform/libglade[>=2.6.3]
+    x11-libs/gtk+[>=2.14.7]
+    dev-util/pkg-config[>=0.23]
+    mp3? ( media-libs/libmad ) 
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="mp3"

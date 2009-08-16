@@ -7,14 +7,14 @@ DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
 LICENCES="GPL-2"
 MYOPTIONS="dbus"
 DEPENDENCIES="
-	dbus? ( dev-libs/dbus-glib[>=0.80] )
-	dev-libs/glib[>=2.18.4]
-	dev-libs/libmcs[>=0.7.1]
-	dev-libs/libmowgli[>=0.7.0]
-	dev-libs/libxml2
-	gnome-platform/libglade[>=2.6.3]
-	x11-libs/cairo[>=1.8.6]
-	x11-libs/gtk+[>=2.14.7]
+    dbus? ( dev-libs/dbus-glib[>=0.80] )
+    dev-libs/glib[>=2.18.4]
+    dev-libs/libmcs[>=0.7.1]
+    dev-libs/libmowgli[>=0.7.0]
+    dev-libs/libxml2
+    gnome-platform/libglade[>=2.6.3]
+    x11-libs/cairo[>=1.8.6]
+    x11-libs/gtk+[>=2.14.7]
     x11-libs/pango[>=1.22.4]
     dev-util/pkg-config[>=0.23]
     post:
