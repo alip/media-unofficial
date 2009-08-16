@@ -1,0 +1,7 @@
+# Copyright (c) 2009 Jan Meier
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="High-performance C development framework. Can be used stand-alone or as a supplement to GLib."
+HOMEPAGE="http://www.atheme.org"
+DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
+LICENCES="GPL-2"

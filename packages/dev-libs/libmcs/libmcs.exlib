@@ -1,0 +1,12 @@
+# Copyright (c) 2009 Jan Meier
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Abstracts the storage of configuration settings away from applications."
+HOMEPAGE="http://www.atheme.org/"
+DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
+LICENCES="GPL-2"
+DEPENDENCIES="
+	dev-libs/libmowgli[>=0.7.0]
+"
+
+DEFAULT_SRC_CONFIGURE="--disable-kconfig"
