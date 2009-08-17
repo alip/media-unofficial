@@ -9,4 +9,4 @@ DEPENDENCIES="
     dev-libs/libmowgli[>=0.7.0]
 "
 
-DEFAULT_SRC_CONFIGURE="--disable-kconfig"
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-kconfig' ) 
