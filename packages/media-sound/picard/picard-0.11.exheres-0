@@ -1,0 +1,37 @@
+# Copyright 2009 Michael Forney
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'picard-0.11.ebuild' from Gentoo, which is:
+#     Copyright 1999-2009 Gentoo Foundation
+
+require distutils [ has_bin=true ]
+
+SUMMARY="Picard is the next generation MusicBrainz tagging application"
+HOMEPAGE="http://musicbrainz.org/doc/Picard_Tagger"
+DOWNLOADS="http://ftp.musicbrainz.org/pub/musicbrainz/${PN}/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    fingerprint [[ description = [ Support for finding fingerprints of audio files with ffmpeg and libofa ] ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-python/PyQt4[>=4.1]
+        dev-python/mutagen[>=1.9]
+        x11-libs/qt:4[>=4.2]
+        media-libs/libdiscid
+        fingerprint? (
+            media/ffmpeg
+            media-libs/libofa
+        )
+"
+
+src_configure() {
+    ${python} "${WORK}"/setup.py config || die "python setup.py config failed"
+    sed -e "s:\(with-avcodec =\).*:\1 $(optionq fingerprint && echo True || echo False):" \
+        -e "s:\(with-libofa =\).*:\1 $(optionq fingerprint && echo True || echo False):" \
+        -i "${WORK}"/build.cfg || die "sed build.cfg failed"
+}
+
