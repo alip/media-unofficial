@@ -20,8 +20,8 @@ DEPENDENCIES="
     build+run:
         dev-python/PyQt4[>=4.1]
         dev-python/mutagen[>=1.9]
-        x11-libs/qt:4[>=4.2]
         media-libs/libdiscid
+        x11-libs/qt:4[>=4.2]
         fingerprint? (
             media/ffmpeg
             media-libs/libofa
