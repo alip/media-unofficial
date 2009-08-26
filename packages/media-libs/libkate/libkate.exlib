@@ -1,0 +1,21 @@
+# Copyright 2009 Marvin Schmidt <marvin_schmidt@gmx.net>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Kate is a karaoke and text codec for encapsulation in Ogg containers"
+DESCRIPTION="
+Kate is an overlay codec, originally designed for karaoke and text, that can be multiplixed in Ogg. Text and images can be carried by a Kate stream, and animated. Most of the time, this would be multiplexed with audio/video to carry subtitles, song lyrics (with or without karaoke data), etc, but doesn't have to be.
+
+Series of curves (splines, segments, etc) may be attached to various properties (text position, font size, etc) to create animated overlays. This allows scrolling or fading text to be defined. This can even be used to draw arbitrary shapes, so hand drawing can also be represented by a Kate stream.
+"
+HOMEPAGE="http://wiki.xiph.org/OggKate http://code.google.com/p/${PN}"
+DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.gz"
+
+LICENCES="as-is"
+SLOT="0"
+
+BUGS_TO="marvin_schmidt@gmx.net"
+REMOTE_IDS="freshmeat:libkate"
+
+UPSTREAM_CHANGELOG="http://git.xiph.org/?p=users/oggk/kate.git;a=blob;f=ChangeLog;hb=HEAD"
+UPSTREAM_DOCUMENTATION="http://wiki.xiph.org/OggKate http://code.google.com/p/${PN}/w/list"
+
