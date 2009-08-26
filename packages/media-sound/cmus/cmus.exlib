@@ -18,10 +18,6 @@ MYOPTIONS="aac alsa ao arts ffmpeg flac mikmod modplug mp4 mpc oss tremor vorbis
 "
 
 DEPENDENCIES="
-    build:
-        ffmpeg? ( media/ffmpeg[<=0.4.9_pre1_p20090220] )
-    run:
-        ffmpeg? ( media/ffmpeg )
     build+run:
         sys-libs/ncurses
 
@@ -29,6 +25,7 @@ DEPENDENCIES="
         alsa?    ( sys-sound/alsa-lib )
         ao?      ( media-libs/libao )
         arts?    ( kde/kdemultimedia )
+        ffmpeg?  ( media/ffmpeg )
         flac?    ( media-libs/flac )
         mp3?     ( media-libs/libmad )
         mikmod?  ( media-libs/mikmod )

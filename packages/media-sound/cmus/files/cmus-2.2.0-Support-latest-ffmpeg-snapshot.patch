@@ -1,0 +1,63 @@
+Source: Upstream
+Upstream: Fixed in scm
+Reason: Fix compilation with ffmpeg
+
+From 1a37037be7af83f9ca1fc79ebcde6c108b9b62b5 Mon Sep 17 00:00:00 2001
+From: Timo Hirvonen <tihirvon@gmail.com>
+Date: Sat, 26 Apr 2008 13:29:36 +0300
+Subject: [PATCH] ffmpeg: Support latest snapshot
+
+Fix configure check for ffmpeg header file
+
+Fix the fix to the ffmpeg configure check
+---
+ configure |   11 +++++++++--
+ ffmpeg.c  |    7 +++++++
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/configure b/configure
+index f95e64d..d0fd870 100755
+--- a/configure
++++ b/configure
+@@ -199,8 +199,15 @@ check_aac()
+ 
+ check_ffmpeg()
+ {
+-	pkg_config FFMPEG "libavformat"
+-	return $?
++	if pkg_config FFMPEG "libavformat"
++	then
++		if check_header 'ffmpeg/avcodec.h'
++		then
++			FFMPEG_CFLAGS="$FFMPEG_CFLAGS -DHAVE_FFMPEG_AVCODEC_H"
++		fi
++		return 0
++	fi
++	return 1
+ }
+ 
+ # defaults
+diff --git a/ffmpeg.c b/ffmpeg.c
+index 9302461..a81d070 100644
+--- a/ffmpeg.c
++++ b/ffmpeg.c
+@@ -18,9 +18,16 @@
+  */
+ 
+ #include <stdio.h>
++
++#ifdef HAVE_FFMPEG_AVCODEC_H
+ #include <ffmpeg/avcodec.h>
+ #include <ffmpeg/avformat.h>
+ #include <ffmpeg/avio.h>
++#else
++#include <libavcodec/avcodec.h>
++#include <libavformat/avformat.h>
++#include <libavformat/avio.h>
++#endif
+ 
+ #include "ip.h"
+ #include "xmalloc.h"
+-- 
+1.6.4.1
+
