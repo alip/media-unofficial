@@ -1,0 +1,15 @@
+# Copyright 2009 Marvin Schmidt <marvin_schmidt@gmx.net>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Rendering library for Kate streams using pango and cairo"
+HOMEPAGE="http://wiki.xiph.org/OggKate http://code.google.com/p/${PN}"
+DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.gz"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+
+BUGS_TO="marvin_schmidt@gmx.net"
+REMOTE_IDS="freshmeat:libtiger"
+
+UPSTREAM_CHANGELOG="http://git.xiph.org/?p=users/oggk/tiger.git;a=blob;f=ChangeLog;hb=HEAD"
+

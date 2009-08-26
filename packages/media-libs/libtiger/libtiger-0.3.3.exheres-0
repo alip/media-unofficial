@@ -1,0 +1,22 @@
+# Copyright 2009 Marvin Schmidt <marvin_schmidt@gmx.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require libtiger
+
+PLATFORMS="~x86"
+
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        doc? ( app-doc/doxygen )
+    build+run:
+        media-libs/libkate[>=0.2.0]
+        x11-libs/cairo
+        x11-libs/pango
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( "--docdir=/usr/share/doc/${PNVR}" )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc' )
+
