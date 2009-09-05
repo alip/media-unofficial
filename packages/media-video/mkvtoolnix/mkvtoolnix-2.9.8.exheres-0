@@ -1,0 +1,40 @@
+# Copyright 2009 Michael Forney
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="MKVToolnix is a set of tools to create, alter and inspect Matroska files under Linux"
+HOMEPAGE="http://www.bunkus.org/videotools/${PN}"
+DOWNLOADS="http://www.bunkus.org/videotools/${PN}/sources/${PNV}.tar.bz2"
+
+REMOTE_IDS="freshmeat:${PN}"
+
+BUGS_TO="michael@obberon.com"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="flac qt4"
+
+DEPENDENCIES="
+    build+run:
+        app-arch/bzip2
+        app-arch/lzo
+        dev-libs/boost[>=1.32.0]
+        dev-libs/expat
+        media-libs/libebml[>=0.7.7]
+        media-libs/libmatroska[>=0.8.1]
+        media-libs/libogg
+        media-libs/libvorbis
+        sys-apps/file
+        sys-libs/zlib
+        flac? ( media-libs/flac )
+        qt4? ( x11-libs/qt:4 )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "qt4 qt" "qt4 gui" )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( flac )
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --disable-wxwidgets
+    --enable-bz2
+    --enable-lzo
+)
+
