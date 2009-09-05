@@ -1,0 +1,73 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="svn://svn.zoy.org/caca/${PN}"
+
+require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="The industry-standard colour ASCII-art library"
+DESCRIPTION="
+libcaca is a graphics library that outputs text
+instead of pixels, so that it can work on older video cards or
+text terminals. It is not unlike the famous AAlib library, with
+the following improvements:
+    * Unicode support
+    * 2048 available colours (some devices can only handle 16)
+    * dithering of colour images
+    * advanced text canvas operations (blitting, rotations) 
+Libcaca works in a text terminal using the S-Lang or ncurses libraries. 
+"
+HOMEPAGE="http://caca.zoy.org/wiki/${PN}"
+DOWNLOADS=""
+
+LICENCES="WTFPL-2 LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="X cxx doc imlib mono ncurses opengl plugins ruby server slang vga
+    cxx [[ description = [ Build C++ bindings ] ]]
+    plugins [[ description = [ Build plugins ] ]]
+    server [[ description = [ Build cacaserver ] ]]
+    vga [[ description = [ Use VGA backend ] ]]
+
+    ( X ncurses opengl slang vga ) [[ number-selected = at-least-one ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        sys-libs/zlib
+        X? ( x11-libs/libX11 )
+        doc? (
+            app-doc/doxygen
+            app-text/texlive
+        )
+        imlib? ( media-libs/imlib2 )
+        mono? ( dev-lang/mono )
+        ncurses? ( sys-libs/ncurses )
+        opengl? (
+            x11-dri/freeglut
+            x11-dri/mesa
+        )
+        ruby? ( dev-lang/ruby:= )
+        slang? ( sys-libs/slang )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-cocoa'
+    '--disable-conio'
+    '--disable-doc'
+    '--disable-win32'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'cxx'
+    'doc'
+    'X x11'
+    'imlib imlib2'
+    'mono csharp'
+    'ncurses'
+    'opengl gl'
+    'ruby'
+    'server network'
+    'slang'
+    'vga'
+)
+
