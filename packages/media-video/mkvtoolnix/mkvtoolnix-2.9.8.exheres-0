@@ -12,7 +12,7 @@ BUGS_TO="michael@obberon.com"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="flac qt4"
+MYOPTIONS="flac qt4 wxwidgets"
 
 DEPENDENCIES="
     build+run:
@@ -28,12 +28,12 @@ DEPENDENCIES="
         sys-libs/zlib
         flac? ( media-libs/flac )
         qt4? ( x11-libs/qt:4 )
+        wxwidgets? ( x11-libs/wxGTK:2.8 )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "qt4 qt" "qt4 gui" )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'qt4 qt' 'wxwidgets' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( flac )
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --disable-wxwidgets
     --enable-bz2
     --enable-lzo
 )
