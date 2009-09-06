@@ -6,7 +6,7 @@ DESCRIPTION="
 ${SUMMARY}
 "
 HOMEPAGE="http://mpd.wikia.com/wiki/ClientLib:libmpdclient"
-SCM_REPOSITORY="http://git.musicpd.org/cgit/master/libmpdclient.git"
+SCM_REPOSITORY="git://git.musicpd.org/master/libmpdclient.git"
 require scm-git
 
 LICENCES="GPL-2"
