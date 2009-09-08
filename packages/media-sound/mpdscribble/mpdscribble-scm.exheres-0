@@ -1,0 +1,46 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="mpd client which submits information about tracks being played to Last.fm"
+DESCRIPTION="
+Features:
+* written in C, consumes very little memory and CPU
+* full support for MPD's 'idle' mode
+* last.fm protocol 1.2 (including 'now playing')
+* supports seeking, crossfading, repeated songs
+"
+HOMEPAGE="http://mpd.wikia.com/wiki/Client:Mpdscribble"
+DOWNLOADS=""
+SCM_REPOSITORY="git://git.musicpd.org/master/mpdscribble.git"
+require scm-git
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    ( curl libsoup ) [[ number-selected = exactly-one ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib:2[>=2.16]
+        curl? ( net-misc/curl )
+        libsoup? ( gnome-desktop/libsoup )
+"
+
+BUGS_TO="polatel@gmail.com"
+
+src_prepare() {
+    NOCONFIGURE=1 ./autogen.sh || die "autogen.sh failed"
+}
+
+src_configure() {
+    local myconf
+    if option curl; then
+        myconf="--with-http-client=curl"
+    else
+        myconf="--with-http-client=soup"
+    fi
+    econf $myconf
+}
+
