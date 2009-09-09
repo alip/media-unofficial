@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Based in part upon ecasound-2.5.2-r1.ebuild which is
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
@@ -20,7 +20,7 @@ in the package.
 HOMEPAGE="http://ecasound.seul.org/ecasound/"
 DOWNLOADS="http://ecasound.seul.org/download/${PNV}.tar.gz"
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 LICENCES="LGPL-2.1 GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"

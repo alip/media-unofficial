@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="An almost exact clone of ncmpc"
@@ -18,7 +18,7 @@ from scratch in C++. New features include:
 "
 HOMEPAGE="http://unkart.ovh.org/ncmpcpp/"
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="

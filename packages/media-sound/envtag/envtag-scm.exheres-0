@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Simple audio tagger for use in shell scripts"
@@ -11,7 +11,7 @@ DOWNLOADS=""
 SCM_REPOSITORY="git://github.com/alip/envtag.git"
 require scm-git
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 
 LICENCES="GPL-2"
 SLOT="0"

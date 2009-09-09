@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Based in part upon libsoundtouch-1.3.1-r1.ebuild which is:
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
@@ -23,7 +23,7 @@ mono/stereo
 HOMEPAGE="http://www.surina.net/soundtouch/"
 DOWNLOADS="http://www.surina.net/soundtouch/${PNV}.tar.gz"
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64"

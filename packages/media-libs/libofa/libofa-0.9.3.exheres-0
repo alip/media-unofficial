@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.9 ] ]
@@ -27,7 +27,7 @@ not include any acoustic information.
 "
 HOMEPAGE="http://code.google.com/p/musicip-libofa/"
 DOWNLOADS="http://musicip-libofa.googlecode.com/files/${PNV}.tar.gz"
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 
 LICENCES="|| ( APL-1.0 GPL-2 )"
 SLOT="0"

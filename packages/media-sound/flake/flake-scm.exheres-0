@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require cmake
@@ -17,7 +17,7 @@ SCM_SVN_RAW_URI=1
 SCM_REPOSITORY="https://flake-enc.svn.sourceforge.net/svnroot/flake-enc"
 require scm-svn
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64"

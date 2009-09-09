@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Based in part upon liblo-0.25.ebuild which is:
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
@@ -11,7 +11,7 @@ systems, started by Steve Harris and now maintained by Stephen Sinclair.
 HOMEPAGE="http://plugin.org.uk/liblo"
 DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 REMOTE_IDS="sourceforge:${PN}"
 
 LICENCES="GPL-2"

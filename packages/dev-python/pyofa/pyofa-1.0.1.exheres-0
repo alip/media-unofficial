@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require distutils
@@ -12,7 +12,7 @@ M4A, etc.).
 HOMEPAGE="http://furius.ca/pyofa/"
 DOWNLOADS="http://furius.ca/downloads/${PN}/releases/${PNV}.tar.bz2"
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 REMOTE_IDS="pypi:${PN}"
 LICENCES="GPL-2"
 SLOT="0"

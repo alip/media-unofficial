@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="A library for interfacing MPD in the C, C++ & Objective C languages"
@@ -19,7 +19,7 @@ DEPENDENCIES="
         dev-util/pkg-config
 "
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 
 src_prepare() {
     NOCONFIGURE=1 ./autogen.sh || die "autogen.sh failed"

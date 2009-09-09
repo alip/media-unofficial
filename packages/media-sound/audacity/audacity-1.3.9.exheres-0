@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Based in part upon audacity-1.3.7.ebuild which is:
 #   Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
@@ -22,7 +22,7 @@ And more!
 HOMEPAGE="http://audacity.sourceforge.net/"
 DOWNLOADS="mirror://sourceforge/${PN}/${MY_T}.tar.bz2"
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"

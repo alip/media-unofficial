@@ -1,4 +1,4 @@
-# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require gem
@@ -22,5 +22,5 @@ DEPENDENCIES="
         dev-lang/ruby:=
 "
 
-BUGS_TO="polatel@gmail.com"
+BUGS_TO="alip@exherbo.org"
 
