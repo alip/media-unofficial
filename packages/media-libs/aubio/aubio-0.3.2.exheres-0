@@ -1,0 +1,49 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require python multilib
+
+SUMMARY="Library for audio labelling"
+DESCRIPTION="
+aubio is a library for audio labelling. Its features include segmenting a sound
+file before each of its attacks, performing pitch detection, tapping the beat
+and producing midi streams from live audio. The name aubio comes from 'audio'
+with a typo: several transcription errors are likely to be found in the results
+too.
+"
+HOMEPAGE="http://aubio.piem.org"
+DOWNLOADS="http://aubio.piem.org/pub/${PNV}.tar.gz"
+
+BUGS_TO="polatel@gmail.com"
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="alsa jack"
+
+DEPENDENCIES="
+    build:
+        dev-lang/swig[>=1.3.8]
+        dev-util/pkg-config
+    build+run:
+        sci-libs/fftw[>=3]
+        media-libs/libsndfile
+        media-libs/libsamplerate
+        dev-lang/python:=
+        alsa? ( sys-sound/alsa-lib )
+        jack? ( media-sound/jack-audio-connection-kit )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa jack )
+
+src_install() {
+    default
+    doman doc/*.1
+}
+
+pkg_postinst() {
+    python_mod_optimize $(python_get_sitedir)/${PN}
+}
+
+pkg_postrm() {
+    python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/${PN}
+}

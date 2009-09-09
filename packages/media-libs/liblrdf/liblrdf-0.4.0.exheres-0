@@ -1,0 +1,29 @@
+# Copyright 2009 Ali Polatel <polatel@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A library for the manipulation of RDF file in LADSPA plugins"
+DESCRIPTION="
+This is a library to make it easy to manipulate RDF files describing LADSPA
+plugins.
+It can also be used for general RDF manipulation.
+It can read RDF/XLM and N3 files and export N3 files, it also has a light
+taxonomic inference capablility.
+"
+HOMEPAGE="http://lrdf.sourceforge.net"
+DOWNLOADS="mirror://sourceforge/lrdf/${PNV}.tar.gz"
+
+BUGS_TO="polatel@gmail.com"
+REMOTE_IDS="sourceforge:lrdf"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        media-libs/raptor
+        media-libs/ladspa-sdk
+"
