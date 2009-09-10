@@ -9,8 +9,8 @@ pyofa is a simple Python wrapper around the MusicDNS technology provided by
 MusicIP for generating PUIDs (audio fingerprints) from audio files (e.g. MP3,
 M4A, etc.).
 "
-HOMEPAGE="http://furius.ca/pyofa/"
-DOWNLOADS="http://furius.ca/downloads/${PN}/releases/${PNV}.tar.bz2"
+HOMEPAGE="http://furius.ca/${PN}/"
+DOWNLOADS="http://pypi.python.org/packages/source/p/${PN}/${PNV}.tar.gz"
 
 BUGS_TO="alip@exherbo.org"
 REMOTE_IDS="pypi:${PN}"
