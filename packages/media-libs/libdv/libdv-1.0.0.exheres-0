@@ -1,0 +1,36 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Quasar DV Codec: libdv"
+DESCRIPTION="
+The Quasar DV codec (libdv) is a software codec for DV video,
+the encoding format used by most digital camcorders, typically
+those that support the IEEE 1394 (a.k.a. FireWire or i.Link) interface.
+Libdv was developed according to the official standards for DV video:
+IEC 61834 and SMPTE 314M. 
+"
+HOMEPAGE="http://libdv.sourceforge.net"
+DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="sdl xv
+    ( sdl xv ) [[ number-selected = at-least-one ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        sdl? ( media-libs/SDL[>=1.1.6] )
+        xv? ( x11-libs/libXv )
+"
+
+REMOTE_IDS="sourceforge:${PN}"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-gtk' ) # requires obsolete gtk+:1
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'sdl'
+    'xv'
+)
+
