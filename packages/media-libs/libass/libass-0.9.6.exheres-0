@@ -1,6 +1,15 @@
 # Copyright 2009 Thomas Anderson
 # Distributed under the terms of the GNU General Public License v2
 
+SUMMARY="ASS/SSA (Advanced Substation Alpha/Substation Alpha) subtitle rendering library"
+DESCRIPTION="
+The ASS format can be used for extremely complex subtitles. Text can be rendered with
+borders and shadows in arbitrary colors, with alpha transparency and arbitrarily positioned.
+Additionally, various vectors transformations (rotations, shearing, scaling) and bitmap
+operations (box blur, gaussian blur) can be applied. Finally, it is also possible to clip
+resulting subtitles. There are even more advanced features available, like vector drawings,
+vector blending and animations.
+"
 HOMEPAGE="http://sourceforge.net/projects/libass/"
 DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.bz2"
 
@@ -10,9 +19,11 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
-build+run:
-    media-libs/libpng
-    media-libs/fontconfig[>=2.2.0]
-    media-libs/freetype:2"
+    build+run:
+        media-libs/libpng
+        media-libs/fontconfig[>=2.2.0]
+        media-libs/freetype:2
+"
 
 BUGS_TO="gentoofan23@gentoo.org"
+
