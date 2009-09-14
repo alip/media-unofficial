@@ -16,24 +16,19 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-          dev-libs/libxml2
+        dev-libs/libxml2
         media-libs/gstreamer[>=0.10.21]
         media-plugins/gst-plugins-base[>=0.10.21]
         || (
-               gnome-bindings/pygobject[>=2.11.2]
-               gnome-bindings/pygtk[>=2.6.3]
-           )
+            gnome-bindings/pygobject[>=2.11.2]
+            gnome-bindings/pygtk[>=2.6.3]
+        )
 "
 
 # Tests broken with Python 2.6 and current GObject API
 RESTRICT="test"
 
 src_prepare() {
-    # when building against <gst-plugins-base-0.10.23, codegen will fail without this
-    sed -i \
-        -e '/^$/d' \
-        gst/gst-pb-0.10.23.ignore || die "failed removing empty lines"
-
     # Let python_mod_optimize handle byte compiling in pkg_postinst()
     rm -f py-compile || die "rm -f py-compile failed"
     ln -s $(type -P true) py-compile || die "ln -s \$(type -P true) py-compile failed"
@@ -48,3 +43,4 @@ pkg_postinst() {
 pkg_postrm() {
     python_mod_cleanup
 }
+
