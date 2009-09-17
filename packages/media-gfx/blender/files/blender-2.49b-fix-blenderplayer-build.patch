@@ -1,0 +1,15 @@
+Source: Backported from blender trunk
+Upstream: Fixed in svn for blender-2.5, upstream no longer cares about 2.4
+Reason: Blender fails to build with cmake when the `player' flag is enabled
+
+diff -Naur a/blenderplayer/CMakeLists.txt b/blenderplayer/CMakeLists.txt
+--- a/blenderplayer/CMakeLists.txt	2009-09-01 08:20:25.000000000 -0700
++++ b/blenderplayer/CMakeLists.txt	2009-09-17 14:56:35.000000000 -0700
+@@ -108,6 +108,7 @@
+     bf_ftfont 
+     extern_ftgl 
+     bf_readblenfile 
++    bf_videotex
+     blenkernel_blc
+     bf_quicktime
+     extern_binreloc

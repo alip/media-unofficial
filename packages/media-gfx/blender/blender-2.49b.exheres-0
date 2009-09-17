@@ -1,0 +1,18 @@
+# Copyright 2009 Michael Forney
+# Distributed under the terms of the GNU General Public License v2
+
+require blender
+
+DOWNLOADS="http://mirror.cs.umn.edu/blender.org/source/${PNV}.tar.gz"
+
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        media-libs/SDL
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/${PNV}-fix-blenderplayer-build.patch
+)
+
