@@ -16,7 +16,7 @@ DOWNLOADS="http://download.sarine.nl/Programs/gmpc/${PV}/${PNV}.tar.gz"
 
 LICENCES="GPL-3"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="

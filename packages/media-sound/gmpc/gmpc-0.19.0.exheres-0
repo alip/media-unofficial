@@ -16,7 +16,7 @@ DOWNLOADS="http://download.sarine.nl/Programs/${PN}/${PV}/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
