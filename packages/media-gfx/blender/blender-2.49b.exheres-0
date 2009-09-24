@@ -16,3 +16,19 @@ DEFAULT_SRC_PREPARE_PATCHES=(
     "${FILES}"/${PNV}-fix-blenderplayer-build.patch
 )
 
+src_install() {
+    # blender-2.49 provides no install target :(
+    exeinto /usr/bin/
+    doexe "${ECMAKE_BUILD_DIR}"/bin/blender
+    optionq player && doexe "${ECMAKE_BUILD_DIR}"/bin/blenderplayer
+
+    insinto /usr/share/${PN}/$(ever range 1-2)
+    doins -r "${ECMAKE_BUILD_DIR}"/bin/.blender/*
+    doins "${ECMAKE_BUILD_DIR}"/bin/.blender/.Blanguages
+    doins "${ECMAKE_BUILD_DIR}"/bin/.blender/.bfont.ttf
+
+    blender_src_install
+
+    emagicdocs
+}
+

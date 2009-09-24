@@ -20,10 +20,23 @@ DEPENDENCIES="
         sndfile?    ( media-libs/libsndfile )
 "
 
+CMAKE_SRC_CONFIGURE_PARAMS+=(
+    -DWITH_INSTALL:BOOL=TRUE
+)
+
 CMAKE_SRC_CONFIGURE_OPTION_WITHS+=(
     "fftw FFTW3"
     JACK
     SDL
     SNDFILE
 )
+
+src_install() {
+    cmake_src_install
+
+    blender_src_install
+
+    rm -rf "${IMAGE}"/usr/share/blender/2.5/python \
+        || die "Failed to remove useless python directory"
+}
 

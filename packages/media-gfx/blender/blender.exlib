@@ -3,6 +3,8 @@
 
 require cmake freedesktop-desktop
 
+export_exlib_phases src_install
+
 SUMMARY="Blender is the free open source 3D content creation suite"
 DESCRIPTION="
 "
@@ -47,6 +49,7 @@ CMAKE_SRC_CONFIGURE_PARAMS=(
     -DWITH_OPENMP:BOOL=FALSE
     -DWITH_WEBPLUGIN:BOOL=FALSE # Needs npupp.h, I don't know what provides this
 )
+
 CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
     BULLET
     ELBEEM
@@ -60,15 +63,7 @@ CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
     VERSE
 )
 
-src_install() {
-    # Blender provides no install target :(
-    exeinto /usr/bin/
-    doexe "${ECMAKE_BUILD_DIR}"/bin/blender
-    optionq player && doexe "${ECMAKE_BUILD_DIR}"/bin/blenderplayer
-
-    insinto /usr/share/${PN}/scripts/
-    doins release/scripts/*.py
-
+blender_src_install() {
     insinto /usr/share/applications/
     doins release/freedesktop/blender.desktop
 
@@ -78,7 +73,5 @@ src_install() {
     done
     insinto /usr/share/icons/hicolor/scalable/apps/
     doins release/freedesktop/icons/scalable/blender.svg
-
-    emagicdocs
 }
 
