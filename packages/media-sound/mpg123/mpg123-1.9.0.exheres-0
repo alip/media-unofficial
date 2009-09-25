@@ -7,7 +7,7 @@ DOWNLOADS="mirror://sourceforge/mpg123/${PV}/${PNV}.tar.bz2"
 
 LICENCES="( GPL-2 LGPL-2.1 )"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="debug jack openal pulseaudio sdl"
 
 DEPENDENCIES="
