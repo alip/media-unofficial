@@ -1,0 +1,42 @@
+# Copyright 2009 Daniel Mierswa <impulze@impulze.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A console based decoder/player for mono/stereo mpeg audio files."
+HOMEPAGE="http://www.mpg123.de/"
+DOWNLOADS="mirror://sourceforge/mpg123/${PV}/${PNV}.tar.bz2"
+
+LICENCES="( GPL-2 LGPL-2.1 )"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="debug jack openal pulseaudio sdl"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        jack? ( media-sound/jack-audio-connection-kit )
+        openal? ( media-libs/openal )
+        pulseaudio? ( media-sound/pulseaudio )
+        sdl? ( media-libs/SDL )
+"
+
+UPSTREAM_DOCUMENTATION="${HOMEPAGE}/api [[ lang = en description = [ API reference ] ]]"
+
+REMOTE_IDS="sourceforge:mpg123"
+
+src_configure() {
+    local modules=( alsa )
+
+    option jack && modules+=( jack )
+    option openal && modules+=( openal )
+    option pulseaudio && modules+=( pulse )
+    option sdl && modules+=( sdl )
+
+     # (note that newer gcc 4.x versions do not use/need the align check)
+     # since we only have gcc 4.x, we can safely disable it
+     econf \
+         --with-audio="$(echo ${modules[@]} | tr ' ' ',')" \
+         $(option_enable debug) \
+         --disable-aligncheck
+}
+
