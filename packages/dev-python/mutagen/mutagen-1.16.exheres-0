@@ -3,7 +3,7 @@
 
 require distutils common-metadata
 
-DOWNLOADS="http://quodlibet.googlecode.com/files/${PNV}.tar.gz"
+DOWNLOADS="http://mutagen.googlecode.com/files/${PNV}.tar.gz"
 
 BUGS_TO="arkanoid@exherbo.org"
 
