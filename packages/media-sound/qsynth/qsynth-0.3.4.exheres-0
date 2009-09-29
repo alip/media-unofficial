@@ -22,9 +22,8 @@ DEPENDENCIES="
         x11-libs/qt[>=4.1]
 "
 
-BUGS_TO=""
+REMOTE_IDS="sourceforge:${PN}"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'system-tray' )
-DEFAULT_SRC_COMPILE_PARAMS=( -j1 )
+DEFAULT_SRC_COMPILE_PARAMS=( -j1 ) # Parallel make sucks
 
