@@ -1,0 +1,12 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require libcaca
+
+MY_PNV="${PN}-$(ever replace_all .)"
+DOWNLOADS="http://caca.zoy.org/files/${PN}/${MY_PNV}.tar.gz"
+
+PLATFORMS="~amd64"
+
+WORK="${WORKBASE}/${MY_PNV}"
+
