@@ -1,4 +1,4 @@
-# Copyright 2009 Marvin Schmidt <marvin_schmidt@gmx.net>
+# Copyright 2009 Marvin Schmidt <marv@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Rendering library for Kate streams using pango and cairo"
@@ -8,7 +8,7 @@ DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.gz"
 LICENCES="LGPL-2.1"
 SLOT="0"
 
-BUGS_TO="marvin_schmidt@gmx.net"
+BUGS_TO="marv@exherbo.org"
 REMOTE_IDS="freshmeat:libtiger"
 
 UPSTREAM_CHANGELOG="http://git.xiph.org/?p=users/oggk/tiger.git;a=blob;f=ChangeLog;hb=HEAD"

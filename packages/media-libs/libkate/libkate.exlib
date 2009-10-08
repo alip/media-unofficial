@@ -1,4 +1,4 @@
-# Copyright 2009 Marvin Schmidt <marvin_schmidt@gmx.net>
+# Copyright 2009 Marvin Schmidt <marv@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Kate is a karaoke and text codec for encapsulation in Ogg containers"
@@ -13,7 +13,7 @@ DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.gz"
 LICENCES="as-is"
 SLOT="0"
 
-BUGS_TO="marvin_schmidt@gmx.net"
+BUGS_TO="marv@exherbo.org"
 REMOTE_IDS="freshmeat:libkate"
 
 UPSTREAM_CHANGELOG="http://git.xiph.org/?p=users/oggk/kate.git;a=blob;f=ChangeLog;hb=HEAD"
