@@ -17,6 +17,5 @@ DEPENDENCIES="
         x11-libs/pango
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( "--docdir=/usr/share/doc/${PNVR}" )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc' )
 
