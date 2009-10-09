@@ -1,0 +1,68 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY=""
+DESCRIPTION="
+BMPx is a media player which is excruciatingly (painfully?) simple to use,
+while being very powerful under the hood. BMPx is based on the current
+experimental codebase of the BMP project.
+"
+HOMEPAGE="http://bmpx.backtrace.info/site/BMPx_Homepage"
+DOWNLOADS="http://files.backtrace.info/releases/$(ever range 1-2)/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc hal networkmanager startup-notification"
+
+DEPENDENCIES="
+    build:
+        doc? (
+            app-text/docbook-xsl-stylesheets
+            dev-libs/libxslt
+        )
+        dev-util/intltool[>=0.35.0]
+    build+run:
+        dev-db/sqlite:3[>=3.4]
+        dev-libs/boost[>=1.33.1]
+        dev-libs/dbus-glib
+        dev-libs/libxml2[>=2.6.1]
+        gnome-bindings/libglademm:2.4[>=2.6.2]
+        gnome-bindings/libsexymm[>=0.1.9]
+        gnome-bindings/gtkmm:2.4[>=2.12.0]
+        gnome-desktop/librsvg:2[>=2.14.0]
+        gnome-desktop/libsoup:2.2[>=2.2.100]
+        media-libs/gstreamer:0.10[>=0.10.14]
+        media-libs/libofa[>=0.9.3]
+        media-libs/taglib[>=1.4]
+        media-plugins/gst-plugins-base:0.10[>=0.10.14]
+        sys-apps/dbus[>=1.0.0]
+        sys-devel/gettext
+        sys-sound/alsa-lib[>=1.0.9]
+        || ( dev-libs/libcdio[>=0.70] media/cdparanoia )
+        hal? ( sys-apps/hal[>=0.5.8.1] )
+        networkmanager? ( net-apps/NetworkManager[>=0.6] )
+        startup-notification? ( x11-libs/startup-notification[>=0.8] )
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( ${FILES}/${PNV}-c++-fixes.patch )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-modplug'
+    '--enable-sm'
+    '--with-tr1'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    'networkmanager nm'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'doc'
+    'hal'
+    'startup-notification sn'
+)
+
+src_install() {
+    default
+    rmdir "${IMAGE}/usr/share/bmpx/data" || die "remove empty dir failed"
+}
+
