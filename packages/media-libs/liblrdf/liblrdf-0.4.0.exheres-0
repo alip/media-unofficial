@@ -20,6 +20,10 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --hates=docdir
+)
+
 DEPENDENCIES="
     build:
         dev-util/pkg-config
