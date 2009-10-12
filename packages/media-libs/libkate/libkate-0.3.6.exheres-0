@@ -3,7 +3,7 @@
 
 require libkate
 
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 
 MYOPTIONS="doc"
 
