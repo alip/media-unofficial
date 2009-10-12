@@ -13,6 +13,10 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --hates=docdir
+)
+
 DEPENDENCIES="
     build+run:
         dev-libs/popt
