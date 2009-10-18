@@ -1,0 +1,39 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="An MP3 technical info viewer and ID3 1.x tag editor"
+DESCRIPTION="
+MP3Info is a little utility used to read and modify the ID3 tags of MP3 files. MP3Info can also display various techincal aspects of an MP3 file including playing time, bit-rate, sampling frequency and other attributes in a pre-defined or user-specifiable output format. 
+"
+HOMEPAGE="http://ibiblio.org/mp3info/"
+DOWNLOADS="ftp://ftp.ibiblio.org/pub/linux/apps/sound/mp3-utils/${PN}/${PNV}.tgz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="gtk"
+
+DEPENDENCIES="
+    build:
+        sys-apps/groff
+    build+run:
+        sys-libs/ncurses
+        gtk? ( x11-libs/gtk+:2 )
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( ${FILES}/${PNV}-Makefile.patch )
+
+src_compile() {
+    emake mp3info || die 'emake mp3info failed'
+    if optionq gtk; then
+        emake gmp3info || die 'emake gmp3info failed'
+    fi
+}
+
+src_install() {
+    emake DESTDIR="${IMAGE}" install-mp3info || die 'emake install-mp3info failed'
+    if optionq gtk; then
+        emake DESTDIR="${IMAGE}" install-gmp3info || die 'emake install-gmp3info failed'
+    fi
+}
+

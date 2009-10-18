@@ -1,0 +1,41 @@
+Source: written by Pierre Lejeune <superheron@gmail.com>
+Upstream: no
+Reason: Makefile adaptations for Exherbo
+--- mp3info-0.8.5a.orig/Makefile	2006-11-10 01:14:11.000000000 +0100
++++ mp3info-0.8.5a/Makefile	2009-10-18 17:52:02.657354241 +0200
+@@ -28,9 +28,9 @@
+ # bindir = where binaries get installed (default = /usr/local/bin)
+ # mandir = where the manual page gets installed (default = /usr/local/man/man1)
+ 
+-prefix=/usr/local
+-bindir=${prefix}/bin
+-mandir = $(prefix)/man/man1
++prefix = $(DESTDIR)/usr
++bindir = ${prefix}/bin
++mandir = $(prefix)/share/man/man1
+ 
+ # No changes necessary below this line
+ 
+@@ -41,7 +41,6 @@
+ XOBJ =  mp3tech.o
+ RM = /bin/rm
+ INSTALL = /usr/bin/install -c
+-STRIP = strip
+ 
+ LIBS = -lncurses
+ CC = gcc
+@@ -69,12 +68,12 @@
+ 	$(RM) -f mp3info.txt
+ 
+ install-mp3info: mp3info
+-	$(STRIP) mp3info
++	mkdir -p $(bindir) $(mandir)
+ 	$(INSTALL) mp3info $(bindir)/mp3info
+ 	$(INSTALL) mp3info.1 $(mandir)/mp3info.1
+ 
+ install-gmp3info: gmp3info
+-	$(STRIP) gmp3info
++	mkdir -p $(bindir)
+ 	$(INSTALL) gmp3info $(bindir)/gmp3info
+ 
+ install: install-mp3info install-gmp3info
