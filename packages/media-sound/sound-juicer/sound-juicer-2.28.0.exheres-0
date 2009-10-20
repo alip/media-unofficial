@@ -1,0 +1,39 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Gstreamer-based CD ripper"
+DESCRIPTION="
+Sound Juicer is a clean, mean, and lean CD ripper for GNOME 2.
+"
+HOMEPAGE="http://www.burtonini.com/blog/computers/sound-juicer"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        gnome-desktop/gnome-doc-utils
+        sys-devel/gettext
+    build+run:
+        dev-libs/dbus-glib:1
+        dev-libs/glib:2[>=2.18]
+        dev-libs/libcdio[>=0.70]
+        dev-util/glade[>=2.0]
+        gnome-desktop/brasero
+        gnome-desktop/gnome-media[>=2.11.91]
+        gnome-platform/GConf:2
+        media-libs/gstreamer:0.10[>=0.10.15]
+        media-libs/libcanberra[gtk]
+        media-libs/libmusicbrainz:=
+        media-plugins/gst-plugins-base:0.10
+        x11-libs/gtk+:2[>=2.14]
+    recommendation:
+        media-plugins/gst-plugins-base:0.10[gstreamer_plugins:vorbis]
+        media-plugins/gst-plugins-good:0.10[gstreamer_plugins:flac]
+"
+
