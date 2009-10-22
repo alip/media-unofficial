@@ -1,0 +1,32 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="PulseAudio Preferences Dialog"
+DESCRIPTION="
+"
+HOMEPAGE="http://0pointer.de/lennart/projects/paprefs/"
+DOWNLOADS="http://0pointer.de/lennart/projects/paprefs/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        sys-devel/gettext
+        doc? ( net-www/lynx )
+    build+run:
+        dev-cpp/libsigc++:2
+        dev-libs/dbus-glib:1
+        gnome-bindings/gconfmm:2.6
+        gnome-bindings/gtkmm:2.4
+        gnome-bindings/libglademm:2.4
+        media-sound/pulseaudio
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'doc lynx'
+)
+
