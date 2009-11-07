@@ -44,7 +44,7 @@ REMOTE_IDS="sourceforge:${PN}"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="flac mp3 speex vorbis wavpack"
+MYOPTIONS="flac mp3 speex vorbis wavpack [[ description = [ Add support for wavpack ] ]]"
 
 DEPENDENCIES="
     build:

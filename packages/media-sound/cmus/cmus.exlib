@@ -14,7 +14,9 @@ DOWNLOADS="http://mirror.greaterscope.net/cmus/${PNV}.tar.bz2"
 LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="aac alsa ao arts ffmpeg flac mikmod modplug mp4 mpc oss tremor vorbis wav wavpack
-    mp3 [[ description = [ Support mp3 decoding with mad ] ]]
+    modplug [[ description = [ Build with modplug support ] ]]
+    mp3     [[ description = [ Support mp3 decoding with mad ] ]]
+    mp4     [[ description = [ Support mp4 decoding ] ]]
 "
 
 DEPENDENCIES="

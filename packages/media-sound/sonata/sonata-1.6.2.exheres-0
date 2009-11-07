@@ -29,7 +29,7 @@ DOWNLOADS="mirror://berlios/${PN}/${PNV}.tar.bz2"
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="dbus lyrics"
+MYOPTIONS="dbus lyrics [[ description = [ Support for lyrics fetching ] ]]"
 
 DEPENDENCIES="
     build:
