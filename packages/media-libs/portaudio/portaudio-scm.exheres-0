@@ -1,0 +1,10 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="http://www.portaudio.com/repos/portaudio/"
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ] portaudio scm-svn
+
+DOWNLOADS=""
+PLATFORMS="~amd64"
+
