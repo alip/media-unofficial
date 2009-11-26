@@ -21,4 +21,9 @@ DEPENDENCIES="
         media-sound/audacious-plugins[=${PV}]
 "
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="dbus"
+pkg_preinst() {
+    edo rm -f ${IMAGE}/usr/bin/audacious ${IMAGE}/usr/bin/audtool
+    dosym /usr/bin/audacious2 /usr/bin/audacious 
+    dosym /usr/bin/audtool2 /usr/bin/audtool
+}
 

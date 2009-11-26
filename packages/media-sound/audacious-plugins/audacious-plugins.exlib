@@ -16,5 +16,6 @@ DEPENDENCIES="
     dev-util/pkg-config[>=0.23]
     mp3? ( media-libs/libmad ) 
 "
-
+DEFAULT_SRC_CONFIGURE_PARAMS=( "--disable-projectm" "--disable-projectm-1.0" )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="mp3"
+
