@@ -3,7 +3,7 @@
 
 require gnome-2
 
-SUMMARY="A GTK+ client for MPD."
+SUMMARY="A GTK+ client for MPD"
 DESCRIPTION="GMPC's interface is made to be easy to use, but provide full 
 access to all the features MPD provides. It gives the user several ways
 to browse his database while still being a lightweight client. GMPC is:
