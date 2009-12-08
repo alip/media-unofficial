@@ -24,7 +24,6 @@ DEPENDENCIES="
         doc? ( app-doc/doxygen )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-dependency-tracking )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 )
 
 src_configure() {
