@@ -44,15 +44,16 @@ DEPENDENCIES="
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=( "Documentation/*.txt" )
 
 src_configure() {
-    local pyconf
+    local pyconf=()
 
     if option python; then
-        python_version
-        pyconf="--enable-pyecasound=c
-            --with-python-includes=/usr/include/python${PYVER}
-            --with-python-modules=$(python_get_libdir)"
+        pyconf=(
+            --enable-pyecasound=c
+            --with-python-includes=/usr/include/python$(python_get_abi)
+            --with-python-modules=$(python_get_libdir)
+        )
     else
-        pyconf="--disable-pyecasound"
+        pyconf=( --disable-pyecasound )
     fi
 
     econf \
@@ -69,7 +70,7 @@ src_configure() {
         --enable-sys-readline \
         --disable-arts \
         --disable-oss \
-        ${pyconf}
+        "${pyconf[@]}"
 }
 
 pkg_postinst() {
