@@ -1,0 +1,39 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="JACK Rack is an effects rack for the JACK low latency audio API."
+HOMEPAGE="http://jack-rack.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/jack-rack/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="alsa gnome lash nls xml"
+
+DEPENDENCIES="
+	dev-util/intltool
+    x11-libs/gtk+:2
+	media-libs/ladspa-sdk[>=1.12]
+	media-sound/jack-audio-connection-kit
+	alsa?  ( sys-sound/alsa-lib )
+	lash?  ( media-sound/lash[>=0.5] )
+	gnome? ( gnome-base/libgnomeui[>=2] )
+	xml?   ( dev-libs/libxml2
+		     media-libs/liblrdf )
+    build:
+        dev-util/pkg-config
+        sys-devel/gettext
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/${PN}-1.4.5-asneeded.patch
+    "${FILES}"/${PN}-1.4.6-noalsa.patch
+)
+DEFAULT_SRC_CONFIGURE_PARAMS=( 
+    --enable-desktop-inst
+    --hates=docdir
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'alsa aseq' 'gnome' 'lash' 'xml' 'xml lrdf' )
+
+BUGS_TO="jedahan@gmail.com"
+
