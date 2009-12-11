@@ -29,6 +29,6 @@ DEPENDENCIES="
     media-libs/libogg
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-recursive )
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fix-errno-and-warnings.patch" )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=docdir --enable-recursive )
 
