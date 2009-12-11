@@ -1,0 +1,33 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require waf
+
+SUMMARY="Modular patch bay for audio and MIDI systems"
+HOMEPAGE="http://wiki.drobilla.net/Patchage"
+DOWNLOADS="http://download.drobilla.net/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="alsa dbus debug jack"
+
+DEPENDENCIES="
+    media-libs/raul[>=0.5.1]
+	x11-libs/flowcanvas[>=0.5.1]
+	gnome-bindings/gtkmm[>=2.11.12]
+	gnome-bindings/glibmm
+	gnome-bindings/libglademm
+	gnome-platform/libgnomecanvasmm
+	dev-libs/boost
+	jack? ( media-sound/jack-audio-connection-kit[>=0.107] )
+	alsa? ( sys-sound/alsa-lib )
+	dbus? ( dev-libs/dbus-glib )
+    build:
+        dev-util/pkg-config
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'debug' 'debug pointer-debug' 'alsa' 'jack' 'dbus' )
+
+BUGS_TO="jedahan@gmail.com"
+
