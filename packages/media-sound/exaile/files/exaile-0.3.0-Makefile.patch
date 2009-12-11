@@ -1,0 +1,63 @@
+Source: Gentoo 
+Upstream: No
+Reason: Use standard -C directive, prefix=/usr
+
+diff -ur exaile-0.3.0.orig/Makefile exaile-0.3.0/Makefile
+--- exaile-0.3.0.orig/Makefile	2009-08-25 00:25:03.000000000 +0300
++++ exaile-0.3.0/Makefile	2009-08-27 22:24:25.000000000 +0300
+@@ -1,4 +1,4 @@
+-PREFIX ?= /usr/local
++PREFIX ?= /usr
+ LIBINSTALLDIR ?= /lib
+ XDGCONFDIR ?= /etc/xdg
+ 
+@@ -11,7 +11,7 @@
+ compile:
+ 	python -m compileall -q xl xlgui
+ 	-python -O -m compileall -q xl xlgui
+-	cd plugins && make && cd ..
++	make -C plugins
+ 
+ make-install-dirs:
+ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
+@@ -51,7 +51,7 @@
+ 	rm -rf $(DESTDIR)$(XDGCONFDIR)/exaile
+ 	rm -f $(DESTDIR)$(PREFIX)/share/applications/exaile.desktop
+ 	rm -f $(DESTDIR)$(PREFIX)/share/pixmaps/exaile.png
+-	cd plugins && make uninstall && cd ..
++	make uninstall -C plugins
+ 
+ install: install-target locale install-locale
+ 
+@@ -91,8 +91,7 @@
+ 	 --datadir=$(PREFIX)/share/exaile/data --startgui \"\$$@\"" \
+ 	 > exaile && \
+ 	 chmod 755 exaile
+-	cd plugins && make install DESTDIR=$(DESTDIR) PREFIX=$(PREFIX) \
+-		&& cd ..
++	make install -C plugins
+ 
+ locale:
+ 	cd po && find . -name "*.po" -exec ../tools/compilepo.sh {} \; && cd ..
+@@ -107,18 +106,17 @@
+ 	  done
+ 
+ plugins_extra_install:
+-	cd plugins && make extra_install DESTDIR=$(DESTDIR) PREFIX=$(PREFIX) \
+-	    && cd ..
++	make extra_install -C plugins
+ 
+ plugins_dist:
+-	cd plugins && make dist && cd ..
++	make dist -C plugins
+ 
+ clean:
+ 	-find . -name "*.py[co]" -exec rm -f {} \;
+ 	find . -name "*.class" -exec rm -f {} \;
+ 	find . -name "*.bak" -exec rm -f {} \;
+ 	find po/* -depth -type d -exec rm -r {} \;
+-	cd plugins && make clean && cd ..
++	make clean -C plugins
+ 
+ pot:
+ 	@echo "[encoding: UTF-8]" > po/POTFILES.in
