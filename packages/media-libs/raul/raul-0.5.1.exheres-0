@@ -1,0 +1,26 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="C++ utility library primarily aimed at audio/musical applications."
+HOMEPAGE="http://wiki.drobilla.net/Raul"
+DOWNLOADS="http://download.drobilla.net/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="jack"
+
+DEPENDENCIES="
+    gnome-bindings/glibmm
+	dev-libs/glib
+	dev-libs/boost
+	jack? ( media-sound/jack-audio-connection-kit )
+    build:
+        dev-util/pkg-config
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-gcc44.patch )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'jack' )
+
+BUGS_TO="jedahan@gmail.com"
+
