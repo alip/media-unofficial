@@ -1,0 +1,22 @@
+#!/sbin/runscript
+
+depend() {
+	## need jackd
+	need net
+}
+
+start() {
+	ebegin "Starting DarkIce"
+	if [ -z $DARKICE_USER ]; then
+		start-stop-daemon --background --start --pidfile /var/run/darkice.pid --make-pidfile --exec /usr/bin/darkice
+	else
+		start-stop-daemon --background --start --pidfile /var/run/darkice.pid --make-pidfile --chuid $DARKICE_USER --exec /usr/bin/darkice
+	fi
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping DarkIce"
+	start-stop-daemon --stop --pidfile /var/run/darkice.pid --name darkice
+	eend $?
+}

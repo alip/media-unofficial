@@ -1,0 +1,26 @@
+Source: Gentoo
+Upstream: No
+Reason: Missing header
+
+--- darkice-0.19/src/SerialUlaw.cpp	
++++ darkice-0.19/src/SerialUlaw.cpp	
+@@ -40,6 +40,8 @@
+ #include "config.h"
+ #endif
+ 
++#include <stdio.h>
++
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #else
+--- darkice-0.19/src/Util.cpp
++++ darkice-0.19/src/Util.cpp
+@@ -296,7 +296,7 @@
+     unsigned int    size;
+     char          * s;
+     char          * strdate;
+-    char          * last;
++    const char    * last;
+     time_t          now;
+ 
+     if ( !str ) {
