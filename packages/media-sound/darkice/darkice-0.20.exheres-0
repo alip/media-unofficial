@@ -25,7 +25,7 @@ DEPENDENCIES="
         aac? ( media-libs/faac )
         alsa? ( sys-sound/alsa-lib )
         jack? ( media-sound/jack-audio-connection-kit )
-        mp2? ( media-sound/twolame )
+        mp2? ( media-libs/twolame )
         mp3? ( media-sound/lame )
         vorbis? ( media-libs/libvorbis )
 "
