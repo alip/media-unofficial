@@ -21,7 +21,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2
         alsa? ( sys-sound/alsa-lib )
         lash? ( media-sound/lash[>=0.5] )
-        gnome? ( gnome-base/libgnomeui[>=2] )
+        gnome? ( gnome-platform/libgnomeui:2 )
         xml? (
             dev-libs/libxml2:2.0
             media-libs/liblrdf
