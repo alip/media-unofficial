@@ -22,7 +22,7 @@ MYOPTIONS="cddb doc hal nls libnotify libsexy"
 
 DEPENDENCIES="
     build:
-        doc? ( dev-python/sphinx )
+        doc? ( dev-python/Sphinx )
         nls? (
             dev-util/intltool
             sys-devel/gettext
