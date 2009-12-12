@@ -66,3 +66,11 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'slang'
     'vga'
 )
+
+src_install() {
+    default
+    if optionq !mono; then
+        edo rmdir "${IMAGE}"/usr/lib64/caca-sharp
+    fi
+}
+
