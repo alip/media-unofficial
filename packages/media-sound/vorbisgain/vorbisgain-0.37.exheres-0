@@ -25,8 +25,9 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 DEPENDENCIES="
-    media-libs/libvorbis[>=1]
-    media-libs/libogg
+    build+run:
+        media-libs/libvorbis[>=1]
+        media-libs/libogg
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fix-errno-and-warnings.patch" )

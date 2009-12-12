@@ -16,6 +16,7 @@ BUGS_TO="jedahan@gmail.com"
 LICENCES="GPL-2"
 PLATFORMS="~amd64"
 SLOT="0"
+MYOPTIONS=""
 
 src_prepare() {
     edo sed -i -e 's/$(INSTALL) -s/$(INSTALL)/' Makefile

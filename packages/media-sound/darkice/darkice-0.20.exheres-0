@@ -21,12 +21,13 @@ MYOPTIONS="aac alsa jack mp2 mp3 vorbis
 "
 
 DEPENDENCIES="
-    alsa?   ( sys-sound/alsa-lib )
-    jack?   ( media-sound/jack-audio-connection-kit )
-    aac?    ( media-libs/faac )
-    mp2?    ( media-sound/twolame )
-    mp3?    ( media-sound/lame )
-    vorbis? ( media-libs/libvorbis )
+    build+run:
+        aac? ( media-libs/faac )
+        alsa? ( sys-sound/alsa-lib )
+        jack? ( media-sound/jack-audio-connection-kit )
+        mp2? ( media-sound/twolame )
+        mp3? ( media-sound/lame )
+        vorbis? ( media-libs/libvorbis )
 "
 
 SRC_CONFIGURE_OPTIONS_WITH=( 'aac faac' 'mp3 lame' 'jack' 'mp2 twolame' 'vorbis' )

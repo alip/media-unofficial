@@ -11,13 +11,13 @@ PLATFORMS="~amd64"
 MYOPTIONS="jack"
 
 DEPENDENCIES="
-    build+run:
-        gnome-bindings/glibmm
-        dev-libs/glib
-        dev-libs/boost
-        jack? ( media-sound/jack-audio-connection-kit )
     build:
         dev-util/pkg-config
+    build+run:
+        dev-libs/glib
+        dev-libs/boost
+        gnome-bindings/glibmm
+        jack? ( media-sound/jack-audio-connection-kit )
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-gcc44.patch )
