@@ -8,6 +8,7 @@ require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
 MY_PV=$(ever replace 3 -)
 MY_PNV="${PN}-src-${MY_PV}"
 MY_T="${PN}-minsrc-${MY_PV}"
+
 SUMMARY="The Free, Cross-Platform Sound Editor"
 DESCRIPTION="
 Audacity is a free, easy-to-use audio editor and recorder for Windows, Mac OS X,
@@ -39,13 +40,13 @@ DEPENDENCIES="
         dev-libs/expat
         media-libs/libsamplerate[>=0.1.2]
         media-libs/libsndfile[>=1.0.0]
-        x11-libs/wxGTK[>=2.8]
-        vorbis? ( media-libs/libvorbis[>=1.0] )
-        mp3? ( media-libs/libmad[>=0.14.2b] )
-        ffmpeg? ( media/ffmpeg )
+        x11-libs/wxGTK:=[>=2.8]
         alsa? ( sys-sound/alsa-lib )
+        ffmpeg? ( media/ffmpeg )
         jack? ( media-sound/jack-audio-connection-kit[>=0.103.0] )
+        mp3? ( media-libs/libmad[>=0.14.2b] )
         soundtouch? ( media-libs/soundtouch )
+        vorbis? ( media-libs/libvorbis[>=1.0] )
     run:
         mp3? ( media-sound/lame[>=3.70] )
 "
@@ -53,6 +54,7 @@ DEPENDENCIES="
 WORK="${WORKBASE}/${MY_PNV}"
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}*.patch )
+AT_M4DIR="${WORK}/m4"
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-unicode
     --enable-nyquist
@@ -65,12 +67,8 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --without-libtwolame
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ladspa )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( alsa ffmpeg jack midi soundtouch
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    alsa ffmpeg jack midi soundtouch
     'vorbis libvorbis' 'mp3 libmad' 'flac libflac' 'id3tag libid3tag'
 )
-
-src_prepare() {
-    default
-    AT_M4DIR="${WORK}/m4" eautoreconf
-}
 
