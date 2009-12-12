@@ -22,7 +22,7 @@ MYOPTIONS="aac alsa jack mp2 mp3 vorbis
 
 DEPENDENCIES="
     alsa?   ( sys-sound/alsa-lib )
-	jack?   ( media-sound/jack-audio-connection-kit )
+    jack?   ( media-sound/jack-audio-connection-kit )
     aac?    ( media-libs/faac )
     mp2?    ( media-sound/twolame )
     mp3?    ( media-sound/lame )

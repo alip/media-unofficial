@@ -34,7 +34,7 @@ DEPENDENCIES="
     build:
         dev-util/intltool
     run:
-	    dev-python/mutagen[>=1.15]
+        dev-python/mutagen[>=1.15]
         dev-python/gst-python:0.10
         alsa? (
             media-plugins/gst-plugins-bad[gstreamer_plugins:alsa] )

@@ -11,16 +11,17 @@ PLATFORMS="~amd64"
 MYOPTIONS="alsa gnome lash nls xml"
 
 DEPENDENCIES="
-	dev-util/intltool
-    x11-libs/gtk+:2
-	media-libs/ladspa-sdk[>=1.12]
-	media-sound/jack-audio-connection-kit
-	alsa?  ( sys-sound/alsa-lib )
-	lash?  ( media-sound/lash[>=0.5] )
-	gnome? ( gnome-base/libgnomeui[>=2] )
-	xml?   ( dev-libs/libxml2
-		     media-libs/liblrdf )
+    build+run:
+        x11-libs/gtk+:2
+        media-libs/ladspa-sdk[>=1.12]
+        media-sound/jack-audio-connection-kit
+        alsa? ( sys-sound/alsa-lib )
+        lash? ( media-sound/lash[>=0.5] )
+        gnome? ( gnome-base/libgnomeui[>=2] )
+        xml? ( dev-libs/libxml2
+             media-libs/liblrdf )
     build:
+        dev-util/intltool
         dev-util/pkg-config
         sys-devel/gettext
 "

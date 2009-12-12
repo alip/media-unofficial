@@ -11,10 +11,11 @@ PLATFORMS="~amd64"
 MYOPTIONS="jack"
 
 DEPENDENCIES="
-    gnome-bindings/glibmm
-	dev-libs/glib
-	dev-libs/boost
-	jack? ( media-sound/jack-audio-connection-kit )
+    build+run:
+        gnome-bindings/glibmm
+        dev-libs/glib
+        dev-libs/boost
+        jack? ( media-sound/jack-audio-connection-kit )
     build:
         dev-util/pkg-config
 "

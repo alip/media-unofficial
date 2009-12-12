@@ -13,18 +13,19 @@ PLATFORMS="~amd64"
 MYOPTIONS="alsa dbus debug jack"
 
 DEPENDENCIES="
-    media-libs/raul[>=0.5.1]
-	x11-libs/flowcanvas[>=0.5.1]
-	gnome-bindings/gtkmm[>=2.11.12]
-	gnome-bindings/glibmm
-	gnome-bindings/libglademm
-	gnome-platform/libgnomecanvasmm
-	dev-libs/boost
-	jack? ( media-sound/jack-audio-connection-kit[>=0.107] )
-	alsa? ( sys-sound/alsa-lib )
-	dbus? ( dev-libs/dbus-glib )
     build:
         dev-util/pkg-config
+    build+run:
+        media-libs/raul[>=0.5.1]
+        x11-libs/flowcanvas[>=0.5.1]
+        gnome-bindings/gtkmm[>=2.11.12]
+        gnome-bindings/glibmm
+        gnome-bindings/libglademm
+        gnome-platform/libgnomecanvasmm
+        dev-libs/boost
+        jack? ( media-sound/jack-audio-connection-kit[>=0.107] )
+        alsa? ( sys-sound/alsa-lib )
+        dbus? ( dev-libs/dbus-glib )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'debug' 'debug pointer-debug' 'alsa' 'jack' 'dbus' )

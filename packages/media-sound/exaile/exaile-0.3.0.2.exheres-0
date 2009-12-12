@@ -23,20 +23,20 @@ MYOPTIONS="cddb doc hal nls libnotify libsexy"
 DEPENDENCIES="
     run:
         dev-python/dbus-python
-    	dev-python/mutagen[>=1.10]
-    	gnome-bindings/pygtk[>=2.12]
-    	dev-lang/python[>=2.5][sqlite]
-    	dev-python/gst-python:0.10
-    	media-plugins/gst-plugins-base:0.10
-    	media-plugins/gst-plugins-good:0.10
-    	libnotify? ( dev-python/notify-python )
-    	libsexy? ( gnome-bindings/sexy-python )
-    	hal? ( sys-apps/hal )
-    	cddb? ( dev-python/cddb-py )
+        dev-python/mutagen[>=1.10]
+        gnome-bindings/pygtk[>=2.12]
+        dev-lang/python[>=2.5][sqlite]
+        dev-python/gst-python:0.10
+        media-plugins/gst-plugins-base:0.10
+        media-plugins/gst-plugins-good:0.10
+        libnotify? ( dev-python/notify-python )
+        libsexy? ( gnome-bindings/sexy-python )
+        hal? ( sys-apps/hal )
+        cddb? ( dev-python/cddb-py )
     build:
         doc? ( dev-python/sphinx )
-    	nls? (  dev-util/intltool
-                sys-devel/gettext )
+        nls? ( dev-util/intltool
+               sys-devel/gettext )
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-${MY_PV}-Makefile.patch" "${FILES}/${PN}-${MY_PV}-movelocale.patch")
