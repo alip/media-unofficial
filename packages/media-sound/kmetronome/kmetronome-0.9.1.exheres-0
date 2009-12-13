@@ -1,0 +1,28 @@
+# Copyright 2009 Yury G. Kudryashov <urkud@ya.ru>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake sourceforge
+
+SUMMARY="MIDI metronome for KDE"
+DESCRIPTION="
+${PN} is a MIDI metronome with KDE interface and based on the ALSA sequencer. The intended audience
+are musicians and music students. Like the solid, real metronomes it is a tool to keep the rhythm
+while playing musical instruments.
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+BUGS_TO="urkud@ya.ru"
+
+DEPENDENCIES="
+    build:
+        sys-devel/gettext
+        dev-util/pkg-config
+    build+run:
+        kde/kdelibs:4
+        sys-sound/alsa-lib[>=1.0]
+"
+
