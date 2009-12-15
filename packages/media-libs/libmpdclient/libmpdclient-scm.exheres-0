@@ -6,12 +6,14 @@ require common-metadata scm-git
 
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS=""
+MYOPTIONS="debug"
 
 DEPENDENCIES="
     build:
         dev-util/pkg-config
 "
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
 
 src_prepare() {
     NOCONFIGURE=1 ./autogen.sh || die "autogen.sh failed"
