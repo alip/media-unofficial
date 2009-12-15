@@ -1,0 +1,15 @@
+# Copyright 2009 Ali Polatel <alip@exherbo.org
+# Distributed under the terms of the GNU General Public License v2
+
+require common-metadata
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+DOWNLOADS="mirror://sourceforge/musicpd/files/${PN}/${PNV}.tar.bz2"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+"
+
