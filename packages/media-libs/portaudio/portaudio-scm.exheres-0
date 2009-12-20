@@ -8,3 +8,8 @@ require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ] por
 DOWNLOADS=""
 PLATFORMS="~amd64"
 
+src_prepare() {
+    autotools_src_prepare
+    edo chmod +x configure
+}
+
