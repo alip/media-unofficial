@@ -1,11 +1,9 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-export_exlib_phases src_install
-
-SUMMARY="Mpd Hooker"
+SUMMARY="cron like daemon for mpd"
 DESCRIPTION="
-MpdHooker is a daemon that can be used to add hooks to mpd.
+A 'cron' like program for mpd. It can execute scripts based on mpd's idle events.
 "
 HOMEPAGE="http://github.com/alip/${PN}/tree/master"
 
@@ -25,9 +23,4 @@ DEPENDENCIES="
 BUGS_TO="alip@exherbo.org"
 
 UPSTREAM_DOCUMENTATION="http://github.com/alip/${PN}/blob/master/README.mkd"
-
-mpdhooker_src_install() {
-    default
-    dodoc -r conf
-}
 

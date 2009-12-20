@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://github.com/alip/${PN}.git"
-require mpdhooker scm-git
+require mpdcron scm-git
 
 DOWNLOADS=""
 PLATFORMS="~amd64"
