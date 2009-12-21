@@ -18,9 +18,12 @@ DEPENDENCIES="
         dev-libs/glib[>=2.18.4]
         dev-libs/libdaemon[>=0.13]
         media-libs/libmpdclient[>=2.1]
+        net-misc/curl
 "
 
 BUGS_TO="alip@exherbo.org"
 
 UPSTREAM_DOCUMENTATION="http://github.com/alip/${PN}/blob/master/README.mkd"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-modules )
 
