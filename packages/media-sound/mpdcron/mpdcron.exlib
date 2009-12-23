@@ -1,6 +1,8 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
+export_exlib_phases src_configure
+
 SUMMARY="cron like daemon for mpd"
 DESCRIPTION="
 A 'cron' like program for mpd. It can execute scripts based on mpd's idle events.
@@ -9,7 +11,10 @@ HOMEPAGE="http://github.com/alip/${PN}/tree/master"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS=""
+MYOPTIONS="
+    notification [[ description = [ Build the notification standard module ] ]]
+    scrobbler [[ description = [ Build the scrobbler standard module ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -18,12 +23,23 @@ DEPENDENCIES="
         dev-libs/glib[>=2.18.4]
         dev-libs/libdaemon[>=0.13]
         media-libs/libmpdclient[>=2.1]
-        net-misc/curl
+        notification? ( x11-libs/libnotify )
+        scrobbler? ( net-misc/curl )
 "
 
 BUGS_TO="alip@exherbo.org"
 
 UPSTREAM_DOCUMENTATION="http://github.com/alip/${PN}/blob/master/README.mkd"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-modules )
+mpdcron_src_configure() {
+    local myconf=() modules=()
+
+    # Enable modules by default.
+    myconf+=(--enable-gmodule)
+    option notification && modules+=(notification)
+    option scrobbler && modules+=(scrobbler)
+    [[ -n "${modules[@]}" ]] && myconf+=(--with-standard-modules="$(echo ${modules[@]} | tr -s \ ,)")
+
+    econf "${myconf[@]}"
+}
 
