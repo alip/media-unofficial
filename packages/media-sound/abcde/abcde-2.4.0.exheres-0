@@ -11,7 +11,7 @@ HOMEPAGE="http://code.google.com/p/abcde/"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="aac flac mp3 normalize speex vorbis"
 
 DEPENDENCIES="

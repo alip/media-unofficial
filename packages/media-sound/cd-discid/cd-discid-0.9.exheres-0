@@ -14,7 +14,7 @@ DOWNLOADS="${HOMEPAGE}${PN}_${PV}.orig.tar.gz"
 BUGS_TO="jedahan@gmail.com"
 
 LICENCES="GPL-2"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 SLOT="0"
 MYOPTIONS=""
 
