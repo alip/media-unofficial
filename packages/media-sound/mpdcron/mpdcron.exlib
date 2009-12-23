@@ -1,17 +1,14 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-SUMMARY="Mpd Hooker"
+SUMMARY="cron like daemon for mpd"
 DESCRIPTION="
-mpdhooker is a daemon that can be used to add hooks to mpd.
+A 'cron' like program for mpd. It can execute scripts based on mpd's idle events.
 "
 HOMEPAGE="http://github.com/alip/${PN}/tree/master"
-SCM_REPOSITORY="git://github.com/alip/${PN}.git"
-require scm-git
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
@@ -20,19 +17,13 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib[>=2.18.4]
         dev-libs/libdaemon[>=0.13]
+        media-libs/libmpdclient[>=2.1]
+        net-misc/curl
 "
 
 BUGS_TO="alip@exherbo.org"
 
-src_prepare() {
-    default
+UPSTREAM_DOCUMENTATION="http://github.com/alip/${PN}/blob/master/README.mkd"
 
-    ./autogen.sh || die "autogen.sh failed"
-}
-
-src_install() {
-    default
-
-    dodoc -r conf
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-modules )
 

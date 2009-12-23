@@ -1,0 +1,15 @@
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A library for interfacing MPD in the C, C++ & Objective C languages"
+HOMEPAGE="http://mpd.wikia.com/wiki/ClientLib:libmpdclient"
+LICENCES="GPL-2"
+DESCRIPTION="
+A stable, documented, asynchronous API library for interfacing MPD in the C, C++
+& Objective C languages.
+"
+BUGS_TO="alip@exherbo.org"
+REMOTE_IDS=""
+UPSTREAM_CHANGELOG=""
+UPSTREAM_RELEASE_NOTES=""
+

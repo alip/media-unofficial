@@ -1,12 +1,12 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_REPOSITORY="git://git.musicpd.org/master/libmpdclient.git"
-require common-metadata scm-git
+require common-metadata
 
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="debug"
+DOWNLOADS="mirror://sourceforge/musicpd/files/${PN}/${PNV}.tar.bz2"
 
 DEPENDENCIES="
     build:
@@ -14,8 +14,4 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
-
-src_prepare() {
-    NOCONFIGURE=1 ./autogen.sh || die "autogen.sh failed"
-}
 

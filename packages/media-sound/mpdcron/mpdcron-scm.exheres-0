@@ -1,0 +1,14 @@
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="git://github.com/alip/${PN}.git"
+require mpdcron scm-git
+
+DOWNLOADS=""
+PLATFORMS="~amd64"
+
+src_prepare() {
+    default
+    ./autogen.sh || die "autogen.sh failed"
+}
+
