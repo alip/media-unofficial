@@ -29,11 +29,7 @@ DOWNLOADS="mirror://berlios/${PN}/${PNV}.tar.bz2"
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="
-    dbus
-    lyrics [[ description = [ Support for lyrics fetching ] ]]
-    gnome [[ description = [ Enhanced system tray support ] ]]
-"
+MYOPTIONS="dbus lyrics [[ description = [ Support for lyrics fetching ] ]]"
 
 DEPENDENCIES="
     build:
@@ -45,7 +41,6 @@ DEPENDENCIES="
         dev-python/python-mpd
         dbus? ( dev-python/dbus-python )
         lyrics? ( dev-python/ZSI )
-        gnome? ( gnome-bindings/gnome-python-extras )
 "
 
 BUGS_TO="alip@exherbo.org"
