@@ -1,0 +1,34 @@
+# Copyright 2009 Adriaan Leijnse <adriaan@leijnse.net>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="git://repo.or.cz/laditools.git"
+require scm-git
+
+SUMMARY="Linux Audio Desktop Integration Tools"
+DESCRIPTION="
+LADITools is a set of tools aiming to achieve the goals of the LADI project to improve desktop
+integration and user workflow of Linux audio system based on JACK and LASH. Those tools take
+advantage of the DBus interfaces recently added to JACK and LASH to ease the configuration and use
+of those two great softwares.
+"
+HOMEPAGE="http://marcochapeau.org/software/laditools"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+    gnome-bindings/pygtk[>=2.12]
+    dev-python/PyXML[>=0.8.4]
+"
+
+BUGS_TO="adriaan@leijnse.net"
+
+src_configure() { return 0; }
+src_compile() { return 0; }
+src_install() {
+    edo python setup.py install --prefix /usr --root ${IMAGE}
+}
+
