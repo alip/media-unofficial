@@ -1,0 +1,35 @@
+# Copyright 2009 Adriaan Leijnse
+# Distributed under the terms of the Gnu General Public License v2
+
+SUMMARY="Free Music Instrument Tuner"
+HOMEPAGE="http://home.gna.org/fmit/index.html"
+DOWNLOADS="http://download.gna.org/${PN}/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="alsa oss jack portaudio"
+
+DEPENDENCIES="
+    x11-libs/qt:3[opengl]
+    x11-libs/libXi
+    x11-dri/freeglut
+    sci-libs/fftw
+    jack? ( media-sound/jack-audio-connection-kit )
+    portaudio? ( media-libs/portaudio )
+    alsa? ( sys-sound/alsa-lib )
+    oss? ( sys-sound/alsa-oss )
+"
+
+BUGS_TO=""
+
+src_configure() {
+    edo ./configure \
+        --prefix=/usr \
+        --with-x \
+        $( option_enable jack ) \
+        $( option_enable portaudio ) \
+        $( option_enable alsa ) \
+        $( option_enable oss )
+}
+
