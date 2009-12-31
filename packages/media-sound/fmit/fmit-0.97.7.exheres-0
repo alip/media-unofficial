@@ -5,6 +5,8 @@ SUMMARY="Free Music Instrument Tuner"
 HOMEPAGE="http://home.gna.org/fmit/index.html"
 DOWNLOADS="http://download.gna.org/${PN}/${PNV}.tar.bz2"
 
+DEFAULT_SRC_PREPARE_PATCHES="${FILES}/fmit-0.97.7-jack_error_callback-fix.patch"
+
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
