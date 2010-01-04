@@ -1,7 +1,9 @@
-# Copyright 2009 Ali Polatel <alip@exherbo.org>
+# Copyright 2009-2010 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-export_exlib_phases src_configure
+export_exlib_phases src_configure src_install
+
+require zsh-completion
 
 SUMMARY="cron like daemon for mpd"
 DESCRIPTION="
@@ -39,6 +41,12 @@ BUGS_TO="alip@exherbo.org"
 
 UPSTREAM_DOCUMENTATION="http://github.com/alip/${PN}/blob/master/README.mkd"
 
+ZSH_COMPLETIONS=(
+    zsh-completion/_eugene
+    zsh-completion/_mpdcron
+    zsh-completion/_walrus
+)
+
 mpdcron_src_configure() {
     local myconf=() modules=()
 
@@ -50,5 +58,10 @@ mpdcron_src_configure() {
     [[ -n "${modules[@]}" ]] && myconf+=(--with-standard-modules="$(echo ${modules[@]} | tr -s \  ,)")
 
     econf "${myconf[@]}"
+}
+
+mpdcron_src_install() {
+    default
+    install-zsh-completions
 }
 
