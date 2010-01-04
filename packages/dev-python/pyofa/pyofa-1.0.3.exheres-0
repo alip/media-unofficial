@@ -38,6 +38,6 @@ src_prepare() {
 }
 
 src_configure() {
-    python_version
-    ${python} setup.py config || die "setup.py config failed"
+    ${PYTHON} setup.py config || die "setup.py config failed"
 }
+
