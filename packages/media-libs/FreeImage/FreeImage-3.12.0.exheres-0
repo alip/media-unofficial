@@ -1,7 +1,7 @@
 # Copyright 2009 Daniel Mierswa <impulze@impulze.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require flag-o-matic multilib toolchain-funcs
+require flag-o-matic multilib
 
 MYPNV="$PN$(ever delete_all)"
 
@@ -70,7 +70,6 @@ src_prepare() {
 }
 
 src_compile() {
-    tc-export CC CXX AR
     unset CFLAGS CXXFLAGS
 
     default

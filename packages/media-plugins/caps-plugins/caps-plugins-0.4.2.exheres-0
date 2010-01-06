@@ -3,7 +3,7 @@
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib toolchain-funcs
+require multilib
 
 MY_PNV=caps-${PV}
 SUMMARY="The CAPS Audio Plugin Suite"
@@ -28,7 +28,7 @@ DEPENDENCIES="
 WORK="${WORKBASE}"/${MY_PNV}
 
 src_compile() {
-    emake CFLAGS="${CFLAGS} -fPIC -DPIC" CC=$(tc-getCXX) || die "emake failed"
+    emake CFLAGS="${CFLAGS} -fPIC -DPIC" CC="${CXX}" || die "emake failed"
 }
 
 src_install() {

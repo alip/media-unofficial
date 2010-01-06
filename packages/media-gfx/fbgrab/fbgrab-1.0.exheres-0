@@ -1,8 +1,6 @@
 # Copyright 2009 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require toolchain-funcs
-
 SUMMARY="a framebuffer screenshot program"
 HOMEPAGE="http://hem.bredband.net/gmogmo/fbgrab"
 DOWNLOADS="${HOMEPAGE}/${PNV}.tar.gz"
@@ -21,7 +19,7 @@ DEPENDENCIES="
 REMOTE_IDS="freshmeat:fbgrab"
 
 src_compile() {
-    $(tc-getCC) ${CFLAGS} ${LDFLAGS} ${PN}.c -lpng -lz -o ${PN}
+    "${CC}" ${CFLAGS} ${LDFLAGS} ${PN}.c -lpng -lz -o ${PN}
 }
 
 src_install() {

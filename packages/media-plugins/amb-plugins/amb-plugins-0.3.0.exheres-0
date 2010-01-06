@@ -3,7 +3,7 @@
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib toolchain-funcs
+require multilib
 
 MY_PNV="${PNV/amb/AMB}"
 
@@ -33,7 +33,7 @@ src_prepare() {
 
     sed -i \
         -e "s/-O3/${CFLAGS}/" \
-        -e "s/g++/$(tc-getCXX)/" \
+        -e "s/g++/${CXX}/" \
         Makefile || die "failed to set CFLAGS"
 }
 

@@ -1,7 +1,7 @@
 # Copyright 2009 Daniel Mierswa <impulze@impulze.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib toolchain-funcs
+require multilib
 
 MYPV="v$(ever replace_all _)"
 
@@ -27,8 +27,8 @@ src_prepare() {
 
     sed \
         -e "/COMPILERFLAGS =/s:-O3:$CFLAGS:" \
-        -e "/CC =/s:gcc:$(tc-getCC):" \
-        -e "/AR =/s:ar:$(tc-getAR):" \
+        -e "/CC =/s:gcc:${CC}:" \
+        -e "/AR =/s:ar:${AR}:" \
         -e "/INSTALL_LIBDIR =/s:\$(PREFIX)/lib:\$(PREFIX)/$(get_libdir):" \
         -e "/\$(CC) -s -shared/s:\$: $LDFLAGS:" \
         -i Makefile \

@@ -3,8 +3,6 @@
 # Based in part upon 'wavegain-1.2.8.ebuild', which is:
 #   Copyright 1999-2009 Gentoo Foundation
 
-require toolchain-funcs
-
 SUMMARY="ReplayGain for WAVE audio files"
 DESCRIPTION="WaveGain is an application of the ReplayGain algorithms to
 standard PCM wave files. Where it differs from the other applications of this
@@ -40,7 +38,7 @@ DEPENDENCIES="
 WORK=${WORKBASE}/${PNV/wavegain/WaveGain}
 
 src_compile(){
-    edo $(tc-getCC) ${LDFLAGS} ${CFLAGS} *.c -o ${PN} \
+    edo "${CC}" ${LDFLAGS} ${CFLAGS} *.c -o ${PN} \
     -DHAVE_CONFIG_H -lm -lsndfile
 }
 
