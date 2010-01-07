@@ -50,14 +50,11 @@ src_install() {
 }
 
 pkg_postinst() {
-    python_need_rebuild
-    python_mod_optimize /usr/$(get_libdir)/${PN}
     freedesktop-mime_desktop_database_update
     freedesktop-mime_mime_database_update
 }
 
 pkg_postrm() {
-    python_mod_cleanup /usr/$(get_libdir)/${PN}
     freedesktop-mime_desktop_database_update
     freedesktop-mime_mime_database_update
 }

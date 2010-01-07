@@ -73,12 +73,3 @@ src_configure() {
         "${pyconf[@]}"
 }
 
-pkg_postinst() {
-    python_mod_compile $(python_get_sitedir)/eci.py
-    python_mod_compile $(python_get_sitedir)/pyeca.py
-    python_mod_compile $(python_get_sitedir)/ecacontrol.py
-}
-
-pkg_postrm() {
-    python_mod_cleanup
-}

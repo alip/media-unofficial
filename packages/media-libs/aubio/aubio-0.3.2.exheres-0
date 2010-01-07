@@ -40,10 +40,3 @@ src_install() {
     doman doc/*.1
 }
 
-pkg_postinst() {
-    python_mod_optimize $(python_get_sitedir)/${PN}
-}
-
-pkg_postrm() {
-    python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/${PN}
-}

@@ -28,19 +28,5 @@ DEPENDENCIES="
 # Tests broken with Python 2.6 and current GObject API
 RESTRICT="test"
 
-src_prepare() {
-    # Let python_mod_optimize handle byte compiling in pkg_postinst()
-    rm -f py-compile || die "rm -f py-compile failed"
-    ln -s $(type -P true) py-compile || die "ln -s \$(type -P true) py-compile failed"
-}
-
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/gst-python-0.10.9-lazy.patch )
-
-pkg_postinst() {
-    python_mod_optimize $(python_get_sitedir)
-}
-
-pkg_postrm() {
-    python_mod_cleanup
-}
 
