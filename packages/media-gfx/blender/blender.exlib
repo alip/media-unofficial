@@ -6,8 +6,6 @@ require cmake freedesktop-desktop
 export_exlib_phases src_install
 
 SUMMARY="Blender is the free open source 3D content creation suite"
-DESCRIPTION="
-"
 HOMEPAGE="http://blender.org"
 
 REMOTE_IDS="freshmeat:${PN}"
@@ -16,7 +14,7 @@ BUGS_TO="michael@obberon.com"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="ffmpeg jpeg2000 nls openal openexr
+MYOPTIONS="ffmpeg jpeg2000 openal openexr
 
     bullet      [[ description = [ Support for the bullet physics engine ] ]]
     elbeem      [[ description = [ Support for the El'Beem fluid simulation library ] ]]
@@ -29,6 +27,8 @@ MYOPTIONS="ffmpeg jpeg2000 nls openal openexr
 "
 
 DEPENDENCIES="
+    build:
+        sys-devel/gettext
     build+run:
         dev-lang/python
         media-libs/freetype
@@ -46,6 +46,7 @@ DEPENDENCIES="
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DWITH_INTERNATIONAL:BOOL=TRUE
     -DWITH_OPENMP:BOOL=FALSE
     -DWITH_WEBPLUGIN:BOOL=FALSE # Needs npupp.h, I don't know what provides this
 )
@@ -58,7 +59,6 @@ CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
     "jpeg2000 OPENJPEG"
     OPENAL
     OPENEXR
-    "nls INTERNATIONAL"
     PLAYER
     VERSE
 )

@@ -18,15 +18,13 @@ BUGS_TO="jedahan@gmail.com"
 LICENCES="GPL-2 GPL-3"
 PLATFORMS="~amd64"
 SLOT="0"
-MYOPTIONS="cddb doc hal nls libnotify libsexy"
+MYOPTIONS="cddb doc hal libnotify libsexy"
 
 DEPENDENCIES="
     build:
+        dev-util/intltool
+        sys-devel/gettext
         doc? ( dev-python/Sphinx )
-        nls? (
-            dev-util/intltool
-            sys-devel/gettext
-        )
     run:
         dev-lang/python[>=2.5][sqlite]
         dev-python/dbus-python
