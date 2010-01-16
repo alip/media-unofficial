@@ -27,3 +27,5 @@ DEPENDENCIES="
 
 BUGS_TO="gentoofan23@gentoo.org"
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-shave )
+
