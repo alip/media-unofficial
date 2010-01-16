@@ -1,0 +1,10 @@
+--- TiMidity++-2.13.2/timidity/flac_a.c
++++ TiMidity++-2.13.2/timidity/flac_a.c
+@@ -61,6 +61,7 @@
+ #include "w32_libOGGFLAC_dll_g.h"
+ #endif
+ 
++#include "common.h"
+ #include "timidity.h"
+ #include "output.h"
+ #include "controls.h"

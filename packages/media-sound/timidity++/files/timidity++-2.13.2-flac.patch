@@ -1,0 +1,18 @@
+*** TiMidity++-2.13.2/timidity/flac_a.c	Sun May 23 07:35:44 2004
+--- TiMidity++-2.13.2/timidity/flac_a.c	Sat Dec 30 13:24:08 2006
+***************
+*** 813,819 ****
+      return;
+    }
+- 
+-   if (flac_options.isogg) {
+  #ifdef AU_OGGFLAC
+      if ((ctx->state.ogg = OggFLAC__stream_encoder_get_state(ctx->encoder.ogg.stream)) != OggFLAC__STREAM_ENCODER_OK) {
+        ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "OggFLAC stream encoder is invalid (%s)",
+--- 813,818 ----
+      return;
+    }
+  #ifdef AU_OGGFLAC
++   if (flac_options.isogg) {
+      if ((ctx->state.ogg = OggFLAC__stream_encoder_get_state(ctx->encoder.ogg.stream)) != OggFLAC__STREAM_ENCODER_OK) {
+        ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "OggFLAC stream encoder is invalid (%s)",

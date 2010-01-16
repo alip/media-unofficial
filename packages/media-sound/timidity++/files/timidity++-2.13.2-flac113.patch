@@ -1,0 +1,281 @@
+Index: TiMidity++-2.13.2/timidity/flac_a.c
+===================================================================
+--- TiMidity++-2.13.2.orig/timidity/flac_a.c
++++ TiMidity++-2.13.2/timidity/flac_a.c
+@@ -45,6 +45,11 @@
+ #endif
+ 
+ #include <FLAC/all.h>
++#if !defined(FLAC_API_VERSION_CURRENT) || FLAC_API_VERSION_CURRENT < 8
++#define LEGACY_FLAC
++#else
++#undef LEGACY_FLAC
++#endif
+ #ifdef AU_OGGFLAC
+ #include <OggFLAC/stream_encoder.h>
+ #endif
+@@ -100,7 +105,11 @@ typedef struct {
+   unsigned long out_bytes;
+   union {
+     FLAC__StreamEncoderState flac;
++#ifdef LEGACY_FLAC
+     FLAC__SeekableStreamEncoderState s_flac;
++#else
++    FLAC__StreamEncoderState s_flac;
++#endif
+ #ifdef AU_OGGFLAC
+     OggFLAC__StreamEncoderState ogg;
+ #endif
+@@ -108,7 +117,11 @@ typedef struct {
+   union {
+     union {
+       FLAC__StreamEncoder *stream;
++#ifdef LEGACY_FLAC
+       FLAC__SeekableStreamEncoder *s_stream;
++#else
++      FLAC__StreamEncoder *s_stream;
++#endif
+     } flac;
+ #ifdef AU_OGGFLAC
+     union {
+@@ -174,11 +187,19 @@ static void flac_stream_encoder_metadata
+ 						  const FLAC__StreamMetadata *metadata,
+ 						  void *client_data);
+ static FLAC__StreamEncoderWriteStatus
++#ifdef LEGACY_FLAC
+ flac_seekable_stream_encoder_write_callback(const FLAC__SeekableStreamEncoder *encoder,
++#else
++flac_seekable_stream_encoder_write_callback(const FLAC__StreamEncoder *encoder,
++#endif
+ 				   const FLAC__byte buffer[],
+ 				   unsigned bytes, unsigned samples,
+ 				   unsigned current_frame, void *client_data);
++#ifdef LEGACY_FLAC
+ static void flac_seekable_stream_encoder_metadata_callback(const FLAC__SeekableStreamEncoder *encoder,
++#else
++static void flac_seekable_stream_encoder_metadata_callback(const FLAC__StreamEncoder *encoder,
++#endif
+ 						  const FLAC__StreamMetadata *metadata,
+ 						  void *client_data);
+ 
+@@ -306,8 +327,13 @@ static int flac_session_close()
+ #endif /* AU_OGGFLAC */
+     if (flac_options.seekable) {
+       if (ctx->encoder.flac.s_stream) {
++#ifdef LEGACY_FLAC
+ 	FLAC__seekable_stream_encoder_finish(ctx->encoder.flac.s_stream);
+ 	FLAC__seekable_stream_encoder_delete(ctx->encoder.flac.s_stream);
++#else
++	FLAC__stream_encoder_finish(ctx->encoder.flac.s_stream);
++	FLAC__stream_encoder_delete(ctx->encoder.flac.s_stream);
++#endif
+       }
+     }
+     else
+@@ -435,17 +461,29 @@ static int flac_output_open(const char *
+   else
+ #endif /* AU_OGGFLAC */
+   if (flac_options.seekable) {
++#ifdef LEGACY_FLAC
+     if ((ctx->encoder.flac.s_stream = FLAC__seekable_stream_encoder_new()) == NULL) {
++#else
++    if ((ctx->encoder.flac.s_stream = FLAC__stream_encoder_new()) == NULL) {
++#endif
+       ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "cannot create FLAC stream");
+       flac_session_close();
+       return -1;
+     }
+ 
++#ifdef LEGACY_FLAC
+     FLAC__seekable_stream_encoder_set_channels(ctx->encoder.flac.s_stream, nch);
+     /* 16bps only */
+     FLAC__seekable_stream_encoder_set_bits_per_sample(ctx->encoder.flac.s_stream, 16);
+ 
+     FLAC__seekable_stream_encoder_set_verify(ctx->encoder.flac.s_stream, flac_options.verify);
++#else
++    FLAC__stream_encoder_set_channels(ctx->encoder.flac.s_stream, nch);
++    /* 16bps only */
++    FLAC__stream_encoder_set_bits_per_sample(ctx->encoder.flac.s_stream, 16);
++
++    FLAC__stream_encoder_set_verify(ctx->encoder.flac.s_stream, flac_options.verify);
++#endif
+ 
+     if (!FLAC__format_sample_rate_is_valid(dpm.rate)) {
+       ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "invalid sampling rate %d",
+@@ -453,27 +491,54 @@ static int flac_output_open(const char *
+       flac_session_close();
+       return -1;
+     }
++#ifdef LEGACY_FLAC
+     FLAC__seekable_stream_encoder_set_sample_rate(ctx->encoder.flac.s_stream, dpm.rate);
+ 
+     FLAC__seekable_stream_encoder_set_qlp_coeff_precision(ctx->encoder.flac.s_stream, flac_options.qlp_coeff_precision);
+     /* expensive! */
+     FLAC__seekable_stream_encoder_set_do_qlp_coeff_prec_search(ctx->encoder.flac.s_stream, flac_options.qlp_coeff_precision_search);
++#else
++    FLAC__stream_encoder_set_sample_rate(ctx->encoder.flac.s_stream, dpm.rate);
++
++    FLAC__stream_encoder_set_qlp_coeff_precision(ctx->encoder.flac.s_stream, flac_options.qlp_coeff_precision);
++    /* expensive! */
++    FLAC__stream_encoder_set_do_qlp_coeff_prec_search(ctx->encoder.flac.s_stream, flac_options.qlp_coeff_precision_search);
++#endif
++
+ 
+     if (nch == 2) {
++#ifdef LEGACY_FLAC
+       FLAC__seekable_stream_encoder_set_do_mid_side_stereo(ctx->encoder.flac.s_stream, flac_options.mid_side);
+       FLAC__seekable_stream_encoder_set_loose_mid_side_stereo(ctx->encoder.flac.s_stream, flac_options.adaptive_mid_side);
++#else
++      FLAC__stream_encoder_set_do_mid_side_stereo(ctx->encoder.flac.s_stream, flac_options.mid_side);
++      FLAC__stream_encoder_set_loose_mid_side_stereo(ctx->encoder.flac.s_stream, flac_options.adaptive_mid_side);
++#endif
+     }
+ 
++#ifdef LEGACY_FLAC
+     FLAC__seekable_stream_encoder_set_max_lpc_order(ctx->encoder.flac.s_stream, flac_options.max_lpc_order);
+     FLAC__seekable_stream_encoder_set_min_residual_partition_order(ctx->encoder.flac.s_stream, flac_options.min_residual_partition_order);
+     FLAC__seekable_stream_encoder_set_max_residual_partition_order(ctx->encoder.flac.s_stream, flac_options.max_residual_partition_order);
+ 
+     FLAC__seekable_stream_encoder_set_blocksize(ctx->encoder.flac.s_stream, flac_options.blocksize);
+     FLAC__seekable_stream_encoder_set_client_data(ctx->encoder.flac.s_stream, ctx);
++#else
++    FLAC__stream_encoder_set_max_lpc_order(ctx->encoder.flac.s_stream, flac_options.max_lpc_order);
++    FLAC__stream_encoder_set_min_residual_partition_order(ctx->encoder.flac.s_stream, flac_options.min_residual_partition_order);
++    FLAC__stream_encoder_set_max_residual_partition_order(ctx->encoder.flac.s_stream, flac_options.max_residual_partition_order);
++
++    FLAC__stream_encoder_set_blocksize(ctx->encoder.flac.s_stream, flac_options.blocksize);
++#endif
+ 
+     if (0 < num_metadata)
++#ifdef LEGACY_FLAC
+       FLAC__seekable_stream_encoder_set_metadata(ctx->encoder.flac.s_stream, metadata, num_metadata);
++#else
++      FLAC__stream_encoder_set_metadata(ctx->encoder.flac.s_stream, metadata, num_metadata);
++#endif
+ 
++#ifdef LEGACY_FLAC
+     /* set callback */
+ /*    FLAC__seekable_stream_encoder_set_metadata_callback(ctx->encoder.flac.s_stream, flac_seekable_stream_encoder_metadata_callback); /* */
+ #ifndef __BORLANDC__
+@@ -483,8 +548,17 @@ static int flac_output_open(const char *
+ 
+     ctx->state.s_flac = FLAC__seekable_stream_encoder_init(ctx->encoder.flac.s_stream);
+     if (ctx->state.s_flac != FLAC__SEEKABLE_STREAM_ENCODER_OK) {
++#else
++
++    ctx->state.s_flac = FLAC__stream_encoder_init_stream(ctx->encoder.flac.s_stream, flac_seekable_stream_encoder_write_callback, NULL, NULL, flac_seekable_stream_encoder_metadata_callback,  ctx);
++    if (ctx->state.s_flac != FLAC__STREAM_ENCODER_OK) {
++#endif
+       ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "cannot create FLAC state (%s)",
++#ifdef LEGACY_FLAC
+ 		FLAC__SeekableStreamEncoderStateString[ctx->state.s_flac]);
++#else
++		FLAC__StreamEncoderStateString[ctx->state.s_flac]);
++#endif
+       flac_session_close();
+       return -1;
+     }
+@@ -525,16 +599,22 @@ static int flac_output_open(const char *
+     FLAC__stream_encoder_set_max_residual_partition_order(ctx->encoder.flac.stream, flac_options.max_residual_partition_order);
+ 
+     FLAC__stream_encoder_set_blocksize(ctx->encoder.flac.stream, flac_options.blocksize);
++#ifdef LEGACY_FLAC
+     FLAC__stream_encoder_set_client_data(ctx->encoder.flac.stream, ctx);
++#endif
+ 
+     if (0 < num_metadata)
+       FLAC__stream_encoder_set_metadata(ctx->encoder.flac.stream, metadata, num_metadata);
+ 
++#ifdef LEGACY_FLAC
+     /* set callback */
+     FLAC__stream_encoder_set_metadata_callback(ctx->encoder.flac.stream, flac_stream_encoder_metadata_callback);
+     FLAC__stream_encoder_set_write_callback(ctx->encoder.flac.stream, flac_stream_encoder_write_callback);
+ 
+     ctx->state.flac = FLAC__stream_encoder_init(ctx->encoder.flac.stream);
++#else
++    ctx->state.flac = FLAC__stream_encoder_init_stream(ctx->encoder.flac.stream, flac_stream_encoder_write_callback, NULL, NULL,  flac_stream_encoder_metadata_callback, ctx);
++#endif
+     if (ctx->state.flac != FLAC__STREAM_ENCODER_OK) {
+       ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "cannot create FLAC state (%s)",
+ 		FLAC__StreamEncoderStateString[ctx->state.flac]);
+@@ -676,7 +756,11 @@ static void flac_stream_encoder_metadata
+ {
+ }
+ static FLAC__StreamEncoderWriteStatus
++#ifdef LEGACY_FLAC
+ flac_seekable_stream_encoder_write_callback(const FLAC__SeekableStreamEncoder *encoder,
++#else
++flac_seekable_stream_encoder_write_callback(const FLAC__StreamEncoder *encoder,
++#endif
+ 				   const FLAC__byte buffer[],
+ 				   unsigned bytes, unsigned samples,
+ 				   unsigned current_frame, void *client_data)
+@@ -690,7 +774,11 @@ flac_seekable_stream_encoder_write_callb
+   else
+     return FLAC__STREAM_ENCODER_WRITE_STATUS_FATAL_ERROR;
+ }
++#ifdef LEGACY_FLAC
+ static void flac_seekable_stream_encoder_metadata_callback(const FLAC__SeekableStreamEncoder *encoder,
++#else
++static void flac_seekable_stream_encoder_metadata_callback(const FLAC__StreamEncoder *encoder,
++#endif
+ 						  const FLAC__StreamMetadata *metadata,
+ 						  void *client_data)
+ {
+@@ -747,22 +835,38 @@ static int output_data(char *buf, int32 
+   else
+ #endif /* AU_OGGFLAC */
+ 	if (flac_options.seekable) {
++#ifdef LEGACY_FLAC
+     ctx->state.s_flac = FLAC__seekable_stream_encoder_get_state(ctx->encoder.flac.s_stream);
++#else
++    ctx->state.s_flac = FLAC__stream_encoder_get_state(ctx->encoder.flac.s_stream);
++#endif
+     if (ctx->state.s_flac != FLAC__STREAM_ENCODER_OK) {
+       if (ctx->state.s_flac == FLAC__STREAM_ENCODER_VERIFY_DECODER_ERROR |
+ 	  FLAC__STREAM_ENCODER_VERIFY_MISMATCH_IN_AUDIO_DATA) {
+ 	ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "FLAC stream verify error (%s)",
++#ifdef LEGACY_FLAC
+ 		  FLAC__SeekableStreamDecoderStateString[FLAC__seekable_stream_encoder_get_verify_decoder_state(ctx->encoder.flac.s_stream)]);
++#else
++		  FLAC__StreamDecoderStateString[FLAC__stream_encoder_get_verify_decoder_state(ctx->encoder.flac.s_stream)]);
++#endif
+       }
+       else {
+ 	ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "cannot encode FLAC stream (%s)",
++#ifdef LEGACY_FLAC
+ 		  FLAC__SeekableStreamEncoderStateString[ctx->state.s_flac]);
++#else
++		  FLAC__StreamEncoderStateString[ctx->state.s_flac]);
++#endif
+       }
+       flac_session_close();
+       return -1;
+     }
+ 
++#ifdef LEGACY_FLAC
+     if (!FLAC__seekable_stream_encoder_process_interleaved(ctx->encoder.flac.s_stream, oggbuf,
++#else
++    if (!FLAC__stream_encoder_process_interleaved(ctx->encoder.flac.s_stream, oggbuf,
++#endif
+ 						  nbytes / nch / 2 )) {
+       ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "cannot encode FLAC stream");
+       flac_session_close();
+@@ -823,9 +927,17 @@ static void close_output(void)
+   else
+ #endif /* AU_OGGFLAC */
+   if (flac_options.seekable) {
++#ifdef LEGACY_FLAC
+     if ((ctx->state.s_flac = FLAC__seekable_stream_encoder_get_state(ctx->encoder.flac.s_stream)) != FLAC__SEEKABLE_STREAM_ENCODER_OK) {
++#else
++    if ((ctx->state.s_flac = FLAC__stream_encoder_get_state(ctx->encoder.flac.s_stream)) != FLAC__STREAM_ENCODER_OK) {
++#endif
+       ctl->cmsg(CMSG_ERROR, VERB_NORMAL, "FLAC stream encoder is invalid (%s)",
++#ifdef LEGACY_FLAC
+ 		FLAC__SeekableStreamEncoderStateString[ctx->state.s_flac]);
++#else
++		FLAC__StreamEncoderStateString[ctx->state.s_flac]);
++#endif
+       /* fall through */
+     }
+ 	}
