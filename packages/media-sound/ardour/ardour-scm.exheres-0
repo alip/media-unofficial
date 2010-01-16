@@ -2,6 +2,7 @@
 # Distributed under the terms of the Gnu General Public License v2
 
 SCM_REPOSITORY="http://subversion.ardour.org/svn/ardour2"
+SCM_BRANCH="2.0-ongoing"
 
 require scm-svn
 require scons
