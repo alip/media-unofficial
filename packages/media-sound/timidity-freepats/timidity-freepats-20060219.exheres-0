@@ -1,0 +1,36 @@
+# Copyright 2009 Adriaan Leijnse <adriaan@leijnse.net>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part on timidity-freepats-20060219.ebuild from Gentoo
+
+SUMMARY="Free and open set of instrument patches"
+HOMEPAGE="http://freepats.opensrc.org/"
+DOWNLOADS="${HOMEPAGE}/freepats-${PV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+
+DEPENDENCIES="
+    build:
+    build+run:
+"
+
+BUGS_TO="adriaan@leijnse.net"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( )
+
+WORK="${WORKBASE}/freepats"
+
+src_prepare() {
+    echo "dir /usr/share/timidity/freepats" > timidity.cfg
+    cat freepats.cfg >> timidity.cfg
+}
+
+src_install() {
+    insinto /usr/share/timidity/freepats
+    doins -r timidity.cfg Drum_000 Tone_000
+    dodoc README
+}
+
