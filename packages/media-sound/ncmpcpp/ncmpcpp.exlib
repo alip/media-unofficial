@@ -23,16 +23,19 @@ LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="
     curl [[ description = [ Enable fetching lyrics ] ]]
+    fftw [[ description = [ Enable frequency spectrum visualization ] ]]
     taglib [[ description = [ Enable tag editor ] ]]
 "
 
 DEPENDENCIES="
     build+run:
+        media-libs/libmpdclient
         curl? ( net-misc/curl )
+        fftw? ( sci-libs/fftw )
         taglib? ( media-libs/taglib )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( curl taglib )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( curl fftw taglib )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-clock' '--enable-outputs' )
 
 src_prepare() {
