@@ -14,23 +14,12 @@ PLATFORMS="~amd64"
 MYOPTIONS="aac avahi dvd joystick opengl pulseaudio
 
     goom    [[ description = [ Support for GOOM visualizations ] ]]
+    vdpau   [[ description = [ Support for the Video Decode and Presentation API for Unix ] ]]
     xrandr  [[ description = [ Support for the X Resize and Rotate Extension ] ]]
 
     platform:
         amd64
 "
-
-# VDPAU:
-# Disabled until ffmpeg gains vdpau support
-#
-# Options:
-#     vdpau   [[ description = [ Support for the Video Decode and Presentation API for Unix ] ]]
-#
-# Dependencies:
-#     vdpau? (
-#         media/ffmpeg[vdpau]
-#         x11-libs/libvdpau
-#     )
 
 DEPENDENCIES="
     build:
@@ -92,6 +81,10 @@ DEPENDENCIES="
         )
         !opengl? ( media-libs/SDL_gfx )
         pulseaudio? ( media-sound/pulseaudio )
+        vdpau? (
+            media/ffmpeg[vdpau(-)]
+            x11-libs/libvdpau
+        )
         xrandr? ( x11-libs/libXrandr )
     run:
         x11-apps/xdpyinfo
@@ -101,7 +94,6 @@ DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}"/${PNV}-mysql_config.patch )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --disable-non-free
-    --disable-vdpau # Until ffmpeg gains vdpau support
     --enable-external-libraries
     --enable-goom # Visualizations
 )
@@ -113,6 +105,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     joystick
     "opengl gl"
     "pulseaudio pulse"
+    vdpau
     xrandr
 )
 
