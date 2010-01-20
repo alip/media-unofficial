@@ -31,9 +31,12 @@ build+run:
 build:
     dev-util/pkg-config"
 
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'X x' 'aac faac' 'aac faad2' 'doc doxygen' 'ffmpeg' 'ffmpeg swscale' 
-'gtk' 'jpeg libjpeg' 'mp3 lame' 'opengl' 'png libpng' 'schroedinger' 'vorbis' 'h264 x264' )
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-alsa' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'ffmpeg swscale' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+  'X x' 'aac faac' 'aac faad2' 'doc doxygen' 'ffmpeg'
+  'gtk' 'jpeg libjpeg' 'mp3 lame' 'opengl' 'png libpng' 'schroedinger' 'vorbis vorbis /usr' 'h264 x264'
+)
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-alsa' )
 
 src_install() {
     default
