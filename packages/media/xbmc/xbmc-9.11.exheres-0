@@ -27,6 +27,7 @@ DEPENDENCIES="
         sys-apps/gawk
         sys-devel/cmake
         dev-util/gperf
+        dev-libs/boost
 
         !platform:amd64? ( dev-lang/nasm )
     build+run:
