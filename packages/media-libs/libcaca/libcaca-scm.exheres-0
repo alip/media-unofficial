@@ -9,3 +9,10 @@ DOWNLOADS=""
 
 PLATFORMS="~amd64"
 
+MYOPTIONS="java"
+
+DEPENDENCIES="
+    build+run:
+        virtual/jdk:=
+"
+
