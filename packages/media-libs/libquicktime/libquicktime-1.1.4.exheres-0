@@ -1,9 +1,9 @@
 # Copyright 2009 Thomas Anderson
 # Distributed under the terms of the GNU General Public License
 
+require sourceforge [ suffix=tar.gz ]
+
 SUMMARY="A library for reading and writing quicktime/avi/mp4 files"
-HOMEPAGE="http://libquicktime.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
