@@ -32,7 +32,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( libmagic )
 
 src_prepare() {
     default
-    ./autogen.sh || die "autogen.sh failed"
+    edo ./autogen.sh
 }
 
 src_install() {
