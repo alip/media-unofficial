@@ -1,9 +1,11 @@
 # Copyright 2008 Thomas Anderson
 # Distributed under the terms of the GNU General Public License v2
 
+require sourceforge
+
 SUMMARY="A free MPEG-2 video stream decoder"
-HOMEPAGE="http://${PN}.sourceforge.net/"
-DOWNLOADS="http://${PN}.sourceforge.net/files/${PNV}.tar.gz"
+# Upstream doesn't use SF mirrors
+DOWNLOADS="${HOMEPAGE}/files/${PNV}.tar.gz"
 
 LICENCES="GPL-3"
 SLOT="0"

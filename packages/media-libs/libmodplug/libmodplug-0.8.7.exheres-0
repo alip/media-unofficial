@@ -1,10 +1,9 @@
 # Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SUMMARY="libmodplug can play mod-like music formats"
+require sourceforge [ project=modplug-xmms suffix=tar.gz ]
 
-HOMEPAGE="http://modplug-xmms.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/modplug-xmms/${PNV}.tar.gz"
+SUMMARY="libmodplug can play mod-like music formats"
 
 LICENCES="GPL-2"
 SLOT="0"
