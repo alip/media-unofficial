@@ -1,7 +1,7 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib
+require multilib sourceforge [ suffix=tar.gz ]
 
 SUMMARY="Swiss Army knife of sound processing programs"
 DESCRIPTION="
@@ -16,8 +16,6 @@ and 'soxi' programs are distributed under the GPL, while the library
 Note that some optional components of libsox are GPL only: if you use these,
 you must use libsox under the GPL.
 "
-HOMEPAGE="http://sox.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
 
 BUGS_TO="alip@exherbo.org"
 LICENCES="LGPL-2.1 GPL-2"

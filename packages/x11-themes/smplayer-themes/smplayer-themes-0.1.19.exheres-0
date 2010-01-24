@@ -1,7 +1,7 @@
 # Copyright 2009 Sterling X. Winter <sterling.winter@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PN=${PN/-themes}
+require sourceforge [ project=smplayer ]
 
 SUMMARY="Icon themes for SMPlayer"
 DESCRIPTION="
@@ -21,8 +21,6 @@ Supplemental SMPlayer icon themes:
 This is the theme set with OSI-approved licenses. The non-free themes can be
 downloaded from the SMPlayer website.
 "
-HOMEPAGE="http://${MY_PN}.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/${MY_PN}/${PNV}.tar.bz2"
 
 LICENCES="
     Artistic-2.0
@@ -40,7 +38,7 @@ DEPENDENCIES="
         media/smplayer
 "
 
-REMOTE_IDS="freshmeat:${MY_PN} sourceforge:${MY_PN}"
+REMOTE_IDS+=" freshmeat:smplayer "
 
 src_compile() {
     :

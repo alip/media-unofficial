@@ -7,7 +7,9 @@ require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
 
 MY_PV=$(ever replace 3 -)
 MY_PNV="${PN}-src-${MY_PV}"
-MY_T="${PN}-minsrc-${MY_PV}"
+
+# Overwrite only pnv to make pn=project
+require sourceforge [ pnv="${PN}-minsrc-${MY_PV}" ]
 
 SUMMARY="The Free, Cross-Platform Sound Editor"
 DESCRIPTION="
@@ -20,8 +22,6 @@ Cut, copy, splice or mix sounds together.
 Change the speed or pitch of a recording.
 And more!
 "
-HOMEPAGE="http://audacity.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/${PN}/${MY_T}.tar.bz2"
 
 BUGS_TO="alip@exherbo.org"
 LICENCES="GPL-2"
