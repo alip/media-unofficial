@@ -3,6 +3,8 @@
 # Based in part on ortp-0.15.0.exheres-0 which is
 #   Copyright 2009 Ingmar Vanhassel
 
+export_exlib_phases src_install
+
 SUMMARY="Mediastreamer2 - the multimedia streaming engine"
 DESCRIPTION="
 Mediastreamer2 is a powerful and lightweighted streaming engine specialized for voice/video
