@@ -1,0 +1,30 @@
+# Copyright 2010 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Gstreamer OpenGL plugins"
+DESCRIPTION="
+"
+HOMEPAGE="http://gstreamer.freedesktop.org"
+DOWNLOADS="http://gstreamer.freedesktop.org/src/${PN}/${PNV}.tar.bz2"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.9.0]
+        sys-devel/gettext[>=0.11.5]
+        doc? ( app-doc/gtk-doc )
+    build+run:
+        dev-libs/liboil[>=0.3.8]
+        media-libs/glew[>=1.5.0]
+        media-libs/gstreamer:0.10[>=0.10.15]
+        media-libs/libpng[>=1.0]
+        media-plugins/gst-plugins-base[>=0.10.15]
+        x11-dri/mesa
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+
