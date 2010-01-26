@@ -27,6 +27,7 @@ MYOPTIONS="alsa ao debug ffmpeg flac id3tag ladspa libsamplerate ogg png sndfile
 
 DEPENDENCIES="
     build+run:
+        sys-apps/file
         alsa? ( sys-sound/alsa-lib )
         ao? ( media-libs/libao )
         ffmpeg? ( media/ffmpeg )
@@ -45,7 +46,9 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --with-distro=Exherbo
     --with-ladspa-path=/usr/$(get_libdir)/ladspa
+    --with-magic
     --disable-oss
     --disable-coreaudio
     --without-amr-wb
