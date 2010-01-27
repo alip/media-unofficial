@@ -31,10 +31,9 @@ DEPENDENCIES="
 "
 
 src_configure() {
-    python_version
-    ${python} -B setup.py config || die "python setup.py config failed"
-    sed -e "s:\(with-avcodec =\).*:\1 $(optionq fingerprint && echo True || echo False):" \
-        -e "s:\(with-libofa =\).*:\1 $(optionq fingerprint && echo True || echo False):" \
-        -i "${WORK}"/build.cfg || die "sed build.cfg failed"
+    edo ${PYTHON} -B setup.py config
+    edo sed -e "s:\(with-avcodec =\).*:\1 $(optionq fingerprint && echo True || echo False):" \
+            -e "s:\(with-libofa =\).*:\1 $(optionq fingerprint && echo True || echo False):" \
+            -i "${WORK}"/build.cfg
 }
 
