@@ -8,11 +8,11 @@ DOWNLOADS="${HOMEPAGE}/freepats-${PV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86 ~amd64"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
-    build:
-    build+run:
+    run:
+    media-sound/timidity++
 "
 
 BUGS_TO="adriaan@leijnse.net"
@@ -24,8 +24,8 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( )
 WORK="${WORKBASE}/freepats"
 
 src_prepare() {
-    echo "dir /usr/share/timidity/freepats" > timidity.cfg
-    cat freepats.cfg >> timidity.cfg
+    edo echo "dir /usr/share/timidity/freepats" > timidity.cfg
+    edo cat freepats.cfg >> timidity.cfg
 }
 
 src_install() {
