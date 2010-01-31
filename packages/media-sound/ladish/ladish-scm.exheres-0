@@ -18,8 +18,7 @@ HOMEPAGE="http://ladish.org/"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86 ~amd64"
-MYOPTIONS=""
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
@@ -32,8 +31,6 @@ DEPENDENCIES="
 
 BUGS_TO="adriaan@leijnse.net"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( liblash )
 
 src_configure() {
