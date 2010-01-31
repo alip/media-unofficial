@@ -22,9 +22,9 @@ DEPENDENCIES=""
 BUGS_TO="urkud@ya.ru"
 
 src_unpack() {
-    mkdir ${WORK}
-    pushd ${WORK}
-    edo awk -f ${FETCHEDDIR}/ilbc-extract-cfile.awk ${FETCHEDDIR}/rfc3951.txt
+    mkdir "${WORK}"
+    pushd "${WORK}"
+    edo awk -f "${FETCHEDDIR}/ilbc-extract-cfile.awk" "${FETCHEDDIR}/rfc3951.txt"
     popd
 }
 
