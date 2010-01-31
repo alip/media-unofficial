@@ -15,8 +15,7 @@ HOMEPAGE="http://marcochapeau.org/software/laditools"
 
 LICENCES="GPL-3"
 SLOT="0"
-PLATFORMS="~x86 ~amd64"
-MYOPTIONS=""
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
