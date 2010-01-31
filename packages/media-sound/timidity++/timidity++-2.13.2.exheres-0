@@ -11,7 +11,7 @@ A handy MIDI to WAV converter with OSS and ALSA output support, useful for playi
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86 ~amd64"
+PLATFORMS="~amd64"
 MYOPTIONS="
     alsa jack vorbis flac speex ao
 "
