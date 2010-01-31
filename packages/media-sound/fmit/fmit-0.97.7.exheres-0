@@ -23,7 +23,7 @@ DEPENDENCIES="
     oss? ( sys-sound/alsa-oss )
 "
 
-BUGS_TO=""
+BUGS_TO="adriaan@leijnse.net"
 
 src_configure() {
     edo ./configure \
