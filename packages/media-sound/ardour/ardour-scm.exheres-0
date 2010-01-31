@@ -12,7 +12,7 @@ HOMEPAGE="http://ardour.org"
 
 LICENCES="GPL-2"
 SLOT="1"
-PLATFORMS="~x86 ~amd64"
+PLATFORMS="~amd64"
 MYOPTIONS="
     tranzport [[ description = [ Compile with support for Frontier Designs ] ]]
     freesound [[ description = [ Support for the Freesound Project sound library ] ]]
