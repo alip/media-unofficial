@@ -1,13 +1,7 @@
 # Copyright 2010 Yury G. Kudryashov
 # Distributed under the terms of the GNU General Public License v2
 
-SUMMARY="Mediastreamer2 iLBC plugin"
-DESCRIPTION="
-Mediastreamer2 is a powerful and lightweighted streaming engine specialized for voice/video
-telephony applications.
-It is the library that is responsible for all the receiving and sending of multimedia streams in
-linphone, including voice/video capture, encoding and decoding, and rendering.
-"
+SUMMARY="iLBC plugin for mediastreamer2 (media-libs/mediastreamer)"
 HOMEPAGE="http://www.linphone.org/index.php/eng/code_review/mediastreamer2"
 DOWNLOADS="mirror://savannah/linphone/plugins/sources/${PNV}.tar.gz"
 
