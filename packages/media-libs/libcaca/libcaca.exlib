@@ -22,9 +22,8 @@ MYOPTIONS="X cxx doc imlib mono ncurses opengl plugins ruby server slang vga
     cxx [[ description = [ Build C++ bindings ] ]]
     plugins [[ description = [ Build plugins ] ]]
     server [[ description = [ Build cacaserver ] ]]
-    vga [[ description = [ Use VGA backend ] ]]
 
-    ( X ncurses opengl slang vga ) [[ number-selected = at-least-one ]]
+    ( X ncurses opengl slang ) [[ number-selected = at-least-one ]]
 "
 
 DEPENDENCIES="
@@ -64,7 +63,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'ruby'
     'server network'
     'slang'
-    'vga'
 )
 
 src_install() {
