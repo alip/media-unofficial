@@ -45,3 +45,12 @@ DEPENDENCIES="
         vorbis? ( media-plugins/gst-plugins-base:0.10[gstreamer_plugins:ogg][gstreamer_plugins:vorbis] )
 "
 
+src_prepare() {
+    default
+
+    # Upstream notified, so it might get repackaged later.
+    if [[ -f quodlibet/qltk/config.py ]]; then
+        edo rm quodlibet/qltk/config.py
+    fi
+}
+
