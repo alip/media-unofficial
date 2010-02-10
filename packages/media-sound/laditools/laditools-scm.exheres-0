@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://repo.or.cz/laditools.git"
-require scm-git
+require scm-git distutils
 
 SUMMARY="Linux Audio Desktop Integration Tools"
 DESCRIPTION="
@@ -25,10 +25,4 @@ DEPENDENCIES="
 "
 
 BUGS_TO="adriaan@leijnse.net"
-
-src_configure() { return 0; }
-src_compile() { return 0; }
-src_install() {
-    edo python setup.py install --prefix /usr --root ${IMAGE}
-}
 
