@@ -1,3 +1,6 @@
+Source: from Gentoo
+Upstream: no
+Reason: fix ageing timidity source
 Index: TiMidity++-2.13.2/timidity/flac_a.c
 ===================================================================
 --- TiMidity++-2.13.2.orig/timidity/flac_a.c
