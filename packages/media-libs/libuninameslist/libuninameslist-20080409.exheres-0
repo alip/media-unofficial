@@ -1,0 +1,25 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A Library of Unicode annotation data"
+DESCRIPTION="
+The Unicode consortium provides a file containing annotations on many unicode characters. This
+library contains a compiled version of this file so that programs can access these data easily. 
+"
+HOMEPAGE="http://libuninameslist.sourceforge.net"
+DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.bz2"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        sys-devel/libtool
+"
+
+WORK="${WORKBASE}/${PN}"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--hates=docdir' )
+

@@ -35,10 +35,10 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config
     build+run:
-        x11-libs/gtk+[jpeg]
         dev-lang/python:=
-        gnome-bindings/pygtk
         dev-python/python-mpd
+        gnome-bindings/pygtk:2
+        x11-libs/gtk+:2[jpeg(+)]
         dbus? ( dev-python/dbus-python )
         lyrics? ( dev-python/ZSI )
 "

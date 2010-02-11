@@ -1,0 +1,5 @@
+# Disable checks for trailing whitespace for patches, they always trigger warnings,-blank-at-eof
+*.diff whitespace=-trailing-space,-space-before-tab,-blank-at-eof
+*.patch whitespace=-trailing-space,-space-before-tab,-blank-at-eof
+*.exlib whitespace=-blank-at-eof
+*.exheres-0 whitespace=-blank-at-eof

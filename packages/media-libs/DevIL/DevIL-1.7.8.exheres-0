@@ -1,21 +1,21 @@
 # Copyright 2009 Daniel Mierswa <impulze@impulze.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require sourceforge [ project=openil suffix=tar.gz ]
+
 SUMMARY="Cross-Platform, wide-spreaded, full-featured image library."
 DESCRIPTION="Developer's Image Library (DevIL) is a programmer's library to develop
 applications with very powerful image loading capabilities, yet is easy for a developer
 to learn and use. Ultimate control of images is left to the developer, so unnecessary
 conversions, etc. are not performed. DevIL utilizes a simple, yet powerful, syntax. DevIL
 can load, save, convert, manipulate, filter and display a wide variety of image formats."
-HOMEPAGE="http://openil.sourceforge.net"
-DOWNLOADS="mirror://sourceforge/openil/$PNV.tar.gz"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="debug examples jpeg jpeg2000 lcms mng openexr opengl png sdl tiff X"
 
-REMOTE_IDS="freshmeat:devil sourceforge:devil"
+REMOTE_IDS+="freshmeat:devil"
 
 UPSTREAM_DOCUMENTATION="
 $HOMEPAGE/docs/DevIL%20Manual.pdf            [[ lang = en description = [ DevIL Manual ] ]]

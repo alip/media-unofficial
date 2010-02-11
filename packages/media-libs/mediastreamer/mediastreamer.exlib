@@ -1,0 +1,70 @@
+# Copyright 2010 Yury G. Kudryashov
+# Distributed under the terms of the GNU General Public License v2
+# Based in part on ortp-0.15.0.exheres-0 which is
+#   Copyright 2009 Ingmar Vanhassel
+
+export_exlib_phases src_install
+
+SUMMARY="Mediastreamer2 - the multimedia streaming engine"
+DESCRIPTION="
+Mediastreamer2 is a powerful and lightweighted streaming engine specialized for voice/video
+telephony applications.
+It is the library that is responsible for all the receiving and sending of multimedia streams in
+linphone, including voice/video capture, encoding and decoding, and rendering.
+"
+HOMEPAGE="http://www.linphone.org/index.php/eng/code_review/${PN}2"
+DOWNLOADS="mirror://savannah/linphone/${PN}/${PNV}.tar.gz"
+
+LICENCES="GPL-2 GPL-3 [[ note = [ A few header files have no copyright information, other are GPL-2+ or AS-IS ] ]]"
+SLOT="0"
+MYOPTIONS="
+    ( alsa jack portaudio ) [[ number-selected = at-least-one ]]
+    debug doc gsm ipv6 speex video [[ description = [ Enable video stream support ] ]]
+    ( sdl theora v4l X ) [[ requires = video ]]"
+
+DEPENDENCIES="
+    build:
+        doc? ( app-doc/doxygen )
+        dev-util/pkg-config
+    build+run:
+        net-libs/ortp[>=0.16.1] [[ note = [ checks for 0.9.0 but compile fails for 0.15.0 ] ]]
+        alsa? ( sys-sound/alsa-lib )
+        gsm? ( media-libs/gsm )
+        jack? (
+            media-sound/jack-audio-connection-kit[>=0.15.0]
+            media-libs/libsamplerate[>=0.0.13]
+        )
+        portaudio? ( media-libs/portaudio )
+        speex? ( media-libs/speex[>=1.2-beta3] )
+        theora? ( media-libs/libtheora[>=1.0-alpha7] )
+        v4l? ( media-libs/libv4l ) [[ note = [ FIXME: automagic here ] ]]
+        video? ( media/ffmpeg )
+        sdl? ( media-libs/SDL[>=1.2.0] )
+        X? ( x11-libs/libX11 )
+"
+
+BUGS_TO="urkud@ya.ru"
+
+UPSTREAM_DOCUMENTATION="http://download.savannah.gnu.org/releases-noredirect/linphone/mediastreamer/doc/modules.html"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug ipv6 jack portaudio sdl theora video "X x11" )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --datadir=/usr/share/${PN}
+    --docdir=/usr/share/doc
+    --disable-artsc
+    --disable-macaqsnd
+    --disable-macsnd
+    --disable-oss
+    --enable-external-ortp
+    )
+
+src_install() {
+    default
+
+    # There's no option to disable building apidocs, so remove them if not requested
+    if option !doc; then
+        edo rm -rf "${IMAGE}/usr/share/doc/${PNV}/html"
+    fi
+}
+

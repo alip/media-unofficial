@@ -1,0 +1,40 @@
+# Copyright 2010 Yury G. Kudryashov <urkud@ya.ru>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="RFC 3951 iLBC codec"
+DESCRIPTION="
+iLBC (internet Low Bitrate Codec) is a FREE speech codec suitable for robust voice communication
+over IP.
+"
+HOMEPAGE="http://ilbcfreeware.org"
+DOWNLOADS="
+http://www.ietf.org/rfc/rfc3951.txt
+${HOMEPAGE}/documentation/extract-cfile.awk -> ilbc-extract-cfile.awk
+"
+
+LICENCES="GIPS-iLBC-Public-License"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="urkud@ya.ru"
+
+src_unpack() {
+    mkdir "${WORK}"
+    pushd "${WORK}"
+    edo awk -f "${FETCHEDDIR}/ilbc-extract-cfile.awk" "${FETCHEDDIR}/rfc3951.txt"
+    popd
+}
+
+src_compile() {
+    edo ${CC} ${CFLAGS} -fPIC -shared -Wl,-soname,libilbc.so -o libilbc.so *.c
+}
+
+src_install() {
+    dolib libilbc.so
+    insinto usr/include/ilbc
+    doins iLBC_decode.h iLBC_encode.h iLBC_define.h
+}
+

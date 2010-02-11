@@ -1,14 +1,13 @@
 # Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib
+require multilib sourceforge
 
 SUMMARY="A console audio player"
 DESCRIPTION="
 cmus is a small and fast text mode music player for Linux and many other UNIX
 like operating systems.
 "
-HOMEPAGE="http://cmus.sourceforge.net/"
 DOWNLOADS="http://mirror.greaterscope.net/cmus/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"

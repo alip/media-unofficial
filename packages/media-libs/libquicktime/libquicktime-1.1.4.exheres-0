@@ -1,9 +1,9 @@
 # Copyright 2009 Thomas Anderson
 # Distributed under the terms of the GNU General Public License
 
+require sourceforge [ suffix=tar.gz ]
+
 SUMMARY="A library for reading and writing quicktime/avi/mp4 files"
-HOMEPAGE="http://libquicktime.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -11,6 +11,7 @@ PLATFORMS="~amd64 ~x86"
 # Missing: dv(requires libdv)
 MYOPTIONS="X aac doc ffmpeg gtk jpeg opengl png vorbis h264
     mp3 [[ description = [ Support mp3 encoding with lame ] ]]
+    schroedinger [[ description = [ Support dirac en- and decoding ] ]]
 "
 
 DEPENDENCIES="
@@ -24,14 +25,18 @@ build+run:
     jpeg? ( media-libs/jpeg[>=6b] )
     mp3? ( media-sound/lame[>=3.93] )
     png? ( media-libs/libpng[>=1.2.23] )
+    schroedinger? ( media-libs/schroedinger[>=1.0.5] )
     vorbis? ( media-libs/libvorbis[>=1.0] )
     h264? ( media-libs/x264 )
 build:
     dev-util/pkg-config"
 
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'X x' 'aac faac' 'aac faad2' 'doc doxygen' 'ffmpeg' 'ffmpeg swscale' 
-'gtk' 'jpeg libjpeg' 'mp3 lame' 'opengl' 'png libpng' 'vorbis' 'h264 x264' )
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-alsa' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'ffmpeg swscale' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+  'X x' 'aac faac' 'aac faad2' 'doc doxygen' 'ffmpeg'
+  'gtk' 'jpeg libjpeg' 'mp3 lame' 'opengl' 'png libpng' 'schroedinger' 'vorbis vorbis /usr' 'h264 x264'
+)
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-alsa' )
 
 src_install() {
     default

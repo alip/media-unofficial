@@ -7,7 +7,7 @@ It takes audio input from a sound card, encodes it into mp3 and/or Ogg Vorbis,
 and sends the mp3 stream to one or more IceCast and/or ShoutCast servers, the
 Ogg Vorbis stream to one or more IceCast2 servers.
 "
-HOMEPAGE="http://${PN}.sourceforge.net"
+HOMEPAGE="http://code.google.com/p/${PN}"
 DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.gz"
 
 BUGS_TO="jedahan@gmail.com"

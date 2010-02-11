@@ -1,7 +1,7 @@
 # Copyright 2009 Sterling X. Winter <sterling.winter@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PN=${PN/-themes}
+require sourceforge [ project=smplayer ]
 
 SUMMARY="Icon themes for SMPlayer"
 DESCRIPTION="
@@ -14,22 +14,21 @@ Supplemental SMPlayer icon themes:
   * Gnome
   * Noia
   * Nuvola
+  * Oxygen
+  * Oxygen-Air
   * Oxygen-Refit
-  * Play
   * Silk
   * Tango
 This is the theme set with OSI-approved licenses. The non-free themes can be
 downloaded from the SMPlayer website.
 "
-HOMEPAGE="http://${MY_PN}.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/${MY_PN}/${PNV}.tar.bz2"
 
 LICENCES="
-    Artistic-2.0
     CCPL-Attribution-2.5
+    CCPL-Attribution-ShareAlike-2.5
+    CCPL-Attribution-ShareAlike-3.0
     GPL-2
     LGPL-3
-    public-domain
 "
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
@@ -40,14 +39,14 @@ DEPENDENCIES="
         media/smplayer
 "
 
-REMOTE_IDS="freshmeat:${MY_PN} sourceforge:${MY_PN}"
+REMOTE_IDS+=" freshmeat:smplayer "
 
 src_compile() {
     :
 }
 
 src_install() {
-    insinto /usr/share/${MY_PN}/themes
+    insinto /usr/share/smplayer/themes
     for subdir in blackPanther-Light \
                   blackPanther-Real \
                   blackPanther-VistaLike \
@@ -56,8 +55,9 @@ src_install() {
                   Gnome \
                   Noia \
                   Nuvola \
+                  Oxygen \
+                  Oxygen-Air \
                   Oxygen-Refit \
-                  Play \
                   Silk \
                   Tango ; do
         doins -r themes/"${subdir}"

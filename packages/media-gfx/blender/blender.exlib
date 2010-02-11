@@ -40,7 +40,6 @@ DEPENDENCIES="
         x11-libs/libXi
 
         ffmpeg?     ( media/ffmpeg )
-        nls?        ( sys-devel/gettext )
         openal?     ( media-libs/openal )
         openexr?    ( media-libs/openexr )
 "
