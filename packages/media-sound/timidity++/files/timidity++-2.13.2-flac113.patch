@@ -1,6 +1,7 @@
-Source: from Gentoo
+Source: http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/media-sound/timidity%2B%2B/files/timidity%2B%2B-2.13.2-flac113.patch?rev=1.1
 Upstream: no
-Reason: fix ageing timidity source
+Reason: flac 1.1.3 compatibility
+
 Index: TiMidity++-2.13.2/timidity/flac_a.c
 ===================================================================
 --- TiMidity++-2.13.2.orig/timidity/flac_a.c

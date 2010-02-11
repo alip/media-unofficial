@@ -1,6 +1,6 @@
-Source: from Gentoo
+Source: http://sources.gentoo.org/viewcvs.py/gentoo-x86/media-sound/timidity%2B%2B/files/timidity%2B%2B-2.13.2-gtk26.patch?rev=1.1.1.1
 Upstream: no
-Reason: fix ageing timidity source
+Reason: gtk variable initalisation fixes (Gentoo bug #75208)
 --- TiMidity++-2.13.2/interface/gtk_i.c	2004/12/21 16:59:33	1.1
 +++ TiMidity++-2.13.2/interface/gtk_i.c	2004/12/21 16:59:41
 @@ -365,6 +365,7 @@ void

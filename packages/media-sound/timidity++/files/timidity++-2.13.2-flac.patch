@@ -1,6 +1,6 @@
-Source: from Gentoo
+Source: http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/media-sound/timidity%2B%2B/files/timidity%2B%2B-2.13.2-flac.patch?rev=1.1
 Upstream: no
-Reason: fix ageing timidity source
+Reason: fix build failure when enabling FLAC without OggFlac (Gentoo bug #156539)
 *** TiMidity++-2.13.2/timidity/flac_a.c	Sun May 23 07:35:44 2004
 --- TiMidity++-2.13.2/timidity/flac_a.c	Sat Dec 30 13:24:08 2006
 ***************

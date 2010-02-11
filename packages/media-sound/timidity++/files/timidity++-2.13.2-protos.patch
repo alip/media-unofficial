@@ -1,6 +1,6 @@
-Source: from Gentoo
+Source: http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/media-sound/timidity%2B%2B/files/timidity%2B%2B-2.13.2-protos.patch?rev=1.1
 Upstream: no
-Reason: fix ageing timidity source
+Reason: Fix implicit decl errors on 64bit systems.
 --- TiMidity++-2.13.2/timidity/flac_a.c
 +++ TiMidity++-2.13.2/timidity/flac_a.c
 @@ -61,6 +61,7 @@
