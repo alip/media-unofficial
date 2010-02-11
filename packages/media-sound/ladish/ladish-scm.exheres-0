@@ -32,6 +32,7 @@ DEPENDENCIES="
 BUGS_TO="adriaan@leijnse.net"
 
 src_configure() {
+    # waf configure from ladish doesn't support waf.exlib arguments
     ewaf configure --enable-liblash --prefix=/usr/
 }
 
