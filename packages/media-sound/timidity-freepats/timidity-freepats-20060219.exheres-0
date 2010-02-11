@@ -27,6 +27,6 @@ src_prepare() {
 src_install() {
     insinto /usr/share/timidity/freepats
     doins -r timidity.cfg Drum_000 Tone_000
-    dodoc README
+    emagicdocs
 }
 
