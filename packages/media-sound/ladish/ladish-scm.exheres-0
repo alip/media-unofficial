@@ -31,8 +31,6 @@ DEPENDENCIES="
 
 BUGS_TO="adriaan@leijnse.net"
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( liblash )
-
 src_configure() {
     ewaf configure --enable-liblash --prefix=/usr/
 }
