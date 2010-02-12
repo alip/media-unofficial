@@ -3,9 +3,8 @@
 
 require distutils common-metadata
 
-DOWNLOADS="http://mutagen.googlecode.com/files/${PNV}.tar.gz"
-
 BUGS_TO="arkanoid@exherbo.org"
 
 SLOT="0"
 PLATFORMS="~x86 ~amd64"
+

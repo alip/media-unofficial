@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require googlecode [ project=musicip-libofa suffix=tar.gz ]
 
 SUMMARY="Open-source audio fingerprint by MusicIP"
 DESCRIPTION="
@@ -25,8 +26,6 @@ identifiers can be used by third parties (such as MusicBrainz) to relate
 information to the identified audio file. PUIDs are fully qualified UUIDs and do
 not include any acoustic information.
 "
-HOMEPAGE="http://code.google.com/p/musicip-libofa/"
-DOWNLOADS="http://musicip-libofa.googlecode.com/files/${PNV}.tar.gz"
 BUGS_TO="alip@exherbo.org"
 
 LICENCES="|| ( APL-1.0 GPL-2 )"

@@ -1,6 +1,8 @@
 # Copyright 2009 Thomas Anderson
 # Distributed under the terms of the GNU General Public License v2
 
+require googlecode
+
 SUMMARY="ASS/SSA (Advanced Substation Alpha/Substation Alpha) subtitle rendering library"
 DESCRIPTION="
 The ASS format can be used for extremely complex subtitles. Text can be rendered with
@@ -10,8 +12,6 @@ operations (box blur, gaussian blur) can be applied. Finally, it is also possibl
 resulting subtitles. There are even more advanced features available, like vector drawings,
 vector blending and animations.
 "
-HOMEPAGE="http://code.google.com/p/${PN}"
-DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"

@@ -1,9 +1,9 @@
 # Copyright 2009 Marvin Schmidt <marv@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require googlecode [ suffix=tar.gz ]
 SUMMARY="Rendering library for Kate streams using pango and cairo"
-HOMEPAGE="http://wiki.xiph.org/OggKate http://code.google.com/p/${PN}"
-DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.gz"
+HOMEPAGE+="http://wiki.xiph.org/OggKate"
 
 LICENCES="LGPL-2.1"
 SLOT="0"

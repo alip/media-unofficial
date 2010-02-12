@@ -1,14 +1,14 @@
 # Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require googlecode [ suffix=tar.gz ]
+
 SUMMARY="IceCast live streamer, delivering ogg and mp3 streams simultaneously to multiple hosts"
 DESCRIPTION="DarkIce is an IceCast, IceCast2 and ShoutCast live audio streamer.
 It takes audio input from a sound card, encodes it into mp3 and/or Ogg Vorbis,
 and sends the mp3 stream to one or more IceCast and/or ShoutCast servers, the
 Ogg Vorbis stream to one or more IceCast2 servers.
 "
-HOMEPAGE="http://code.google.com/p/${PN}"
-DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.gz"
 
 BUGS_TO="jedahan@gmail.com"
 
