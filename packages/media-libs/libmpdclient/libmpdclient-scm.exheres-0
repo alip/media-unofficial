@@ -5,7 +5,7 @@ SCM_REPOSITORY="git://git.musicpd.org/master/libmpdclient.git"
 require common-metadata scm-git
 
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="debug"
 
 DEPENDENCIES="
