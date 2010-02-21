@@ -21,17 +21,17 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-    media-sound/jack-audio-connection-kit[>=0.116]
-    dev-libs/libxml2
-    sci-libs/fftw
-    dev-libs/glib[>=2.10]
-    gnome-platform/libgnomecanvas
-    media-libs/aubio[jack]
-    media-libs/liblrdf
-    media-libs/liblo
-    dev-libs/boost
-    lv2? ( media-libs/slv2[jack] )
-    tranzport? ( dev-libs/libusb )
+        media-sound/jack-audio-connection-kit[>=0.116]
+        dev-libs/libxml2
+        sci-libs/fftw
+        dev-libs/glib[>=2.10]
+        gnome-platform/libgnomecanvas
+        media-libs/aubio[jack]
+        media-libs/liblrdf
+        media-libs/liblo
+        dev-libs/boost
+        lv2? ( media-libs/slv2[jack] )
+        tranzport? ( dev-libs/libusb )
 "
 
 BUGS_TO="adriaan@leijnse.net"
