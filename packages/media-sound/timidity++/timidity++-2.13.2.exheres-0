@@ -18,13 +18,13 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-    alsa? ( sys-sound/alsa-lib )
-    jack? ( media-sound/jack-audio-connection-kit )
-    vorbis? ( media-libs/libvorbis )
-    flac? ( media-libs/flac )
-    speex? ( media-libs/speex )
-    ao? ( media-libs/libao[>=0.8.5] )
-    user/timidity
+        alsa? ( sys-sound/alsa-lib )
+        jack? ( media-sound/jack-audio-connection-kit )
+        vorbis? ( media-libs/libvorbis )
+        flac? ( media-libs/flac )
+        speex? ( media-libs/speex )
+        ao? ( media-libs/libao[>=0.8.5] )
+        user/timidity
 "
 
 BUGS_TO="adriaan@leijnse.net"
