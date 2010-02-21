@@ -12,7 +12,7 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     run:
-    media-sound/timidity++
+        media-sound/timidity++
 "
 
 BUGS_TO="adriaan@leijnse.net"
