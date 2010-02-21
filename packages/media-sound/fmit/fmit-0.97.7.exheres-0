@@ -13,14 +13,15 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="alsa oss jack portaudio"
 
 DEPENDENCIES="
-    x11-libs/qt:3[opengl]
-    x11-libs/libXi
-    x11-dri/freeglut
-    sci-libs/fftw
-    jack? ( media-sound/jack-audio-connection-kit )
-    portaudio? ( media-libs/portaudio )
-    alsa? ( sys-sound/alsa-lib )
-    oss? ( sys-sound/alsa-oss )
+    build+run:
+        x11-libs/qt:3[opengl]
+        x11-libs/libXi
+        x11-dri/freeglut
+        sci-libs/fftw
+        jack? ( media-sound/jack-audio-connection-kit )
+        portaudio? ( media-libs/portaudio )
+        alsa? ( sys-sound/alsa-lib )
+        oss? ( sys-sound/alsa-oss )
 "
 
 BUGS_TO="adriaan@leijnse.net"
