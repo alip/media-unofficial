@@ -19,9 +19,9 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
-    gnome-bindings/pygtk[>=2.12]
-    dev-python/PyXML[>=0.8.4]
-    dev-python/PyYAML
+        gnome-bindings/pygtk[>=2.12]
+        dev-python/PyXML[>=0.8.4]
+        dev-python/PyYAML
 "
 
 BUGS_TO="adriaan@leijnse.net"
