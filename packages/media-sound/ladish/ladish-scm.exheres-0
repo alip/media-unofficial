@@ -22,11 +22,11 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
-    sys-apps/dbus
-    dev-libs/dbus-glib
-    x11-libs/gtk+
-    gnome-platform/libglade
-    x11-libs/flowcanvas
+        sys-apps/dbus
+        dev-libs/dbus-glib
+        x11-libs/gtk+
+        gnome-platform/libglade
+        x11-libs/flowcanvas
 "
 
 BUGS_TO="adriaan@leijnse.net"
