@@ -1,0 +1,23 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Create cue sheet from CD disk"
+HOMEPAGE="https://www.diplodocus.org/projects/audio"
+DOWNLOADS="${HOMEPAGE/projects/dist}/${PNV}.tar.bz2"
+
+LICENCES=" GPL-2.1 [[
+        note = [ In README he says GPL, but source code states either public domain, or LGPL-2.1 ]
+    ]]"
+
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=docdir )
+
+src_install() {
+    mkdir -p "${IMAGE}"/usr/bin
+    default
+}
+

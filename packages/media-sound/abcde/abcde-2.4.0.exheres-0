@@ -32,7 +32,9 @@ DEPENDENCIES="
     recommendation:
     	media/cdparanoia
         vorbis? ( media-sound/vorbisgain )
-        
+
+    suggestion:
+        media-sound/mkcue [[ description = [ Needed to generate cue sheets ] ]]
 "
 
 src_install() {
