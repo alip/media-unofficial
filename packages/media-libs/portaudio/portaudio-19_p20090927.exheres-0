@@ -4,7 +4,7 @@
 require portaudio
 
 DOWNLOADS="http://dev.exherbo.org/~arkanoid/distfiles/${PNV}.tgz"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
 WORK="${WORKBASE}/${PN}"
 
