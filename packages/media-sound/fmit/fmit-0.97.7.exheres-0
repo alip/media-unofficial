@@ -28,20 +28,7 @@ BUGS_TO="adriaan@leijnse.net"
 
 src_configure() {
     # fmit doesn't support --docdir
-    edo ./configure \
-        --prefix=/usr \
-        --host=${CHOST} \
-        ${CBUILD:+--build=${CBUILD}} \
-        ${CTARGET:+--target=${CTARGET}} \
-        --mandir=/usr/share/man \
-        --infodir=/usr/share/info \
-        --datadir=/usr/share \
-        --sysconfdir=/etc \
-        --localstatedir=/var/lib \
-        --disable-dependency-tracking \
-        --disable-silent-rules \
-        --enable-fast-install \
-        --libdir=${ECONF_PREFIX}/${LIBDIR:-lib}
+    econf --hates=docdir \
         --with-x \
         $( option_enable jack ) \
         $( option_enable portaudio ) \
