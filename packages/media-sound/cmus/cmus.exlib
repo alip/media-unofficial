@@ -41,33 +41,30 @@ DEPENDENCIES="
 
 WORK="${WORKBASE}"/${MY_PNV}
 
-SRC_CONFIGURE_OPTION_CONFIGS=(
+SRC_CONFIGURE_OPTIONS=(
     aac alsa ao arts ffmpeg flac "mp3 mad" mikmod modplug mp4 mpc
     oss pulse tremor vorbis wav wavpack
 )
 
-option_config() {
-    # CONFIG_OPTION=y/n
-    if optionq "${1}" ; then
-        echo "CONFIG_$(echo ${2:-${1}} | tr [:lower:] [:upper:])=y"
-    else
-        echo "CONFIG_$(echo ${2:-${1}} | tr [:lower:] [:upper:])=n"
-    fi
+src_prepare() {
+    export LD="${CC}"
 }
 
-# epatch "${FILES}"/${PNV}-symlink_attack.patch
-src_configure() {
-    export LD="${CC}"
-    local configure_command=(
-        ./configure
-            prefix=/usr
-            libdir=/usr/$(get_libdir)
-            exampledir=/usr/share/doc/${PNV}/examples
-            CONFIG_SUN=n
-            $(for s in "${SRC_CONFIGURE_OPTION_CONFIGS[@]}" ; do
-                option_config ${s} ;
-            done )
-    )
-    edo "${configure_command[@]}"
+option_yesno() {
+    local option=${2:-${1}}
+    echo "CONFIG_${option^^}=$(optionq ${1} && echo y || echo n)"
 }
+
+src_configure() {
+    local s
+    local configure_arguments=(
+        prefix=/usr
+        libdir=/usr/$(get_libdir)
+        exampledir=/usr/share/doc/${PNV}/examples
+        $(for s in "${SRC_CONFIGURE_OPTIONS[@]}"; do option_yesno ${s}; done)
+    )
+    edo ./configure "${configure_arguments[@]}"
+}
+
+DEFAULT_SRC_COMPILE_PARAMS=( V=2 ) # Maximum verbosity
 
