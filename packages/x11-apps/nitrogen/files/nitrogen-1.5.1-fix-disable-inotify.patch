@@ -1,3 +1,6 @@
+Source: Upstream
+Upstream: yes
+Reason: Fix compile issue when inotify is disabled
 diff --git a/src/Thumbview.cc b/src/Thumbview.cc
 index 0b85974..a01d893 100644
 --- a/src/Thumbview.cc
