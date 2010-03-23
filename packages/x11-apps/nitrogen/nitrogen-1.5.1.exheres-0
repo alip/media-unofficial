@@ -8,7 +8,7 @@ It is written in C++ using the gtkmm toolkit. It can be used
 in two modes: browser and recall. "
 
 HOMEPAGE="http://projects.l3ib.org/nitrogen/"
-DOWNLOADS="http://projects.l3ib.org/nitrogen/files/nitrogen-1.4.tar.gz"
+DOWNLOADS="http://projects.l3ib.org/${PN}/files/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -16,9 +16,14 @@ PLATFORMS="~x86"
 MYOPTIONS="xinerama nls inotify"
 
 DEPENDENCIES="
+        build:
+            xinerama? ( x11-proto/xineramaproto )
         build+run:
             dev-libs/glib[>=2.6]
             x11-libs/gtk+[>=2.10]
-            gnome-bindings/gtkmm[>=2.10]"
+            gnome-bindings/gtkmm[>=2.10]
+            xinerama? ( x11-libs/libXinerama )
+            nls? ( sys-devel/gettext )"
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( xinerama nls inotify )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-fix-disable-inotify.patch )
