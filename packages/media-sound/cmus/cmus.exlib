@@ -1,6 +1,7 @@
 # Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
 # Distributed under the terms of the GNU General Public License v2
 
+MY_PNV=${PN}-v${PV}
 require multilib sourceforge
 
 SUMMARY="A console audio player"
@@ -8,11 +9,10 @@ DESCRIPTION="
 cmus is a small and fast text mode music player for Linux and many other UNIX
 like operating systems.
 "
-DOWNLOADS="http://mirror.greaterscope.net/cmus/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="aac alsa ao arts ffmpeg flac mikmod modplug mp4 mpc oss tremor vorbis wav wavpack
+MYOPTIONS="aac alsa ao arts ffmpeg flac mikmod modplug mp4 mpc oss pulse tremor vorbis wav wavpack
     modplug [[ description = [ Build with modplug support ] ]]
     mp3     [[ description = [ Support mp3 decoding with mad ] ]]
     mp4     [[ description = [ Support mp4 decoding ] ]]
@@ -33,18 +33,21 @@ DEPENDENCIES="
         modplug? ( media-libs/libmodplug )
         mp4?     ( media-sound/mpeg4ip )
         mpc?     ( media-libs/libmpcdec )
+        pulse?   ( media-sound/pulseaudio )
         tremor?  ( media-libs/tremor )
         vorbis?  ( media-libs/libvorbis )
         wavpack? ( media-sound/wavpack )
 "
 
+WORK="${WORKBASE}"/${MY_PNV}
+
 SRC_CONFIGURE_OPTION_CONFIGS=(
     aac alsa ao arts ffmpeg flac "mp3 mad" mikmod modplug mp4 mpc
-    oss tremor vorbis wav wavpack
+    oss pulse tremor vorbis wav wavpack
 )
 
 option_config() {
-    # CONFIG_OPTION=VALUE
+    # CONFIG_OPTION=y/n
     if optionq "${1}" ; then
         echo "CONFIG_$(echo ${2:-${1}} | tr [:lower:] [:upper:])=y"
     else
@@ -52,17 +55,19 @@ option_config() {
     fi
 }
 
+# epatch "${FILES}"/${PNV}-symlink_attack.patch
 src_configure() {
+    export LD="${CC}"
     local configure_command=(
         ./configure
             prefix=/usr
             libdir=/usr/$(get_libdir)
             exampledir=/usr/share/doc/${PNV}/examples
+            CONFIG_SUN=n
             $(for s in "${SRC_CONFIGURE_OPTION_CONFIGS[@]}" ; do
                 option_config ${s} ;
             done )
     )
-    echo "${configure_command[@]}"
-    "${configure_command[@]}" || die "Configure script failed"
+    edo "${configure_command[@]}"
 }
 

@@ -5,5 +5,3 @@ require cmus
 
 PLATFORMS="~amd64 ~x86"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-Support-latest-ffmpeg-snapshot.patch )
-
