@@ -22,6 +22,7 @@ DEPENDENCIES="
         gnome-bindings/pygtk[>=2.12]
         dev-python/PyXML[>=0.8.4]
         dev-python/PyYAML
+        dev-libs/vte[python]
 "
 
 BUGS_TO="adriaan@leijnse.net"
