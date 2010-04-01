@@ -20,7 +20,7 @@ DEPENDENCIES="
     build+run:
         x11-libs/fltk[>=1.1.2]
         sci-libs/fftw:0
-        dev-libs/mxml
+        dev-libs/Mini-XML
         jack? ( media-sound/jack-audio-connection-kit )
         dssi? ( media-libs/dssi )
     recommendation:
