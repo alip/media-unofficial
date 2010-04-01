@@ -32,7 +32,8 @@ BUGS_TO="adriaan@leijnse.net"
 WORK="${WORKBASE}/TiMidity++-${PV}"
 
 DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/${PNV}-{gtk26,gcc4,flac,flac113,protos,polling}.patch
+    "${FILES}"/${PNV}-{gtk26,gcc4,flac,flac113,protos,polling,decl}.patch
+    -p0 "${FILES}"/${PNV}-no_png_set_dither.patch
 )
 
 src_prepare() {
