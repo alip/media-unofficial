@@ -1,0 +1,70 @@
+# Copyright 2010 Adriaan Leijnse <adriaan@leijnse.net>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part on zynaddsubfx-99999999.ebuild from the gentoo pro-audio overlay.
+
+SCM_REPOSITORY="git://zynaddsubfx.git.sourceforge.net/gitroot/zynaddsubfx/zynaddsubfx"
+require scm-git
+
+SUMMARY="ZynAddSubFX is a real time software audio synthesizer."
+DESCRIPTION="ZynnAddSubFX support jack and alsa, and can be built with DSSI support."
+
+HOMEPAGE="http://zynaddsubfx.sourceforge.net/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+# leaving out oss, portaudio and lash options, feel free to patch.
+MYOPTIONS="alsa jack dssi"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/fltk[>=1.1.2]
+        sci-libs/fftw:0
+        dev-libs/mxml
+        jack? ( media-sound/jack-audio-connection-kit )
+        dssi? ( media-libs/dssi )
+    recommendation:
+        media-libs/zynaddsubfx-banks
+"
+
+BUGS_TO="adriaan@leijnse.net"
+
+src_prepare() {
+    cd "${WORK}/src"
+    edo sed -i "s@\(CXXFLAGS.\+=.*OS_PORT.*\)@\1 ${CXXFLAGS}@g" Makefile
+}
+
+src_compile() {
+    local midi_in=NONE
+    local audio_out=NONE
+    local dssi=NO
+
+    option alsa && midi_in=ALSA
+    option jack && audio_out=JACK
+    option dssi && dssi=YES
+
+    local myconf="OS_PORT=LINUX"
+    myconf="FFTW_VERSION=3"
+    myconf="${myconf} ASM_F2I=YES"
+    myconf="${myconf} DISABLE_GUI=NO"
+    myconf="${myconf} LINUX_MIDIIN=${midi_in}"
+    myconf="${myconf} LINUX_AUDIOOUT=${audio_out}"
+    myconf="${myconf} LINUX_DSSI=${dssi}"
+    myconf="${myconf} LINUX_USE_LASH=NO"
+
+    cd "${WORK}/src"
+    emake ${myconf}
+
+    cd "${WORK}/ExternalPrograms/Spliter"
+    emake
+
+    cd "${WORK}/ExternalPrograms/Controller"
+    emake
+}
+
+src_install() {
+    dobin "${WORK}/src/zynaddsubfx"
+    dobin "${WORK}/ExternalPrograms/Spliter/spliter"
+    dobin "${WORK}/ExternalPrograms/Controller/controller"
+}
+
