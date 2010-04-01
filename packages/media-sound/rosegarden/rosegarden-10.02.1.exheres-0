@@ -2,12 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # Based in part on rosegarden-10.02.1.ebuild from Gentoo
 
+require sourceforge [ suffix=tar.bz2 ]
+
 SUMMARY="Rosegarden is a well-rounded audio and MIDI sequencer, score editor, and general-purpose music composition and editing environment."
 DESCRIPTION="
 Rosegarden is an easy-to-learn, attractive application that runs on Linux, ideal for composers, musicians, music students, and small studio or home recording environments.
 "
 HOMEPAGE="http://rosegardenmusic.com/"
-DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
