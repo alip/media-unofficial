@@ -1,3 +1,4 @@
+# Copryight 2010 Adriaan Leijnse <adriaan@leijnse.net>
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
@@ -15,16 +16,24 @@ BUGS_TO="alip@exherbo.org"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="debug"
+MYOPTIONS="
+    debug
+    dbus [[ description = [ Jackdbus/jack2 support ] ]]
+"
 
 DEPENDENCIES="
     build+run:
         sys-sound/alsa-lib
-        media-sound/jack-audio-connection-kit
+        media-sound/jack-audio-connection-kit[dbus?]
         x11-libs/qt:4
+        dbus? ( sys-apps/dbus )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-gcc4.3.patch )
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-alsa-seq )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --enable-alsa-seq
+    --enable-jack-midi
+    --enable-system-tray
+    --disable-portaudio
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug dbus )
 
