@@ -1,0 +1,25 @@
+Source: http://sources.gentoo.org/viewcvs.py/gentoo-x86/media-sound/timidity%2B%2B/files/timidity%2B%2B-2.13.2-no_png_set_dither.patch
+Reason:
+http://sourceforge.net/mailarchive/forum.php?thread_name=e56ccc8f0812151445ybd95eb0i78eb9aef434a6e28%40mail.gmail.com&forum_name=png-mng-misc
+http://bugs.gentoo.org/show_bug.cgi?id=308619
+http://bugs.gentoo.org/show_bug.cgi?id=308617
+Upstream: no
+
+--- interface/x_sherry.c
++++ interface/x_sherry.c
+@@ -902,6 +902,7 @@
+     png_set_gamma (pngPtr, screenGamma, 0.50);
+ #endif
+ 
++#if 0
+     if(png_get_valid(pngPtr, infoPtr, PNG_INFO_PLTE))
+     {
+ 	png_get_PLTE(pngPtr, infoPtr, &palette, &numPalette);
+@@ -942,6 +943,7 @@
+ 	palette = pngPtr->palette;
+ 	numPalette = pngPtr->num_palette;
+     }
++#endif
+ 
+     if(png_get_valid(pngPtr, infoPtr, PNG_INFO_tRNS))
+ 	png_get_tRNS(pngPtr, infoPtr, &trans, &numTrans, &transValues);

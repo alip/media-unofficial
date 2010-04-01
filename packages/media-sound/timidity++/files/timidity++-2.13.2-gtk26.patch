@@ -1,0 +1,22 @@
+Source: http://sources.gentoo.org/viewcvs.py/gentoo-x86/media-sound/timidity%2B%2B/files/timidity%2B%2B-2.13.2-gtk26.patch?rev=1.1.1.1
+Upstream: no
+Reason: gtk variable initalisation fixes (Gentoo bug #75208)
+--- TiMidity++-2.13.2/interface/gtk_i.c	2004/12/21 16:59:33	1.1
++++ TiMidity++-2.13.2/interface/gtk_i.c	2004/12/21 16:59:41
+@@ -365,6 +365,7 @@ void
+ Launch_Gtk_Process(int pipe_number)
+ {
+     int	argc = 0;
++    gchar **argv = NULL;
+     GtkWidget *button, *mbar, *swin;
+     GtkWidget *table, *align, *handlebox;
+     GtkWidget *vbox, *hbox, *vbox2, *scrolled_win;
+@@ -373,7 +374,7 @@ Launch_Gtk_Process(int pipe_number)
+     /* enable locale */
+     gtk_set_locale ();
+ 
+-    gtk_init (&argc, NULL);
++    gtk_init (&argc, &argv);
+ 
+     ttip = create_yellow_tooltips();
+     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
