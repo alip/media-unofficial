@@ -2,27 +2,24 @@
 # Released under the terms of the GNU General Public License v2
 # Based in part on yoshimi-0.055.6.ebuild from Gentoo
 
-require cmake
+require cmake sourceforge [ suffix=tar.bz2 ]
 
-SUMMARY="Yoshimi is a software synthesizer for Linux based on the 2.4.0 release of ZynAddSubFX."
+SUMMARY="Yoshimi is a software synthesizer based on ZynAddSubFX 2.4.0"
 DESCRIPTION="
-Yoshimi is a software synthesizer for Linux based on the 2.4.0 release of ZynAddSubFX, written by Nasca Octavian Paul. Yoshimi delivers the same synth capabilities, along with very good Jack and Alsa midi/audio functionality.
+Yoshimi is a software synthesizer for Linux based on the 2.4.0 release of
+ZynAddSubFX, written by Nasca Octavian Paul. Yoshimi delivers the same synth
+capabilities, along with very good Jack and Alsa midi/audio functionality.
 "
-
-HOMEPAGE="http://yoshimi.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/yoshimi/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS=""
 
 DEPENDENCIES="
-    build+run:
     media-libs/fontconfig[>=0.22]
     x11-libs/fltk
     sci-libs/fftw[>=3.0.22]
-    dev-libs/mxml
+    dev-libs/Mini-XML
     sys-sound/alsa-lib[>=1.0.17]
     media-sound/jack-audio-connection-kit[>=0.115.6]
     media-libs/libsndfile
