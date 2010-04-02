@@ -1,0 +1,34 @@
+# Copyright 2010 Adriaan Leijnse <adriaan@leijnse.net>
+# Released under the terms of the GNU General Public License v2
+# Based on seq24-0.9.0.ebuild from Gentoo
+
+SUMMARY="Seq24 is a minimal loop based midi sequencer."
+HOMEPAGE="https://edge.launchpad.net/seq24/"
+DOWNLOADS="http://launchpadlibrarian.net/20036193/seq24-0.9.0.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="jack"
+
+DEPENDENCIES="
+    build+run:
+        sys-sound/alsa-lib
+        gnome-bindings/gtkmm[>=2.4]
+        dev-cpp/libsigc++[>=2.2]
+        jack? ( media-sound/jack-audio-connection-kit )
+"
+
+BUGS_TO="adriaan@leijnse.net"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-lash )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "jack jack-support" )
+
+src_install() {
+    default
+    insinto /usr/share/pixmaps
+    doins "${WORK}/src/seq24.xpm"
+    insinto /usr/share/applications
+    doins "${FILES}/seq24.desktop"
+}
+
