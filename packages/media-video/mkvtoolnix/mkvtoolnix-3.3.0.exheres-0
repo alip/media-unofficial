@@ -1,4 +1,4 @@
-# Copyright 2009 Michael Forney
+# Copyright 2009, 2010 Michael Forney
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="MKVToolnix is a set of tools to create, alter and inspect Matroska files under Linux"
@@ -18,7 +18,7 @@ DEPENDENCIES="
     build+run:
         app-arch/bzip2
         app-arch/lzo
-        dev-libs/boost[>=1.32.0]
+        dev-libs/boost[>=1.34.0]
         dev-libs/expat
         media-libs/libebml[>=0.7.7]
         media-libs/libmatroska[>=0.8.1]
