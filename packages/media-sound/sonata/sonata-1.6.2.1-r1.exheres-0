@@ -38,7 +38,7 @@ DEPENDENCIES="
         dev-lang/python:=
         dev-python/python-mpd
         gnome-bindings/pygtk:2
-        x11-libs/gtk+:2[jpeg(+)]
+        x11-libs/gtk+:2
         dbus? ( dev-python/dbus-python )
         lyrics? ( dev-python/ZSI )
 "
