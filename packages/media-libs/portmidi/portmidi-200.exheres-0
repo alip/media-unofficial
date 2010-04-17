@@ -1,0 +1,36 @@
+# Copyright 2010 Jonathan Dahan <jedahan@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require multilib sourceforge [ project=portmedia ]
+
+SUMMARY="a library for real time MIDI input and output"
+DOWNLOADS="mirror://sourceforge/portmedia/${PN}-src-${PV}.zip"
+
+LICENCES="MIT"
+PLATFORMS="~amd64"
+MYOPTIONS="platform: amd64"
+
+DEPENDENCIES="
+    sys-sound/alsa-lib
+    build:
+        app-arch/unzip
+"
+
+WORK=${WORKBASE}/${PN}
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-makefile.patch )
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( pm_linux/README_LINUX.txt )
+
+src_configure() {
+    :
+}
+
+src_compile() {
+    emake -f pm_linux/Makefile
+}
+
+src_install() {
+    emake -f pm_linux/Makefile DESTDIR="${IMAGE}" LIBDIR="$(get_libdir)" install
+    emagicdocs
+}
+

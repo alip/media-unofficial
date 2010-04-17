@@ -1,0 +1,119 @@
+diff -ur portmidi.orig/pm_linux/Makefile portmidi/pm_linux/Makefile
+--- portmidi.orig/pm_linux/Makefile	2009-01-20 06:01:54.000000000 +0200
++++ portmidi/pm_linux/Makefile	2010-03-23 11:28:41.000000000 +0200
+@@ -30,11 +30,11 @@
+ # ALSALIB = 
+ # VFLAGS = -DPMNULL
+ 
+-pmlib = pm_linux/libportmidi.a
++pmlib = pm_linux/libportmidi.so
+ 
+-ptlib = porttime/libporttime.a
++ptlib = porttime/libporttime.so
+ 
+-CC = gcc $(VFLAGS) $(PMFLAGS) -g -Ipm_common -Iporttime
++CFLAGS += -fPIC $(VFLAGS) $(PMFLAGS) -Ipm_common -Iporttime
+ 
+ pmobjects = pm_common/pmutil.o $(versions) pm_linux/pmlinux.o  \
+ 	pm_common/portmidi.o pm_linux/finddefault.o
+@@ -44,58 +44,58 @@
+ current: all
+ 
+ all: $(pmlib) $(ptlib) pm_test/test pm_test/sysex pm_test/midithread \
+-	pm_test/latency pm_test/midithru pm_test/qtest pm_test/mm \
+-	pm_java/pmjni/libpmjni.so pm_java/pmdefaults/pmdefaults.jar 
++	pm_test/latency pm_test/midithru pm_test/qtest pm_test/mm
++#	pm_java/pmjni/libpmjni.so pm_java/pmdefaults/pmdefaults.jar 
+ 
+-$(pmlib): pm_linux/Makefile $(pmobjects)
+-	ar -cr $(pmlib) $(pmobjects)
++$(pmlib): pm_linux/Makefile $(pmobjects) $(ptlib)
++	$(CC) $(LDFLAGS) $(CFLAGS) -shared -o $(pmlib) $(pmobjects) $(ALSALIB) -Lporttime -lporttime
+ 
+ $(ptlib): pm_linux/Makefile $(ptobjects)
+-	ar -cr $(ptlib) $(ptobjects)
++	$(CC) $(LDFLAGS) $(CFLAGS) -shared -o $(ptlib) $(ptobjects) -lpthread
+ 
+ pm_linux/pmlinuxalsa.o: pm_linux/Makefile pm_linux/pmlinuxalsa.c pm_linux/pmlinuxalsa.h
+-	$(CC) -c pm_linux/pmlinuxalsa.c -o pm_linux/pmlinuxalsa.o
++	$(CC) $(CFLAGS) -c pm_linux/pmlinuxalsa.c -o pm_linux/pmlinuxalsa.o
+ 
+ #---------- test programs ------------
+ 
+ 
+ 
+ pm_test/test: pm_linux/Makefile pm_test/test.o $(pmlib) $(ptlib)
+-	$(CC) pm_test/test.o -o pm_test/test $(pmlib) $(ptlib) $(ALSALIB)
++	$(CC) $(LDFLAGS) $(CFLAGS) pm_test/test.o -o pm_test/test $(pmlib) $(ptlib) $(ALSALIB)
+ 
+ pm_test/sysex: pm_linux/Makefile pm_test/sysex.o $(pmlib) $(ptlib)
+-	$(CC) pm_test/sysex.o -o pm_test/sysex $(pmlib) $(ptlib) $(ALSALIB)
++	$(CC) $(LDFLAGS) $(CFLAGS) pm_test/sysex.o -o pm_test/sysex $(pmlib) $(ptlib) $(ALSALIB)
+ 
+ pm_test/midithread: pm_linux/Makefile pm_test/midithread.o $(pmlib) $(ptlib)
+-	$(CC) pm_test/midithread.o -o pm_test/midithread \
++	$(CC) $(LDFLAGS) $(CFLAGS) pm_test/midithread.o -o pm_test/midithread \
+         $(pmlib) $(ptlib) $(ALSALIB)
+ 
+-pm_test/latency: pm_linux/Makefile $(ptlib) pm_test/latency.o 
+-	$(CC) pm_test/latency.o -o pm_test/latency $(pmlib) $(ptlib) \
++pm_test/latency: pm_linux/Makefile $(pmlib) $(ptlib) pm_test/latency.o 
++	$(CC) $(LDFLAGS) $(CFLAGS) pm_test/latency.o -o pm_test/latency $(pmlib) $(ptlib) \
+         $(ALSALIB) -lpthread -lm
+ 
+-pm_test/midithru: pm_linux/Makefile $(ptlib) pm_test/midithru.o 
+-	$(CC) pm_test/midithru.o -o pm_test/midithru $(pmlib) $(ptlib) \
++pm_test/midithru: pm_linux/Makefile $(pmlib) $(ptlib) pm_test/midithru.o 
++	$(CC) $(LDFLAGS) $(CFLAGS) pm_test/midithru.o -o pm_test/midithru $(pmlib) $(ptlib) \
+         $(ALSALIB) -lpthread -lm
+ 
+-pm_test/mm: pm_linux/Makefile $(ptlib) pm_test/mm.o 
+-	$(CC) pm_test/mm.o -o pm_test/mm $(pmlib) $(ptlib) \
++pm_test/mm: pm_linux/Makefile $(pmlib) $(ptlib) pm_test/mm.o 
++	$(CC) $(LDFLAGS) $(CFLAGS) pm_test/mm.o -o pm_test/mm $(pmlib) $(ptlib) \
+         $(ALSALIB) -lpthread -lm
+ 
+ porttime/ptlinux.o: pm_linux/Makefile porttime/ptlinux.c
+-	$(CC) -c porttime/ptlinux.c -o porttime/ptlinux.o
++	$(CC) $(CFLAGS) -c porttime/ptlinux.c -o porttime/ptlinux.o
+ 
+ pm_test/qtest: pm_linux/Makefile pm_test/qtest.o $(pmlib) $(ptlib)
+-	$(CC) pm_test/qtest.o -o pm_test/qtest $(pmlib) $(ptlib) $(ALSALIB)
++	$(CC) $(LDFLAGS) $(CFLAGS) pm_test/qtest.o -o pm_test/qtest $(pmlib) $(ptlib) $(ALSALIB)
+ 
+ #------------ Java stuff here --------------
+ 
+ pm_java/pmjni/libpmjni.so: pm_java/pmjni/pmjni.c \
+                        pm_java/pmjni/jportmidi_JportMidiApi.h
+-	gcc -o $@ -shared -Wl,-soname,libpmjni.so \
++	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ -shared -Wl,-soname,libpmjni.so \
+ 	    -lgcj -fPIC \
+             -Ipm_common -Iporttime -Ipm_java/pmjni \
+-	    pm_java/pmjni/pmjni.c -static -lc $(pmlib) $(ptlib) $(ALSALIB)
++	    pm_java/pmjni/pmjni.c -static -lc -lportmidi -Lporttime -lporttime $(ALSALIB)
+ 
+ #pm_java/pmjni/pmjni.so: pm_java/pmjni/pmjni.o \
+ #                        pm_java/pmjni/jportmidi_JportMidiApi.h
+@@ -146,11 +146,17 @@
+ 	# just in case, make it executable
+ 	cd pm_java; chmod +x pmdefaults/pmdefaults
+ 
+-install:
+-	cp pm_java/pmjni/libpmjni.so /usr/local/lib
+-	cp pm_java/pmdefaults.jar /usr/share/java
+-	# do not chmod +x here since we are probably root
+-	cp pm_java/pmdefaults/pmdefaults /usr/local/bin
++#install:
++#	cp pm_java/pmjni/libpmjni.so /usr/local/lib
++#	cp pm_java/pmdefaults.jar /usr/share/java
++#	# do not chmod +x here since we are probably root
++#	cp pm_java/pmdefaults/pmdefaults /usr/local/bin
++
++install: all
++	install -D -m755 $(pmlib) $(DESTDIR)/usr/$(LIBDIR)/libportmidi.so
++	install -D -m644 pm_common/portmidi.h $(DESTDIR)/usr/include/portmidi.h
++	install -D -m755 $(ptlib) $(DESTDIR)/usr/$(LIBDIR)/libporttime.so
++	install -D -m644 porttime/porttime.h $(DESTDIR)/usr/include/porttime.h
+ 
+ clean:
+ 	rm -f *.o *~ core* */*.o */*.so */*~ */core* pm_test/*/pm_dll.dll 

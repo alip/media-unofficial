@@ -1,0 +1,62 @@
+diff -Nru portmidi~/pm_linux/Makefile portmidi/pm_linux/Makefile
+--- portmidi~/pm_linux/Makefile	2009-01-24 15:56:21.000000000 +0100
++++ portmidi/pm_linux/Makefile	2009-01-24 16:18:04.000000000 +0100
+@@ -30,11 +30,11 @@
+ # ALSALIB = 
+ # VFLAGS = -DPMNULL
+ 
+-pmlib = pm_linux/libportmidi.a
++pmlib = pm_linux/libportmidi.so
+ 
+-ptlib = porttime/libporttime.a
++ptlib = porttime/libporttime.so
+ 
+-CC = gcc $(VFLAGS) $(PMFLAGS) -g -Ipm_common -Iporttime
++CC = gcc $(CFLAGS) $(VFLAGS) $(PMFLAGS) -g -Ipm_common -Iporttime
+ 
+ pmobjects = pm_common/pmutil.o $(versions) pm_linux/pmlinux.o  \
+ 	pm_common/portmidi.o
+@@ -46,11 +46,21 @@
+ all: $(pmlib) $(ptlib) pm_test/test pm_test/sysex pm_test/midithread \
+ 	pm_test/latency pm_test/midithru pm_test/qtest pm_test/mm
+ 
+-$(pmlib): pm_linux/Makefile $(pmobjects)
+-	ar -cr $(pmlib) $(pmobjects)
++install: all
++	install -D -m755 $(pmlib) $(DESTDIR)/usr/lib/libportmidi.so.0.0
++	ln -sf libportmidi.so.0.0 $(DESTDIR)/usr/lib/libportmidi.so.0
++	ln -sf libportmidi.so.0 $(DESTDIR)/usr/lib/libportmidi.so
++	install -D -m644 pm_common/portmidi.h $(DESTDIR)/usr/include/portmidi.h
++	install -D -m755 $(ptlib) $(DESTDIR)/usr/lib/libporttime.so.0.0
++	ln -sf libporttime.so.0.0 $(DESTDIR)/usr/lib/libporttime.so.0
++	ln -sf libporttime.so.0 $(DESTDIR)/usr/lib/libporttime.so
++	install -D -m644 porttime/porttime.h $(DESTDIR)/usr/include/porttime.h
++
++$(pmlib): pm_linux/Makefile $(pmobjects) $(ptlib)
++	$(CC) -shared -o $(pmlib) $(pmobjects) $(ALSALIB) -Lporttime -lporttime
+ 
+ $(ptlib): pm_linux/Makefile $(ptobjects)
+-	ar -cr $(ptlib) $(ptobjects)
++	$(CC) -shared -o $(ptlib) $(ptobjects) -lpthread
+ 
+ pm_linux/pmlinuxalsa.o: pm_linux/Makefile pm_linux/pmlinuxalsa.c pm_linux/pmlinuxalsa.h
+ 	$(CC) -c pm_linux/pmlinuxalsa.c -o pm_linux/pmlinuxalsa.o
+@@ -65,15 +75,15 @@
+ 	$(CC) pm_test/midithread.o -o pm_test/midithread \
+         $(pmlib) $(ptlib) $(ALSALIB)
+ 
+-pm_test/latency: pm_linux/Makefile $(ptlib) pm_test/latency.o 
++pm_test/latency: pm_linux/Makefile $(pmlib) $(ptlib) pm_test/latency.o 
+ 	$(CC) pm_test/latency.o -o pm_test/latency $(pmlib) $(ptlib) \
+         $(ALSALIB) -lpthread -lm
+ 
+-pm_test/midithru: pm_linux/Makefile $(ptlib) pm_test/midithru.o 
++pm_test/midithru: pm_linux/Makefile $(pmlib) $(ptlib) pm_test/midithru.o 
+ 	$(CC) pm_test/midithru.o -o pm_test/midithru $(pmlib) $(ptlib) \
+         $(ALSALIB) -lpthread -lm
+ 
+-pm_test/mm: pm_linux/Makefile $(ptlib) pm_test/mm.o 
++pm_test/mm: pm_linux/Makefile $(pmlib) $(ptlib) pm_test/mm.o 
+ 	$(CC) pm_test/mm.o -o pm_test/mm $(pmlib) $(ptlib) \
+         $(ALSALIB) -lpthread -lm
+ 
