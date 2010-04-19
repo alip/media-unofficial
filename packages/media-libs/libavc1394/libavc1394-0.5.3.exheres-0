@@ -1,0 +1,18 @@
+# Copyright 2010 Xavier Barrachina <xabarci@doctor.upv.es>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tar.gz project=libavc1394 ]
+
+SUMMARY="programming interface for the 1394 Trade Association AV/C Digital Interface Command Set."
+
+LICENCES="LGPL"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        media-libs/libraw1394[>=1.0.0]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --prefix=/usr --hates=docdir)
