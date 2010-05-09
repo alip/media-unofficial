@@ -24,3 +24,8 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'system-tray' )
 DEFAULT_SRC_COMPILE_PARAMS=( -j1 ) # Parallel make sucks
 
+src_install() {
+    default
+    edo rmdir "${IMAGE}"/usr/share/man{/man1,}
+}
+
