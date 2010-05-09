@@ -39,7 +39,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-cli )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk gtk2' )
 
 src_prepare() {
     option gtk && expatch "${FILES}"/sydbox-violation.patch
