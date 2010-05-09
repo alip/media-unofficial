@@ -14,12 +14,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-DEPENDENCIES="
-    build:
-        sys-devel/libtool
-"
+DEPENDENCIES=""
 
 WORK="${WORKBASE}/${PN}"
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--hates=docdir' )
 
