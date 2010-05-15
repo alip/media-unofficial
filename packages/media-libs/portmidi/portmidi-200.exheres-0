@@ -8,7 +8,6 @@ DOWNLOADS="mirror://sourceforge/portmedia/${PN}-src-${PV}.zip"
 
 LICENCES="MIT"
 PLATFORMS="~amd64"
-MYOPTIONS="platform: amd64"
 SLOT="0"
 
 DEPENDENCIES="
