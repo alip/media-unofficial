@@ -1,7 +1,7 @@
 # Copyright 2009 Daniel Mierswa <impulze@impulze.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ project=openil suffix=tar.gz ] easy-multibuild
+require sourceforge [ project=openil suffix=tar.gz ]
 
 SUMMARY="Cross-Platform, wide-spreaded, full-featured image library."
 DESCRIPTION="Developer's Image Library (DevIL) is a programmer's library to develop
@@ -13,8 +13,7 @@ can load, save, convert, manipulate, filter and display a wide variety of image 
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="debug examples jpeg jpeg2000 lcms mng openexr opengl png sdl tiff X
-multibuild_c: ( 32 64 )"
+MYOPTIONS="debug examples jpeg jpeg2000 lcms mng openexr opengl png sdl tiff X"
 
 REMOTE_IDS+="freshmeat:devil"
 
@@ -80,7 +79,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
 )
 
 src_install() {
-    easy-multibuild_src_install
+    default
 
     option examples || rmdir "$IMAGE/usr/share"/devil{/examples,} || die "deleting examples failed"
 }
