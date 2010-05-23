@@ -8,10 +8,10 @@ was originally designed for cdgrab (now abcde), but can be used for any purpose
 requiring CDDB data. It has been developed with attention to the CDDB
 specifications.
 "
-HOMEPAGE="http://lly.org/~rcw/cd-discid/"
-DOWNLOADS="${HOMEPAGE}${PN}_${PV}.orig.tar.gz"
+HOMEPAGE="http://linukz.org/cd-discid.shtml"
+DOWNLOADS="http://linukz.org/download/${PNV}.tar.gz"
 
-BUGS_TO="jedahan@gmail.com"
+BUGS_TO="taem@linukz.org"
 
 LICENCES="GPL-2"
 PLATFORMS="~amd64 ~x86"
