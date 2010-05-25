@@ -1,7 +1,0 @@
-SCM_TAG=${PV}
-
-require ${PN}
-
-SLOT="0"
-PLATFORMS="~amd64"
-
