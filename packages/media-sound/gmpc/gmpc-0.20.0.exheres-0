@@ -4,9 +4,10 @@
 require gnome-2
 
 SUMMARY="A GTK+ client for MPD"
-DESCRIPTION="GMPC's interface is made to be easy to use, but provide full 
-access to all the features MPD provides. It gives the user several ways
-to browse his database while still being a lightweight client. GMPC is:
+DESCRIPTION="
+GMPC's interface is made to be easy to use, but provide full access to all the features MPD
+provides. It gives the user several ways to browse his database while still being a lightweight
+client. GMPC is:
 * Fully featured.
 * Fast, even with a huge playlists and database.
 * Extendable, with many plugins available to extend GMPC's core functionality.
@@ -29,7 +30,7 @@ DEPENDENCIES="
         dev-db/sqlite:3
         dev-libs/glib:2[>=2.16]
         x11-libs/gtk+:2[>=2.12]
-        media-libs/libmpd[>=0.18.1]
+        media-libs/libmpd[>=0.19.2]
         gnome-platform/libglade:2
         gnome-desktop/libsoup:2.4
         x11-libs/libsexy
