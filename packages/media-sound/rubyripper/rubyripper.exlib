@@ -14,7 +14,6 @@ DOWNLOADS=""
 BUGS_TO="jedahan@gmail.com"
 
 LICENCES="GPL-3"
-PLATFORMS="~amd64"
 LANGS="bg de es fr hu it nl ru se"
 MYOPTIONS="flac gtk mp3 ogg linguas: ${LANGS}"
 
