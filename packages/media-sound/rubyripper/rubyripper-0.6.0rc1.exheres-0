@@ -1,3 +1,5 @@
+SCM_TAG=${PV}
+
 require ${PN}
 
 SLOT="0"
