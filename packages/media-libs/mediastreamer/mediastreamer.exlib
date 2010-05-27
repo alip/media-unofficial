@@ -47,7 +47,7 @@ BUGS_TO="urkud@ya.ru"
 
 UPSTREAM_DOCUMENTATION="http://download.savannah.gnu.org/releases-noredirect/linphone/mediastreamer/doc/modules.html"
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug ipv6 jack portaudio sdl theora video "X x11" )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug ipv6 jack portaudio sdl speex theora video "X x11" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --datadir=/usr/share/${PN}
