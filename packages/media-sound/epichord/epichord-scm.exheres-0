@@ -1,0 +1,24 @@
+# Copyright 2010 Adriaan Leijnse <adriaan@leijnse.net>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part on zynaddsubfx-99999999.ebuild from the gentoo pro-audio overlay.
+
+SCM_REPOSITORY="git://repo.or.cz/epichord.git"
+require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Epichord is a midi sequencer"
+
+HOMEPAGE="http://evanr.infinitymotel.net/epichord/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/fltk:2[>=2.0x_p7513]
+        media-sound/jack-audio-connection-kit
+        media-sound/lash
+"
+
+BUGS_TO="adriaan@leijnse.net"
+
