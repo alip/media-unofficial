@@ -1,0 +1,29 @@
+Source: Upstream
+Upstream: Yes, 3b586c2f357a3da4cc59221ab43856005f4b90d2
+Reason: Fixes compilation with [qt4]
+
+From 3b586c2f357a3da4cc59221ab43856005f4b90d2 Mon Sep 17 00:00:00 2001
+From: Moritz Bunkus <moritz@bunkus.org>
+Date: Sun, 6 Jun 2010 09:35:37 +0200
+Subject: [PATCH] Fix compilation
+
+---
+ src/info/qt_ui.cpp |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/src/info/qt_ui.cpp b/src/info/qt_ui.cpp
+index b95c071..ed8c12b 100644
+--- a/src/info/qt_ui.cpp
++++ b/src/info/qt_ui.cpp
+@@ -260,7 +260,7 @@ ui_show_element(int level,
+                 int64_t position,
+                 int64_t size) {
+   if (!g_use_gui)
+-    console_show_element(level, text, position);
++    console_show_element(level, text, position, size);
+ 
+   else if (0 <= position)
+     gui->add_item(level, Q(create_element_text(text, position, size).c_str()));
+-- 
+1.7.1
+
