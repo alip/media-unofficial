@@ -13,7 +13,7 @@ interface.
 HOMEPAGE="http://guvcview.berlios.de/"
 DOWNLOADS="mirror://berlios/${PN}/${MY_PNV}.tar.gz"
 
-BUGS_TO="michael@obberon.com"
+BUGS_TO="mforney@mforney.org"
 
 LICENCES="GPL-3"
 SLOT="0"
@@ -26,10 +26,11 @@ DEPENDENCIES="
         media/ffmpeg
         media-libs/SDL[>=1.2.10]
         media-libs/libpng
+        media-libs/libv4l
         media-libs/portaudio
         x11-libs/gtk+:2[>=2.14.0]
 
-        pulseaudio? ( media-sound/pulseaudio )
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.15] )
 "
 
 WORK="${WORKBASE}"/${MY_PNV}
