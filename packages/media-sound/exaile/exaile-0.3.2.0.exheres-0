@@ -23,12 +23,13 @@ DEPENDENCIES="
     build:
         sys-devel/gettext
         doc? ( dev-python/Sphinx )
+	dev-python/nose
     run:
         dev-lang/python[>=2.5][sqlite]
         dev-python/dbus-python
         dev-python/gst-python:0.10
         dev-python/mutagen[>=1.10]
-        gnome-bindings/pygtk[>=2.14]
+        gnome-bindings/pygtk[>=2.17]
         gnome-bindings/pygobject[>=2.18]
         media-plugins/gst-plugins-good:0.10
         cddb? ( dev-python/cddb-py )
