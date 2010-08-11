@@ -1,14 +1,7 @@
 # Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require googlecode
-
-DOWNLOADS=""
-
-SCM_REPOSITORY="http://${PN}.googlecode.com/svn"
-SCM_TAG="${PV}"
-
-require scm-svn
+require googlecode [ suffix=tar.gz ]
 
 SUMMARY="A Better CD Encoder"
 HOMEPAGE="http://code.google.com/p/abcde/"
