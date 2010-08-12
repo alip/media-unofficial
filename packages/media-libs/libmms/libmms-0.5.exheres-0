@@ -9,7 +9,7 @@ BUGS_TO="michael@obberon.com"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
