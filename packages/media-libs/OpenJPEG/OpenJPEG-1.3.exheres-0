@@ -34,3 +34,4 @@ src_prepare() {
         -i Makefile \
         || die "sed Makefile failed"
 }
+

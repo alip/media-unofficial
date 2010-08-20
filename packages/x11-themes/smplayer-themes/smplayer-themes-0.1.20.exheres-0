@@ -63,3 +63,4 @@ src_install() {
         doins -r themes/"${subdir}"
     done
 }
+

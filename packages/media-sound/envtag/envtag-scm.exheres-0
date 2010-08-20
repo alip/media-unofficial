@@ -43,3 +43,4 @@ src_install() {
         dodoc examples/{flac2ogg,find_tagless.zsh}
     fi
 }
+

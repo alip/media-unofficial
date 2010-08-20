@@ -49,3 +49,4 @@ src_install() {
         die "emake install failed"
     emagicdocs
 }
+

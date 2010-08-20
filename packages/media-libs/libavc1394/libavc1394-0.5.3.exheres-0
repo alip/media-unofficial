@@ -16,3 +16,4 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --prefix=/usr --hates=docdir)
+

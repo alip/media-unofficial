@@ -85,3 +85,4 @@ pkg_postinst() {
         elog "and run 'rc-update add timidity <runlevel> && /etc/init.d/timidity start'"
     fi
 }
+

@@ -46,3 +46,4 @@ src_prepare() {
         Makefile.am || die "sed in Makefile.am failed"
     NOCONFIGURE=1 ./autogen.sh || die "autogen.sh failed"
 }
+

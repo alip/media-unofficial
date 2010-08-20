@@ -5,3 +5,4 @@ require ncmpcpp
 PLATFORMS="~amd64"
 
 DOWNLOADS="http://unkart.ovh.org/ncmpcpp/${PNV}.tar.bz2"
+

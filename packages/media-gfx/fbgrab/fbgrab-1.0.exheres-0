@@ -26,3 +26,4 @@ src_install() {
     dobin ${PN}
     newman ${PN}.1.man ${PN}.1
 }
+
