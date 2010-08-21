@@ -13,7 +13,7 @@ MYOPTIONS="debug jack openal pulseaudio sdl multibuild_c: 32 64"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config[multibuild_c:*(?)?]
+        dev-util/pkg-config
     build+run:
         jack? ( media-sound/jack-audio-connection-kit[multibuild_c:*(?)?] )
         openal? ( media-libs/openal[multibuild_c:*(?)?] )
