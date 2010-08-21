@@ -1,7 +1,7 @@
 # Copyright 2009 Daniel Mierswa <impulze@impulze.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge
+require sourceforge easy-multibuild
 
 SUMMARY="A console based decoder/player for mono/stereo mpeg audio files."
 HOMEPAGE="http://www.mpg123.de/"
@@ -9,21 +9,21 @@ HOMEPAGE="http://www.mpg123.de/"
 LICENCES="( GPL-2 LGPL-2.1 )"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="debug jack openal pulseaudio sdl"
+MYOPTIONS="debug jack openal pulseaudio sdl multibuild_c: 32 64"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        dev-util/pkg-config[multibuild_c:*(?)?]
     build+run:
-        jack? ( media-sound/jack-audio-connection-kit )
-        openal? ( media-libs/openal )
-        pulseaudio? ( media-sound/pulseaudio )
-        sdl? ( media-libs/SDL )
+        jack? ( media-sound/jack-audio-connection-kit[multibuild_c:*(?)?] )
+        openal? ( media-libs/openal[multibuild_c:*(?)?] )
+        pulseaudio? ( media-sound/pulseaudio[multibuild_c:*(?)?] )
+        sdl? ( media-libs/SDL[multibuild_c:*(?)?] )
 "
 
 UPSTREAM_DOCUMENTATION="${HOMEPAGE}/api [[ lang = en description = [ API reference ] ]]"
 
-src_configure() {
+configure_one_multibuild() {
     local modules=( alsa )
 
     option jack && modules+=( jack )
