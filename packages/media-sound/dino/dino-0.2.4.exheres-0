@@ -1,0 +1,29 @@
+# Copyright 2010 Adriaan Leijnse <adriaan@leijnse.net>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Dino is a MIDI sequencer for GNU/Linux"
+DESCRIPTION="Dino is a pattern-based sequencer, which means that you write small patterns of MIDI events that you can repeat and arrange to create a whole song. Each track has its own patterns, so you can for example play the same drum pattern over and over again while you play different lead synth patterns and basslines."
+
+HOMEPAGE="http://dino.nongnu.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DOWNLOADS="http://download.savannah.nongnu.org/releases-noredirect/${PN}/${PNV}.tar.gz"
+
+MYOPTIONS="debug"
+
+DEPENDENCIES="
+    build+run:
+        media-sound/jack-audio-connection-kit
+        gnome-bindings/libglademm
+        dev-cpp/libxml++
+        dev-cpp/libsigc++
+        media-sound/lash
+"
+
+BUGS_TO="adriaan@leijnse.net"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="debug"
+

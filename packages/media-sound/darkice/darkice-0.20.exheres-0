@@ -40,3 +40,4 @@ src_install() {
     doinitd "${FILES}"/darkice
     doconfd "${FILES}"/darkice.conf
 }
+

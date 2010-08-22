@@ -1,6 +1,8 @@
 # Copyright 2009 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require multilib
+
 SUMMARY="The industry-standard colour ASCII-art library"
 DESCRIPTION="
 libcaca is a graphics library that outputs text
@@ -18,7 +20,7 @@ HOMEPAGE="http://caca.zoy.org/wiki/${PN}"
 
 LICENCES="WTFPL-2 LGPL-2.1"
 SLOT="0"
-MYOPTIONS="X cxx doc imlib mono ncurses opengl plugins ruby server slang vga
+MYOPTIONS="X cxx doc imlib java mono ncurses opengl plugins ruby server slang vga
     cxx [[ description = [ Build C++ bindings ] ]]
     plugins [[ description = [ Build plugins ] ]]
     server [[ description = [ Build cacaserver ] ]]
@@ -35,6 +37,7 @@ DEPENDENCIES="
             app-text/texlive
         )
         imlib? ( media-libs/imlib2 )
+        java? ( virtual/jdk:= )
         mono? ( dev-lang/mono )
         ncurses? ( sys-libs/ncurses )
         opengl? (
@@ -57,6 +60,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'doc'
     'X x11'
     'imlib imlib2'
+    'java'
     'mono csharp'
     'ncurses'
     'opengl gl'
@@ -67,8 +71,9 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
 
 src_install() {
     default
-    if optionq !mono; then
-        edo rmdir "${IMAGE}"/usr/lib64/caca-sharp
+    if optionq !java; then
+        edo rmdir "${IMAGE}"/usr/$(get_libdir)/jni
+        edo rmdir "${IMAGE}"/usr/share/java
     fi
 }
 

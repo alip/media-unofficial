@@ -15,7 +15,7 @@ UPSTREAM_RELEASE_NOTES="$HOMEPAGE/index.php?menu=news"
 
 LICENCES="BSD-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES=""
@@ -34,3 +34,4 @@ src_prepare() {
         -i Makefile \
         || die "sed Makefile failed"
 }
+

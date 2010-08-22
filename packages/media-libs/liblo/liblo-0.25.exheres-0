@@ -30,3 +30,4 @@ src_configure() {
     option doc || export ac_cv_prog_HAVE_DOXYGEN="false"
     default
 }
+

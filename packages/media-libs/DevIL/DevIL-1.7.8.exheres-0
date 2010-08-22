@@ -83,3 +83,4 @@ src_install() {
 
     option examples || rmdir "$IMAGE/usr/share"/devil{/examples,} || die "deleting examples failed"
 }
+

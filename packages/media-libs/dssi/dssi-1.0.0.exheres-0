@@ -52,3 +52,4 @@ src_install() {
     # Remove empty directories
     find "${IMAGE}" -type d -depth -print0 | xargs -0 rmdir --ignore-fail-on-non-empty
 }
+

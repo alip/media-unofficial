@@ -82,3 +82,4 @@ src_install() {
     dodoc -r Examples
     dodoc "$FETCHEDDIR/$MYPNV.pdf"
 }
+

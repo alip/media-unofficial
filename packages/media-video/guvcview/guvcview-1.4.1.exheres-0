@@ -1,0 +1,39 @@
+# Copyright 2010 Michael Forney
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PNV="${PN}-src-${PV}"
+
+SUMMARY="GTK+ UVC Viewer"
+DESCRIPTION="
+This project aims at providing a simple GTK interface for capturing and viewing video from devices
+supported by the linux UVC driver, although it should also work with any v4l2 compatible device.
+guvcview is based on luvcview for video rendering, but all controls are build using a GTK2
+interface.
+"
+HOMEPAGE="http://guvcview.berlios.de/"
+DOWNLOADS="mirror://berlios/${PN}/${MY_PNV}.tar.gz"
+
+BUGS_TO="mforney@mforney.org"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="pulseaudio"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib:2[>=2.10.0]
+        media/ffmpeg
+        media-libs/SDL[>=1.2.10]
+        media-libs/libpng
+        media-libs/libv4l
+        media-libs/portaudio
+        x11-libs/gtk+:2[>=2.14.0]
+
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.15] )
+"
+
+WORK="${WORKBASE}"/${MY_PNV}
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "pulseaudio pulse" )
+

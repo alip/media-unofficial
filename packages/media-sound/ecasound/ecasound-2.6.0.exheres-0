@@ -41,7 +41,7 @@ DEPENDENCIES="
         vorbis? ( media-libs/libvorbis )
 "
 
-DEFAULT_SRC_INSTALL_EXTRA_DOCS=( "Documentation/*.txt" )
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( Documentation/programmers_guide/ecasound_programmers_guide.txt )
 
 src_configure() {
     local pyconf=()

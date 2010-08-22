@@ -18,3 +18,4 @@ src_prepare() {
         expatch "${FILES}/cmus_audioscrobbler.patch"
     fi
 }
+

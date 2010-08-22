@@ -4,8 +4,10 @@
 SUMMARY="Audacious is an advanced audio player"
 HOMEPAGE="http://www.audacious-media-player.org/"
 DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
+
 LICENCES="GPL-2"
 MYOPTIONS="dbus"
+
 DEPENDENCIES="
     dbus? ( dev-libs/dbus-glib[>=0.80] )
     dev-libs/glib[>=2.18.4]
@@ -20,10 +22,12 @@ DEPENDENCIES="
     post:
         media-sound/audacious-plugins[=${PV}]
 "
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="dbus"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus )
+
 pkg_preinst() {
-    edo rm -f ${IMAGE}/usr/bin/audacious ${IMAGE}/usr/bin/audtool
-    dosym /usr/bin/audacious2 /usr/bin/audacious 
+    edo rm -f "${IMAGE}"/usr/bin/audacious "${IMAGE}"/usr/bin/audtool
+    dosym /usr/bin/audacious2 /usr/bin/audacious
     dosym /usr/bin/audtool2 /usr/bin/audtool
 }
 

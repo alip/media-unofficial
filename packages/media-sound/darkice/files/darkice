@@ -7,7 +7,7 @@ depend() {
 
 start() {
 	ebegin "Starting DarkIce"
-	if [ -z $DARKICE_USER ]; then
+	if [ -z "$DARKICE_USER" ]; then
 		start-stop-daemon --background --start --pidfile /var/run/darkice.pid --make-pidfile --exec /usr/bin/darkice
 	else
 		start-stop-daemon --background --start --pidfile /var/run/darkice.pid --make-pidfile --chuid $DARKICE_USER --exec /usr/bin/darkice

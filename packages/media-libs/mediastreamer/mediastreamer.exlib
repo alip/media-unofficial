@@ -18,7 +18,7 @@ DOWNLOADS="mirror://savannah/linphone/${PN}/${PNV}.tar.gz"
 LICENCES="GPL-2 GPL-3 [[ note = [ A few header files have no copyright information, other are GPL-2+ or AS-IS ] ]]"
 SLOT="0"
 MYOPTIONS="
-    ( alsa jack portaudio ) [[ number-selected = at-least-one ]]
+    ( alsa jack portaudio pulseaudio ) [[ number-selected = at-least-one ]]
     debug doc gsm ipv6 speex video [[ description = [ Enable video stream support ] ]]
     ( sdl theora v4l X ) [[ requires = video ]]"
 
@@ -27,14 +27,15 @@ DEPENDENCIES="
         doc? ( app-doc/doxygen )
         dev-util/pkg-config
     build+run:
-        net-libs/ortp[>=0.16.1] [[ note = [ checks for 0.9.0 but compile fails for 0.15.0 ] ]]
+        net-libs/ortp[>=0.16.2] [[ note = [ checks for 0.9.0 but compile fails for 0.15.0 ] ]]
         alsa? ( sys-sound/alsa-lib )
         gsm? ( media-libs/gsm )
         jack? (
-            media-sound/jack-audio-connection-kit[>=0.15.0]
             media-libs/libsamplerate[>=0.0.13]
+            media-sound/jack-audio-connection-kit[>=0.15.0]
         )
         portaudio? ( media-libs/portaudio )
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.21] )
         speex? ( media-libs/speex[>=1.2-beta3] )
         theora? ( media-libs/libtheora[>=1.0-alpha7] )
         v4l? ( media-libs/libv4l ) [[ note = [ FIXME: automagic here ] ]]
@@ -45,9 +46,9 @@ DEPENDENCIES="
 
 BUGS_TO="urkud@ya.ru"
 
-UPSTREAM_DOCUMENTATION="http://download.savannah.gnu.org/releases-noredirect/linphone/mediastreamer/doc/modules.html"
+UPSTREAM_DOCUMENTATION="http://download.savannah.gnu.org/releases-noredirect/linphone/${PN}/doc/modules.html"
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug ipv6 jack portaudio sdl theora video "X x11" )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug gsm ipv6 jack portaudio pulseaudio sdl speex theora video "X x11" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --datadir=/usr/share/${PN}
@@ -57,7 +58,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --disable-macsnd
     --disable-oss
     --enable-external-ortp
-    )
+)
 
 src_install() {
     default

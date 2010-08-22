@@ -1,0 +1,52 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Distributed under the terms of the GNU General Public License
+
+SCM_REPOSITORY="git://github.com/rubyripperdev/${PN}.git"
+require scm-git googlecode
+
+SUMMARY="Secure audiodisc ripper"
+DESCRIPTION="
+Through multiple times ripping the same track and correcting any differences 
+rubyripper tries to deliver a secure rip.
+"
+DOWNLOADS=""
+
+BUGS_TO="jedahan@gmail.com"
+
+LICENCES="GPL-3"
+SLOT="0"
+LANGS="bg de es fr hu it nl ru se"
+MYOPTIONS="flac gtk mp3 ogg linguas: ${LANGS}"
+
+DEPENDENCIES="
+    build:
+        gtk? ( dev-ruby/ruby-gtk2 )
+    run:
+        media/cdparanoia
+        sys-apps/eject
+        dev-lang/ruby
+        mp3? ( media-sound/lame )
+        flac? ( media-libs/flac )
+        ogg? ( media-sound/vorbis-tools )
+    recommendation:
+        dev-ruby/gettext
+        media-sound/cd-discid
+        media-sound/normalize
+        media-sound/vorbisgain
+    suggestion:
+        media-sound/wavegain
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-cli )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk gtk2' )
+
+src_prepare() {
+    option gtk && expatch "${FILES}"/sydbox-violation.patch
+
+    for lang in ${LANGS}; do
+        if ! option linguas:${lang}; then
+            edo rm -rf "${WORK}"/locale/po/${lang}
+        fi
+    done
+}
+

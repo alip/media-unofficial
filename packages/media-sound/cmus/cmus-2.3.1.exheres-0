@@ -1,0 +1,7 @@
+# Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmus
+
+PLATFORMS="~amd64 ~x86"
+

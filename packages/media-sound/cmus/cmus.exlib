@@ -1,6 +1,7 @@
 # Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
 # Distributed under the terms of the GNU General Public License v2
 
+MY_PNV=${PN}-v${PV}
 require multilib sourceforge
 
 SUMMARY="A console audio player"
@@ -8,11 +9,10 @@ DESCRIPTION="
 cmus is a small and fast text mode music player for Linux and many other UNIX
 like operating systems.
 "
-DOWNLOADS="http://mirror.greaterscope.net/cmus/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="aac alsa ao arts ffmpeg flac mikmod modplug mp4 mpc oss tremor vorbis wav wavpack
+MYOPTIONS="aac alsa ao arts ffmpeg flac mikmod modplug mp4 mpc oss pulse tremor vorbis wav wavpack
     modplug [[ description = [ Build with modplug support ] ]]
     mp3     [[ description = [ Support mp3 decoding with mad ] ]]
     mp4     [[ description = [ Support mp4 decoding ] ]]
@@ -33,36 +33,38 @@ DEPENDENCIES="
         modplug? ( media-libs/libmodplug )
         mp4?     ( media-sound/mpeg4ip )
         mpc?     ( media-libs/libmpcdec )
+        pulse?   ( media-sound/pulseaudio )
         tremor?  ( media-libs/tremor )
         vorbis?  ( media-libs/libvorbis )
         wavpack? ( media-sound/wavpack )
 "
 
-SRC_CONFIGURE_OPTION_CONFIGS=(
+WORK="${WORKBASE}"/${MY_PNV}
+
+SRC_CONFIGURE_OPTIONS=(
     aac alsa ao arts ffmpeg flac "mp3 mad" mikmod modplug mp4 mpc
-    oss tremor vorbis wav wavpack
+    oss pulse tremor vorbis wav wavpack
 )
 
-option_config() {
-    # CONFIG_OPTION=VALUE
-    if optionq "${1}" ; then
-        echo "CONFIG_$(echo ${2:-${1}} | tr [:lower:] [:upper:])=y"
-    else
-        echo "CONFIG_$(echo ${2:-${1}} | tr [:lower:] [:upper:])=n"
-    fi
+src_prepare() {
+    export LD="${CC}"
+}
+
+option_yesno() {
+    local option=${2:-${1}}
+    echo "CONFIG_${option^^}=$(optionq ${1} && echo y || echo n)"
 }
 
 src_configure() {
-    local configure_command=(
-        ./configure
-            prefix=/usr
-            libdir=/usr/$(get_libdir)
-            exampledir=/usr/share/doc/${PNV}/examples
-            $(for s in "${SRC_CONFIGURE_OPTION_CONFIGS[@]}" ; do
-                option_config ${s} ;
-            done )
+    local s
+    local configure_arguments=(
+        prefix=/usr
+        libdir=/usr/$(get_libdir)
+        exampledir=/usr/share/doc/${PNV}/examples
+        $(for s in "${SRC_CONFIGURE_OPTIONS[@]}"; do option_yesno ${s}; done)
     )
-    echo "${configure_command[@]}"
-    "${configure_command[@]}" || die "Configure script failed"
+    edo ./configure "${configure_arguments[@]}"
 }
+
+DEFAULT_SRC_COMPILE_PARAMS=( V=2 ) # Maximum verbosity
 

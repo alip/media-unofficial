@@ -5,3 +5,4 @@ SCM_REPOSITORY="git://repo.or.cz/ncmpcpp.git"
 require ncmpcpp scm-git
 
 PLATFORMS="~amd64"
+
