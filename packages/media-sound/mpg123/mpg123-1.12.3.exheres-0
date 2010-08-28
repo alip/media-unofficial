@@ -15,6 +15,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config
     build+run:
+        sys-sound/alsa-lib
         jack? ( media-sound/jack-audio-connection-kit )
         openal? ( media-libs/openal )
         pulseaudio? ( media-sound/pulseaudio )
