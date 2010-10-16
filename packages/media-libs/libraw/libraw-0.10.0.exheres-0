@@ -1,0 +1,50 @@
+# Copyright 2010 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+AT_M4DIR=( 'm4' )
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+MY_PN="LibRaw"
+
+SUMMARY="RAW decoding/processing library"
+DESCRIPTION="
+LibRaw is a library for reading RAW files obtained from digital photo cameras (CRW/CR2, NEF, RAF,
+DNG, and others).
+"
+HOMEPAGE="http://www.${PN}.org"
+DOWNLOADS="${HOMEPAGE}/data/${MY_PN}-${PV}.tar.gz"
+
+LICENCES="LGPL-2.1 CDDL-1.0"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="lcms openmp"
+
+DEPENDENCIES="
+    build:
+        sys-devel/gcc[openmp?]
+    build+run:
+        lcms? ( media-libs/lcms )
+"
+
+WORK="${WORKBASE}/${MY_PN}-${PV}"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-autotools.patch" )
+
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'lcms'
+    'openmp'
+)
+
+src_prepare() {
+    default
+    edo sed -i -e "s/@@VERSION@@/${PV}/" "${WORK}"/configure.ac
+    eautoreconf
+}
+
+src_install() {
+    default
+    edo rmdir "${IMAGE}"/usr/bin
+}
+
