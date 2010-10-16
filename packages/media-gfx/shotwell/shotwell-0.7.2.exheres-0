@@ -1,0 +1,56 @@
+# Copyright 2010 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require freedesktop-desktop gnome-2
+
+SUMMARY="Open source photo manager for GNOME"
+DESCRIPTION="
+Shotwell is a photo organizer for the GNOME desktop. It lets you import photos from disk or camera,
+organize them in various ways, view them in full-window or fullscreen mode, and export them to share
+with others.
+"
+HOMEPAGE="http://yorba.org/${PN}"
+DOWNLOADS="http://yorba.org/download/${PN}/$(ever range 1-2)/${PNV}.tar.bz2"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        dev-lang/vala[>=0.9.5]
+        sys-devel/gettext
+    build+run:
+        base/libgee:1.0[>=0.5.0]
+        dev-db/sqlite:3[>=3.5.9]
+        dev-libs/gexiv2[>=0.2.0]
+        dev-libs/libxml2:2.0[>=2.6.32]
+        dev-libs/unique:1[>=1.0.0]
+        dev-libs/dbus-glib:1[>=0.80]
+        gnome-desktop/libsoup:2.4[>=2.26.0]
+        gnome-platform/GConf:2[>=2.22.0]
+        media-libs/libexif[>=0.6.16]
+        media-libs/libgphoto2[>=2.4.2]
+        media-libs/libraw[>=0.9.0]
+        net-libs/webkit-gtk:1[>=1.1.5]
+        sys-fs/udev[>=145][glib]
+        x11-libs/gtk+:2[>=2.14.4]
+"
+
+src_configure() {
+    # configure script is written in Bash
+    edo ./configure --prefix=/usr --disable-desktop-update --disable-icon-update \
+                    --disable-schemas-install $(optionq doc || echo '--disable-help-install')
+}
+
+pkg_postinst() {
+    freedesktop-desktop_pkg_postinst
+    gnome-2_pkg_postinst
+}
+
+pkg_postrm() {
+    freedesktop-desktop_pkg_postrm
+    gnome-2_pkg_postrm
+}
+
