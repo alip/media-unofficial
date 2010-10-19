@@ -6,3 +6,7 @@ HOMEPAGE="http://www.atheme.org"
 DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
 LICENCES="GPL-2"
 
+src_prepare() {
+    edo sed -i -e "s/CPP = @CPP@/CPP = ${CXX}/" buildsys.mk.in
+}
+
