@@ -1,0 +1,111 @@
+Source: written by Vincent Untz <vuntz@gnome.org>
+Upstream: yes, Gnome Bug #619804
+Reason: Fix conflicting types with unistd.h
+
+From c912769ce63a363565d3b94610fff9dc4dbba8cc Mon Sep 17 00:00:00 2001
+From: Vincent Untz <vuntz@gnome.org>
+Date: Thu, 27 May 2010 12:36:56 +0200
+Subject: [PATCH] Rename some play/payse/stop functions to avoid clash with unistd.h
+
+---
+ src/sj-play.c |   22 +++++++++++-----------
+ 1 files changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/src/sj-play.c b/src/sj-play.c
+index 25aeba0..a0e19f3 100644
+--- a/src/sj-play.c
++++ b/src/sj-play.c
+@@ -84,7 +84,7 @@ select_track (void)
+  * Start playing.
+  */
+ static void
+-play (void)
++_play (void)
+ {
+   gst_element_set_state (pipeline, GST_STATE_PLAYING);
+   
+@@ -96,7 +96,7 @@ play (void)
+  * Pause
+  */
+ static void
+-pause (void)
++_pause (void)
+ {
+   gst_element_set_state (pipeline, GST_STATE_PAUSED);
+ }
+@@ -105,7 +105,7 @@ pause (void)
+  * Stop and reset UI.
+  */
+ static void
+-stop (void)
++_stop (void)
+ {
+   if (pipeline != NULL)
+     gst_element_set_state (pipeline, GST_STATE_NULL);
+@@ -173,7 +173,7 @@ cb_hop_track (GstBus *bus, GstMessage *message, gpointer user_data)
+   }
+ 
+   if (next_track >= tracks) {
+-    stop ();
++    _stop ();
+     seek_to_track = 0;
+   } else {
+     seek_to_track = next_track;
+@@ -200,7 +200,7 @@ cb_error (GstBus *bus, GstMessage *message, gpointer user_data)
+   /* There may be other (more generic) error messages on the bus; set pipeline
+    * to NULL state so these messages are flushed from the bus and we don't get
+    * called again for those */
+-  stop ();
++  _stop ();
+ }
+ 
+ static gchar *
+@@ -427,7 +427,7 @@ setup (GError **err)
+ void
+ stop_playback (void)
+ {
+-  stop ();
++  _stop ();
+ }
+ 
+ /*
+@@ -440,12 +440,12 @@ on_play_activate (GtkWidget *button, gpointer user_data)
+   GError *err = NULL;
+ 
+   if (is_playing ()) {
+-    pause ();
++    _pause ();
+     gtk_list_store_set (track_store, &current_iter,
+                         COLUMN_STATE, STATE_PAUSED, -1);
+  } else if (pipeline && GST_STATE (pipeline) == GST_STATE_PAUSED && 
+              current_track == seek_to_track) {
+-    play ();
++    _play ();
+     gtk_list_store_set (track_store, &current_iter,
+                         COLUMN_STATE, STATE_PLAYING, -1);
+   } else if (pipeline && GST_STATE (pipeline) == GST_STATE_PAUSED &&
+@@ -528,7 +528,7 @@ on_previous_track_activate(GtkWidget *button, gpointer data)
+   }
+ 
+   if (prev_track < 0) {
+-    stop ();
++    _stop ();
+     seek_to_track = 0;
+   } else {
+     seek_to_track = prev_track;
+@@ -550,10 +550,10 @@ set_gst_ui_and_play (void)
+         &current_iter, COLUMN_TITLE, &title, -1);
+     sj_main_set_title (title);
+     g_free (title);
+-    play ();
++    _play ();
+   } else {
+     g_warning (G_STRLOC ": failed to select track");
+-    stop ();
++    _stop ();
+   }
+ }
+ 
+-- 
+1.7.0.3
+
