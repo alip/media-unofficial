@@ -39,11 +39,14 @@ Portuguese and Chinese translation languages,
 * Package available for GNU/Linux and Windows.
 "
 
-BUGS_TO="alip@exherbo.org"
+BUGS_TO="markus@unixforces.net"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="flac mp3 speex vorbis wavpack [[ description = [ Add support for wavpack ] ]]"
+MYOPTIONS="flac mp3 speex vorbis
+    mp4 [[ description = [ Adds support to tag mp4 files ] ]]
+    wavpack [[ description = [ Add support for wavpack ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -52,11 +55,11 @@ DEPENDENCIES="
     build+run:
         x11-libs/gtk+[>=2.12]
         mp3? ( media-libs/id3lib[>=3.8.3] media-libs/libid3tag )
+        mp4? ( media-libs/libmp4v2 )
         flac? ( media-libs/flac media-libs/libvorbis )
         wavpack? ( media-sound/wavpack )
         speex? ( media-libs/speex media-libs/libvorbis )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-mp4 )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( mp3 'mp3 id3v23' 'vorbis ogg' flac wavpack speex )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( mp3 'mp3 id3v23' mp4 'vorbis ogg' flac wavpack speex )
 

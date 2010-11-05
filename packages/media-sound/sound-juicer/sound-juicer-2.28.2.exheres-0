@@ -37,3 +37,5 @@ DEPENDENCIES="
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:flac]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fix-conflicting-types.patch" )
+

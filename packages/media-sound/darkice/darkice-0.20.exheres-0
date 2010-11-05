@@ -15,7 +15,7 @@ BUGS_TO="jedahan@gmail.com"
 SLOT="0"
 PLATFORMS="~amd64"
 LICENCES="GPL-2"
-MYOPTIONS="aac alsa jack mp2 mp3 vorbis
+MYOPTIONS="aac alsa baselayout jack mp2 mp3 vorbis
     ( alsa jack ) [[ number-selected = at-least-one ]]
     ( aac mp2 mp3 vorbis ) [[ number-selected = at-least-one ]]
 "
@@ -37,7 +37,10 @@ DEFAULT_SRC_PREPARE_PATCHES=(
 
 src_install() {
     default
-    doinitd "${FILES}"/darkice
-    doconfd "${FILES}"/darkice.conf
+
+    if option baselayout ; then
+        doinitd "${FILES}"/darkice
+        doconfd "${FILES}"/darkice.conf
+    fi
 }
 
