@@ -39,7 +39,7 @@ DEPENDENCIES="
             x11-dri/freeglut
             x11-dri/mesa
         )
-        png? ( media-libs/libpng )
+        png? ( media-libs/libpng[>=1.4] )
         sdl? ( media-libs/SDL )
         tiff? ( media-libs/tiff )
         X? (
@@ -50,6 +50,8 @@ DEPENDENCIES="
 "
 
 WORK="$WORKBASE/${PN,,}-$PV"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-libpng-1.4-support.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS+=(
     --enable-ILU
