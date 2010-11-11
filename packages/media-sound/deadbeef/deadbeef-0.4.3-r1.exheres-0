@@ -16,7 +16,7 @@ MYOPTIONS="
     dts
     ffmpeg   [[ description = [ wma, mpc, tta, mms support ] ]]
     flac
-    game     [[ description = [ sid, mod, nfs, ay, s3m, support ] ]]
+    game     [[ description = [ sid, psf, mod, nfs, ay, s3m, support ] ]]
     lastfm   [[
         description = [ last.fm/libre.fm scrobbler ]
         requires = curl
@@ -37,18 +37,20 @@ DEPENDENCIES="
     build:
         media-libs/libsamplerate
         media-libs/libsndfile
-        x11-libs/gtk+
+        x11-libs/gtk+[>=2.12]
 
         aac?        ( media-libs/faad2 )
         alsa?       ( sys-sound/alsa-lib )
         cdda?       ( dev-libs/libcdio media-libs/libcddb )
-        curl?       ( net-misc/curl )
+        curl?       ( net-misc/curl[>=7.10] )
         ffmpeg?     ( media/ffmpeg )
         flac?       ( media-libs/flac )
+        game?       ( sys-libs/zlib )
         mp3?        ( media-libs/libmad )
+        notify?     ( sys-apps/dbus )
         oss?        ( media-libs/oss )
         pulseaudio? ( media-sound/pulseaudio )
-        vorbis?     ( media-libs/libvorbis )
+        vorbis?     ( media-libs/libvorbis media-libs/libogg )
         wavpack?    ( media-sound/wavpack )
 "
 
