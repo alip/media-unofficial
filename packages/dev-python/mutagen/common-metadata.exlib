@@ -1,7 +1,7 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require googlecode [ suffix=tar.gz ]
+require distutils [ python_dep=2.3 ] googlecode [ suffix=tar.gz ]
 
 SUMMARY="Python module to handle audio metadata."
 DESCRIPTION="

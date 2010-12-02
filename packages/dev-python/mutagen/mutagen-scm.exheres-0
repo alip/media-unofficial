@@ -1,7 +1,7 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils common-metadata
+require common-metadata
 
 DOWNLOADS=""
 SCM_SVN_RAW_URI=1
