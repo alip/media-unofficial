@@ -31,8 +31,6 @@ DEPENDENCIES="
         wxwidgets? ( x11-libs/wxGTK:2.8 )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-Fix-compilation.patch )
-
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'qt4 qt' 'wxwidgets' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( flac )
 DEFAULT_SRC_CONFIGURE_PARAMS=(
