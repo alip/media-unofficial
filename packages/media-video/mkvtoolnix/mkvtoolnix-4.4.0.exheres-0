@@ -15,6 +15,8 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="flac qt4 wxwidgets"
 
 DEPENDENCIES="
+    build:
+        dev-ruby/rake
     build+run:
         app-arch/bzip2
         app-arch/lzo
@@ -31,12 +33,18 @@ DEPENDENCIES="
         wxwidgets? ( x11-libs/wxGTK:2.8 )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-Fix-compilation.patch )
-
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'qt4 qt' 'wxwidgets' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( flac )
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-bz2
     --enable-lzo
 )
+
+src_compile() {
+    edo rake
+}
+
+src_install() {
+    edo rake DESTDIR="${IMAGE}" install
+}
 
