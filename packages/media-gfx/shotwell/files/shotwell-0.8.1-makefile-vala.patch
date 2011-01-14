@@ -10,17 +10,17 @@ Reason: only able to build with vala:0.10
  
 -VALAC = valac
 +VALAC = valac-0.10
- MIN_VALAC_VERSION = 0.9.5
+ MIN_VALAC_VERSION = 0.9.8
 +MAX_VALAC_VERSION = 0.11
  INSTALL_PROGRAM = install
  INSTALL_DATA = install -m 644
  
-@@ -518,7 +519,7 @@
+@@ -504,7 +505,7 @@
  
  $(VALA_STAMP): $(EXPANDED_SRC_FILES) $(EXPANDED_VAPI_FILES) $(EXPANDED_SRC_HEADER_FILES) Makefile \
  	$(CONFIG_IN)
--	@ ./minver `valac --version | awk '{print $$2}'` $(MIN_VALAC_VERSION) || ( echo 'Shotwell requires Vala compiler $(MIN_VALAC_VERSION) or greater.  You are running' `valac --version` '\b.'; exit 1 )
-+	@ ./minver `valac --version | awk '{print $$2}'` $(MIN_VALAC_VERSION) || ( echo 'Shotwell requires Vala compiler >=$(MIN_VALAC_VERSION) and <$(MAX_VALAC_VERSION).  You are running' `valac --version` '\b.'; exit 1 )
+-	@ ./minver `$(VALAC) --version | awk '{print $$2}'` $(MIN_VALAC_VERSION) || ( echo 'Shotwell requires Vala compiler $(MIN_VALAC_VERSION) or greater.  You are running' `$(VALAC) --version` '\b.'; exit 1 )
++	@ ./minver `$(VALAC) --version | awk '{print $$2}'` $(MIN_VALAC_VERSION) || ( echo 'Shotwell requires Vala compiler >=$(MIN_VALAC_VERSION) and <$(MAX_VALAC_VERSION).  You are running' `$(VALAC) --version` '\b.'; exit 1 )
  ifndef ASSUME_PKGS
  ifdef EXT_PKG_VERSIONS
  	@pkg-config --print-errors --exists '$(EXT_PKG_VERSIONS)'
