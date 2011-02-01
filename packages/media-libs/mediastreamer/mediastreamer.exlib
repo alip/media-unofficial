@@ -44,7 +44,7 @@ DEPENDENCIES="
         pulseaudio? ( media-sound/pulseaudio[>=0.9.21] )
         speex? ( media-libs/speex[>=1.2-beta3] )
         theora? ( media-libs/libtheora[>=1.0-alpha7] )
-        v4l? ( media-libs/libv4l ) [[ note = [ FIXME: automagic here ] ]]
+        v4l? ( media-libs/v4l-utils ) [[ note = [ FIXME: automagic here ] ]]
         video? ( media/ffmpeg )
         sdl? ( media-libs/SDL[>=1.2.0] )
         X? ( x11-libs/libX11 )
