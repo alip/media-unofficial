@@ -26,7 +26,7 @@ DEPENDENCIES="
         media/ffmpeg
         media-libs/SDL[>=1.2.10]
         media-libs/libpng
-        media-libs/libv4l
+        media-libs/v4l-utils
         media-libs/portaudio
         x11-libs/gtk+:2[>=2.14.0]
 
