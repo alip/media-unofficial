@@ -19,10 +19,11 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build:
-        dev-lang/vala[>=0.9.7&<0.11]
+        dev-lang/vala:0.10[>=0.9.8]
         sys-devel/gettext
     build+run:
         base/libgee:1.0[>=0.5.0]
+        core/json-glib[>=0.7.6]
         dev-db/sqlite:3[>=3.5.9]
         dev-libs/gexiv2[>=0.2.0]
         dev-libs/libxml2:2.0[>=2.6.32]
@@ -30,9 +31,11 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.80]
         gnome-desktop/libsoup:2.4[>=2.26.0]
         gnome-platform/GConf:2[>=2.22.0]
+        media-libs/gstreamer:0.10[>=0.10.28]
         media-libs/libexif[>=0.6.16]
         media-libs/libgphoto2[>=2.4.2]
         media-libs/libraw[>=0.9.0]
+        media-plugins/gst-plugins-base:0.10[>=0.10.28]
         net-libs/webkit-gtk:1[>=1.1.5]
         sys-fs/udev[>=145][glib]
         x11-libs/gtk+:2[>=2.14.4]
@@ -40,11 +43,12 @@ DEPENDENCIES="
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-makefile-vala.patch" )
 
-src_configure() {
-    # configure script is written in Bash
-    edo ./configure --prefix=/usr --disable-desktop-update --disable-icon-update \
-                    --disable-schemas-install $(optionq doc || echo '--disable-help-install')
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --disable-desktop-update
+    --disable-icon-update
+    --disable-schemas-install
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc help-install' )
 
 pkg_postinst() {
     freedesktop-desktop_pkg_postinst

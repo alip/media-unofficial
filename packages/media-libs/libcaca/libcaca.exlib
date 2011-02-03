@@ -41,6 +41,7 @@ DEPENDENCIES="
         mono? ( dev-lang/mono )
         ncurses? ( sys-libs/ncurses )
         opengl? (
+            media-libs/ftgl[>=2.1.3_rc5]
             x11-dri/freeglut
             x11-dri/mesa
         )

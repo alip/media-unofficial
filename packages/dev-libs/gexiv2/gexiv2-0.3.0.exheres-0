@@ -21,15 +21,10 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-libs/glib:2
-        graphics/exiv2[>=0.19]
+        graphics/exiv2[>=0.21]
 "
 
 WORK="${WORKBASE}/${MY_PNV}"
 
 DEFAULT_SRC_INSTALL_PARAMS=( "LIB=$(get_libdir)" )
-
-src_configure() {
-    # configure script is written in Bash
-    edo ./configure --prefix=/usr
-}
 
