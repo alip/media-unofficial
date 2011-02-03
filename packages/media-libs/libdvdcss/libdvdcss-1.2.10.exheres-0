@@ -5,7 +5,7 @@ SUMMARY="A simple library designed for accessing DVDs"
 DESCRIPTION="libdvdcss allows you to access a DVD as if it were a block device,
 without having to bother about the encryption."
 HOMEPAGE="http://www.videolan.org/developers/libdvdcss.html"
-DOWNLOADS="mirror://vlc/${PN}/${PV}/${PNV}.tar.bz2"
+DOWNLOADS="mirror://videolan/${PN}/${PV}/${PNV}.tar.bz2"
 
 LICENCES="GPL-2 GPL-3"
 SLOT="1.2"
