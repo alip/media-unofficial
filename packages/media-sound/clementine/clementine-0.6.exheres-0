@@ -29,7 +29,6 @@ DEPENDENCIES="
         dev-libs/glib:2
         media-libs/liblastfm
         media-libs/taglib
-        x11-libs/libnotify
         x11-libs/qt[X][opengl][sqlite]
     run:
         media-plugins/gst-plugins-good
