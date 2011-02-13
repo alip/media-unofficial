@@ -1,0 +1,115 @@
+# Copyright 2011 Anders Ladegaard Marchsteiner
+# Copyright 2011 Jakub M. Kopański <jkopansk@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require multilib systemd-service sourceforge [ suffix=tar.gz ]
+
+SUMMARY="Free UPnP MediaServer"
+HOMEPAGE="http://mediatomb.cc"
+
+UPSTREAM_DOCUMENTATION="${HOMEPAGE}/pages/documentation_overview"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    baselayout
+    curl         [[ description = [ Required for YouTube and SopCast support ] ]]
+    debug
+    exif         [[ description = [ The exif library will gather metadata from your photos ] ]]
+    ffmpegthumbs [[
+        description = [ Used to generate video thumbnails on-the-fly ]
+        requires = ffmpeg
+    ]]
+    javascript   [[ description = [ Allow the user defined creation of virtual containers ] ]]
+    lastfm       [[ description = [ last.fm scrobbling ] ]]
+    mp4          [[ description = [ Add support for mp4 container ] ]]
+    taglib       [[ description = [ Used to retrieve metadata from mp3, flac and ogg files ] ]]
+    (
+        ffmpeg       [[ description = [ Gather additional metadata from audio and video files ] ]]
+        libextractor [[ description = [
+            Gather media information using libextractor, may slow down import process
+        ] ]]
+    ) [[ number-selected = at-most-one ]]
+    (
+        mysql  [[ description = [ Let MediaTomb store data in a MySQL database ] ]]
+        sqlite [[ description = [ Let MediaTomb store data in a sqlite database ] ]]
+    ) [[ number-selected = at-most-one ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/expat
+        sys-apps/file
+        sys-libs/zlib
+
+        group/mediatomb
+        user/mediatomb
+
+        curl?         ( net-misc/curl )
+        exif?         ( media-libs/libexif )
+        ffmpeg?       ( media/ffmpeg )
+        ffmpegthumbs? ( media-video/ffmpegthumbnailer )
+        javascript?   ( dev-libs/spidermonkey )
+        lastfm?       ( media-libs/lastfmlib )
+        libextractor? ( media-libs/libextractor[<0.6.0][ffmpeg] )
+        mp4?          ( media-libs/libmp4v2 )
+        mysql?        ( dev-db/mysql )
+        sqlite?       ( dev-db/sqlite[>=3.0.0] )
+        taglib?       ( media-libs/taglib )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --hates=docdir
+    --enable-external-transcoding
+    --enable-libmagic
+    --enable-mrreg-service
+    --enable-protocolinfo-extension
+    --enable-zlib
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    curl
+    "curl youtube"
+    debug
+    "debug debug-malloc0"
+    "debug tombdebug"
+    "exif libexif"
+    ffmpeg
+    "ffmpegthumbs ffmpegthumbnailer"
+    "javascript libjs"
+    "lastfm lastfmlib"
+    libextractor
+    "mp4 libmp4v2"
+    mysql
+    "sqlite db-autocreate"
+    "sqlite sqlite3"
+    taglib
+)
+
+src_install() {
+    default
+
+    keepdir /etc/mediatomb
+    insinto /etc/mediatomb
+    newins "${FILES}"/mediatomb.config.xml config.xml
+
+    keepdir /var/lib/mediatomb
+    edo chown mediatomb:mediatomb "${IMAGE}"/var/lib/mediatomb
+    edo chmod 755 "${IMAGE}"/var/lib/mediatomb
+
+    if option baselayout ; then
+        newinitd "${FILES}"/mediatomb.init.d mediatomb
+    fi
+
+    if option systemd ; then
+        insinto /$(get_libdir)/systemd/system
+        if option mysql ; then
+            edo cp "${FILES}"/systemd/mediatomb.service "${TEMP}"
+            edo sed -i '/Requires=network.target/a\Requires=mysql.service' "${TEMP}"/mediatomb.service
+            doins "${TEMP}"/mediatomb.service
+        else
+            doins "${FILES}"/systemd/mediatomb.service
+        fi
+    fi
+}
+
