@@ -4,36 +4,73 @@
 
 require multilib systemd-service sourceforge [ suffix=tar.gz ]
 
-SUMMARY="Free UPnP MediaServer"
+SUMMARY="Open source UPnP MediaServer"
+DESCRIPTION="
+MediaTomb is an open source (GPL) UPnP MediaServer with a nice web user interface. It allows you to
+stream your digital media through your home network and listen to/watch it on a variety of UPnP
+compatible devices.
+
+MediaTomb implements the UPnP MediaServer V1.0 specification that can be found on
+http://www.upnp.org/. The current implementation focuses on parts that are required by the
+specification, however we look into extending the functionality to cover the optional parts of the
+spec as well.
+
+MediaTomb should work with any UPnP compliant MediaRenderer.
+
+Supported Features:
+ * Browse and play back your media via UPnP
+ * Metadata extraction from MP3, Ogg, FLAC, JPEG, etc. files
+ * Exif thumbnail support
+ * User defined server layout based on extracted metadata (scriptable virtual containers)
+ * Automatic directory rescans
+ * Sophisticated web UI with a tree view of the database and the file system, allowing to
+   add/remove/edit/browse your media
+ * Highly flexible media format transcoding via plugins/scripts
+ * Allows watching YouTube videos on your UPnP player device
+ * Supports last.fm scrobbling using lastfmlib
+ * On-the-fly video thumbnail generation with libffmpegthumbnailer
+ * Support for external URLs (create links to Internet content and serve them via UPnP to your
+   renderer)
+ * Support for ContentDirectoryService container updates
+ * Active Items (experimental feature), allows execution of server side scripts upon HTTP GET
+   requests to certain items
+ * Highly flexible configuration, allowing you to control the behavior of various features of the
+   server
+"
 HOMEPAGE="http://mediatomb.cc"
 
-UPSTREAM_DOCUMENTATION="${HOMEPAGE}/pages/documentation_overview"
+UPSTREAM_DOCUMENTATION="${HOMEPAGE}/pages/documentation_overview [[ lang = en ]]"
 
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
     baselayout
-    curl         [[ description = [ Required for YouTube and SopCast support ] ]]
+    curl         [[ description = [ Support for YouTube and SopCast services ] ]]
     debug
-    exif         [[ description = [ The exif library will gather metadata from your photos ] ]]
+    exif         [[ description = [ Support for Exif image metadata ] ]]
     ffmpegthumbs [[
-        description = [ Used to generate video thumbnails on-the-fly ]
+        description = [
+            Support for on-the-fly video thumbnail generation using ffmpegthumbnailer
+        ]
         requires = ffmpeg
     ]]
-    javascript   [[ description = [ Allow the user defined creation of virtual containers ] ]]
-    lastfm       [[ description = [ last.fm scrobbling ] ]]
-    mp4          [[ description = [ Add support for mp4 container ] ]]
-    taglib       [[ description = [ Used to retrieve metadata from mp3, flac and ogg files ] ]]
+    javascript   [[ description = [ Allow user-defined creation of virtual containers ] ]]
+    lastfm       [[ description = [ Support for last.fm scrobbling ] ]]
+    mp4          [[ description = [ Support for MP4 metadata ] ]]
+    taglib       [[ description = [ Support for MP3, FLAC and Ogg metadata ] ]]
     (
-        ffmpeg       [[ description = [ Gather additional metadata from audio and video files ] ]]
+        ffmpeg       [[ description = [
+            Support for additional audio/video metadata using ffmpeg
+        ] ]]
         libextractor [[ description = [
-            Gather media information using libextractor, may slow down import process
+            Support for additional audio/video metadata using libextractor (may slow down import
+            process)
         ] ]]
     ) [[ number-selected = at-most-one ]]
     (
-        mysql  [[ description = [ Let MediaTomb store data in a MySQL database ] ]]
-        sqlite [[ description = [ Let MediaTomb store data in a sqlite database ] ]]
+        mysql  [[ description = [ Store data using MySQL ] ]]
+        sqlite [[ description = [ Store data using SQLite ] ]]
     ) [[ number-selected = at-most-one ]]
 "
 
