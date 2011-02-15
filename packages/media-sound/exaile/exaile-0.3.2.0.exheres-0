@@ -17,7 +17,7 @@ BUGS_TO="jedahan@gmail.com"
 LICENCES="GPL-2 GPL-3"
 PLATFORMS="~amd64"
 SLOT="0"
-MYOPTIONS="cddb doc hal"
+MYOPTIONS="cddb doc"
 
 DEPENDENCIES="
     build:
@@ -33,6 +33,5 @@ DEPENDENCIES="
         gnome-bindings/pygobject[>=2.18]
         media-plugins/gst-plugins-good:0.10
         cddb? ( dev-python/cddb-py )
-        hal? ( sys-apps/hal )
 "
 

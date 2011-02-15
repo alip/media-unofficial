@@ -25,7 +25,7 @@ BUGS_TO="jedahan@gmail.com"
 LICENCES="GPL-2"
 PLATFORMS="~amd64"
 SLOT="0"
-MYOPTIONS="alsa dbus flac hal mp3 vorbis"
+MYOPTIONS="alsa dbus flac mp3 vorbis"
 
 DEPENDENCIES="
     build:
@@ -38,7 +38,6 @@ DEPENDENCIES="
         alsa? ( media-plugins/gst-plugins-bad[gstreamer_plugins:alsa] )
         dbus? ( dev-python/dbus-python[>=0.71] )
         flac? ( media-plugins/gst-plugins-good:0.10[gstreamer_plugins:flac] )
-        hal? ( sys-apps/hal )
         mp3? ( media-plugins/gst-plugins-ugly[gstreamer_plugins:mad] )
         vorbis? ( media-plugins/gst-plugins-base:0.10[gstreamer_plugins:ogg][gstreamer_plugins:vorbis] )
 "
