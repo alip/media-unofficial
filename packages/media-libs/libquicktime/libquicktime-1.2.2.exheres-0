@@ -3,47 +3,73 @@
 
 require sourceforge [ suffix=tar.gz ]
 
-SUMMARY="A library for reading and writing quicktime/avi/mp4 files"
+SUMMARY="A library for reading and writing QuickTime/AVI/MP4 files"
 
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="X aac doc dv ffmpeg gtk h264 jpeg opengl png vorbis
-    mp3 [[ description = [ Support mp3 encoding with lame ] ]]
-    schroedinger [[ description = [ Support dirac en- and decoding ] ]]
+MYOPTIONS="
+    X
+    aac
+    doc
+    dv
+    ffmpeg
+    gtk
+    h264
+    jpeg
+    mp3          [[ description = [ Support MP3 encoding with LAME ] ]]
+    opengl
+    png
+    schroedinger [[ description = [ Support Dirac encoding and decoding ] ]]
+    vorbis
 "
 
 DEPENDENCIES="
-build+run:
-    sys-sound/alsa-lib
-    X? ( x11-libs/libXaw )
-    aac? ( media-libs/faac[>=1.24] media-libs/faad2[>=2.0] )
-    doc? ( app-doc/doxygen )
-    dv? ( media-libs/libdv[>=0.102] )
-    ffmpeg? ( media/ffmpeg )
-    gtk? ( x11-libs/gtk+:2[>=2.4.0] )
-    jpeg? ( media-libs/jpeg[>=6b] )
-    mp3? ( media-sound/lame[>=3.93] )
-    opengl? ( x11-dri/mesa )
-    png? ( media-libs/libpng[>=1.2.23] )
-    schroedinger? ( media-libs/schroedinger[>=1.0.5] )
-    vorbis? ( media-libs/libvorbis[>=1.0] )
-    h264? ( media-libs/x264 )
-build:
-    dev-util/pkg-config"
+    build:
+        dev-util/pkg-config
 
+    build+run:
+        sys-sound/alsa-lib
+
+        X?            ( x11-libs/libXaw )
+        aac?          (
+            media-libs/faac[>=1.24]
+            media-libs/faad2[>=2.0]
+        )
+        doc?          ( app-doc/doxygen )
+        dv?           ( media-libs/libdv[>=0.102] )
+        ffmpeg?       ( media/ffmpeg )
+        gtk?          ( x11-libs/gtk+:2[>=2.4.0] )
+        h264?         ( media-libs/x264 )
+        jpeg?         ( media-libs/jpeg[>=6b] )
+        mp3?          ( media-sound/lame[>=3.93] )
+        opengl?       ( x11-dri/mesa )
+        png?          ( media-libs/libpng[>=1.2.23] )
+        schroedinger? ( media-libs/schroedinger[>=1.0.5] )
+        vorbis?       ( media-libs/libvorbis[>=1.0] )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gpl' '--with-alsa' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'ffmpeg libswscale' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
-  'X x' 'aac faac' 'aac faad2' 'doc doxygen' 'dv libdv' 'ffmpeg'
-  'gtk' 'jpeg libjpeg' 'mp3 lame' 'opengl' 'png libpng' 'schroedinger' 'vorbis vorbis /usr' 'h264 x264'
+    'X x'
+    'aac faac'
+    'aac faad2'
+    'doc doxygen'
+    'dv libdv'
+    'ffmpeg'
+    'gtk'
+    'h264 x264'
+    'jpeg libjpeg'
+    'mp3 lame'
+    'opengl'
+    'png libpng'
+    'schroedinger'
+    'vorbis vorbis /usr'
 )
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gpl' '--with-alsa' )
 
 src_install() {
     default
-
-    if ! option X ; then
-        edo rmdir "${IMAGE}"/usr/share/man
-    fi
+    option !X && edo rmdir "${IMAGE}"/usr/share/man
 }
 
