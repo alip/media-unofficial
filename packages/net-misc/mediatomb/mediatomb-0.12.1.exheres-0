@@ -143,6 +143,7 @@ src_install() {
         if option mysql ; then
             edo cp "${FILES}"/systemd/mediatomb.service "${TEMP}"
             edo sed -i '/Requires=network.target/a\Requires=mysql.service' "${TEMP}"/mediatomb.service
+            edo sed -i '/After=network.target/a\After=mysql.service' "${TEMP}"/mediatomb.service
             doins "${TEMP}"/mediatomb.service
         else
             doins "${FILES}"/systemd/mediatomb.service
