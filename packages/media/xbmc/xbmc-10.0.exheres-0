@@ -1,21 +1,22 @@
 # Copyright 2009 Michael Forney
+# Copyright 2011 Markus Rothe
 # Distributed under the terms of the GNU General Public License v2
 
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ] sourceforge [ suffix=tar.gz ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 1.11 ] ]
 
-SUMMARY="XBMC Media Center is a free cross-platform media player software and entertainment system application framework"
+SUMMARY="Media player and entertainment hub for digital media"
 HOMEPAGE="http://xbmc.org/"
+DOWNLOADS="http://mirrors.xbmc.org/releases/source/${PNV}.tar.gz"
 
 BUGS_TO="michael@obberon.com"
 
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="aac avahi dvd joystick opengl pulseaudio
+MYOPTIONS="aac avahi opengl pulseaudio
 
-    goom    [[ description = [ Support for GOOM visualizations ] ]]
+    vaapi   [[ description = [ Support for the Video Acceleration API ] ]]
     vdpau   [[ description = [ Support for the Video Decode and Presentation API for Unix ] ]]
-    xrandr  [[ description = [ Support for the X Resize and Rotate Extension ] ]]
 
     platform:
         amd64
@@ -52,10 +53,11 @@ DEPENDENCIES="
         media-libs/freetype:2
         media-libs/jasper
         media-libs/jpeg
-        media-libs/libass[>=0.9.7]
+        media-libs/libass
         media-libs/libdca
         media-libs/libmad
         media-libs/libmms
+        media-libs/libmodplug
         media-libs/libmpeg2
         media-libs/libogg
         media-libs/libpng
@@ -64,13 +66,14 @@ DEPENDENCIES="
         media-libs/tiff
         media-sound/wavpack
         net-fs/samba
+        net-libs/libssh
         net-misc/curl
         sys-apps/dbus
-        sys-apps/hal
         sys-libs/zlib
         sys-sound/alsa-lib
         x11-libs/libXinerama
         x11-libs/libXmu
+        x11-libs/libXrandr
         x11-libs/libXt
         x11-libs/libXtst
 
@@ -82,33 +85,37 @@ DEPENDENCIES="
         )
         !opengl? ( media-libs/SDL_gfx )
         pulseaudio? ( media-sound/pulseaudio )
+        vaapi? ( x11-libs/libva )
         vdpau? (
             media/ffmpeg[vdpau(-)]
             x11-libs/libvdpau
         )
-        xrandr? ( x11-libs/libXrandr )
     run:
         x11-apps/xdpyinfo
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}"/${PNV}-mysql_config.patch )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --disable-non-free
+    --disable-hal
     --enable-external-libraries
-    --enable-goom # Visualizations
+    --enable-goom
+    --enable-xrandr
+    --disable-webserver # Requires libmicrohttpd
 )
+
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     "aac faac"
     avahi
-    "dvd dvdcss"
-    goom
-    joystick
     "opengl gl"
     "pulseaudio pulse"
+    vaapi
     vdpau
-    xrandr
 )
 
-DEFAULT_SRC_INSTALL_PARAMS=( prefix="${IMAGE}"/usr )
+src_prepare() {
+    default
+
+    # eautoreconf does not run automake, because it only runs if Makefile.am is present. xbmc only
+    # has a Makefile.in
+    edo ./bootstrap
+}
 
