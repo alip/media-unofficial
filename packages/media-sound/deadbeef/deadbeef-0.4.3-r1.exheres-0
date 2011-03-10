@@ -7,7 +7,7 @@ SUMMARY="GTK2 mp3/ogg/flac/ape/sid/mod/nsf/m4a/mpc/shn music player"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
     aac
     ape      [[ description = [ monkey's audio (.ape) support ] ]]
