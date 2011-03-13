@@ -19,12 +19,12 @@ SLOT="0"
 MYOPTIONS="alsa cxx jack"
 
 DEPENDENCIES="
-    build:
     build+run:
         alsa? ( sys-sound/alsa-lib )
         jack? ( media-sound/jack-audio-connection-kit )
 "
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--without-oss' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
     'alsa'
     'jack'
