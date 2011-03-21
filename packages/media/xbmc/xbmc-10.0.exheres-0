@@ -15,6 +15,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="aac avahi opengl pulseaudio
 
+    http    [[ description = [ Support for control over HTTP ] ]]
     vaapi   [[ description = [ Support for the Video Acceleration API ] ]]
     vdpau   [[ description = [ Support for the Video Decode and Presentation API for Unix ] ]]
 
@@ -79,6 +80,7 @@ DEPENDENCIES="
 
         aac? ( media-libs/faac )
         avahi? ( net-dns/avahi )
+        http? ( net-libs/libmicrohttpd )
         opengl? (
             media-libs/glew
             x11-dri/mesa
@@ -99,12 +101,12 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-external-libraries
     --enable-goom
     --enable-xrandr
-    --disable-webserver # Requires libmicrohttpd
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     "aac faac"
     avahi
+    "http webserver"
     "opengl gl"
     "pulseaudio pulse"
     vaapi
