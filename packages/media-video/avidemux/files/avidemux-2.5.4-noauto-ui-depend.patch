@@ -1,0 +1,20 @@
+Source: http://avidemux.org/admForum/viewtopic.php?pid=50188#p50188
+Upstream: Issue reported to upstream
+Reason: Make automagic ui dependency controllable
+
+--- CMakeLists.txt.org	2011-04-02 19:03:51.275025523 +0200
++++ CMakeLists.txt	2011-04-02 19:05:48.147025569 +0200
+@@ -99,13 +99,6 @@
+ ########################################
+ SET(VERSION 2.5.4)
+ 
+-# Define internal flags for GTK+ and Qt4 builds.  These are turned off
+-# if a showstopper is found.  CLI is automatically assumed as possible
+-# since it uses the minimum set of required libraries and CMake will 
+-# fail if these aren't met.
+-SET(ADM_UI_GTK 1)
+-SET(ADM_UI_QT4 1)
+-
+ SET(ADM_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}")
+ 
+ IF (CMAKE_BUILD_TYPE STREQUAL "Debug")

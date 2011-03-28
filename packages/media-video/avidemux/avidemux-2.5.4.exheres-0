@@ -1,0 +1,119 @@
+# Copyright 2011 Sven Jonsson <sven.jonsson@ebox.tninet.se>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'avidemux-2.5.4-r1.ebuild' from Gentoo, which is:
+#     Copyright 1999-2010 Gentoo Foundation
+
+require cmake flag-o-matic
+
+MY_PNV=${PN}_${PV}
+
+SUMMARY="Video editor designed for simple cutting, filtering and encoding tasks"
+DESCRIPTION="Avidemux is a free video editor designed for simple cutting,
+filtering and encoding tasks. It supports many file types, including AVI,
+DVD compatible MPEG files, MP4 and ASF, using a variety of codecs. Tasks
+can be automated using projects, job queue and powerful scripting capabilities.
+"
+HOMEPAGE="http://fixounet.free.fr/avidemux"
+DOWNLOADS="mirror://sourceforge/${PN}/${MY_PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="2"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    aac
+    alsa
+    dts
+    gtk
+    h264
+    jack
+    libsamplerate
+    mp3
+    oss
+    pulseaudio
+    qt4
+    sdl
+    truetype
+    vorbis
+    xv
+    xvid
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/libxml2
+        aac? (
+            media-libs/faac
+            media-libs/faad2
+        )
+        alsa? ( sys-sound/alsa-lib )
+        dts? ( media-libs/libdca )
+        gtk? ( x11-libs/gtk+:2 )
+        h264? ( media-libs/x264 )
+        jack? ( media-sound/jack-audio-connection-kit )
+        libsamplerate? ( media-libs/libsamplerate )
+        mp3? ( media-sound/lame )
+        pulseaudio? ( media-sound/pulseaudio )
+        qt4? ( x11-libs/qt:4 )
+        sdl? ( media-libs/SDL )
+        truetype? (
+            media-libs/freetype:2
+            media-libs/fontconfig
+        )
+        vorbis? ( media-libs/libvorbis )
+        xv? ( x11-libs/libXv )
+        xvid? ( media-libs/xvid )
+"
+
+WORK=${WORKBASE}/${MY_PNV}
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    -p0 "${FILES}/${PNV}-noauto-ui-depend.patch"
+    -p1 "${FILES}/${PNV}-build-plugins-fix.patch"
+    "${FILES}/${PNV}-dummy-sound-fix.patch"
+    -p2 "${FILES}/${PNV}-core-version-110.patch"
+)
+
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    "-DAVIDEMUX_SOURCE_DIR=${WORK}"
+    "-DAVIDEMUX_INSTALL_PREFIX=${ECMAKE_BUILD_DIR}"
+    "-DAVIDEMUX_CORECONFIG_DIR=${ECMAKE_BUILD_DIR}/config"
+    "-DGETTEXT:BOOL=TRUE"
+)
+
+CMAKE_SRC_CONFIGURE_OPTIONS=(
+    "aac FAAC"
+    "aac FAAD"
+    "alsa ALSA"
+    "dts LIBDCA"
+    "gtk GTK"
+    "h264 X264"
+    "jack JACK"
+    "mp3 LAME"
+    "oss OSS"
+    "pulseaudio PULSEAUDIOSIMPLE"
+    "qt4 QT4"
+    "sdl SDL"
+    "truetype FONTCONFIG"
+    "truetype FREETYPE2"
+    "vorbis VORBIS"
+    "xv XVIDEO"
+    "xvid XVID"
+)
+
+src_compile() {
+    # first build the application
+    cmake_src_compile
+    # and then go on with plugins
+    edo emake -C "${ECMAKE_BUILD_DIR}/plugins"
+}
+
+src_install() {
+    # install the application
+    cmake_src_install
+    # install plugins
+    edo emake -C "${ECMAKE_BUILD_DIR}/plugins" DESTDIR="${IMAGE}" install
+}
+
