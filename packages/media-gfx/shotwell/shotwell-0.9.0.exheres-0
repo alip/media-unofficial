@@ -44,11 +44,12 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --disable-desktop-update
-    --disable-icon-update
-    --disable-schemas-install
+    '--disable-desktop-update'
+    '--disable-icon-update'
+    '--disable-schemas-install'
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc help-install' )
+DEFAULT_SRC_COMPILE_PARAMS=( "VALAC=$(type -P valac-0.12)" )
 
 pkg_postinst() {
     freedesktop-desktop_pkg_postinst
