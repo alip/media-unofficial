@@ -14,7 +14,7 @@ DOWNLOADS="http://yorba.org/download/${PN}/$(ever range 1-2)/${PNV}.tar.bz2"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
 DEPENDENCIES="
