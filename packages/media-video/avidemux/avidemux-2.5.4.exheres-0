@@ -13,7 +13,7 @@ filtering and encoding tasks. It supports many file types, including AVI,
 DVD compatible MPEG files, MP4 and ASF, using a variety of codecs. Tasks
 can be automated using projects, job queue and powerful scripting capabilities.
 "
-HOMEPAGE="http://fixounet.free.fr/avidemux"
+HOMEPAGE="http://fixounet.free.fr/${PN}"
 DOWNLOADS="mirror://sourceforge/${PN}/${MY_PNV}.tar.gz"
 
 LICENCES="GPL-2"
@@ -70,17 +70,17 @@ DEPENDENCIES="
 WORK=${WORKBASE}/${MY_PNV}
 
 DEFAULT_SRC_PREPARE_PATCHES=(
-    -p0 "${FILES}/${PNV}-noauto-ui-depend.patch"
-    -p1 "${FILES}/${PNV}-build-plugins-fix.patch"
-    "${FILES}/${PNV}-dummy-sound-fix.patch"
-    -p2 "${FILES}/${PNV}-core-version-110.patch"
+    -p0 "${FILES}"/${PNV}-noauto-ui-depend.patch
+    -p1 "${FILES}"/${PNV}-build-plugins-fix.patch
+    -p1 "${FILES}"/${PNV}-dummy-sound-fix.patch
+    -p2 "${FILES}"/${PNV}-core-version-110.patch
 )
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
-    "-DAVIDEMUX_SOURCE_DIR=${WORK}"
-    "-DAVIDEMUX_INSTALL_PREFIX=${ECMAKE_BUILD_DIR}"
-    "-DAVIDEMUX_CORECONFIG_DIR=${ECMAKE_BUILD_DIR}/config"
-    "-DGETTEXT:BOOL=TRUE"
+    -DAVIDEMUX_SOURCE_DIR="${WORK}"
+    -DAVIDEMUX_INSTALL_PREFIX="${ECMAKE_BUILD_DIR}"
+    -DAVIDEMUX_CORECONFIG_DIR="${ECMAKE_BUILD_DIR}/config"
+    -DGETTEXT:BOOL=TRUE
 )
 
 CMAKE_SRC_CONFIGURE_OPTIONS=(
@@ -114,6 +114,6 @@ src_install() {
     # install the application
     cmake_src_install
     # install plugins
-    edo emake -C "${ECMAKE_BUILD_DIR}/plugins" DESTDIR="${IMAGE}" install
+    edo emake -C "${ECMAKE_BUILD_DIR}"/plugins DESTDIR="${IMAGE}" install
 }
 
