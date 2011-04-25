@@ -70,6 +70,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
 
 src_install() {
     default
-    option !X && edo rmdir "${IMAGE}"/usr/share/man
+    option X || edo rmdir "${IMAGE}"/usr/share/man/{man1,}
 }
 
