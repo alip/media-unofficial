@@ -18,7 +18,7 @@ MYOPTIONS="lcms openmp"
 
 DEPENDENCIES="
     build:
-        sys-devel/gcc[openmp?]
+        sys-devel/gcc[openmp(+)?]
     build+run:
         lcms? ( media-libs/lcms )
 "
