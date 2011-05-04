@@ -1,0 +1,24 @@
+# Copyright 2011 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require googlecode [ project='webp' suffix='tar.gz' ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Google's WebP image format library and tools"
+DESCRIPTION="
+WebP is a new image format that provides lossy compression for photographic images.
+This package provides the reference implementation.
+"
+HOMEPAGE="http://code.google.com/speed/webp/"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        media-libs/jpeg
+        media-libs/libpng
+"
+
