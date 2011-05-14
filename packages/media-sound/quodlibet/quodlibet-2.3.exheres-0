@@ -33,21 +33,12 @@ DEPENDENCIES="
     build+run:
         gnome-bindings/pygtk[>=2.12]
     run:
-        dev-python/mutagen[>=1.15]
-        dev-python/gst-python:0.10
-        alsa? ( media-plugins/gst-plugins-bad[gstreamer_plugins:alsa] )
+        dev-python/mutagen[>=1.20]
+        dev-python/gst-python:0.10[>=0.10.2]
+        alsa? ( media-plugins/gst-plugins-base:0.10[gstreamer_plugins:alsa] )
         dbus? ( dev-python/dbus-python[>=0.71] )
         flac? ( media-plugins/gst-plugins-good:0.10[gstreamer_plugins:flac] )
-        mp3? ( media-plugins/gst-plugins-ugly[gstreamer_plugins:mad] )
+        mp3? ( media-plugins/gst-plugins-ugly:0.10[gstreamer_plugins:mad] )
         vorbis? ( media-plugins/gst-plugins-base:0.10[gstreamer_plugins:ogg][gstreamer_plugins:vorbis] )
 "
-
-src_prepare() {
-    default
-
-    # Upstream notified, so it might get repackaged later.
-    if [[ -f quodlibet/qltk/config.py ]]; then
-        edo rm quodlibet/qltk/config.py
-    fi
-}
 
