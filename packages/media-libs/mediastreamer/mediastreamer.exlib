@@ -3,7 +3,7 @@
 # Based in part on ortp-0.15.0.exheres-0 which is
 #   Copyright 2009 Ingmar Vanhassel
 
-export_exlib_phases src_install
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Mediastreamer2 - the multimedia streaming engine"
 DESCRIPTION="
@@ -44,13 +44,13 @@ DEPENDENCIES="
         pulseaudio? ( media-sound/pulseaudio[>=0.9.21] )
         speex? ( media-libs/speex[>=1.2-beta3] )
         theora? ( media-libs/libtheora[>=1.0-alpha7] )
-        v4l? ( media-libs/v4l-utils ) [[ note = [ FIXME: automagic here ] ]]
+        v4l? ( media-libs/v4l-utils )
         video? ( media/ffmpeg )
         sdl? ( media-libs/SDL[>=1.2.0] )
         X? ( x11-libs/libX11 )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug gsm ipv6 jack portaudio pulseaudio sdl speex theora video "X x11" )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug gsm ipv6 jack portaudio pulseaudio sdl speex theora v4l video "X x11" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --datadir=/usr/share/${PN}
@@ -61,6 +61,16 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --disable-oss
     --enable-external-ortp
 )
+
+src_prepare() {
+    default
+
+    # linux/videodev.h dropped in 2.6.38
+    edo sed -i -e 's:msv4l.c::' src/Makefile.am
+    edo sed -i -e 's:linux/videodev.h ::' configure.ac
+
+    eautoreconf
+}
 
 src_install() {
     default
