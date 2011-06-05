@@ -9,17 +9,24 @@ LibRaw is a library for reading RAW files obtained from digital photo cameras (C
 DNG, and others).
 "
 HOMEPAGE="http://www.${PN}.org"
-DOWNLOADS="${HOMEPAGE}/data/${MY_PN}-${PV}.tar.gz"
+DOWNLOADS="
+    ${HOMEPAGE}/data/${MY_PN}-${PV}.tar.gz
+    demosaic? ( ${HOMEPAGE}/data/${MY_PN}-demosaic-pack-GPL2-${PV}.tar.gz
+                ${HOMEPAGE}/data/${MY_PN}-demosaic-pack-GPL3-${PV}.tar.gz )
+                
+"
 
-LICENCES="LGPL-2.1 CDDL-1.0"
+LICENCES="LGPL-2.1 CDDL-1.0 demosaic? ( GPL-2 GPL-3 )"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="lcms openmp"
+MYOPTIONS="
+    demosaic [[ description = [ Installs some additional image correction methods ] ]]
+    lcms openmp
+"
 
 DEPENDENCIES="
-    build:
-        sys-devel/gcc[openmp(+)?]
     build+run:
+        sys-devel/gcc[openmp(+)?]
         lcms? ( media-libs/lcms )
 "
 
@@ -27,6 +34,8 @@ WORK="${WORKBASE}/${MY_PN}-${PV}"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-examples' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'demosaic demosaic-pack-gpl2'
+    'demosaic demosaic-pack-gpl3'
     'lcms'
     'openmp'
 )
