@@ -1,6 +1,8 @@
 # Copyright 2011 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+MY_PNV="${PN%%-plugins}-${PV}"
+
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Free video effect plugins"
@@ -21,7 +23,6 @@ MYOPTIONS="
 "
 
 DEPENDENCIES="
-    build:
     build+run:
         facebl0r? ( media-libs/opencv[>=1.0.0] )
 "
@@ -29,6 +30,8 @@ DEPENDENCIES="
 UPSTREAM_DOCUMENTATION="${HOMEPAGE}/codedoc/html"
 
 REMOTE_IDS="freshmeat:frei0r"
+
+WORK="${WORKBASE}/${MY_PNV}"
 
 DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/${PNV}-Bad-automagic-deps.patch" )
 
