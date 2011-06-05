@@ -3,7 +3,7 @@
 
 require portaudio
 
-DOWNLOADS="http://dev.exherbo.org/~arkanoid/distfiles/${PNV}.tgz"
+DOWNLOADS="http://www.portaudio.com/archives/pa_stable_v19_20110326.tgz -> ${PNV}.tgz"
 PLATFORMS="~amd64 ~x86"
 
 WORK="${WORKBASE}/${PN}"
