@@ -5,7 +5,7 @@ require sourceforge [ project=modplug-xmms suffix=tar.gz ]
 
 SUMMARY="libmodplug can play mod-like music formats"
 
-LICENCES="GPL-2"
+LICENCES="public-domain"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
