@@ -3,8 +3,12 @@
 
 require sourceforge
 
-SUMMARY="A console based decoder/player for mono/stereo mpeg audio files."
-HOMEPAGE="http://www.mpg123.de/"
+SUMMARY="A console based decoder/player for mono/stereo mpeg audio files"
+HOMEPAGE="http://www.mpg123.de"
+
+REMOTE_IDS+=" freshmeat:${PN}"
+
+UPSTREAM_DOCUMENTATION="${HOMEPAGE}/api [[ lang = en description = [ API reference ] ]]"
 
 LICENCES="( GPL-2 LGPL-2.1 )"
 SLOT="0"
@@ -13,7 +17,7 @@ MYOPTIONS="debug jack openal pulseaudio sdl"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        dev-util/pkg-config[>=0.9.0]
     build+run:
         sys-sound/alsa-lib
         jack? ( media-sound/jack-audio-connection-kit )
@@ -21,8 +25,6 @@ DEPENDENCIES="
         pulseaudio? ( media-sound/pulseaudio )
         sdl? ( media-libs/SDL )
 "
-
-UPSTREAM_DOCUMENTATION="${HOMEPAGE}/api [[ lang = en description = [ API reference ] ]]"
 
 src_configure() {
     local modules=( alsa )
@@ -36,7 +38,6 @@ src_configure() {
      # since we only have gcc 4.x, we can safely disable it
      econf \
          --with-audio="$(echo ${modules[@]} | tr ' ' ',')" \
-         $(option_enable debug) \
-         --disable-aligncheck
+         $(option_enable debug)
 }
 
