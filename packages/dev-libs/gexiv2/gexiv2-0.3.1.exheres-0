@@ -1,8 +1,6 @@
 # Copyright 2010 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib
-
 MY_PNV="lib${PNV}"
 
 SUMMARY="GObject wrapper for Exiv2"
@@ -26,5 +24,5 @@ DEPENDENCIES="
 
 WORK="${WORKBASE}/${MY_PNV}"
 
-DEFAULT_SRC_INSTALL_PARAMS=( "LIB=$(get_libdir)" )
+DEFAULT_SRC_INSTALL_PARAMS=( "LIB=${LIBDIR}" )
 

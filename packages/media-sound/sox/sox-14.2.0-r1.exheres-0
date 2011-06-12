@@ -1,7 +1,7 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib sourceforge [ suffix=tar.gz ]
+require sourceforge [ suffix=tar.gz ]
 
 SUMMARY="Swiss Army knife of sound processing programs"
 DESCRIPTION="
@@ -47,7 +47,7 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --with-distro=Exherbo
-    --with-ladspa-path=/usr/$(get_libdir)/ladspa
+    --with-ladspa-path=/usr/${LIBDIR}/ladspa
     --with-magic
     --disable-oss
     --disable-coreaudio

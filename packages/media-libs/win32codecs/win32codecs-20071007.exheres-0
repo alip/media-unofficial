@@ -3,8 +3,6 @@
 # Based in parts on 'win32codecs-20071007-r4.ebuild', which is:
 #     Copyright 1999-2008 Gentoo Foundation
 
-require multilib
-
 SUMMARY="Windows 32-bit binary codecs for video and audio playback support"
 HOMEPAGE="http://www.mplayerhq.hu"
 DOWNLOADS="mirror://mplayer/releases/codecs/all-${PV}.tar.bz2 -> ${PNV}.tar.bz2"
@@ -25,14 +23,14 @@ WORK="${WORKBASE}/all-${PV}"
 src_install() {
     insopts -m0644
 
-    insinto /usr/$(get_libdir)/win32
+    insinto /usr/${LIBDIR}/win32
     doins *.{acm,ax,dll,DLL,drv,vwp,xa}
 
-    insinto /usr/$(get_libdir)/real
+    insinto /usr/${LIBDIR}/real
     doins *.so*
 
     # b.g.o #80321 - xine can't find real codecs - no idea if it's still needed
-    #ln -s "${IMAGE}"/usr/$(get_libdir)/real/* "${IMAGE}"/usr/$(get_libdir)/win32/
+    #ln -s "${IMAGE}"/usr/${LIBDIR}/real/* "${IMAGE}"/usr/${LIBDIR}/win32/
 
     emagicdocs
 }

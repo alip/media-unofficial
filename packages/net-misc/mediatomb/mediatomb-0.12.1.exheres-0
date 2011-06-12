@@ -2,7 +2,7 @@
 # Copyright 2011 Jakub M. Kopański <jkopansk@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib systemd-service sourceforge [ suffix=tar.gz ]
+require systemd-service sourceforge [ suffix=tar.gz ]
 
 SUMMARY="Open source UPnP MediaServer"
 DESCRIPTION="
@@ -139,7 +139,7 @@ src_install() {
     fi
 
     if option systemd ; then
-        insinto /$(get_libdir)/systemd/system
+        insinto /${LIBDIR}/systemd/system
         if option mysql ; then
             edo cp "${FILES}"/systemd/mediatomb.service "${TEMP}"
             edo sed -i '/Requires=network.target/a\Requires=mysql.service' "${TEMP}"/mediatomb.service

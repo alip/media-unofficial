@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 MY_PNV=${PN}-v${PV}
-require multilib sourceforge
+require sourceforge
 
 SUMMARY="A console audio player"
 DESCRIPTION="
@@ -59,7 +59,7 @@ src_configure() {
     local s
     local configure_arguments=(
         prefix=/usr
-        libdir=/usr/$(get_libdir)
+        libdir=/usr/${LIBDIR}
         exampledir=/usr/share/doc/${PNV}/examples
         $(for s in "${SRC_CONFIGURE_OPTIONS[@]}"; do option_yesno ${s}; done)
     )

@@ -1,8 +1,6 @@
 # Copyright 2009 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib
-
 SUMMARY="The industry-standard colour ASCII-art library"
 DESCRIPTION="
 libcaca is a graphics library that outputs text
@@ -12,8 +10,8 @@ the following improvements:
     * Unicode support
     * 2048 available colours (some devices can only handle 16)
     * dithering of colour images
-    * advanced text canvas operations (blitting, rotations) 
-Libcaca works in a text terminal using the S-Lang or ncurses libraries. 
+    * advanced text canvas operations (blitting, rotations)
+Libcaca works in a text terminal using the S-Lang or ncurses libraries.
 "
 
 HOMEPAGE="http://caca.zoy.org/wiki/${PN}"
@@ -73,7 +71,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
 src_install() {
     default
     if optionq !java; then
-        edo rmdir "${IMAGE}"/usr/$(get_libdir)/jni
+        edo rmdir "${IMAGE}"/usr/${LIBDIR}/jni
         edo rmdir "${IMAGE}"/usr/share/java
     fi
 }

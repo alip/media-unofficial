@@ -3,8 +3,6 @@
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib
-
 MY_PNV="${PNV/amb/AMB}"
 
 SUMMARY="AMB LADSPA filter plugins by Fons Adriaensen"
@@ -38,7 +36,7 @@ src_prepare() {
 }
 
 src_install() {
-    insinto /usr/$(get_libdir)/ladspa
+    insinto /usr/${LIBDIR}/ladspa
     insopts -m0755
     doins *.so
     emagicdocs

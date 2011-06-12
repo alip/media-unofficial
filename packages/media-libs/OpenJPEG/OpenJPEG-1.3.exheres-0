@@ -1,8 +1,6 @@
 # Copyright 2009 Daniel Mierswa <impulze@impulze.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib
-
 MYPV="v$(ever replace_all _)"
 
 SUMMARY="Open-Source JPEG2000 Codec"
@@ -29,7 +27,7 @@ src_prepare() {
         -e "/COMPILERFLAGS =/s:-O3:$CFLAGS:" \
         -e "/CC =/s:gcc:${CC}:" \
         -e "/AR =/s:ar:${AR}:" \
-        -e "/INSTALL_LIBDIR =/s:\$(PREFIX)/lib:\$(PREFIX)/$(get_libdir):" \
+        -e "/INSTALL_LIBDIR =/s:\$(PREFIX)/lib:\$(PREFIX)/${LIBDIR}:" \
         -e "/\$(CC) -s -shared/s:\$: $LDFLAGS:" \
         -i Makefile \
         || die "sed Makefile failed"
