@@ -1,7 +1,7 @@
 # Copyright 2010 Jonathan Dahan <jedahan@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib sourceforge [ project=portmedia ]
+require sourceforge [ project=portmedia ]
 
 SUMMARY="a library for real time MIDI input and output"
 DOWNLOADS="mirror://sourceforge/portmedia/${PN}-src-${PV}.zip"
@@ -30,7 +30,7 @@ src_compile() {
 }
 
 src_install() {
-    emake -f pm_linux/Makefile DESTDIR="${IMAGE}" LIBDIR="$(get_libdir)" install
+    emake -f pm_linux/Makefile DESTDIR="${IMAGE}" LIBDIR="${LIBDIR}" install
     emagicdocs
 }
 
