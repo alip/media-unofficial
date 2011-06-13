@@ -70,10 +70,7 @@ DEPENDENCIES="
 WORK=${WORKBASE}/${MY_PNV}
 
 DEFAULT_SRC_PREPARE_PATCHES=(
-    -p0 "${FILES}"/${PNV}-noauto-ui-depend.patch
     -p1 "${FILES}"/${PNV}-build-plugins-fix.patch
-    -p1 "${FILES}"/${PNV}-dummy-sound-fix.patch
-    -p2 "${FILES}"/${PNV}-core-version-110.patch
 )
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
