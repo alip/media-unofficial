@@ -71,6 +71,7 @@ WORK=${WORKBASE}/${MY_PNV}
 
 DEFAULT_SRC_PREPARE_PATCHES=(
     -p1 "${FILES}"/${PNV}-build-plugins-fix.patch
+    -p1 "${FILES}"/${PNV}-new-x264.patch
 )
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
