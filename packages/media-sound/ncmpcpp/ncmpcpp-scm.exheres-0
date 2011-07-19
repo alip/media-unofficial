@@ -1,8 +1,0 @@
-# Copyright 2009 Ali Polatel <alip@exherbo.org>
-# Distributed under the terms of the GNU General Public License v2
-
-SCM_REPOSITORY="git://repo.or.cz/ncmpcpp.git"
-require ncmpcpp scm-git
-
-PLATFORMS="~amd64"
-
