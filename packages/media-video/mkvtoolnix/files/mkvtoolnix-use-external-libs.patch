@@ -2,10 +2,9 @@ From 858412eb5617b30ae1cecd6d520f5ec62bf8af8d Mon Sep 17 00:00:00 2001
 From: Paul Seidler <pl.seidler@gmail.com>
 Date: Sun, 24 Jul 2011 15:14:40 +0000
 Subject: [PATCH] don't use bundled libebml and libmatroska
-Upstream: no, upstream decided to use bundled lib versions
-    robUUUU: "basically because C++ libraries suck, so it's better to
-              link with the stuff you know"
-
+Upstream: no, upstream decided to use bundled lib versions as they
+          haven't enough manpower to check for compatibilities
+           
 ---
  configure.in |    6 +++---
  1 files changed, 3 insertions(+), 3 deletions(-)
