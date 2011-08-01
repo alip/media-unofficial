@@ -27,7 +27,7 @@ MYOPTIONS="
 DEPENDENCIES="
     build:
         dev-util/pkg-config
-
+        sys-devel/gettext[>=0.17]
     build+run:
         sys-sound/alsa-lib
 
@@ -49,7 +49,7 @@ DEPENDENCIES="
         vorbis?       ( media-libs/libvorbis[>=1.0] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gpl' '--with-alsa' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gpl' '--with-alsa' '--without-sndio' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'ffmpeg libswscale' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
     'X x'
