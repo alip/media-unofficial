@@ -44,7 +44,7 @@ DEPENDENCIES="
         dev-libs/openssl
         dev-libs/pcre
         media/ffmpeg
-        media-libs/SDL
+        media-libs/SDL[X]
         media-libs/SDL_mixer
         media-libs/SDL_image
         media-libs/a52dec
@@ -87,7 +87,7 @@ DEPENDENCIES="
         )
         !opengl? ( media-libs/SDL_gfx )
         pulseaudio? ( media-sound/pulseaudio )
-        vaapi? ( x11-libs/libva )
+        vaapi? ( x11-libs/libva[opengl] )
         vdpau? (
             media/ffmpeg[vdpau(-)]
             x11-libs/libvdpau
