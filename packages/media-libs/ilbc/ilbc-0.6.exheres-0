@@ -13,7 +13,7 @@ HOMEPAGE="http://www.webrtc.org/${PN}-freeware"
 DOWNLOADS="
 http://dev.exherbo.org/~tgurr/distfiles/${PN}/${PNV}.tar.bz2
 http://www.ietf.org/rfc/rfc3951.txt
-http://www.ilbcfreeware.org/documentation/extract-cfile.awk
+http://dev.exherbo.org/~eternaleye/extract-cfile.awk
 "
 
 LICENCES="GIPS-iLBC-Public-License"
