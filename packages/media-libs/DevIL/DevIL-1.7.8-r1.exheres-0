@@ -1,7 +1,9 @@
 # Copyright 2009 Daniel Mierswa <impulze@impulze.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ project=openil suffix=tar.gz ]
+require \
+    sourceforge [ project=openil suffix=tar.gz ] \
+    autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Cross-Platform, wide-spreaded, full-featured image library."
 DESCRIPTION="Developer's Image Library (DevIL) is a programmer's library to develop
@@ -50,7 +52,10 @@ DEPENDENCIES="
 
 WORK="$WORKBASE/${PN,,}-$PV"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-libpng-1.4-support.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/${PNV}-CXXFLAGS.patch"
+    "${FILES}/${PNV}-libpng-1.4-support.patch"
+)
 
 DEFAULT_SRC_CONFIGURE_PARAMS+=(
     --enable-ILU
@@ -79,6 +84,8 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'X render'
     'X x11'
 )
+
+AT_M4DIR=( m4 )
 
 src_install() {
     default
