@@ -26,7 +26,7 @@ BUGS_TO="jedahan@gmail.com"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
     build:

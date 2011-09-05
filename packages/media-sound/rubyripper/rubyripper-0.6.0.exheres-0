@@ -5,5 +5,5 @@ SCM_TAG=v${PV/_/}
 
 require $PN
 
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
