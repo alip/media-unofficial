@@ -4,7 +4,7 @@
 require sourceforge
 
 SUMMARY="A console based decoder/player for mono/stereo mpeg audio files"
-HOMEPAGE="http://www.mpg123.de"
+HOMEPAGE="http://www.${PN}.de"
 
 REMOTE_IDS+=" freshmeat:${PN}"
 
