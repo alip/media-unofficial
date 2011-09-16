@@ -1,7 +1,7 @@
 # Copyright 2008 Thomas Anderson
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2
+require gtk-icon-cache
 
 SUMMARY="A GTK+ client for MPD"
 DESCRIPTION="
