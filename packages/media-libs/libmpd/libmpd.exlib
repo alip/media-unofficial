@@ -24,7 +24,7 @@ DEPENDENCIES="
         dev-util/pkg-config
         doc? ( app-doc/doxygen[>=1.4.6] )
     build+run:
-        dev-libs/glib:2
+        dev-libs/glib:2[>=2.16]
 "
 
 src_compile() {
