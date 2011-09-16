@@ -15,7 +15,7 @@ it does:
 "
 HOMEPAGE="http://gmpc.wikia.com/wiki/Libmpd"
 
-LICENCES="GPL-3"
+LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="doc"
 
