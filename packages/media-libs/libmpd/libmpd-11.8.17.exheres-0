@@ -3,6 +3,6 @@
 
 require libmpd
 
-DOWNLOADS="http://download.sarine.nl/Programs/gmpc/${PV}/${PNV}.tar.gz"
+DOWNLOADS="http://download.sarine.nl/Programs/gmpc/$(ever range 1-2)/${PNV}.tar.gz"
 
 PLATFORMS="~amd64 ~x86"
