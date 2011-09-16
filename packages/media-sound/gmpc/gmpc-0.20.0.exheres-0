@@ -12,7 +12,7 @@ client. GMPC is:
 * Fast, even with a huge playlists and database.
 * Extendable, with many plugins available to extend GMPC's core functionality.
 "
-HOMEPAGE="http://gmpc.wikia.com/wiki/Gnome_Music_Player_Client"
+HOMEPAGE="http://gmpclient.org/"
 DOWNLOADS="http://download.sarine.nl/Programs/${PN}/${PV}/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
@@ -29,10 +29,10 @@ DEPENDENCIES="
     build+run:
         dev-db/sqlite:3
         dev-libs/glib:2[>=2.16]
-        x11-libs/gtk+:2[>=2.12]
-        media-libs/libmpd[>=0.19.2]
-        gnome-platform/libglade:2
         gnome-desktop/libsoup:2.4
+        gnome-platform/libglade:2
+        media-libs/libmpd[>=0.19.2]
+        x11-libs/gtk+:2[>=2.12]
         x11-libs/libsexy
 "
 
