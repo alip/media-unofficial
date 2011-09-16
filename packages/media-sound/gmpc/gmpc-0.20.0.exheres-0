@@ -18,7 +18,9 @@ DOWNLOADS="http://download.sarine.nl/Programs/${PN}/${PV}/${PNV}.tar.gz"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS=""
+MYOPTIONS="
+    xspf   [[ description = [ XSPF playlists ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -34,6 +36,7 @@ DEPENDENCIES="
         media-libs/libmpd[>=0.19.2]
         x11-libs/gtk+:2[>=2.12]
         x11-libs/libsexy
+        xspf? ( media-libs/libxspf )
 "
 
 BUGS_TO="gentoofan23@gentoo.org"
@@ -41,7 +44,9 @@ BUGS_TO="gentoofan23@gentoo.org"
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--enable-system-libsexy'
     '--enable-test'
-    '--disable-libxspf'
     '--disable-libspiff'
 )
 
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'xspf libxspf'
+)
