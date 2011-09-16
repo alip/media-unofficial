@@ -19,12 +19,22 @@ DOWNLOADS="http://download.sarine.nl/Programs/gmpc/${PV}/${PNV}.tar.gz"
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS=""
+MYOPTIONS="doc"
 
 DEPENDENCIES="
     build:
         dev-util/pkg-config
+        doc? ( app-doc/doxygen[>=1.4.6] )
     build+run:
         dev-libs/glib:2
 "
 
+src_compile() {
+    default
+    option doc && emake doc
+}
+
+src_install() {
+    default
+    option doc && dodoc -r doc/html
+}
