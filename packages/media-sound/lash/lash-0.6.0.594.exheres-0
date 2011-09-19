@@ -3,7 +3,7 @@
 
 SUMMARY="LASH is a session management system for GNU/Linux audio applications"
 HOMEPAGE="http://savannah.nongnu.org/projects/lash"
-DOWNLOADS="http://www.very-clever.com/download/nongnu/${PN}/${PN}-0.6.0~rc2.tar.bz2"
+DOWNLOADS="http://download.savannah.gnu.org/releases/lash/${PN}-0.6.0~rc2.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
