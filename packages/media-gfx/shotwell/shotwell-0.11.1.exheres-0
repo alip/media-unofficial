@@ -47,6 +47,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--disable-desktop-update'
     '--disable-icon-update'
     '--disable-schemas-install'
+    "--lib=${LIBDIR}"
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc help-install' )
 DEFAULT_SRC_COMPILE_PARAMS=( "VALAC=$(type -P valac-0.12)" )
