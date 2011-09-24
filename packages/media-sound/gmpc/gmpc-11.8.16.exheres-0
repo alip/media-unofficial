@@ -46,15 +46,14 @@ DEPENDENCIES="
 
 BUGS_TO="sardemff7+exherbo@sardemff7.net gentoofan23@gentoo.org"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    VALAC="$(type -P valac-0.12)"
-    '--disable-libspiff'
-    # The only encountered problem while running
-    # multiple instances is keybindings
-    # This issue affects other programs too
-    '--disable-unique'
-)
+src_configure() {
+    export VALAC="$(type -P valac-0.12)"
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'xspf libxspf'
-)
+    # The only encountered problem while running multiple instances are key bindings, this issue
+    # affects other programs too so we disable unique support
+    econf '--disable-libspiff' \
+        '--disable-unique' \
+        $(expecting_tests && echo '--enable-test' || echo '--disable-test' ) \
+        $(option_enable xspf libxspf)
+}
+
