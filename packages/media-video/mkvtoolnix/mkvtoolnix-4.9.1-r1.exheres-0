@@ -28,6 +28,7 @@ DEPENDENCIES="
         media-libs/libmatroska[>=1.1.0]
         media-libs/libogg
         media-libs/libvorbis
+        net-misc/curl [[ note = [ automagic for update check ] ]]
         sys-apps/file
         sys-libs/zlib
         flac? ( media-libs/flac )
