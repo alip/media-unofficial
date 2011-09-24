@@ -13,7 +13,7 @@ client. GMPC is:
 * Extendable, with many plugins available to extend GMPC's core functionality.
 "
 HOMEPAGE="http://gmpclient.org/"
-DOWNLOADS="http://download.sarine.nl/Programs/${PN}/${PV}/${PNV}.tar.gz"
+DOWNLOADS="http://download.sarine.nl/Programs/${PN}/$(ever range 1-2)/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -21,6 +21,11 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
     xspf   [[ description = [ XSPF playlists ] ]]
 "
+
+# Release 11.8.16 - 2011-09-24
+# build time error:
+#     "undefined reference to `preferences_window_update'"
+RESTRICT="test"
 
 DEPENDENCIES="
     build:
@@ -30,21 +35,24 @@ DEPENDENCIES="
         sys-devel/gettext
     build+run:
         dev-db/sqlite:3
+        dev-lang/vala:0.12
         dev-libs/glib:2[>=2.16]
         gnome-desktop/libsoup:2.4
         gnome-platform/libglade:2
-        media-libs/libmpd[>=0.19.2]
+        media-libs/libmpd[>=11.8.17]
         x11-libs/gtk+:2[>=2.12]
-        x11-libs/libsexy
         xspf? ( media-libs/libxspf )
 "
 
-BUGS_TO="gentoofan23@gentoo.org"
+BUGS_TO="sardemff7+exherbo@sardemff7.net gentoofan23@gentoo.org"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--enable-system-libsexy'
-    '--enable-test'
+    VALAC="$(type -P valac-0.12)"
     '--disable-libspiff'
+    # The only encountered problem while running
+    # multiple instances is keybindings
+    # This issue affects other programs too
+    '--disable-unique'
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
