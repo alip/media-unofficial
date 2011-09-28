@@ -12,7 +12,7 @@ BUGS_TO="michael@obberon.com"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="aac avahi opengl pulseaudio
 
     http    [[ description = [ Support for control over HTTP ] ]]
