@@ -96,6 +96,8 @@ DEPENDENCIES="
         x11-apps/xdpyinfo
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-gcc-4.6.patch )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --disable-hal
     --enable-external-libraries
