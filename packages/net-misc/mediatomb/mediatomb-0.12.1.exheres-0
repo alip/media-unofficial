@@ -96,6 +96,7 @@ DEPENDENCIES="
         taglib?       ( media-libs/taglib )
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-gcc46.patch )
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --hates=docdir
     --enable-external-transcoding
