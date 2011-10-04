@@ -71,7 +71,7 @@ MYOPTIONS="
     (
         mysql  [[ description = [ Store data using MySQL ] ]]
         sqlite [[ description = [ Store data using SQLite ] ]]
-    ) [[ number-selected = at-most-one ]]
+    ) [[ number-selected = exactly-one ]]
 "
 
 DEPENDENCIES="
