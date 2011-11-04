@@ -25,6 +25,8 @@ DEPENDENCIES="
         speex? ( media-libs/speex )
         ao? ( media-libs/libao[>=0.8.5] )
         user/timidity
+    suggestion:
+        media-sound/timidity-freepats [[ description = [ instruments ] ]]
 "
 
 BUGS_TO="adriaan@leijnse.net"
