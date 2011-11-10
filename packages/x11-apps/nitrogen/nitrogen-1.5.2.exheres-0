@@ -26,4 +26,4 @@ DEPENDENCIES="
             nls? ( sys-devel/gettext )"
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( xinerama nls inotify )
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-fix-disable-inotify.patch )
+
