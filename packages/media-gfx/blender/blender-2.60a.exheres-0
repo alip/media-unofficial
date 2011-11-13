@@ -2,10 +2,9 @@
 # Copyright 2011 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_REPOSITORY="https://svn.blender.org/svnroot/bf-blender"
-SCM_SUBPATH="/blender"
+require blender
 
-require blender scm-svn
+DOWNLOADS="http://mirror.cs.umn.edu/blender.org/source/${PNV}.tar.gz"
 
 PLATFORMS="~amd64"
 
