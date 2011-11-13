@@ -3,55 +3,68 @@
 
 require sourceforge
 
-SUMMARY="GTK2 mp3/ogg/flac/ape/sid/mod/nsf/m4a/mpc/shn music player"
+SUMMARY="GTK2 mp3/ogg/flac/ape/sid/mod/nsf/m4a/mpc music player"
 
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
     aac
-    ape      [[ description = [ monkey's audio (.ape) support ] ]]
-    cdda     [[ description = [ CD-Audio support ] ]]
+    ape       [[ description = [ Monkey's audio (.ape) support ] ]]
+    cdda      [[ description = [ CD-Audio support ] ]]
+    converter [[
+        description = [ Convert from any supported format ]
+	    requires = gtk
+    ]]
     curl
     dts
-    ffmpeg   [[ description = [ wma, mpc, tta, mms support ] ]]
+    ffmpeg    [[ description = [ wma, mpc, tta, mms support ] ]]
     flac
-    game     [[ description = [ sid, psf, mod, nfs, ay, s3m, support ] ]]
-    lastfm   [[
+    game      [[ description = [ sid, nfs, ay, support ] ]]
+    gtk
+    lastfm    [[
         description = [ last.fm/libre.fm scrobbler ]
         requires = curl
     ]]
-    midi     [[ description = [ MIDI music format support ] ]]
+    m3u       [[ description = [ m3u support ] ]]
+    midi      [[ description = [ MIDI music format support ] ]]
     mp3
     musepack
-    notify   [[ description = [ notification-daemon support ] ]]
-    shn      [[ description = [ shorten audio format support ] ]]
+    notify    [[ description = [ Notification-daemon support ] ]]
     vorbis
-    vtx      [[ description = [ VTX ZX-Spectrum music format support ] ]]
-    wavpack  [[ description = [ wavepack audio format support ] ]]
+    vtx       [[ description = [ VTX ZX-Spectrum music format support ] ]]
+    wavpack   [[ description = [ Wavepack audio format support ] ]]
+    zip       [[ description = [ Zip archives support ] ]]
 
     ( alsa oss pulseaudio ) [[ number-selected = at-least-one ]]
 "
 
 DEPENDENCIES="
     build:
+        dev-util/intltool
+        dev-util/pkg-config
+    build+run:
         media-libs/libsamplerate
         media-libs/libsndfile
-        x11-libs/gtk+[>=2.12]
 
         aac?        ( media-libs/faad2 )
         alsa?       ( sys-sound/alsa-lib )
         cdda?       ( dev-libs/libcdio media-libs/libcddb )
         curl?       ( net-misc/curl[>=7.10] )
-        ffmpeg?     ( media/ffmpeg )
+        ffmpeg?     ( media/ffmpeg[<0.8] )
         flac?       ( media-libs/flac )
         game?       ( sys-libs/zlib )
+        gtk?        ( x11-libs/gtk+:2[>=2.12] )
         mp3?        ( media-libs/libmad )
         notify?     ( sys-apps/dbus )
         oss?        ( media-libs/oss )
         pulseaudio? ( media-sound/pulseaudio )
         vorbis?     ( media-libs/libvorbis media-libs/libogg )
         wavpack?    ( media-sound/wavpack )
+        zip?        (
+            app-arch/libzip
+            sys-libs/zlib
+        )
 "
 
 BUGS_TO="jedahan@gmail.com"
@@ -62,24 +75,25 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'alsa'
     'ape ffap'
     'cdda'
+    'converter'
     'curl vfs-curl'
     'dts dca'
     'ffmpeg'
     'flac'
-    'game ao'
-    'game dumb'
     'game gme'
     'game sid'
+    'gtk gtkui'
     'lastfm lfm'
     'midi wildmidi'
+    'm3u'
     'mp3 mad'
     'musepack'
     'notify'
     'oss'
     'pulseaudio pulse'
-    'shn'
     'vorbis'
     'vtx'
     'wavpack'
+    'zip vfs-zip'
 )
 
