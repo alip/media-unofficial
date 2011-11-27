@@ -1,7 +1,7 @@
 # Copyright 2009 Michael Forney
 # Distributed under the terms of the GNU General Public License v2
 
-require launchpad [ branch=trunk ]
+require sourceforge [ suffix=tar.gz ]
 
 SUMMARY="LibMMS is a common library for parsing mms:// and mmsh:// type network streams"
 
