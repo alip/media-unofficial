@@ -4,7 +4,7 @@
 SUMMARY="A simple library designed for accessing DVDs"
 DESCRIPTION="libdvdcss allows you to access a DVD as if it were a block device,
 without having to bother about the encryption."
-HOMEPAGE="http://www.videolan.org/developers/libdvdcss.html"
+HOMEPAGE="http://www.videolan.org/developers/${PN}.html"
 DOWNLOADS="mirror://videolan/${PN}/${PV}/${PNV}.tar.bz2"
 
 LICENCES="GPL-2 GPL-3"
@@ -12,7 +12,20 @@ SLOT="1.2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
-DEPENDENCIES=""
-DEFAULT_SRC_CONFIGURE_PARAMS=( "--enable-shared" )
+DEPENDENCIES="
+    build:
+        doc? ( app-doc/doxygen )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-shared )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc )
+
+src_install() {
+    default
+
+    if option doc ; then
+        insinto /usr/share/doc/${PNVR}/html
+        doins -r doc/html/*
+    fi
+}
 
