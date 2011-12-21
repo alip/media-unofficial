@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require googlecode [ project='webp' suffix='tar.gz' ]
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Google's WebP image format library and tools"
 DESCRIPTION="
