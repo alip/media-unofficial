@@ -8,7 +8,7 @@ DESCRIPTION="
 gexiv2 is a GObject-based wrapper around the Exiv2 library. It makes the basic features of Exiv2
 available to GNOME applications.
 "
-HOMEPAGE="http://trac.yorba.org/wiki/${PN}"
+HOMEPAGE="http://redmine.yorba.org/projects/${PN}/wiki"
 DOWNLOADS="http://yorba.org/download/${PN}/$(ever range 1-2)/${MY_PNV}.tar.bz2"
 
 LICENCES="GPL-2"
