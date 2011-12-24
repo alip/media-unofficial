@@ -1,0 +1,8 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="git://github.com/sahib/${PN}.git"
+
+require glyr scm-git
+
+PLATFORMS="~amd64"

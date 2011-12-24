@@ -1,0 +1,42 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake
+
+SUMMARY="A music related metadata searchengine, both with commandline interface and C API"
+DESCRIPTION="
+The finest search you can buy for no money
+
+It comes both in a commandline interface tool and as a C library, both with an easy to use
+interface. The sort of metadata glyr is searching (and downloading) is usually the data you
+see in your musicplayer. And indeed, originally it was written to serve as internally library
+for a musicplayer, but has been extended to work as a standalone program which is able to
+download:
+* cover art
+* lyrics
+* bandphotos
+* artist biography
+* album reviews
+* tracklists of an album
+* a list of albums from a specific artist.
+* Tags, either related to artist, album or title
+* relations, for example links to wikipedia
+* similar artists
+* similar songs
+"
+HOMEPAGE="https://github.com/sahib/${PN}"
+
+LICENCES="GPL-3"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib[>=2.10]
+        net-misc/curl
+"
+
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DSWIG_RUBY:BOOL=FALSE
+)
