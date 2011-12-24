@@ -1,6 +1,8 @@
 # Copyright 2008 Thomas Anderson
 # Distributed under the terms of the GNU General Public License v2
 
+export_exlib_phases src_compile src_install
+
 SUMMARY="A loadable library to interface to mpd"
 DESCRIPTION="
 libmpd is a loadable library built around libmpdclient. The main goal of libmpd is to provide a
@@ -27,12 +29,12 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.16]
 "
 
-src_compile() {
+libmpd_src_compile() {
     default
     option doc && emake doc
 }
 
-src_install() {
+libmpd_src_install() {
     default
     option doc && dodoc -r doc/html
 }
