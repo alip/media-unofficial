@@ -1,0 +1,33 @@
+Source: Elias Pipping <pipping@exherbo.org>
+Upstream: no
+Reason: Fix compilation with clang
+--- libmp4v2-1.5.0.1/test/nullvplayer.cpp
++++ libmp4v2-1.5.0.1/test/nullvplayer.cpp
+@@ -22,6 +22,7 @@
+ #include "mp4.h"
+ #include <mpeg4ip.h>
+ 
++int
+ main(int argc, char** argv)
+ {
+ 	if (argc < 2) {
+--- libmp4v2-1.5.0.1/test/nullcreate.cpp
++++ libmp4v2-1.5.0.1/test/nullcreate.cpp
+@@ -25,6 +25,7 @@
+ #endif
+ #include <mpeg4ip.h>
+ 
++int
+ main(int argc, char** argv)
+ {
+ #if 1
+--- libmp4v2-1.5.0.1/test/urltrack.cpp
++++ libmp4v2-1.5.0.1/test/urltrack.cpp
+@@ -22,6 +22,7 @@
+ #include "mp4.h"
+ #include <mpeg4ip.h>
+ 
++int
+ main(int argc, char** argv)
+ {
+ 	if (argc < 2) {

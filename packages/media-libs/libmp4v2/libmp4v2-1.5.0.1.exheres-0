@@ -16,7 +16,10 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fix-build-with-glibc-2.10.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/${PNV}-fix-build-with-glibc-2.10.patch"
+    "${FILES}/${PNV}-fix-build-with-clang.patch"
+)
 DEPENDENCIES=""
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=docdir )
