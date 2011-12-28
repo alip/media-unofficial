@@ -17,5 +17,5 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        media-libs/libmp4v2"
+        media-libs/libmp4v2[<1.9]"
 
