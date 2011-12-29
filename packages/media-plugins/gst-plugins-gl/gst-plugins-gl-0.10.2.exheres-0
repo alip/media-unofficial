@@ -9,7 +9,7 @@ DOWNLOADS="http://gstreamer.freedesktop.org/src/${PN}/${PNV}.tar.bz2"
 
 LICENCES="LGPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
 DEPENDENCIES="
