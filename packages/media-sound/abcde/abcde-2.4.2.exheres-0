@@ -13,17 +13,17 @@ MYOPTIONS="aac flac mp3 normalize speex vorbis"
 
 DEPENDENCIES="
     run:
-	    media-sound/cd-discid
-    	sys-apps/eject
-    	aac? ( media-libs/faac )
-    	flac? ( media-libs/flac )
-    	mp3? ( media-sound/lame )
+        media-sound/cd-discid
+        sys-apps/eject
+        aac? ( media-libs/faac )
+        flac? ( media-libs/flac )
+        mp3? ( media-sound/lame )
         normalize? ( media-sound/normalize )
         speex? ( media-libs/speex )
         vorbis? ( media-sound/vorbis-tools )
 
     recommendation:
-    	media/cdparanoia
+        media/cdparanoia
         vorbis? ( media-sound/vorbisgain )
 
     suggestion:

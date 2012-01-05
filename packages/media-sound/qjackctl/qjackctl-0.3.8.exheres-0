@@ -1,0 +1,40 @@
+# Copryight 2010 Adriaan Leijnse <adriaan@leijnse.net>
+# Copyright 2009 Ali Polatel <alip@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tar.gz ]
+
+SUMMARY="A simple Qt application to control the JACK sound server daemon"
+DESCRIPTION="
+Provides a simple GUI dialog for setting several JACK daemon parameters, which
+are properly saved between sessions, and a way control of the status of the
+audio server daemon. With time, this primordial interface has become richer by
+including a enhanced patchbay and connection control features.
+"
+
+BUGS_TO="alip@exherbo.org"
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    debug
+    dbus [[ description = [ Jackdbus/jack2 support ] ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        sys-sound/alsa-lib
+        media-sound/jack-audio-connection-kit[dbus?]
+        x11-libs/qt:4
+        dbus? ( sys-apps/dbus )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --enable-alsa-seq
+    --enable-jack-midi
+    --enable-system-tray
+    --disable-portaudio
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug dbus )
+DEFAULT_SRC_COMPILE_PARAMS=( -j1 )
+

@@ -1,0 +1,12 @@
+# Copyright 2010 Yury G. Kudryashov
+# Distributed under the terms of the GNU General Public License v2
+
+require mediastreamer
+
+PLATFORMS="~amd64 ~x86"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    -p1 "${FILES}"/${PNV}-sdl-build.patch
+    -p0 "${FILES}"/${PNV}-v4l-automagic.patch
+)
+

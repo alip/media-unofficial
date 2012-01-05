@@ -1,0 +1,40 @@
+# Copyright 2011 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PNV="${PN%%-plugins}-${PV}"
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Free video effect plugins"
+DESCRIPTION="
+Frei0r is a minimalistic plugin API for video effects.
+
+The main emphasis is on simplicity for an API that will round up the most common video effects into
+simple filters, sources and mixers that can be controlled by parameters.
+"
+HOMEPAGE="http://frei0r.dyne.org/"
+DOWNLOADS="ftp://ftp.dyne.org/frei0r/releases/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    facebl0r [[ description = [ Activates the OpenCV-based facebl0r effect ] ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        facebl0r? ( media-libs/opencv[>=1.0.0] )
+"
+
+UPSTREAM_DOCUMENTATION="${HOMEPAGE}/codedoc/html"
+
+REMOTE_IDS="freshmeat:frei0r"
+
+WORK="${WORKBASE}/${MY_PNV}"
+
+DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/${PNV}-Bad-automagic-deps.patch" )
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'facebl0r' )
+
+

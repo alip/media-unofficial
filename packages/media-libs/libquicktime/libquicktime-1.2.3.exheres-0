@@ -1,0 +1,75 @@
+# Copyright 2009 Thomas Anderson
+# Distributed under the terms of the GNU General Public License
+
+require sourceforge [ suffix=tar.gz ]
+
+SUMMARY="A library for reading and writing QuickTime/AVI/MP4 files"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+    X
+    aac
+    doc
+    dv
+    ffmpeg
+    gtk
+    h264
+    jpeg
+    mp3          [[ description = [ Support MP3 encoding with LAME ] ]]
+    opengl
+    png
+    schroedinger [[ description = [ Support Dirac encoding and decoding ] ]]
+    vorbis
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        sys-devel/gettext[>=0.17]
+    build+run:
+        sys-sound/alsa-lib
+
+        X?            ( x11-libs/libXaw )
+        aac?          (
+            media-libs/faac[>=1.24]
+            media-libs/faad2[>=2.0]
+        )
+        doc?          ( app-doc/doxygen )
+        dv?           ( media-libs/libdv[>=0.102] )
+        ffmpeg?       ( media/ffmpeg )
+        gtk?          ( x11-libs/gtk+:2[>=2.4.0] )
+        h264?         ( media-libs/x264 )
+        jpeg?         ( media-libs/jpeg[>=6b] )
+        mp3?          ( media-sound/lame[>=3.93] )
+        opengl?       ( x11-dri/mesa )
+        png?          ( media-libs/libpng[>=1.2.23] )
+        schroedinger? ( media-libs/schroedinger[>=1.0.5] )
+        vorbis?       ( media-libs/libvorbis[>=1.0] )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gpl' '--with-alsa' '--without-sndio' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'ffmpeg libswscale' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    'X x'
+    'aac faac'
+    'aac faad2'
+    'doc doxygen'
+    'dv libdv'
+    'ffmpeg'
+    'gtk'
+    'h264 x264'
+    'jpeg libjpeg'
+    'mp3 lame'
+    'opengl'
+    'png libpng'
+    'schroedinger'
+    'vorbis vorbis /usr'
+)
+
+src_install() {
+    default
+    option X || edo rmdir "${IMAGE}"/usr/share/man/{man1,}
+}
+

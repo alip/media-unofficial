@@ -14,7 +14,7 @@ IEC 61834 and SMPTE 314M.
 
 LICENCES="LGPL-2.1"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="sdl xv
     ( sdl xv ) [[ number-selected = at-least-one ]]
 "

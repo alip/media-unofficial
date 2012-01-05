@@ -1,0 +1,56 @@
+# Copyright 2010-2011 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PN="LibRaw"
+
+SUMMARY="RAW decoding/processing library"
+DESCRIPTION="
+LibRaw is a library for reading RAW files obtained from digital photo cameras (CRW/CR2, NEF, RAF,
+DNG, and others).
+"
+HOMEPAGE="http://www.${PN}.org"
+DOWNLOADS="
+    ${HOMEPAGE}/data/${MY_PN}-${PV}.tar.gz
+    demosaic? ( ${HOMEPAGE}/data/${MY_PN}-demosaic-pack-GPL2-${PV}.tar.gz
+                ${HOMEPAGE}/data/${MY_PN}-demosaic-pack-GPL3-${PV}.tar.gz )
+"
+
+LICENCES="LGPL-2.1 CDDL-1.0 demosaic? ( GPL-2 GPL-3 )"
+SLOT="0"
+MYOPTIONS="
+    demosaic [[ description = [ Installs some additional image correction methods ] ]]
+    lcms openmp
+"
+
+DEPENDENCIES="
+    build+run:
+        sys-devel/gcc[openmp(+)?]
+        lcms? ( media-libs/lcms )
+"
+
+WORK="${WORKBASE}/${MY_PN}-${PV}"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-examples' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'demosaic demosaic-pack-gpl2'
+    'demosaic demosaic-pack-gpl3'
+    'lcms'
+    'openmp'
+)
+
+if ever at_least 0.14.0 ; then
+    MYOPTIONS+="jpeg2000"
+
+    DEPENDENCIES+="
+        build+run:
+            jpeg2000? ( media-libs/jasper )
+    "
+
+    DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=( 'jpeg2000 jasper' )
+fi
+
+src_install() {
+    default
+    edo rmdir "${IMAGE}"/usr/bin
+}
+

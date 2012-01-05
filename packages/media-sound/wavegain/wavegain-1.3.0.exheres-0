@@ -1,0 +1,48 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'wavegain-1.2.8.ebuild', which is:
+#   Copyright 1999-2009 Gentoo Foundation
+
+SUMMARY="ReplayGain for WAVE audio files"
+DESCRIPTION="WaveGain is an application of the ReplayGain algorithms to
+standard PCM wave files. Where it differs from the other applications of this
+principle is that the gain adjustments are applied directly to adjusting the 
+scaling of the samples. In other words, the option to write tags that can be 
+read by other applications to apply the gain adjustment does not exist, so the 
+adjustments are made directly to the data within the file.
+
+Therefore, in the strictest meaning of the word, this process is NOT lossless. 
+However, with the application of dithering to the output, the losses can be 
+minimized and are, in any event, unlikely to be audible to the human ear.
+
+So in simple terms, the program reads in wave files, analyses them, calculates 
+and displays recommended gain adjustments (track and album), and then applies 
+the adjustments directly to the wave data, if requested.
+"
+HOMEPAGE="http://www.rarewares.org/files/others"
+DOWNLOADS="${HOMEPAGE}/${PNV}srcs.zip"
+
+BUGS_TO="jedahan@gmail.com"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        app-arch/unzip
+    build+run:
+        media-libs/libsndfile
+"
+
+WORK=${WORKBASE}/${PNV/wavegain/WaveGain}
+
+src_compile(){
+    edo "${CC}" ${LDFLAGS} ${CFLAGS} *.c -o ${PN} \
+    -DHAVE_CONFIG_H -lm -lsndfile
+}
+
+src_install(){
+    dobin ${PN}
+}
+

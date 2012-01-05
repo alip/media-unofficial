@@ -1,20 +1,22 @@
 # Copyright 2009 Michael Forney
+# Copyright 2011 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require cmake freedesktop-desktop
+require cmake [ cmake_minimum_version=2.8 ] freedesktop-desktop python [ python_dep=3.2 ]
 
 export_exlib_phases src_install
+
+# FIXME: Tests fire tons of sydbox violations
+RESTRICT="test"
 
 SUMMARY="Blender is the free open source 3D content creation suite"
 HOMEPAGE="http://blender.org"
 
 REMOTE_IDS="freshmeat:${PN}"
 
-BUGS_TO="michael@obberon.com"
-
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="ffmpeg jpeg2000 openal openexr
+MYOPTIONS="ffmpeg fftw jack jpeg2000 openal openexr sdl sndfile tiff
 
     bullet      [[ description = [ Support for the bullet physics engine ] ]]
     elbeem      [[ description = [ Support for the El'Beem fluid simulation library ] ]]
@@ -23,54 +25,64 @@ MYOPTIONS="ffmpeg jpeg2000 openal openexr
         description = [ Build the standalone blender player ]
         requires = [ gameengine ]
     ]]
-    verse       [[ description = [ Support for the Verse network protocol ] ]]
 "
 
 DEPENDENCIES="
     build:
+        dev-util/intltool
         sys-devel/gettext
     build+run:
-        dev-lang/python
         media-libs/freetype
+        media-libs/glew
         media-libs/jpeg
         media-libs/libpng
         sys-libs/zlib
         x11-dri/mesa
         x11-libs/libX11
         x11-libs/libXi
-
+        x11-proto/xproto
         ffmpeg?     ( media/ffmpeg )
+        fftw?       ( sci-libs/fftw[>=3.0] )
+        jack?       ( media-sound/jack-audio-connection-kit )
+        jpeg2000?   ( media-libs/OpenJPEG )
         openal?     ( media-libs/openal )
         openexr?    ( media-libs/openexr )
+        sdl?        ( media-libs/SDL )
+        sndfile?    ( media-libs/libsndfile )
+        tiff?       ( media-libs/tiff )
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DWITH_BUILTIN_GLEW:BOOL=FALSE
+    -DWITH_INPUT_NDOF:BOOL=FALSE
+    -DWITH_INSTALL_PORTABLE:BOOL=FALSE
     -DWITH_INTERNATIONAL:BOOL=TRUE
     -DWITH_OPENMP:BOOL=FALSE
-    -DWITH_WEBPLUGIN:BOOL=FALSE # Needs npupp.h, I don't know what provides this
+    -DWITH_PYTHON_INSTALL:BOOL=FALSE
 )
 
 CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
     BULLET
-    ELBEEM
-    FFMPEG
+    'elbeem MOD_FLUID'
+    'ffmpeg CODEC_FFMPEG'
     GAMEENGINE
-    "jpeg2000 OPENJPEG"
+    'fftw FFTW3'
+    JACK
+    'jpeg2000 IMAGE_OPENJPEG'
     OPENAL
-    OPENEXR
+    'openexr IMAGE_OPENEXR'
     PLAYER
-    VERSE
+    SDL
+    'sndfile CODEC_SNDFILE'
+    'tiff IMAGE_TIFF'
 )
 
 blender_src_install() {
-    insinto /usr/share/applications/
-    doins release/freedesktop/blender.desktop
+    cmake_src_install
 
-    for resolution in 16x16 22x22 32x32 ; do
-        insinto /usr/share/icons/hicolor/${resolution}/apps/
-        doins release/freedesktop/icons/${resolution}/blender.png
-    done
-    insinto /usr/share/icons/hicolor/scalable/apps/
-    doins release/freedesktop/icons/scalable/blender.svg
+    edo rmdir "${IMAGE}"/usr/share/doc/${PNV}
+    edo mv "${IMAGE}"/usr/share/doc/${PN}{,"-${PV}"}
+
+    ever at_least 2.61 && keepdir /usr/share/blender/2.61/scripts/addons_contrib
 }
 

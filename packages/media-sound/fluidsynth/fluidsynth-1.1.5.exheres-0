@@ -1,0 +1,58 @@
+# Copyright 2009-2011 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge
+
+SUMMARY="FluidSynth is a real-time software synthesizer based on the SoundFont 2 specifications."
+DESCRIPTION="
+FluidSynth is a real-time software synthesizer based on the SoundFont 2 specifications.
+
+Features
+
+    * Cross platform support (Linux, Mac OSX and Windows to name a few)
+    * SoundFont 2 support
+    * Realtime effect modulation using SoundFont 2.01 modulators
+    * Shared library which can be used in other programs
+    * Built in command line shell
+    * Playback of MIDI files 
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="alsa dbus jack ladspa lash libsndfile portaudio pulseaudio readline"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib:2[>=2.6.5]
+        alsa? ( sys-sound/alsa-lib[>=0.9.1] )
+        dbus? ( sys-apps/dbus[>=1.0.0] )
+        jack? ( media-sound/jack-audio-connection-kit )
+        ladspa? ( media-libs/ladspa-sdk )
+        lash? ( media-sound/lash[>=0.3] )
+        libsndfile? ( media-libs/libsndfile )
+        portaudio? ( media-libs/portaudio[>=19] )
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.8] )
+        readline? ( sys-libs/readline )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-dart' # OS/2
+    '--disable-ladcca' # Deprecated
+    '--disable-coreaudio' # Mac OS X
+    '--disable-coremidi' # Mac OS X
+)
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    'readline'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'alsa alsa-support'
+    'dbus dbus-support'
+    'jack jack-support'
+    'ladspa'
+    'lash'
+    'libsndfile linsndfile-support'
+    'portaudio portaudio-support'
+    'pulseaudio pulse-support'
+)
+

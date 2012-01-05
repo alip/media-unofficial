@@ -3,8 +3,6 @@
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-require multilib
-
 MY_PNV=caps-${PV}
 SUMMARY="The CAPS Audio Plugin Suite"
 DESCRIPTION="
@@ -32,7 +30,7 @@ src_compile() {
 }
 
 src_install() {
-    insinto /usr/$(get_libdir)/ladspa
+    insinto /usr/${LIBDIR}/ladspa
     insopts -m0755
     doins *.so
 

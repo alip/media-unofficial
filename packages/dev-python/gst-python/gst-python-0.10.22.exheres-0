@@ -1,0 +1,30 @@
+# Copyright 2009 Sterling X. Winter <sterling.winter@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'gst-python-0.10.13.ebuild' from Gentoo, which is:
+#     Copyright 1999-2008 Gentoo Foundation
+
+require python [ python_dep=2.4 ]
+
+SUMMARY="GStreamer Python bindings"
+HOMEPAGE="http://gstreamer.freedesktop.org/"
+DOWNLOADS="http://gstreamer.freedesktop.org/src/${PN}/${PNV}.tar.bz2"
+
+LICENCES="LGPL-2"
+SLOT="0.10"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libxml2:2.0
+        media-libs/gstreamer:0.10[>=0.10.32]
+        media-plugins/gst-plugins-base:0.10[>=0.10.32]
+        || (
+            gnome-bindings/pygobject:2[>=2.16.0]
+            gnome-bindings/pygtk:2[>=2.6.3]
+        )
+"
+
+# Tests broken with Python 2.6 and current GObject API
+RESTRICT="test"
+

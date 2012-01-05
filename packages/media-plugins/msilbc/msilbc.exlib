@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="iLBC plugin for mediastreamer2 (media-libs/mediastreamer)"
-HOMEPAGE="http://www.linphone.org/index.php/eng/code_review/mediastreamer2"
+HOMEPAGE="http://www.linphone.org/"
 DOWNLOADS="mirror://savannah/linphone/plugins/sources/${PNV}.tar.gz"
 
 LICENCES="GPL-2 GIPS-iLBC-Public-License [[ note = [ These libraries are not compatible. The package
@@ -14,8 +14,9 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.9.0]
     build+run:
+        media-libs/ilbc[>=0.6]
         media-libs/mediastreamer[>=2.0.0]
-        media-libs/ilbc
+        net-libs/ortp[>=0.16.0]
 "
 
 BUGS_TO="urkud@ya.ru"

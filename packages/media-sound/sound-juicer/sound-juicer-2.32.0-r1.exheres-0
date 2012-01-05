@@ -1,0 +1,64 @@
+# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2 autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Gstreamer-based CD ripper"
+DESCRIPTION="
+Sound Juicer is a clean, mean, and lean CD ripper for GNOME 2.
+"
+HOMEPAGE="http://www.burtonini.com/blog/computers/sound-juicer"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="gtk3"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        gnome-base/gnome-common
+        gnome-desktop/gnome-doc-utils
+        sys-devel/gettext
+    build+run:
+        dev-libs/dbus-glib:1
+        dev-libs/glib:2[>=2.18]
+        dev-libs/libcdio[>=0.70]
+        dev-util/glade[>=2.0]
+        gnome-platform/GConf:2
+        media-libs/gstreamer:0.10[>=0.10.15]
+        media-libs/libmusicbrainz:3[>=3.0.2]
+        media-plugins/gst-plugins-base:0.10
+        gtk3? (
+            gnome-desktop/brasero:3
+            gnome-desktop/libgnome-media-profiles:3.0
+            media-libs/libcanberra[gtk3]
+            x11-libs/gtk+:3[>=2.90]
+        )
+        !gtk3? (
+            gnome-desktop/brasero:0[>=2.26]
+            gnome-desktop/gnome-media:0[>=2.11.91]
+            media-libs/libcanberra[gtk]
+            x11-libs/gtk+:2[>=2.20]
+        )
+    recommendation:
+        media-plugins/gst-plugins-base:0.10[gstreamer_plugins:vorbis]
+        media-plugins/gst-plugins-good:0.10[gstreamer_plugins:flac]
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/${PNV}-fix_configure_in.patch"
+    "${FILES}/${PNV}-new-gdk-key-names.patch"
+)
+
+src_prepare() {
+    option gtk3 && expatch "${FILES}/${PNV}-gtk3.patch"
+    autotools_src_prepare
+}
+
+src_configure() {
+    local with_gtk='2.0'
+    option gtk3 && with_gtk='3.0'
+    econf --with-gtk="${with_gtk}"
+}
+

@@ -1,0 +1,28 @@
+# Copyright 2010 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PNV="lib${PNV}"
+
+SUMMARY="GObject wrapper for Exiv2"
+DESCRIPTION="
+gexiv2 is a GObject-based wrapper around the Exiv2 library. It makes the basic features of Exiv2
+available to GNOME applications.
+"
+HOMEPAGE="http://redmine.yorba.org/projects/${PN}/wiki"
+DOWNLOADS="http://yorba.org/download/${PN}/$(ever range 1-2)/${MY_PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib:2
+        graphics/exiv2[>=0.21]
+"
+
+WORK="${WORKBASE}/${MY_PNV}"
+
+DEFAULT_SRC_INSTALL_PARAMS=( "LIB=${LIBDIR}" )
+

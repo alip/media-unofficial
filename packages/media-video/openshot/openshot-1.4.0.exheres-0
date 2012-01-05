@@ -1,0 +1,58 @@
+# Copyright 2011 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.5 has_bin=true has_lib=false ]
+require freedesktop-desktop freedesktop-mime launchpad
+
+SUMMARY="OpenShot Video Editor"
+DESCRIPTION="
+OpenShot Video Editor is a program that creates, modifies, and edits video files.
+"
+HOMEPAGE="http://www.${PN}.org"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    run:
+        dev-python/httplib2
+        dev-python/Imaging
+        dev-python/pygoocanvas
+        dev-python/pyxdg
+        gnome-bindings/pygtk:2
+        gnome-desktop/librsvg:2
+        media/ffmpeg
+        media/mlt[python]
+        media-libs/fontconfig
+        media-libs/SDL[pulseaudio]
+        media-libs/x264
+        media-sound/sox
+        x11-libs/gtk+:2
+        x11-libs/goocanvas
+    recommendation:
+        media-gfx/blender[>=2.56] [[ description = [ For creation of animated titles ] ]]
+        media-gfx/inkscape        [[ description = [ For advanced edition of titles  ] ]]
+"
+
+REMOTE_IDS="freshmeat:${PN}-video-editor sourceforge:${PN}video"
+
+src_prepare() {
+    # Define FAKEROOTKEY to prevent execution of system update services
+    # for Mime and Desktop registrations
+    export FAKEROOTKEY=1
+
+    distutils_src_prepare
+}
+
+pkg_postrm() {
+    freedesktop-desktop_pkg_postrm
+    freedesktop-mime_pkg_postrm
+}
+
+pkg_postinst() {
+    freedesktop-desktop_pkg_postinst
+    freedesktop-mime_pkg_postinst
+}
+
