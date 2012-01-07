@@ -25,7 +25,7 @@ MYOPTIONS="
 DEPENDENCIES="
     build+run:
         dev-python/PyQt4[>=4.5]
-        dev-python/mutagen[>=1.11]
+        dev-python/mutagen[>=1.20]
         media-libs/libdiscid
         x11-libs/qt:4[>=4.5]
         fingerprint? (
