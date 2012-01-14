@@ -140,14 +140,10 @@ src_install() {
     fi
 
     if option systemd ; then
-        insinto /${LIBDIR}/systemd/system
+        install_systemd_files
         if option mysql ; then
-            edo cp "${FILES}"/systemd/mediatomb.service "${TEMP}"
-            edo sed -i '/Requires=network.target/a\Requires=mysql.service' "${TEMP}"/mediatomb.service
-            edo sed -i '/After=network.target/a\After=mysql.service' "${TEMP}"/mediatomb.service
-            doins "${TEMP}"/mediatomb.service
-        else
-            doins "${FILES}"/systemd/mediatomb.service
+            edo sed -i '/Requires=network.target/a\Requires=mysql.service' "${IMAGE}"${SYSTEMDSYSTEMUNITDIR}/mediatomb.service
+            edo sed -i '/After=network.target/a\After=mysql.service'       "${IMAGE}"${SYSTEMDSYSTEMUNITDIR}/mediatomb.service
         fi
     fi
 }
