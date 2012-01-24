@@ -2,11 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="High-performance C development framework. Can be used stand-alone or as a supplement to GLib."
-HOMEPAGE="http://www.atheme.org"
-DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
-LICENCES="GPL-2"
-
-src_prepare() {
-    edo sed -i -e "s/CPP = @CPP@/CPP = ${CXX}/" buildsys.mk.in
-}
+HOMEPAGE="http://www.atheme.org/project/mowgli"
+DOWNLOADS="http://distfiles.atheme.org/${PNV}.tar.bz2"
+LICENCES="MIT"
 
