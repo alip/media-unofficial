@@ -1,0 +1,17 @@
+# Copyright 2012 Ivan Dives
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ project=bs2b suffix=tar.lzma ]
+
+SUMMARY="Library and plugins is designed to improve headphone listening of stereo audio records. Recommended for headphone prolonged listening to disable superstereo fatigue without essential distortions."
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        media-libs/libsndfile
+"
+
