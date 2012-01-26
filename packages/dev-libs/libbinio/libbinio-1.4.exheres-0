@@ -1,0 +1,14 @@
+# Copyright 2012 Ivan Dives
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge
+
+SUMMARY="Binary I/O stream class library"
+DESCRIPTION="The binary I/O stream class library presents a platform-independent way to access binary data streams in C++. It transparently converts between machine-internal binary data representation and can be used on arbitrary binary data sources."
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=docdir )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-gcc44.patch" )
+
