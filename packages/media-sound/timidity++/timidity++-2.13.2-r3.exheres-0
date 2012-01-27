@@ -53,7 +53,8 @@ src_configure() {
 
     edo ./configure --prefix=/usr \
         --with-elf \
-        --enable-audio=${audios}
+        --enable-audio=${audios} \
+        $(option_enable alsa alsaseq)
 }
 
 src_install() {
