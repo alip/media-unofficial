@@ -1,15 +1,13 @@
 # Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
 # Distributed under the terms of the GNU General Public License
 
-SCM_REPOSITORY="git://github.com/rubyripperdev/${PN}.git"
-require scm-git googlecode
+require googlecode
 
 SUMMARY="Secure audiodisc ripper"
 DESCRIPTION="
 Through multiple times ripping the same track and correcting any differences 
 rubyripper tries to deliver a secure rip.
 "
-DOWNLOADS=""
 
 BUGS_TO="jedahan@gmail.com"
 
