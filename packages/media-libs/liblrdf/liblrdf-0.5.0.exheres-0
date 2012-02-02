@@ -1,7 +1,7 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ project=lrdf ]
+require github [ user=swh pn=LRDF rev=7ebc03286f4ec180acae27565028f8d45055df2e ]
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="A library for the manipulation of RDF file in LADSPA plugins"
@@ -12,7 +12,6 @@ It can also be used for general RDF manipulation.
 It can read RDF/XLM and N3 files and export N3 files, it also has a light
 taxonomic inference capablility.
 "
-DOWNLOADS="https://github.com/swh/LRDF/tarball/${PV} -> ${PNV}.tar.gz"
 
 BUGS_TO="alip@exherbo.org"
 
@@ -29,6 +28,4 @@ DEPENDENCIES="
     run:
         media-libs/ladspa-sdk
 "
-
-WORK="${WORKBASE}/swh-LRDF-7ebc032"
 

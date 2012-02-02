@@ -1,15 +1,12 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils
+require distutils github [ user=alip ]
 
 SUMMARY="Mpc replacement written in Python"
 DESCRIPTION="
 ${SUMMARY}
 "
-HOMEPAGE="http://github.com/alip/${PN}/tree/master"
-SCM_REPOSITORY="git://github.com/alip/${PN}.git"
-require scm-git
 
 LICENCES="GPL-2"
 SLOT="0"

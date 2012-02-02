@@ -1,15 +1,13 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require github [ user=alip ]
+
 SUMMARY="Simple audio tagger for use in shell scripts"
 DESCRIPTION="
 envtag is a simple audio tagger using taglib. Interaction is done
 using environment variables which makes it perfect for shell scripts.
 "
-HOMEPAGE="http://github.com/alip/envtag/tree/master"
-DOWNLOADS=""
-SCM_REPOSITORY="git://github.com/alip/envtag.git"
-require scm-git
 
 BUGS_TO="alip@exherbo.org"
 
