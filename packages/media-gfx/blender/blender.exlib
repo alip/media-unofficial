@@ -80,7 +80,6 @@ CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
 blender_src_install() {
     cmake_src_install
 
-    edo rmdir "${IMAGE}"/usr/share/doc/${PNV}
     edo mv "${IMAGE}"/usr/share/doc/${PN}{,"-${PV}"}
 
     ever at_least 2.61 && keepdir /usr/share/blender/2.61/scripts/addons_contrib
