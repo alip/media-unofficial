@@ -1,0 +1,46 @@
+# Copyright 2012 Pierre Lejeune <superheron@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PNV="${PN}-${PV/_/-}"
+
+require sourceforge autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Module playing library"
+DESCRIPTION="
+LibMikMod is a module playing library supporting many formats, including mod, s3m, it, and xm.
+"
+HOMEPAGE="http://mikmod.raphnet.net"
+DOWNLOADS="${HOMEPAGE}/files/${MY_PNV}.tar.bz2"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="threads"
+
+DEPENDENCIES="
+    build+run:
+        sys-sound/alsa-lib
+        threads? ( dev-libs/libpthread-stubs )
+"
+
+WORK="${WORKBASE}/${MY_PNV}"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-af'
+    '--disable-esd'
+    '--disable-mac'
+    '--disable-oss'
+    '--disable-osx'
+    '--disable-sam9407'
+    '--disable-ultra'
+    '--enable-alsa'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'threads' )
+
+src_prepare() {
+    # Missing AM_PATH_ESD
+    edo cp "${FILES}"/esd.m4 "${WORK}"
+    AT_M4DIR=( "${WORK}" )
+    autotools_src_prepare
+}
+
