@@ -82,6 +82,6 @@ blender_src_install() {
 
     edo mv "${IMAGE}"/usr/share/doc/${PN}{,"-${PV}"}
 
-    ever at_least 2.61 && keepdir /usr/share/blender/2.61/scripts/addons_contrib
+    keepdir /usr/share/${PN}/${PV}/scripts/addons_contrib
 }
 
