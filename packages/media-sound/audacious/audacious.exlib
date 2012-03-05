@@ -1,33 +1,32 @@
 # Copyright (c) 2009 Jan Meier
+# Copyright 2012 Ivan Dives
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Audacious is an advanced audio player"
 HOMEPAGE="http://www.audacious-media-player.org/"
-DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
+DOWNLOADS="http://distfiles.audacious-media-player.org/${PNV}.tar.bz2"
 
-LICENCES="GPL-2"
-MYOPTIONS="dbus"
+LICENCES="
+    GPL-2 [[ note = [ src/audacious/images/{album audio connectivity menu_playlist menu_plugin menu_queue_toggle playlist plugins}.png ] ]]
+    GPL-3
+"
+MYOPTIONS="dbus [[ description = [ Build mpris backend (can be later used by mpris2 plugin). ] ]]"
 
 DEPENDENCIES="
-    dbus? ( dev-libs/dbus-glib[>=0.80] )
-    dev-libs/glib[>=2.18.4]
-    dev-libs/libmcs[>=0.7.1]
-    dev-libs/libmowgli[>=0.7.0]
-    dev-libs/libxml2
-    gnome-platform/libglade[>=2.6.3]
-    x11-libs/cairo[>=1.8.6]
-    x11-libs/gtk+[>=2.14.7]
-    x11-libs/pango[>=1.22.4]
-    dev-util/pkg-config[>=0.23]
+    build:
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/glib:2
+        text-libs/libguess
+        x11-libs/gtk+:3
+        x11-libs/libICE
+        x11-libs/libSM
+        dbus? ( dev-libs/dbus-glib:1 )
     post:
         media-sound/audacious-plugins[=${PV}]
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus )
-
-pkg_preinst() {
-    edo rm -f "${IMAGE}"/usr/bin/audacious "${IMAGE}"/usr/bin/audtool
-    dosym /usr/bin/audacious2 /usr/bin/audacious
-    dosym /usr/bin/audtool2 /usr/bin/audtool
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=( "--with-buildstamp=Exherbo" )
 
