@@ -38,7 +38,7 @@ DEPENDENCIES="
         )
         doc?          ( app-doc/doxygen )
         dv?           ( media-libs/libdv[>=0.102] )
-        ffmpeg?       ( media/ffmpeg )
+        ffmpeg?       ( virtual/ffmpeg )
         gtk?          ( x11-libs/gtk+:2[>=2.4.0] )
         h264?         ( media-libs/x264 )
         jpeg?         ( media-libs/jpeg[>=6b] )
