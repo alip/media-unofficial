@@ -1,4 +1,4 @@
-# Copyright 2011 Pierre Lejeune <superheron@gmail.com>
+# Copyright 2011-2012 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require distutils [ python_dep=2.5 has_bin=true has_lib=false ]
@@ -39,6 +39,8 @@ DEPENDENCIES="
 REMOTE_IDS="freshmeat:${PN}-video-editor sourceforge:${PN}video"
 
 src_prepare() {
+    edo sed -i -e "s:lib/:${LIBDIR}/:" setup.py
+
     # Define FAKEROOTKEY to prevent execution of system update services
     # for Mime and Desktop registrations
     export FAKEROOTKEY=1
