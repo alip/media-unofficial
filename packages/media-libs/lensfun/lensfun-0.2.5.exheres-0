@@ -1,0 +1,28 @@
+# Copyright 2010 Timothy Redaelli <timothy@redaelli.eu>
+# Distributed under the terms of the GNU General Public License v2 
+
+SUMMARY="A library for rectifying and simulating photographic lens distortions"
+
+HOMEPAGE="http://lensfun.berlios.de/"
+DOWNLOADS="mirror://berlios/lensfun/${PNV}.tar.bz2"
+
+LICENCES="LGPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        doc? ( app-doc/doxygen )
+    build+run:
+        dev-libs/glib:2
+        media-libs/libpng
+"
+
+DEFAULT_SRC_COMPILE_PARAMS=( all V=1 )
+
+src_configure() {
+    edo env LD="${CXX}" ./configure --prefix=/usr
+    option doc || edo sed -i '/^DOXYGEN/d' config.mak
+}
+
