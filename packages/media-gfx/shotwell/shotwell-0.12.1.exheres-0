@@ -1,6 +1,5 @@
 # Copyright 2010 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
-
 require freedesktop-desktop gnome-2
 
 SUMMARY="Open source photo manager for GNOME"
@@ -19,29 +18,26 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build:
-        dev-lang/vala:0.12[>=0.11.7]
+        dev-lang/vala:0.16[>=0.15.2]
         sys-devel/gettext
     build+run:
         base/libgee:1.0[>=0.5.0]
-        core/json-glib[>=0.7.6]
         dev-db/sqlite:3[>=3.5.9]
-        dev-libs/gexiv2[>=0.2.0]
-        dev-libs/glib:2[>=2.26.0]
+        dev-libs/gexiv2[>=0.3.92]
+        dev-libs/glib:2[>=2.30.0]
         dev-libs/libxml2:2.0[>=2.6.32]
-        dev-libs/unique:1[>=1.0.0]
-        dev-libs/dbus-glib:1[>=0.80]
+        dev-libs/unique:3.0[>=3.0.0]
         gnome-desktop/libsoup:2.4[>=2.26.0]
-        gnome-platform/GConf:2[>=2.22.0]
-        gnome-platform/gnome-vfs[>=2.24.3]
         media-libs/gstreamer:0.10[>=0.10.32]
         media-libs/libexif[>=0.6.16]
         media-libs/libgphoto2[>=2.4.2]
         media-libs/libraw[>=0.9.0&<0.14.0]
         media-plugins/gst-plugins-base:0.10[>=0.10.32]
-        net-libs/webkit-gtk:1[>=1.1.5]
+        net-libs/rest[>=0.7]
+        net-libs/webkit:3.0[>=1.4.0]
         sys-devel/m4[>=1.4.13]
         sys-fs/udev[>=145][glib]
-        x11-libs/gtk+:2[>=2.18.0]
+        x11-libs/gtk+:3[>=3.0.11]
     run:
         gnome-desktop/librsvg[>=2.14.0]
 "
@@ -53,7 +49,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     "--lib=${LIBDIR}"
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc help-install' )
-DEFAULT_SRC_COMPILE_PARAMS=( "VALAC=$(type -P valac-0.12)" )
+DEFAULT_SRC_COMPILE_PARAMS=( "VALAC=$(type -P valac-0.16)" )
 
 pkg_postinst() {
     freedesktop-desktop_pkg_postinst
