@@ -1,0 +1,35 @@
+# Copyright 2009 Daniel Mierswa <impulze@impulze.org>
+# Copyright 2012 Elias Pipping <pipping@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PN=${PN,,}
+MY_PNV=${MY_PN}-${PV}
+
+SUMMARY="Open-Source JPEG2000 Codec"
+DESCRIPTION="An Open-Source JPEG2000 Codec written in C."
+HOMEPAGE="http://www.$PN.org"
+DOWNLOADS="http://openjpeg.googlecode.com/files/${MY_PNV}.tar.gz"
+
+UPSTREAM_DOCUMENTATION="${HOMEPAGE}/index.php?menu=doc"
+UPSTREAM_RELEASE_NOTES="${HOMEPAGE}/index.php?menu=news"
+
+LICENCES="BSD-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="doc lcms2 png tiff"
+
+DEPENDENCIES="
+    build+run:
+        doc? ( app-doc/doxygen )
+        lcms2? ( media-libs/lcms2 )
+        png? ( media-libs/libpng )
+        tiff? ( media-libs/tiff )
+"
+
+# TODO: The cmake-based build system has a test suite
+
+WORK=${WORKBASE}/${MY_PNV}
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc png tiff lcms2 )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-lcms1 )
+
