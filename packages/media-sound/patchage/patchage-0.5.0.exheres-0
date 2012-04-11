@@ -20,7 +20,7 @@ DEPENDENCIES="
         gnome-bindings/gtkmm[>=2.11.12]
         gnome-bindings/glibmm
         gnome-bindings/libglademm
-        gnome-platform/libgnomecanvasmm
+        gnome-bindings/libgnomecanvasmm
         media-libs/raul[>=0.5.1]
         x11-libs/flowcanvas[>=0.5.1]
         alsa? ( sys-sound/alsa-lib )
@@ -30,5 +30,5 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'debug' 'debug pointer-debug' 'alsa' 'jack' 'dbus' )
 
-BUGS_TO="jedahan@gmail.com"
+BUGS_TO="alip@exherbo.org"
 
