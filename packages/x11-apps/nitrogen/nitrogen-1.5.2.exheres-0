@@ -1,6 +1,8 @@
 # Copyright 2009 (c) Gaute Hope <eg@gaute.vetsj.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
 SUMMARY="A background browser and setter for X windows."
 DESCRIPTION="
 Nitrogen is a background browser and setter for X windows.
@@ -25,5 +27,6 @@ DEPENDENCIES="
             xinerama? ( x11-libs/libXinerama )
             nls? ( sys-devel/gettext )"
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0001-Explicitly-check-for-X11-lib-in-configure.ac-possibl.patch )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( xinerama nls inotify )
 
