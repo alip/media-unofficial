@@ -19,6 +19,10 @@ DEPENDENCIES="
         media-libs/libpng
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/${PNV}-fix-build-with-libpng-1.5.patch
+)
+
 DEFAULT_SRC_COMPILE_PARAMS=( all V=1 )
 
 src_configure() {
