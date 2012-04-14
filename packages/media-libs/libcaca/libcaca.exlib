@@ -1,4 +1,4 @@
-# Copyright 2009 Pierre Lejeune <superheron@gmail.com>
+# Copyright 2009-2012 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="The industry-standard colour ASCII-art library"
@@ -18,9 +18,9 @@ HOMEPAGE="http://caca.zoy.org/wiki/${PN}"
 
 LICENCES="WTFPL-2 LGPL-2.1"
 SLOT="0"
-MYOPTIONS="X cxx doc imlib java mono ncurses opengl plugins ruby server slang vga
+MYOPTIONS="X cxx doc imlib2 java mono ncurses opengl python plugins ruby server slang
     cxx [[ description = [ Build C++ bindings ] ]]
-    plugins [[ description = [ Build plugins ] ]]
+    plugins [[ description = [ Build X and opengl drivers as plugins ] ]]
     server [[ description = [ Build cacaserver ] ]]
 
     ( X ncurses opengl slang ) [[ number-selected = at-least-one ]]
@@ -28,13 +28,12 @@ MYOPTIONS="X cxx doc imlib java mono ncurses opengl plugins ruby server slang vg
 
 DEPENDENCIES="
     build+run:
-        sys-libs/zlib
         X? ( x11-libs/libX11 )
         doc? (
             app-doc/doxygen
             app-text/texlive
         )
-        imlib? ( media-libs/imlib2 )
+        imlib2? ( media-libs/imlib2 )
         java? ( virtual/jdk:= )
         mono? ( dev-lang/mono )
         ncurses? ( sys-libs/ncurses )
@@ -43,6 +42,7 @@ DEPENDENCIES="
             x11-dri/freeglut
             x11-dri/mesa
         )
+        python? ( dev-lang/python:=[>=2.2] )
         ruby? ( dev-lang/ruby:= )
         slang? ( sys-libs/slang )
 "
@@ -50,29 +50,24 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--disable-cocoa'
     '--disable-conio'
-    '--disable-doc'
+    '--disable-vga'
     '--disable-win32'
+    '--disable-zzuf'
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'cxx'
     'doc'
     'X x11'
-    'imlib imlib2'
+    'imlib2'
     'java'
     'mono csharp'
     'ncurses'
     'opengl gl'
+    'plugins'
+    'python'
     'ruby'
     'server network'
     'slang'
 )
-
-src_install() {
-    default
-    if optionq !java; then
-        edo rmdir "${IMAGE}"/usr/${LIBDIR}/jni
-        edo rmdir "${IMAGE}"/usr/share/java
-    fi
-}
 
