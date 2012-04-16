@@ -62,4 +62,5 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( mp3 'mp3 id3v23' mp4 'vorbis ogg' flac wavpack speex )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PN}-${PV}-libmp4v2.patch )
 
