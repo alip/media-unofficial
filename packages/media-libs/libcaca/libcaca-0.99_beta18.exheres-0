@@ -10,3 +10,11 @@ PLATFORMS="~amd64"
 
 WORK="${WORKBASE}/${MY_PNV}"
 
+src_install() {
+    default
+    if option !java; then
+        edo rmdir "${IMAGE}"/usr/"${LIBDIR}"/jni
+        edo rmdir "${IMAGE}"/usr/share/java
+    fi
+}
+
