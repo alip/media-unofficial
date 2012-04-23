@@ -27,6 +27,5 @@ DEPENDENCIES="
         media-sound/audacious-plugins[=${PV}]
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus )
 DEFAULT_SRC_CONFIGURE_PARAMS=( "--with-buildstamp=Exherbo" )
 
