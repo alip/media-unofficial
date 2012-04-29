@@ -26,7 +26,7 @@ DEPENDENCIES="
     build+run:
         app-arch/bzip2
         app-arch/lzo
-        dev-libs/boost[>=1.46.0]
+        dev-libs/boost[>=1.47]
         dev-libs/expat
         media-libs/libebml[>=1.2.2]
         media-libs/libmatroska[>=1.3.0]
