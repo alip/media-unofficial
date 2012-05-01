@@ -13,7 +13,14 @@ UPSTREAM_DOCUMENTATION="${HOMEPAGE}/api [[ lang = en description = [ API referen
 LICENCES="( GPL-2 LGPL-2.1 )"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="debug jack openal pulseaudio sdl multibuild_c: 32 64"
+MYOPTIONS="
+    debug
+    jack
+    openal
+    pulseaudio
+    sdl
+    multibuild_c: 32 64
+"
 
 DEPENDENCIES="
     build:
@@ -21,7 +28,7 @@ DEPENDENCIES="
     build+run:
         sys-sound/alsa-lib[multibuild_c:*(-)?]
         jack? ( media-sound/jack-audio-connection-kit[multibuild_c:*(-)?] )
-        openal? ( media-libs/openal )
+        openal? ( media-libs/openal[multibuild_c:*(-)?] )
         pulseaudio? ( media-sound/pulseaudio[multibuild_c:*(-)?] )
         sdl? ( media-libs/SDL[multibuild_c:*(-)?] )
 "
@@ -34,10 +41,8 @@ configure_one_multibuild() {
     option pulseaudio && modules+=( pulse )
     option sdl && modules+=( sdl )
 
-     # (note that newer gcc 4.x versions do not use/need the align check)
-     # since we only have gcc 4.x, we can safely disable it
-     econf \
-         --with-audio="$(echo ${modules[@]} | tr ' ' ',')" \
-         $(option_enable debug)
+    econf \
+        --with-audio="$(echo ${modules[@]} | tr ' ' ',')" \
+        $(option_enable debug)
 }
 
