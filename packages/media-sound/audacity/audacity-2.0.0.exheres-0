@@ -55,6 +55,7 @@ WORK="${WORKBASE}"/${MY_PNV}
 
 DEFAULT_SRC_PREPARE_PATCHES=(
     -p1 "${FILES}"/${PN}-1.3.13-automagic.patch
+    -p1 "${FILES}"/${PN}-1.3.14-typecast.patch
 )
 AT_M4DIR="${WORK}"/m4
 DEFAULT_SRC_CONFIGURE_PARAMS=(
