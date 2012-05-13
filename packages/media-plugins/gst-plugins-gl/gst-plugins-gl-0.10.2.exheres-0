@@ -16,7 +16,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.9.0]
         sys-devel/gettext[>=0.17]
-        doc? ( app-doc/gtk-doc[>=1.3] )
+        doc? ( dev-doc/gtk-doc[>=1.3] )
     build+run:
         dev-libs/liboil[>=0.3.8]
         media-libs/glew[>=1.5.0]
