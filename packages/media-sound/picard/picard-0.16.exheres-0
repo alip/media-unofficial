@@ -3,7 +3,7 @@
 # Based in part upon 'picard-0.11.ebuild' from Gentoo, which is:
 #     Copyright 1999-2009 Gentoo Foundation
 
-require distutils [ has_bin=true ]
+require distutils [ has_bin=true ] freedesktop-desktop gtk-icon-cache
 
 SUMMARY="Picard is the next generation MusicBrainz tagging application"
 HOMEPAGE="http://musicbrainz.org/doc/Picard_Tagger"
@@ -39,5 +39,15 @@ src_configure() {
     edo sed -e "s:\(with-avcodec =\).*:\1 $(optionq fingerprint && echo True || echo False):" \
             -e "s:\(with-libofa =\).*:\1 $(optionq fingerprint && echo True || echo False):" \
             -i "${WORK}"/build.cfg
+}
+
+pkg_postinst() {
+    freedesktop-desktop_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+}
+
+pkg_postrm() {
+    freedesktop-desktop_pkg_postrm
+    gtk-icon-cache_pkg_postrm
 }
 
