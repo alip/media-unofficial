@@ -45,7 +45,7 @@ DEPENDENCIES="
         speex? ( media-libs/speex[>=1.2-beta3] )
         theora? ( media-libs/libtheora[>=1.0-alpha7] )
         v4l? ( media-libs/v4l-utils )
-        video? ( media/ffmpeg )
+        video? ( virtual/ffmpeg )
         sdl? ( media-libs/SDL[>=1.2.0] )
         X? ( x11-libs/libX11 )
 "
