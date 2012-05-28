@@ -30,7 +30,7 @@ DEPENDENCIES="
         sys-apps/file
         alsa? ( sys-sound/alsa-lib )
         ao? ( media-libs/libao )
-        ffmpeg? ( media/ffmpeg )
+        ffmpeg? ( virtual/ffmpeg )
         flac? ( media-libs/flac )
         id3tag? ( media-libs/libid3tag )
         ladspa? ( media-libs/ladspa-sdk )
