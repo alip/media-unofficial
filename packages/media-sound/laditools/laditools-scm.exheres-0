@@ -22,7 +22,12 @@ DEPENDENCIES="
         gnome-bindings/pygtk[>=2.12]
         dev-python/PyXML[>=0.8.4]
         dev-python/PyYAML
-        dev-libs/vte[python]
+        dev-libs/vte:3.0
+        dev-python/distutils-extra
+        media-gfx/ImageMagick[svg]
+        dev-python/pyxdg
+        dev-python/enum
+        x11-libs/gtk+:3[gobject-introspection]
 "
 
 BUGS_TO="adriaan@leijnse.net"
