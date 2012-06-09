@@ -14,7 +14,7 @@ DOWNLOADS="http://projects.l3ib.org/${PN}/files/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="xinerama nls inotify"
 
 DEPENDENCIES="
