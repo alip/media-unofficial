@@ -5,8 +5,3 @@ require mediastreamer
 
 PLATFORMS="~amd64 ~x86"
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    -p1 "${FILES}"/${PNV}-sdl-build.patch
-    -p0 "${FILES}"/${PNV}-v4l-automagic.patch
-)
-
