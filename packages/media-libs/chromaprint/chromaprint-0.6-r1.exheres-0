@@ -10,17 +10,17 @@ LICENCES="LGPL-2.1"
 SUMMARY="A library that implements an algorithm for extracting fingerprints from any audio source."
 PLATFORMS="~amd64"
 DEPENDENCIES="
-	build+run:
-		|| ( media/ffmpeg media/libav )
+    build+run:
+        || ( media/ffmpeg media/libav )
 "
 MYOPTIONS="
-	examples [[ description = [ Build the example scanning tool fpcalc ] ]]
+    examples [[ description = [ Build the example scanning tool fpcalc ] ]]
 "
 BUGS_TO="calvin.walton@kepstin.ca"
 
 CMAKE_SRC_CONFIGURE_PARAMS="
-	-DWITH_AVFFT=1
+    -DWITH_AVFFT=1
 "
 CMAKE_SRC_CONFIGURE_OPTION_BUILDS="
-	examples EXAMPLES
+    examples EXAMPLES
 "
