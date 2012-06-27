@@ -16,13 +16,13 @@ UPSTREAM_RELEASE_NOTES="${HOMEPAGE}/index.php?menu=news"
 LICENCES="BSD-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc lcms2 png tiff"
+MYOPTIONS="doc lcms2 tiff"
 
 DEPENDENCIES="
     build+run:
+        media-libs/libpng
         doc? ( app-doc/doxygen )
         lcms2? ( media-libs/lcms2 )
-        png? ( media-libs/libpng )
         tiff? ( media-libs/tiff )
 "
 
@@ -30,6 +30,6 @@ DEPENDENCIES="
 
 WORK=${WORKBASE}/${MY_PNV}
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc png tiff lcms2 )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc tiff lcms2 )
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-lcms1 )
 
