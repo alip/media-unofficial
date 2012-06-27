@@ -43,7 +43,7 @@ DEPENDENCIES="
         dev-libs/libcdio
         dev-libs/openssl
         dev-libs/pcre
-        media/ffmpeg
+        media/ffmpeg[<0.8]
         media-libs/SDL[X]
         media-libs/SDL_mixer
         media-libs/SDL_image
