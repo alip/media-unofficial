@@ -1,7 +1,10 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
+AT_M4DIR=( m4 )
+
 require sourceforge [ suffix=tar.gz ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 ] ]
 
 SUMMARY="Swiss Army knife of sound processing programs"
 DESCRIPTION="
@@ -21,7 +24,7 @@ BUGS_TO="alip@exherbo.org"
 LICENCES="LGPL-2.1 GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="alsa ao debug ffmpeg flac id3tag ladspa libsamplerate ogg png pulseaudio sndfile wavpack
+MYOPTIONS="alsa ao debug ffmpeg flac id3tag ladspa ogg png pulseaudio sndfile wavpack
     mp3 [[ description = [ Support for mp3 encoding with lame, and decoding with mad ] ]]
 "
 
@@ -34,7 +37,6 @@ DEPENDENCIES="
         flac? ( media-libs/flac )
         id3tag? ( media-libs/libid3tag )
         ladspa? ( media-libs/ladspa-sdk )
-        libsamplerate? ( media-libs/libsamplerate )
         mp3? (
             media-libs/libmad
             media-sound/lame
@@ -58,9 +60,8 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --without-oss
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( alsa ao ffmpeg flac id3tag ladspa 'libsamplerate samplerate'
-                                     mp3 'mp3 lame' 'mp3 mad' 'ogg oggvorbis' png pulseaudio sndfile
-                                     wavpack )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( alsa ao ffmpeg flac id3tag ladspa mp3 'mp3 lame' 'mp3 mad'
+                                     'ogg oggvorbis' png pulseaudio sndfile wavpack )
 
 src_install() {
     default
