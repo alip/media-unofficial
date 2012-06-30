@@ -10,8 +10,8 @@ supported by the linux UVC driver, although it should also work with any v4l2 co
 guvcview is based on luvcview for video rendering, but all controls are build using a GTK2
 interface.
 "
-HOMEPAGE="http://guvcview.berlios.de/"
-DOWNLOADS="mirror://berlios/${PN}/${MY_PNV}.tar.gz"
+HOMEPAGE="http://guvcview.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/${PN}/${MY_PNV}.tar.gz"
 
 BUGS_TO="mforney@mforney.org"
 
