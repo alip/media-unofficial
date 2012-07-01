@@ -1,5 +1,5 @@
 # Copyright 2009 Michael Forney
-# Copyright 2011 Pierre Lejeune <superheron@gmail.com>
+# Copyright 2011-2012 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require blender
@@ -8,5 +8,5 @@ DOWNLOADS="http://mirror.cs.umn.edu/blender.org/source/${PNV}.tar.gz"
 
 PLATFORMS="~amd64"
 
-DEFAULT_SRC_PREPARE_PATCHES=( -p2 "${FILES}/${PNV}-openjpeg.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-ffmpeg-0.11.patch" )
 

@@ -16,7 +16,7 @@ REMOTE_IDS="freshmeat:${PN}"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="ffmpeg fftw jack jpeg2000 openal openexr sdl sndfile tiff
+MYOPTIONS="ffmpeg fftw jack jpeg2000 openal openexr openmp sdl sndfile tiff
 
     bullet      [[ description = [ Support for the bullet physics engine ] ]]
     elbeem      [[ description = [ Support for the El'Beem fluid simulation library ] ]]
@@ -36,6 +36,7 @@ DEPENDENCIES="
         media-libs/glew
         media-libs/jpeg
         media-libs/libpng
+        sys-devel/gcc[openmp?]
         sys-libs/zlib
         x11-dri/mesa
         x11-libs/libX11
@@ -73,6 +74,7 @@ CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
     'jpeg2000 IMAGE_OPENJPEG'
     OPENAL
     'openexr IMAGE_OPENEXR'
+    OPENMP
     PLAYER
     SDL
     'sndfile CODEC_SNDFILE'
