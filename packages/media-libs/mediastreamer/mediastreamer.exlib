@@ -47,6 +47,7 @@ DEPENDENCIES="
         X? ( x11-libs/libX11 )
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( -p1 "${FILES}/${PN}-fix-ffmpeg.patch" )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa debug gsm ipv6 portaudio pulseaudio sdl speex theora v4l video "X x11" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
