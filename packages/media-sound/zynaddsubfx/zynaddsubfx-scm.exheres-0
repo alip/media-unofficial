@@ -30,7 +30,7 @@ DEPENDENCIES="
 BUGS_TO="adriaan@leijnse.net"
 
 src_prepare() {
-    cd "${WORK}/src"
+    edo cd "${WORK}/src"
     edo sed -i "s@\(CXXFLAGS.\+=.*OS_PORT.*\)@\1 ${CXXFLAGS}@g" Makefile
 }
 
@@ -52,13 +52,13 @@ src_compile() {
     myconf="${myconf} LINUX_DSSI=${dssi}"
     myconf="${myconf} LINUX_USE_LASH=NO"
 
-    cd "${WORK}/src"
+    edo cd "${WORK}/src"
     emake ${myconf}
 
-    cd "${WORK}/ExternalPrograms/Spliter"
+    edo cd "${WORK}/ExternalPrograms/Spliter"
     emake
 
-    cd "${WORK}/ExternalPrograms/Controller"
+    edo cd "${WORK}/ExternalPrograms/Controller"
     emake
 }
 
