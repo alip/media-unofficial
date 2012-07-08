@@ -1,6 +1,8 @@
 # Copyright 2009-2012 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require easy-multibuild
+
 SUMMARY="The industry-standard colour ASCII-art library"
 DESCRIPTION="
 libcaca is a graphics library that outputs text
@@ -24,27 +26,29 @@ MYOPTIONS="X cxx doc imlib2 java mono ncurses opengl python plugins ruby server 
     server [[ description = [ Build cacaserver ] ]]
 
     ( X ncurses opengl slang ) [[ number-selected = at-least-one ]]
+    ( multibuild_c: 32 64 )
 "
 
 DEPENDENCIES="
     build+run:
         X? ( x11-libs/libX11 )
+        cxx? ( dev-cpp/cppunit[multibuild_c:*(-)?] )
         doc? (
             app-doc/doxygen
             app-text/texlive
         )
-        imlib2? ( media-libs/imlib2 )
-        java? ( virtual/jdk:= )
-        mono? ( dev-lang/mono )
-        ncurses? ( sys-libs/ncurses )
+        imlib2? ( media-libs/imlib2[multibuild_c:*(-)?] )
+        java? ( virtual/jdk:=[multibuild_c:*(-)?] )
+        mono? ( dev-lang/mono[multibuild_c:*(-)?] )
+        ncurses? ( sys-libs/ncurses[multibuild_c:*(-)?] )
         opengl? (
-            media-libs/ftgl[>=2.1.3_rc5]
-            x11-dri/freeglut
-            x11-dri/mesa
+            media-libs/ftgl[>=2.1.3_rc5][multibuild_c:*(-)?]
+            x11-dri/freeglut[multibuild_c:*(-)?]
+            x11-dri/mesa[multibuild_c:*(-)?]
         )
-        python? ( dev-lang/python:=[>=2.2] )
-        ruby? ( dev-lang/ruby:= )
-        slang? ( sys-libs/slang )
+        python? ( dev-lang/python:=[>=2.2][multibuild_c:*(-)?] )
+        ruby? ( dev-lang/ruby:=[multibuild_c:*(-)?] )
+        slang? ( sys-libs/slang[multibuild_c:*(-)?] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
