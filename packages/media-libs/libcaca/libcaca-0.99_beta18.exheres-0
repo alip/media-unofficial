@@ -10,7 +10,7 @@ PLATFORMS="~amd64"
 
 WORK="${WORKBASE}/${MY_PNV}"
 
-src_install() {
+install_one_multibuild() {
     default
     if option !java; then
         edo rmdir "${IMAGE}"/usr/"${LIBDIR}"/jni
