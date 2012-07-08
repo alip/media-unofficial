@@ -31,7 +31,7 @@ MYOPTIONS="X cxx doc imlib2 java mono ncurses opengl python plugins ruby server 
 
 DEPENDENCIES="
     build+run:
-        X? ( x11-libs/libX11 )
+        X? ( x11-libs/libX11[multibuild_c:*(-)?] )
         cxx? ( dev-cpp/cppunit[multibuild_c:*(-)?] )
         doc? (
             app-doc/doxygen
