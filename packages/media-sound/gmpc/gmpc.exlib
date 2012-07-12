@@ -1,12 +1,11 @@
 # Copyright 2008 Thomas Anderson
 # Distributed under the terms of the GNU General Public License v2
 
-myexparam vala_version=0.14
-exparam -v vala_version vala_version
+myexparam vala_slots=[ 0.16 0.14 ]
 
 export_exlib_phases src_configure
 
-require gtk-icon-cache
+require vala [ vala_slots=[ $(exparam vala_slots[@]) ] ] gtk-icon-cache
 
 SUMMARY="A GTK+ client for MPD"
 DESCRIPTION="
@@ -39,7 +38,6 @@ DEPENDENCIES="
         sys-devel/gettext
     build+run:
         dev-db/sqlite:3
-        dev-lang/vala:${vala_version}
         dev-libs/glib:2[>=2.16]
         gnome-desktop/libsoup:2.4
         gnome-platform/libglade:2
@@ -51,8 +49,6 @@ DEPENDENCIES="
 BUGS_TO="sardemff7+exherbo@sardemff7.net gentoofan23@gentoo.org"
 
 gmpc_src_configure() {
-    export VALAC="$(type -P valac-${vala_version})"
-
     # The only encountered problem while running multiple instances are key bindings, this issue
     # affects other programs too so we disable unique support
     econf '--disable-libspiff' \
