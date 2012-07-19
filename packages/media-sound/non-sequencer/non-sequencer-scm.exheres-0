@@ -17,14 +17,14 @@ HOMEPAGE="http://non-sequencer.tuxfamily.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-#leaving out 'lash'
-MYOPTIONS="debug"
+MYOPTIONS="debug lash"
 
 DEPENDENCIES="
     build+run:
-        x11-libs/fltk[shared]
-        media-sound/jack-audio-connection-kit
         dev-cpp/libsigc++
+        media-sound/jack-audio-connection-kit
+        x11-libs/fltk
+        lash? ( media-sound/lash )
 "
 
 BUGS_TO="adriaan@leijnse.net"
@@ -33,6 +33,6 @@ src_prepare() {
     sed -i '/^ifneq (\$(USE_DEBUG),yes)/,+4 d' Makefile
 }
 src_configure() {
-    edo ./configure --prefix /usr --disable-lash $(option_enable debug)
+    edo ./configure --prefix /usr $(option_enable debug) $(option_enable lash)
 }
 
