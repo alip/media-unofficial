@@ -1,0 +1,61 @@
+# Copyright 2010 Timothy Redaelli <timothy@redaelli.eu>
+# Copyright 2012 Timo Gurr <tgurr@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake [ api=2 ]
+
+SUMMARY="A library for rectifying and simulating photographic lens distortions"
+
+HOMEPAGE="http://${PN}.berlios.de"
+DOWNLOADS="mirror://berlios/${PN}/${PNV}.tar.bz2"
+
+LICENCES="LGPL-3 CCPL-Attribution-ShareAlike-3.0"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    doc
+    platform: amd64
+    x86_cpu_features: sse sse2
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        doc? ( app-doc/doxygen )
+    build+run:
+        dev-libs/glib:2
+        media-libs/libpng
+        sys-libs/zlib
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/${PN}-0.2.6-cmake_LIB_SUFFIX.patch
+    "${FILES}"/${PN}-0.2.6-cmake_pkgconfig.patch
+)
+
+CMAKE_SRC_CONFIGURE_PARAMS+=(
+    -DBUILD_AUXFUN:BOOL=TRUE
+    -DBUILD_STATIC:BOOL=FALSE
+)
+
+src_prepare() {
+    edo cd "${CMAKE_SOURCE}"
+    default
+}
+
+src_configure() {
+    local cmakeargs=()
+
+    if option platform:amd64 || option x86_cpu_features:sse ; then
+        cmakeargs+=( -DBUILD_FOR_SSE:BOOL=TRUE )
+    fi
+
+    if option platform:amd64 || option x86_cpu_features:sse2 ; then
+        cmakeargs+=( -DBUILD_FOR_SSE2:BOOL=TRUE )
+    fi
+
+    option doc && cmakeargs+=( -DBUILD_DOC:BOOL=TRUE )
+
+    ecmake "${cmakeargs[@]}"
+}
+
