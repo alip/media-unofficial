@@ -24,13 +24,13 @@ LICENCES="GPL-2 GPL-3 [[ note = [ A few header files have no copyright informati
 SLOT="0"
 MYOPTIONS="
     ( alsa portaudio pulseaudio ) [[ number-selected = at-least-one ]]
-    debug doc gsm ipv6 speex video [[ description = [ Enable video stream support ] ]]
+    debug gsm ipv6 speex video [[ description = [ Enable video stream support ] ]]
     ( sdl theora v4l X ) [[ requires = video ]]
 "
 
 DEPENDENCIES="
     build:
-        doc? ( app-doc/doxygen )
+        app-doc/doxygen
         dev-util/intltool
         dev-util/pkg-config[>=0.9.0]
     build+run:
@@ -68,14 +68,5 @@ src_prepare() {
     edo sed -i -e 's:linux/videodev.h ::' configure.ac
 
     eautoreconf
-}
-
-src_install() {
-    default
-
-    # There's no option to disable building apidocs, so remove them if not requested
-    if option !doc; then
-        edo rm -rf "${IMAGE}/usr/share/doc/${PNV}/html"
-    fi
 }
 
