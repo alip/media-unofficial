@@ -1,5 +1,7 @@
-# Copyright 2009 Ali Polatel <alip@exherbo.org>
+# Copyright 2009, 2012 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix="tar.gz" ]
 
 SUMMARY="Virtual midi keyboard for jack midi"
 DESCRIPTION="
@@ -9,8 +11,6 @@ vkeybd, except it uses JACK MIDI instead of ALSA, and the default keyboard
 mapping is much better - it uses the same layout as trackers (like Impulse
 Tracker) did, so you have two and half octaves under your fingers.
 "
-HOMEPAGE="http://pin.if.uz.zgora.pl/~trasz/${PN}/"
-DOWNLOADS="${HOMEPAGE}/${PNV}.tar.gz"
 
 BUGS_TO="alip@exherbo.org"
 LICENCES="public-domain"
