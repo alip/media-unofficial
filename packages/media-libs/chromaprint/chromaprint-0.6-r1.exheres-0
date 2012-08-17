@@ -23,8 +23,3 @@ DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-fix_build_with_ffmpeg-0.11.patch
 CMAKE_SRC_CONFIGURE_PARAMS=( -DWITH_AVFFT=1 )
 CMAKE_SRC_CONFIGURE_OPTION_BUILDS=( examples EXAMPLES )
 
-src_prepare() {
-    edo cd "${CMAKE_SOURCE}"
-    default
-}
-

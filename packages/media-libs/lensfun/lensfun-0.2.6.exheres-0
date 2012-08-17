@@ -38,11 +38,6 @@ CMAKE_SRC_CONFIGURE_PARAMS+=(
     -DBUILD_STATIC:BOOL=FALSE
 )
 
-src_prepare() {
-    edo cd "${CMAKE_SOURCE}"
-    default
-}
-
 src_configure() {
     local cmakeargs=()
 
