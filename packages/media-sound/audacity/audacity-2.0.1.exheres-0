@@ -66,6 +66,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --with-libsamplerate
 
     # Disabled due to missing dependencies
+    --without-sbsms
     --without-libvamp
     --without-libtwolame
 )
@@ -75,3 +76,10 @@ DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
     'vorbis libvorbis' 'mp3 libmad' 'flac libflac' 'id3tag libid3tag'
 )
 
+src_prepare() {
+    if ! option ffmpeg; then
+        edo sed -i -e "s:^#define EXPERIMENTAL_OD_FFMPEG://\0:" src/Experimental.h
+    fi
+
+    default
+}
