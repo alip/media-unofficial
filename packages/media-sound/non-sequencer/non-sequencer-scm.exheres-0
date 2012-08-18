@@ -1,16 +1,18 @@
 # Copyright 2010 Adriaan Leijnse <adriaan@leijnse.net>
+# Copyright 2012 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://git.tuxfamily.org/gitroot/non/sequencer.git"
 require scm-git
 
-#WORK="${WORKBASE}/sequencer"
-
 SUMMARY="A powerful real-time, pattern-based MIDI sequencer"
-DESCRIPTION="The Non Sequencer is a powerful real-time, pattern-based MIDI sequencer for
-Linux--released under the GPL. Filling the void left by countless DAWs, piano-roll editors, and
-other purely performance based solutions, it is a compositional tool--one that transforms MIDI
-music-making on Linux from a complex nightmare into a pleasurable, efficient, and streamlined process."
+DESCRIPTION="
+The Non Sequencer is a powerful real-time, pattern-based MIDI sequencer for
+Linux--released under the GPL. Filling the void left by countless DAWs,
+piano-roll editors, and other purely performance based solutions, it is a
+compositional tool--one that transforms MIDI music-making on Linux from a
+complex nightmare into a pleasurable, efficient, and streamlined process.
+"
 
 HOMEPAGE="http://non-sequencer.tuxfamily.org/"
 
@@ -27,12 +29,17 @@ DEPENDENCIES="
         lash? ( media-sound/lash )
 "
 
-BUGS_TO="adriaan@leijnse.net"
+BUGS_TO="alip@exherbo.org"
 
 src_prepare() {
-    sed -i '/^ifneq (\$(USE_DEBUG),yes)/,+4 d' Makefile
+    edo sed -i '/^ifneq (\$(USE_DEBUG),yes)/,+4 d' Makefile
 }
+
 src_configure() {
-    edo ./configure --prefix /usr $(option_enable debug) $(option_enable lash)
+    # non-autotools configure script >:|
+    edo ./configure \
+        --prefix=/usr \
+        $(option_enable debug) \
+        $(option_enable lash)
 }
 
