@@ -1,20 +1,28 @@
 # Copyright 2010 Adriaan Leijnse <adriaan@leijnse.net>
+# Copyright 2012 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 # Based in part on zynaddsubfx-99999999.ebuild from the gentoo pro-audio overlay.
 
-SCM_REPOSITORY="git://zynaddsubfx.git.sourceforge.net/gitroot/zynaddsubfx/zynaddsubfx"
-require scm-git
+ZYN_REPOROOT="git://${PN}.git.sourceforge.net/gitroot/${PN}"
+SCM_REPOSITORY=${ZYN_REPOROOT}/${PN}
+SCM_instruments_REPOSITORY=${ZYN_REPOROOT}/instruments
+SCM_instruments_CHECKOUT_TO=${PN}
+SCM_EXTERNAL_REFS="instruments:instruments"
+SCM_SECONDARY_REPOSITORIES="instruments"
+require scm-git cmake [ api=2 ]
 
 SUMMARY="ZynAddSubFX is a real time software audio synthesizer."
-DESCRIPTION="ZynnAddSubFX support jack and alsa, and can be built with DSSI support."
+DESCRIPTION="ZynnAddSubFX supports jack and alsa, and can be built with DSSI support."
 
-HOMEPAGE="http://zynaddsubfx.sourceforge.net/"
+HOMEPAGE="http://${PN}.sourceforge.net/"
 
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-# leaving out oss, portaudio and lash options, feel free to patch.
-MYOPTIONS="alsa jack dssi"
+# leaving out oss and portaudio options, feel free to patch.
+MYOPTIONS="alsa jack dssi lash
+    banks [[ description = [ install instrument banks and examples ] ]]
+"
 
 DEPENDENCIES="
     build+run:
@@ -23,48 +31,44 @@ DEPENDENCIES="
         dev-libs/Mini-XML
         jack? ( media-sound/jack-audio-connection-kit )
         dssi? ( media-libs/dssi )
-    recommendation:
-        media-libs/zynaddsubfx-banks
+        lash? ( media-sound/lash )
 "
 
-BUGS_TO="adriaan@leijnse.net"
+BUGS_TO="alip@exherbo.org"
+REMOTE_IDS="sourceforge:${PN}"
 
-src_prepare() {
-    edo cd "${WORK}/src"
-    edo sed -i "s@\(CXXFLAGS.\+=.*OS_PORT.*\)@\1 ${CXXFLAGS}@g" Makefile
+src_configure() {
+    # Build fails with LibloEnable
+    ecmake \
+        -DPaEnable:BOOL=FALSE \
+        -DOssEnable:BOOL=FALSE \
+        -DLibloEnable:BOOL=FALSE \
+        $(cmake_option alsa 'AlsaEnable') \
+        $(cmake_option jack 'JackEnable') \
+        $(cmake_option dssi 'DssiEnable') \
+        $(cmake_option lash 'LashEnable')
 }
 
 src_compile() {
-    local midi_in=NONE
-    local audio_out=NONE
-    local dssi=NO
-
-    option alsa && midi_in=ALSA
-    option jack && audio_out=JACK
-    option dssi && dssi=YES
-
-    local myconf="OS_PORT=LINUX"
-    myconf="FFTW_VERSION=3"
-    myconf="${myconf} ASM_F2I=YES"
-    myconf="${myconf} DISABLE_GUI=NO"
-    myconf="${myconf} LINUX_MIDIIN=${midi_in}"
-    myconf="${myconf} LINUX_AUDIOOUT=${audio_out}"
-    myconf="${myconf} LINUX_DSSI=${dssi}"
-    myconf="${myconf} LINUX_USE_LASH=NO"
-
-    edo cd "${WORK}/src"
-    emake ${myconf}
-
-    edo cd "${WORK}/ExternalPrograms/Spliter"
     emake
 
-    edo cd "${WORK}/ExternalPrograms/Controller"
-    emake
+    edo cd "${WORKBASE}"/${PNVR}
+    for dir in ExternalPrograms/{Controller,Spliter}; do
+        emake -C "$dir"
+    done
 }
 
 src_install() {
-    dobin "${WORK}/src/zynaddsubfx"
-    dobin "${WORK}/ExternalPrograms/Spliter/spliter"
-    dobin "${WORK}/ExternalPrograms/Controller/controller"
-}
+    default
 
+    edo cd "${WORKBASE}"/${PNVR}
+    dobin ExternalPrograms/Spliter/spliter
+    dobin ExternalPrograms/Controller/controller
+
+    if option banks; then
+        edo cd instruments
+        insinto /usr/share/${PN}/
+        doins -r banks
+        doins -r examples
+    fi
+}
