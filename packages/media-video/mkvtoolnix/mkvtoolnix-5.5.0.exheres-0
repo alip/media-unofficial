@@ -22,6 +22,7 @@ DEPENDENCIES="
         dev-lang/ruby:*
         dev-util/pkg-config[>=0.9.0]
         sys-devel/gettext
+        sys-devel/gcc:*[>=4.6]
     build+run:
         app-arch/bzip2
         app-arch/lzo
