@@ -17,7 +17,7 @@ MYOPTIONS="gtk3"
 DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
-        gnome-base/gnome-common
+        gnome-desktop/gnome-common
         gnome-desktop/gnome-doc-utils
         sys-devel/gettext
     build+run:
