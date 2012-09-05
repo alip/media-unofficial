@@ -1,7 +1,7 @@
 # Copyright 2010 Michael Forney
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PNV="${PN}-src-${PV}"
+require sourceforge [ suffix=tar.gz pnv="${PN}-src-${PV}" ]
 
 SUMMARY="GTK+ UVC Viewer"
 DESCRIPTION="
@@ -10,8 +10,6 @@ supported by the linux UVC driver, although it should also work with any v4l2 co
 guvcview is based on luvcview for video rendering, but all controls are build using a GTK2
 interface.
 "
-HOMEPAGE="http://guvcview.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/${PN}/${MY_PNV}.tar.gz"
 
 BUGS_TO="mforney@mforney.org"
 
