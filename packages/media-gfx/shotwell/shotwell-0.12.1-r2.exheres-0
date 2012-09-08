@@ -36,7 +36,7 @@ DEPENDENCIES="
         net-libs/rest[>=0.7]
         net-libs/webkit:3.0[>=1.4.0]
         sys-devel/m4[>=1.4.13]
-        || ( sys-apps/systemd sys-fs/udev )
+        sys-apps/systemd
         x11-libs/gtk+:3[>=3.0.11]
     run:
         gnome-desktop/librsvg[>=2.14.0]
