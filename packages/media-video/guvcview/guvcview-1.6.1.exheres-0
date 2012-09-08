@@ -1,7 +1,9 @@
 # Copyright 2010 Michael Forney
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ suffix=tar.gz pnv="${PN}-src-${PV}" ]
+MY_PNV=${PN}-src-${PV}
+
+require sourceforge [ suffix=tar.gz pnv=${MY_PNV} ]
 
 SUMMARY="GTK+ UVC Viewer"
 DESCRIPTION="
