@@ -17,7 +17,7 @@ BUGS_TO="michael@obberon.com calvin.walton@kepstin.ca"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
     puid [[ description = [ Support for finding PUID fingerprints of audio files with ffmpeg and libofa (deprecated) ] ]]
 "
