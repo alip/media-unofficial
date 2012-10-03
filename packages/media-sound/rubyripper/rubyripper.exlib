@@ -21,7 +21,6 @@ DEPENDENCIES="
         gtk? ( dev-ruby/ruby-gtk2 )
     run:
         media/cdparanoia
-        sys-apps/eject
         dev-lang/ruby
         mp3? ( media-sound/lame )
         flac? ( media-libs/flac )
