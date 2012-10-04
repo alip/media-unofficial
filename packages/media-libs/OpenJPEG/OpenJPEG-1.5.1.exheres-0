@@ -5,10 +5,11 @@
 MY_PN=${PN,,}
 MY_PNV=${MY_PN}-${PV}
 
+require googlecode [ suffix=tar.gz ]
+
 SUMMARY="Open-Source JPEG2000 Codec"
 DESCRIPTION="An Open-Source JPEG2000 Codec written in C."
 HOMEPAGE="http://www.$PN.org"
-DOWNLOADS="http://openjpeg.googlecode.com/files/${MY_PNV}.tar.gz"
 
 UPSTREAM_DOCUMENTATION="${HOMEPAGE}/index.php?menu=doc"
 UPSTREAM_RELEASE_NOTES="${HOMEPAGE}/index.php?menu=news"
