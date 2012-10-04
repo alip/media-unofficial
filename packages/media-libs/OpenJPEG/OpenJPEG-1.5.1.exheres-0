@@ -27,8 +27,6 @@ DEPENDENCIES="
         tiff? ( media-libs/tiff )
 "
 
-# TODO: The cmake-based build system has a test suite
-
 WORK=${WORKBASE}/${MY_PNV}
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc tiff 'lcms lcms2' )
