@@ -34,7 +34,7 @@ DEPENDENCIES="
         sys-apps/file
         sys-libs/zlib
         flac? ( media-libs/flac )
-        qt4? ( x11-libs/qt:4 )
+        qt4? ( x11-libs/qt:4[>=4.7.0] )
         wxwidgets? ( x11-libs/wxGTK:2.8 )
 "
 
