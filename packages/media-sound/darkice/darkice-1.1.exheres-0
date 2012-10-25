@@ -1,4 +1,5 @@
 # Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Copyright 2012 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require googlecode [ suffix=tar.gz ]
@@ -15,7 +16,7 @@ BUGS_TO="jedahan@gmail.com"
 SLOT="0"
 PLATFORMS="~amd64"
 LICENCES="GPL-2"
-MYOPTIONS="aac alsa baselayout jack mp2 mp3 vorbis
+MYOPTIONS="aac alsa baselayout jack libsamplerate mp2 mp3 vorbis
     ( alsa jack ) [[ number-selected = at-least-one ]]
     ( aac mp2 mp3 vorbis ) [[ number-selected = at-least-one ]]
 "
@@ -25,14 +26,21 @@ DEPENDENCIES="
         aac? ( media-libs/faac )
         alsa? ( sys-sound/alsa-lib )
         jack? ( media-sound/jack-audio-connection-kit )
+        libsamplerate? ( media-libs/libsamplerate )
         mp2? ( media-libs/twolame )
         mp3? ( media-sound/lame )
         vorbis? ( media-libs/libvorbis )
 "
 
-SRC_CONFIGURE_OPTIONS_WITH=( 'aac faac' 'mp3 lame' 'jack' 'mp2 twolame' 'vorbis' )
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/${PN}-gcc44.patch
+BUGS_TO="alip@exherbo.org"
+
+SRC_CONFIGURE_OPTIONS_WITH=(
+    'aac faac'
+    'mp3 lame'
+    'jack'
+    'mp2 twolame'
+    'vorbis'
+    'libsamplerate' 'samplerate'
 )
 
 src_install() {
