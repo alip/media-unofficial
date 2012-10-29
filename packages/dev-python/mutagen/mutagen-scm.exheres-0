@@ -4,8 +4,7 @@
 require common-metadata
 
 DOWNLOADS=""
-SCM_SVN_RAW_URI=1
-SCM_REPOSITORY="http://svn.sacredchao.net/svn/quodlibet/trunk/mutagen"
+SCM_REPOSITORY="http://mutagen.googlecode.com/svn"
 require scm-svn
 
 BUGS_TO="alip@exherbo.org"
