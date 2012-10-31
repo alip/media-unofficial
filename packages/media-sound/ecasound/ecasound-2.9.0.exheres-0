@@ -48,7 +48,7 @@ src_configure() {
 
     if option python; then
         pyconf=(
-            --enable-pyecasound=c
+            --enable-pyecasound
             --with-python-includes=/usr/include/python$(python_get_abi)
             --with-python-modules=$(python_get_libdir)
         )
