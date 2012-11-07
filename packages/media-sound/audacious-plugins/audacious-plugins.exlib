@@ -55,12 +55,12 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
         sys-devel/gettext
+        virtual/pkg-config
     build+run:
         dev-libs/glib:2
         dev-libs/libxml2:2.0
-        media-sound/audacious[=${PV}]
+        media-sound/audacious[~${PV}]
         x11-libs/gtk+:3
         aac? ( media-libs/faad2 )
         adplug? ( dev-libs/libbinio )

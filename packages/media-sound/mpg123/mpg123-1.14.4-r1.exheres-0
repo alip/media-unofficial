@@ -24,7 +24,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config[>=0.9.0]
+        virtual/pkg-config[>=0.9.0]
     build+run:
         sys-sound/alsa-lib[multibuild_c:*(-)?]
         jack? ( media-sound/jack-audio-connection-kit[multibuild_c:*(-)?] )

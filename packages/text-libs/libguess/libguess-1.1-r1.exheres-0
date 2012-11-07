@@ -10,7 +10,7 @@ PLATFORMS="~x86 ~amd64"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        virtual/pkg-config
     build+run:
         dev-libs/libmowgli[>=0.9.50]
 "

@@ -10,7 +10,7 @@ PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        virtual/pkg-config
     build+run:
         media-libs/libsndfile
 "
