@@ -5,7 +5,7 @@ myexparam vala_slots=[ 0.16 0.14 ]
 
 export_exlib_phases src_configure
 
-require vala [ vala_slots=[ $(exparam vala_slots[@]) ] ] gtk-icon-cache
+require vala [ vala_dep=true vala_slots=[ $(exparam vala_slots[@]) ] ] gtk-icon-cache
 
 SUMMARY="A GTK+ client for MPD"
 DESCRIPTION="
