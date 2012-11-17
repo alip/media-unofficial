@@ -1,6 +1,8 @@
 # Copyright 2010 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
-require freedesktop-desktop gnome-2
+
+require freedesktop-desktop gtk-icon-cache gsettings
+require vala [ vala_dep=true vala_slots=[ 0.20 0.18 ] ]
 
 SUMMARY="Open source photo manager for GNOME"
 DESCRIPTION="
@@ -9,7 +11,7 @@ organize them in various ways, view them in full-window or fullscreen mode, and 
 with others.
 "
 HOMEPAGE="http://yorba.org/${PN}"
-DOWNLOADS="http://yorba.org/download/${PN}/$(ever range 1-2)/${PNV}.tar.bz2"
+DOWNLOADS="http://yorba.org/download/${PN}/$(ever range 1-2)/${PNV}.tar.xz"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
@@ -18,21 +20,20 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build:
-        dev-lang/vala:0.16[>=0.15.2]
         sys-devel/gettext
     build+run:
         base/libgee:1.0[>=0.5.0]
+        core/json-glib
         dev-db/sqlite:3[>=3.5.9]
-        dev-libs/gexiv2[>=0.3.92]
+        dev-libs/gexiv2[>=0.4.90]
         dev-libs/glib:2[>=2.30.0]
         dev-libs/libxml2:2.0[>=2.6.32]
-        dev-libs/unique:3.0[>=3.0.0]
         gnome-desktop/libsoup:2.4[>=2.26.0]
         media-libs/gstreamer:0.10[>=0.10.32]
         media-libs/libexif[>=0.6.16]
         media-libs/libgphoto2[>=2.4.2]
-        media-libs/libraw[>=0.9.0&<0.14.0]
-        media-plugins/gst-plugins-base:0.10[>=0.10.32]
+        media-libs/libraw[>=0.13.2]
+        media-plugins/gst-plugins-base:1.0[>=1.0.0]
         net-libs/rest[>=0.7]
         net-libs/webkit:3.0[>=1.4.0]
         sys-devel/m4[>=1.4.13]
@@ -42,22 +43,26 @@ DEPENDENCIES="
         gnome-desktop/librsvg[>=2.14.0]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--disable-desktop-update'
-    '--disable-icon-update'
-    '--disable-schemas-compile'
-    "--lib=${LIBDIR}"
-)
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc help-install' )
-DEFAULT_SRC_COMPILE_PARAMS=( "VALAC=$(type -P valac-0.16)" )
+src_configure() {
+    # not autoconf based
+    edo ./configure                         \
+        --prefix=/usr                       \
+        --disable-desktop-update            \
+        --disable-icon-update               \
+        --disable-schemas-compile           \
+        --lib=${LIBDIR}                     \
+        $(option_enable doc help-install)
+}
 
 pkg_postinst() {
     freedesktop-desktop_pkg_postinst
-    gnome-2_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+    gsettings_pkg_postinst
 }
 
 pkg_postrm() {
     freedesktop-desktop_pkg_postrm
-    gnome-2_pkg_postrm
+    gtk-icon-cache_pkg_postrm
+    gsettings_pkg_postrm
 }
 
