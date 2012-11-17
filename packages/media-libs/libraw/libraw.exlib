@@ -9,10 +9,16 @@ LibRaw is a library for reading RAW files obtained from digital photo cameras (C
 DNG, and others).
 "
 HOMEPAGE="http://www.${PN}.org"
+# upstream likes to remove old files, so I mirror them
 DOWNLOADS="
     ${HOMEPAGE}/data/${MY_PN}-${PV}.tar.gz
-    demosaic? ( ${HOMEPAGE}/data/${MY_PN}-demosaic-pack-GPL2-${PV}.tar.gz
-                ${HOMEPAGE}/data/${MY_PN}-demosaic-pack-GPL3-${PV}.tar.gz )
+    http://dev.exherbo.org/~moben/distfiles/${MY_PN}-${PV}.tar.gz 
+    demosaic? (
+        ${HOMEPAGE}/data/${MY_PN}-demosaic-pack-GPL2-${PV}.tar.gz
+        ${HOMEPAGE}/data/${MY_PN}-demosaic-pack-GPL3-${PV}.tar.gz
+        http://dev.exherbo.org/~moben/distfiles/${MY_PN}-demosaic-pack-GPL2-${PV}.tar.gz
+        http://dev.exherbo.org/~moben/distfiles/${MY_PN}-demosaic-pack-GPL3-${PV}.tar.gz
+    )
 "
 
 LICENCES="LGPL-2.1 CDDL-1.0 demosaic? ( GPL-2 GPL-3 )"
@@ -51,6 +57,6 @@ fi
 
 src_install() {
     default
-    edo rmdir "${IMAGE}"/usr/bin
+    ever at_least 0.14.7 || edo rmdir "${IMAGE}"/usr/bin
 }
 
