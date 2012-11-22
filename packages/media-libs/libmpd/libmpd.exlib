@@ -23,7 +23,7 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        virtual/pkg-config
         doc? ( app-doc/doxygen[>=1.4.6] )
     build+run:
         dev-libs/glib:2[>=2.16]

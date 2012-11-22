@@ -33,9 +33,9 @@ DEPENDENCIES="
     build:
         dev-util/gob2
         dev-util/intltool[>=0.21]
-        dev-util/pkg-config
         gnome-desktop/gnome-doc-utils
         sys-devel/gettext
+        virtual/pkg-config
     build+run:
         dev-db/sqlite:3
         dev-libs/glib:2[>=2.16]
