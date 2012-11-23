@@ -32,7 +32,7 @@ DEPENDENCIES="
     build:
         app-doc/doxygen
         dev-util/intltool
-        dev-util/pkg-config[>=0.9.0]
+        virtual/pkg-config[>=0.9.0]
     build+run:
         net-libs/ortp[>=0.17.0]
         alsa? ( sys-sound/alsa-lib )
