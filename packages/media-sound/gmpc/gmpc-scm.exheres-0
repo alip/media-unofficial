@@ -4,7 +4,7 @@
 SCM_REPOSITORY="git://git.musicpd.org/master/${PN}.git"
 
 require gmpc scm-git
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 1.11 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 1.11 ] ]
 
 PLATFORMS="~amd64 ~x86"
 

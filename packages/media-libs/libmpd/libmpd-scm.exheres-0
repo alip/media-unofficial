@@ -4,6 +4,14 @@
 SCM_REPOSITORY="git://repo.or.cz/libmpd.git"
 
 require libmpd
-require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 1.11 ] ]
+require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 1.11 ] ]
 
 PLATFORMS="~amd64"
+
+AT_M4DIR=( m4 )
+
+src_prepare() {
+    edo mkdir "${WORK}"/m4
+    autotools_src_prepare
+}
+
