@@ -27,8 +27,7 @@ $HOMEPAGE/tuts/index.htm                     [[ lang = en description = [ Tutori
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
-
+        virtual/pkg-config
     build+run:
         jpeg? ( media-libs/jpeg )
         jpeg2000? ( media-libs/jasper )
