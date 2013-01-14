@@ -11,7 +11,7 @@ stomp-box classics, versatile 'virtual analogue' oscillators, fractal
 oscillation, reverb, equalization and others
 "
 HOMEPAGE="http://quitte.de/dsp/caps.html"
-DOWNLOADS="http://quitte.de/dsp/caps_${PV}.tar.gz"
+DOWNLOADS="http://quitte.de/dsp/caps_${PV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
