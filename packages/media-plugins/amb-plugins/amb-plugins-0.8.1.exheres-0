@@ -10,9 +10,8 @@ DESCRIPTION="
 A set of ambisonics plugins, mainly to be used within Ardour. Mono and stereo to
 B-format panning, horizontal rotator, square, hexagon and cube decoders.
 "
-HOMEPAGE="http://www.kokkinizita.net/linuxaudio/ladspa/"
-#DOWNLOADS="http://www.kokkinizita.net/linuxaudio/downloads/${MY_PNV}.tar.bz2"
-DOWNLOADS="http://alip.anapnea.net/${MY_PNV}.tar.bz2"
+HOMEPAGE="http://kokkinizita.linuxaudio.org/linuxaudio/ladspa/index.html"
+DOWNLOADS="http://kokkinizita.linuxaudio.org/linuxaudio/downloads/${MY_PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
