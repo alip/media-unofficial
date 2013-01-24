@@ -23,6 +23,7 @@ DEPENDENCIES="
         dev-util/pkg-config
     build+run:
         kde/kdelibs:4
+        media-sound/drumstick
         sys-sound/alsa-lib[>=1.0]
 "
 
