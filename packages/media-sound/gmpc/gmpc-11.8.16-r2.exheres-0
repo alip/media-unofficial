@@ -7,3 +7,8 @@ DOWNLOADS="http://download.sarine.nl/Programs/${PN}/$(ever range 1-2)/${PNV}.tar
 
 PLATFORMS="~amd64 ~x86"
 
+DEPENDENCIES="
+    build+run:
+        x11-libs/gtk+:2[>=2.12]
+"
+

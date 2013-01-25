@@ -42,11 +42,10 @@ DEPENDENCIES="
         gnome-desktop/libsoup:2.4
         gnome-platform/libglade:2
         media-libs/libmpd[>=11.8.17]
-        x11-libs/gtk+:2[>=2.12]
         xspf? ( media-libs/libxspf )
 "
 
-BUGS_TO="sardemff7+exherbo@sardemff7.net gentoofan23@gentoo.org"
+BUGS_TO="sardemff7@exherbo.org gentoofan23@gentoo.org"
 
 gmpc_src_configure() {
     # The only encountered problem while running multiple instances are key bindings, this issue
