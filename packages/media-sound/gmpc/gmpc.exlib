@@ -3,8 +3,6 @@
 
 myexparam vala_slots=[ 0.16 0.14 ]
 
-export_exlib_phases src_configure
-
 require vala [ vala_dep=true vala_slots=[ $(exparam vala_slots[@]) ] ] gtk-icon-cache
 
 SUMMARY="A GTK+ client for MPD"
@@ -47,12 +45,18 @@ DEPENDENCIES="
 
 BUGS_TO="sardemff7@exherbo.org gentoofan23@gentoo.org"
 
-gmpc_src_configure() {
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --disable-libspiff
     # The only encountered problem while running multiple instances are key bindings, this issue
     # affects other programs too so we disable unique support
-    econf '--disable-libspiff' \
-        '--disable-unique' \
-        $(expecting_tests && echo '--enable-test' || echo '--disable-test' ) \
-        $(option_enable xspf libxspf)
-}
+    --disable-unique
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'xspf libxspf'
+)
+
+DEFAULT_SRC_CONFIGURE_TESTS=(
+    '--any --enable-test --disable-test'
+)
 
