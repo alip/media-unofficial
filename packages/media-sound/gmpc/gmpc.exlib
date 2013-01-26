@@ -37,8 +37,8 @@ DEPENDENCIES="
     build+run:
         dev-db/sqlite:3
         dev-libs/glib:2[>=2.16]
+        dev-libs/libxml2:2.0
         gnome-desktop/libsoup:2.4
-        gnome-platform/libglade:2
         media-libs/libmpd[>=11.8.17]
         xspf? ( media-libs/libxspf )
 "
