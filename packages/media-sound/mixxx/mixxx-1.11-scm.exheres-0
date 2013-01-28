@@ -1,0 +1,9 @@
+# Copyright 2013 Ali Polatel <alip@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_BRANCH="release-1.11.x"
+require mixxx
+
+SLOT="0"
+PLATFORMS="~amd64"
+

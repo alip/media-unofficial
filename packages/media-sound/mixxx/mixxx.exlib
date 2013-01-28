@@ -1,0 +1,99 @@
+# mixxx.exlib: per-package exlib of common functionality
+# Copyright 2010 Jonathan Dahan <jedahan@gmail.com>
+# Copyright 2013 Ali Polatel <alip@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require scons
+
+export_exlib_phases src_prepare src_configure src_install
+
+SUMMARY="Digital DJ tool based on QT"
+HOMEPAGE="http://www.mixxx.org/"
+
+if ever is_scm; then
+    SCM_REPOSITORY="http://bazaar.launchpad.net/~mixxxdevelopers/mixxx"
+    SCM_BRANCH=${SCM_BRANCH:-trunk}
+    require scm-bzr
+    WORK="${WORKBASE}"/${PNV}/${PN}
+else
+    DOWNLOADS="http://downloads.mixxx.org/${PNV}/${PNV}-src.tar.gz"
+    WORK="${WORKBASE}"/${PN}-$(ever replace 3 '~')
+fi
+
+LICENCES="GPL-2"
+MYOPTIONS+="aac debug pulseaudio mp3 shout wavpack"
+
+# FIXME: Many dependencies are possibly automagic!
+# fidlib is bundled!
+DEPENDENCIES+="
+    build+run:
+        media-libs/libmad
+        media-libs/libid3tag
+        media-libs/libmp4v2
+        media-libs/libogg
+        media-libs/libsndfile
+        media-libs/libvorbis
+        media-libs/portaudio[>=19]
+        media-libs/portmidi
+        media-libs/soundtouch
+        aac? ( media-libs/faad2
+               media-libs/libmp4v2 )
+        mp3? ( media-libs/libmad )
+        pulseaudio? ( media-sound/pulseaudio )
+        shout? ( media-libs/libshout )
+        wavpack? ( media-sound/wavpack )
+        x11-dri/mesa
+        x11-libs/qt[>=4.5][qt3support][sqlite][webkit]
+"
+
+BUGS_TO="alip@exherbo.org"
+
+REMOTE_IDS="launchpad:mixxx"
+
+UPSTREAM_DOCUMENTATION="${HOMEPAGE}/manual/latest/ [[ lang = en ]]"
+
+mixxx_src_prepare() {
+    default
+
+    if ! option pulseaudio; then
+        edo sed -i \
+                -e 's:pasuspender ::' \
+                src/${PN}.desktop
+    fi
+
+    nonfatal edo sed -i \
+                     -e "/unix_lib_path =/s/'lib'/'${LIBDIR}'/" \
+                     src/SConscript
+}
+
+mixxx_src_configure() {
+    LINKFLAGS="${LDFLAGS}" LIBPATH="/usr/${LIBDIR}"
+    SCONS_SRC_CONFIGURE_PARAMS=(
+        hifieq=1
+        vinylcontrol=1
+        tuned=1
+        tonal=1
+        optimize=0
+        prefix=/usr
+        qtdir=/usr/${LIBDIR}/qt4
+        $(option debug && echo debug=1 || echo debug=0 )
+        $(option aac && echo faad=1 || echo faad=0 )
+        $(option mp3 && echo mad=1 || echo mad=0 )
+        $(option shout && echo shoutcast=1 || echo shoutcast=0 )
+        $(option wavpack && echo wv=1 || echo wv=0 )
+    )
+    scons_src_configure
+}
+
+mixxx_src_install() {
+    dodir /usr/share/applications
+
+    SCONS_SRC_INSTALL_PARAMS=( prefix=/usr install_root="${IMAGE}"/usr )
+    scons_src_install
+
+    insinto /usr/share/applications
+    doins src/mixxx.desktop
+
+    dodoc Mixxx-Manual.pdf
+}
+
