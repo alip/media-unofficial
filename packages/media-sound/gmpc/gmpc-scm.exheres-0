@@ -2,18 +2,17 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://git.musicpd.org/master/${PN}.git"
+SCM_BRANCH="gtk3"
 
 require gmpc scm-git
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 1.11 ] ]
 
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="gtk3"
 
 DEPENDENCIES="
     build+run:
         media-libs/glyr
-        !gtk3? ( x11-libs/gtk+:2[>=2.12] )
-        gtk3? ( x11-libs/gtk+:3 )
+        x11-libs/gtk+:3
 "
 
 AT_M4DIR=( m4 )
@@ -21,10 +20,6 @@ AT_M4DIR=( m4 )
 DEFAULT_SRC_COMPILE_PARAMS=(
     -j1
 )
-
-pkg_setup() {
-    option gtk3 && SCM_BRANCH="gtk3"
-}
 
 src_prepare() {
     edo intltoolize --force --copy --automake
