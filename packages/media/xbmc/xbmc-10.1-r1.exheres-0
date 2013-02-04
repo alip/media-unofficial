@@ -2,7 +2,7 @@
 # Copyright 2011 Markus Rothe
 # Distributed under the terms of the GNU General Public License v2
 
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 1.11 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 1.10 ] ]
 
 SUMMARY="Media player and entertainment hub for digital media"
 HOMEPAGE="http://xbmc.org/"
