@@ -26,7 +26,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.16]
         media-libs/libmpdclient[>=2.0]
         curl? ( net-misc/curl )
-        libsoup? ( gnome-desktop/libsoup )
+        libsoup? ( gnome-desktop/libsoup:2.4 )
 "
 
 BUGS_TO="alip@exherbo.org"
