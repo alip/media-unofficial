@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://git.musicpd.org/master/${PN}.git"
-SCM_BRANCH="gtk3"
 
 require gmpc scm-git
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 1.11 ] ]
