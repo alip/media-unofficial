@@ -49,6 +49,7 @@ MYOPTIONS="
     scrobbler [[ description = [ Build audio scrobbler for last.fm. ] ]]
     samba [[ description = [ Support for smb:// in Open URL dialog. ] ]]
     sndfile [[ description = [ Support reading files containing sampled sound (like Windows WAV and Apple/SGI AIFF). ] ]]
+    speedpitch [[ description = [ Support speed and pitch effects using libsamplerate. ] ]]
     vorbis [[ description = [ Support for OGG/Vorbis formats and dumping audio out to a vorbis file. ] ]]
     wavpack [[ description = [ Support for PCM audio formats. ] ]]
 "
@@ -79,6 +80,7 @@ DEPENDENCIES="
             media-sound/jack-audio-connection-kit
         )
         sndfile? ( media-libs/libsndfile )
+        speedpitch? ( media-libs/libsamplerate )
         mms? ( media-libs/libmms )
         modplug? ( media-libs/libmodplug )
         mpeg? (
@@ -154,6 +156,7 @@ src_configure() {
         # Effect Plugins
         $(option_enable bs2b)                     # Bauer stereophonic-to-binaural
         $(option_enable resample)                 # Sample Rate Converter
+        $(option_enable speedpitch)               # Speed and Pitch effects
 
         # Transport Plugins
         $(option_enable neon)                     # neon-based http/https
