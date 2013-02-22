@@ -1,0 +1,35 @@
+# Copyright 2009 Adriaan Leijnse <adriaan@leijnse.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require waf
+
+SUMMARY="LADI Session Handler is a session management system for JACK applications
+on GNU/Linux."
+DESCRIPTION="
+Aims to allow you to have many different audio programs running at once, to save their setup,
+close them down and then easily reload the setup at some other time. ladish doesn't deal with any
+kind of audio or MIDI data itself; it just runs programs, deals with saving/loading (arbitrary) data
+and connects JACK ports together. It can also be used to move entire sessions between computers, or
+post sessions on the Internet for download.
+"
+HOMEPAGE="http://ladish.org/"
+
+LICENCES="GPL-2"
+
+DEPENDENCIES="
+    build+run:
+        sys-apps/dbus
+        dev-libs/dbus-glib
+        x11-libs/gtk+
+        gnome-platform/libglade
+        x11-libs/flowcanvas
+        media-sound/jack-audio-connection-kit
+"
+
+BUGS_TO="adriaan@leijnse.net"
+
+src_configure() {
+    # waf configure from ladish doesn't support waf.exlib arguments
+    ewaf configure --prefix=/usr/ --libdir=/usr/$LIBDIR
+}
+
