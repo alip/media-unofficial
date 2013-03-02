@@ -43,7 +43,7 @@ DEPENDENCIES+="
         shout? ( media-libs/libshout )
         wavpack? ( media-sound/wavpack )
         x11-dri/mesa
-        x11-libs/qt[>=4.5][qt3support][sqlite][webkit]
+        x11-libs/qt:4[>=4.5][qt3support][sqlite][webkit]
 "
 
 BUGS_TO="alip@exherbo.org"
