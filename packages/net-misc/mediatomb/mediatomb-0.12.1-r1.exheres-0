@@ -92,7 +92,7 @@ DEPENDENCIES="
         libextractor? ( media-libs/libextractor[<0.6.0][ffmpeg] )
         mp4?          ( media-libs/libmp4v2 )
         mysql?        ( dev-db/mysql )
-        sqlite?       ( dev-db/sqlite[>=3.0.0] )
+        sqlite?       ( dev-db/sqlite:3[>=3.0.0] )
         taglib?       ( media-libs/taglib )
 "
 

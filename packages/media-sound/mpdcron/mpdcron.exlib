@@ -28,7 +28,7 @@ DEPENDENCIES="
         media-libs/libmpdclient[>=2.1]
         notification? ( x11-libs/libnotify )
         scrobbler? ( net-misc/curl )
-        stats? ( dev-db/sqlite[>3] )
+        stats? ( dev-db/sqlite:3[>3] )
     suggestion:
         media-sound/mpd [[ description = [ mpdcron connects to an mpd daemon, either locally or on a remote host ] ]]
         stats? (
