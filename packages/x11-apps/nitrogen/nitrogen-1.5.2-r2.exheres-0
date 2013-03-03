@@ -21,7 +21,7 @@ DEPENDENCIES="
         build:
             xinerama? ( x11-proto/xineramaproto )
         build+run:
-            dev-libs/glib[>=2.6]
+            dev-libs/glib:2[>=2.6]
             x11-libs/gtk+[>=2.10]
             gnome-bindings/gtkmm:2.4[>=2.10]
             xinerama? ( x11-libs/libXinerama )

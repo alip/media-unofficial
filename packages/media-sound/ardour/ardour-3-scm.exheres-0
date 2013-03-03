@@ -31,7 +31,7 @@ DEPENDENCIES="
     build+run:
         media-sound/jack-audio-connection-kit[>=0.109.0]
         dev-libs/boost[>=1.39]
-        dev-libs/glib[>=2.2]
+        dev-libs/glib:2[>=2.2]
         gnome-bindings/glibmm[>=2.14.0]
         dev-libs/libxml2
         dev-cpp/libsigc++[>=2.0]

@@ -32,7 +32,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-libs/glib[>=2.10]
+        dev-libs/glib:2[>=2.10]
         net-misc/curl
 "
 

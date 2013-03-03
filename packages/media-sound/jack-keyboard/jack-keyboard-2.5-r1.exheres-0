@@ -21,7 +21,7 @@ MYOPTIONS="X"
 DEPENDENCIES="
     build+run:
         media-sound/jack-audio-connection-kit
-        dev-libs/glib
+        dev-libs/glib:2
         x11-libs/gtk+
         X? ( x11-libs/libX11 )
 "

@@ -24,7 +24,7 @@ DEPENDENCIES="
         media-sound/jack-audio-connection-kit[>=0.116]
         dev-libs/libxml2
         sci-libs/fftw
-        dev-libs/glib[>=2.10]
+        dev-libs/glib:2[>=2.10]
         gnome-platform/libgnomecanvas
         media-libs/aubio[jack]
         media-libs/liblrdf

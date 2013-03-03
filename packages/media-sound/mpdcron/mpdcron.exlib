@@ -23,7 +23,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config
     build+run:
-        dev-libs/glib[>=2.18.4]
+        dev-libs/glib:2[>=2.18.4]
         dev-libs/libdaemon[>=0.13]
         media-libs/libmpdclient[>=2.1]
         notification? ( x11-libs/libnotify )

@@ -17,7 +17,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config
     build+run:
-        dev-libs/glib
+        dev-libs/glib:2
         dev-libs/boost
         gnome-bindings/glibmm
         jack? ( media-sound/jack-audio-connection-kit )
