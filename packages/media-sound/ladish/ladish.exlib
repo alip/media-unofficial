@@ -19,7 +19,7 @@ LICENCES="GPL-2"
 DEPENDENCIES="
     build+run:
         sys-apps/dbus
-        dev-libs/dbus-glib
+        dev-libs/dbus-glib:1
         x11-libs/gtk+
         gnome-platform/libglade
         x11-libs/flowcanvas

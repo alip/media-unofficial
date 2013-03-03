@@ -24,7 +24,7 @@ DEPENDENCIES="
         media-libs/raul[>=0.5.1]
         x11-libs/flowcanvas[>=0.5.1]
         alsa? ( sys-sound/alsa-lib )
-        dbus? ( dev-libs/dbus-glib )
+        dbus? ( dev-libs/dbus-glib:1 )
         jack? ( media-sound/jack-audio-connection-kit[>=0.107] )
 "
 
