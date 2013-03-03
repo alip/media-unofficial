@@ -30,7 +30,7 @@ DEPENDENCIES="
     media-libs/SDL
     media-libs/SDL_image
     media-libs/SDL_ttf
-    media-libs/freetype
+    media-libs/freetype:2
 "
 
 WORK="${WORKBASE}/${PN}"

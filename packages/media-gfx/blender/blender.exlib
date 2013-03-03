@@ -32,7 +32,7 @@ DEPENDENCIES="
         dev-util/intltool
         sys-devel/gettext
     build+run:
-        media-libs/freetype
+        media-libs/freetype:2
         media-libs/glew
         media-libs/jpeg
         media-libs/libpng
