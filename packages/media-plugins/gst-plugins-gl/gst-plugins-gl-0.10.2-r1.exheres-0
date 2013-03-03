@@ -22,7 +22,7 @@ DEPENDENCIES="
         media-libs/glew[>=1.5.0]
         media-libs/gstreamer:0.10[>=0.10.28]
         media-libs/libpng[>=1.0]
-        media-plugins/gst-plugins-base[>=0.10.28]
+        media-plugins/gst-plugins-base:0.10[>=0.10.28]
         x11-dri/mesa
 "
 

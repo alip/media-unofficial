@@ -17,12 +17,12 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-          dev-python/gst-python
+          dev-python/gst-python:0.10
           gnome-bindings/pygtk
-          media-libs/gstreamer[>=0.10.11]
-          media-plugins/gst-plugins-base
+          media-libs/gstreamer:0.10[>=0.10.11]
+          media-plugins/gst-plugins-base:0.10
           x11-libs/gtk+[>=2.4]
           dirac? ( media-libs/schroedinger[>=1.0.0][gstreamer] )
-          vp8?   ( media-plugins/gst-plugins-bad[>=0.10.19][gstreamer_plugins:vp8] )
+          vp8?   ( media-plugins/gst-plugins-bad:0[>=0.10.19][gstreamer_plugins:vp8] )
 "
 
