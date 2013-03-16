@@ -1,0 +1,14 @@
+Source: written by Reinhard Tartler <siretart@ubuntu.com>
+Upstream: http://bugs.debian.org/692912
+Reason: Build against libav9
+
+--- chromaprint-0.6.orig/src/fft_lib_avfft.h
++++ chromaprint-0.6/src/fft_lib_avfft.h
+@@ -25,6 +25,7 @@
+ extern "C" {
+ #include <libavcodec/avcodec.h>
+ #include <libavcodec/avfft.h>
++#include <libavutil/mem.h>
+ }
+ #include "combined_buffer.h"
+ 
