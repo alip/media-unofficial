@@ -3,14 +3,14 @@
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge
+require gnome.org [ suffix=.tar.xz ]
 
 SUMMARY="GTK+ utility for editing MP2, MP3, MP4, FLAC, Ogg and other media tags"
 DESCRIPTION="
 Features of EasyTAG:
 * View, edit, write tags of MP3, MP2 files (ID3 tag with pictures), FLAC files
-(FLAC Vorbis tag), Ogg Vorbis files (Ogg Vorbis tag), MP4/AAC (MP4/AAC tag),
-MusePack, Monkey's Audio files and WavPack files (APE tag),
+(FLAC Vorbis tag), Ogg Vorbis and Speex files (Ogg Vorbis tag), MP4/AAC
+(MP4/AAC tag), MusePack, Monkey's Audio files and WavPack files (APE tag),
 * Can edit more tag fields : Title, Artist, Album, Disc Album, Year, Track
 Number, Genre, Comment, Composer, Original Artist/Performer, Copyright, URL,
 Encoder name and attached Picture,
@@ -35,7 +35,7 @@ fields (using masks),
 * French, German, Russian, Dutch, Hungarian, Swedish, Italian, Japanese,
 Ukrainian, Czech, Spanish, Polish, Romanian, Danish, Greek, Brazilian
 Portuguese and Chinese translation languages,
-* Written in C and uses GTK+ 2 for the GUI,
+* Written in C and uses GTK+ 2 or GTK+ 3 for the GUI,
 * Package available for GNU/Linux and Windows.
 "
 
@@ -43,24 +43,31 @@ BUGS_TO="markus@unixforces.net"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="flac mp3 speex vorbis
+MYOPTIONS="flac gtk3 mp3 speex vorbis
     mp4 [[ description = [ Adds support to tag mp4 files ] ]]
     wavpack [[ description = [ Add support for wavpack ] ]]
 "
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        dev-util/intltool[>=0.50.0]
         sys-devel/gettext
+        virtual/pkg-config[>=0.24]
     build+run:
-        x11-libs/gtk+[>=2.12]
-        mp3? ( media-libs/id3lib[>=3.8.3] media-libs/libid3tag )
-        mp4? ( media-libs/libmp4v2 )
-        flac? ( media-libs/flac media-libs/libvorbis )
-        wavpack? ( media-sound/wavpack )
-        speex? ( media-libs/speex media-libs/libvorbis )
+        dev-libs/glib:2[>=2.30.0]
+        flac? ( media-libs/flac[>=1.1.4] )
+        gtk3? ( x11-libs/gtk+:3[>=3.0.0] )
+        !gtk3? ( x11-libs/gtk+:2[>=2.24.0] )
+        mp3? ( media-libs/id3lib[>=3.8.0]
+               media-libs/libid3tag )
+        mp4? ( media-libs/taglib[>=1.6.0] )
+        speex? ( media-libs/speex )
+        vorbis? ( media-libs/libogg[>=1.0]
+                  media-libs/libvorbis[>=1.0.1] )
+        wavpack? ( media-sound/wavpack[>=4.40] )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( mp3 'mp3 id3v23' mp4 'vorbis ogg' flac wavpack speex )
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PN}-${PV}-libmp4v2.patch )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( gtk3 )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-wavpack-tag.patch" )
 
