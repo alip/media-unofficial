@@ -3,7 +3,7 @@
 # Based in part upon 'picard-0.11.ebuild' from Gentoo, which is:
 #     Copyright 1999-2009 Gentoo Foundation
 
-require distutils [ has_bin=true ] freedesktop-desktop gtk-icon-cache
+require distutils [ python_dep=2.6 ] freedesktop-desktop gtk-icon-cache
 
 SUMMARY="Picard is the next generation MusicBrainz tagging application"
 HOMEPAGE="http://musicbrainz.org/doc/Picard_Tagger"
@@ -18,9 +18,7 @@ BUGS_TO="michael@obberon.com calvin.walton@kepstin.ca"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="
-    puid [[ description = [ Support for finding PUID fingerprints of audio files with ffmpeg and libofa (deprecated) ] ]]
-"
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
@@ -28,19 +26,12 @@ DEPENDENCIES="
         dev-python/mutagen[>=1.20]
         media-libs/libdiscid
         x11-libs/qt:4[>=4.5]
-        puid? (
-            media/ffmpeg
-            media-libs/libofa
-        )
     suggestion:
         media-libs/chromaprint[examples] [[ description = [ Support for finding AcoustID fingerprints of audio files ] ]]
 "
 
 src_configure() {
     edo ${PYTHON} -B setup.py config
-    edo sed -e "s:\(with-avcodec =\).*:\1 $(optionq puid && echo True || echo False):" \
-            -e "s:\(with-libofa =\).*:\1 $(optionq puid && echo True || echo False):" \
-            -i "${WORK}"/build.cfg
 }
 
 pkg_postinst() {
