@@ -31,7 +31,7 @@ DEPENDENCIES="
         media-libs/liblo
         dev-libs/boost
         lv2? ( media-libs/slv2[jack] )
-        tranzport? ( dev-libs/libusb )
+        tranzport? ( dev-libs/libusb:0.1 )
 "
 
 BUGS_TO="adriaan@leijnse.net"
