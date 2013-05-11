@@ -50,7 +50,7 @@ DEPENDENCIES="
         media-libs/libsamplerate[>=0.1.7]
         sys-sound/alsa-lib
         lv2? ( media-libs/slv2[jack] )
-        tranzport? ( dev-libs/libusb )
+        tranzport? ( virtual/libusb:1 )
 "
 
 BUGS_TO="adriaan@leijnse.net"
