@@ -46,6 +46,18 @@ DEPENDENCIES+="
         x11-libs/qt:4[>=4.5][qt3support][sqlite][webkit]
 "
 
+if ever at_least scm; then
+    DEPENDENCIES+="
+build+run:
+    dev-libs/protobuf
+"
+else
+    DEPENDENCIES+="
+build+run:
+    dev-libs/protobuf[<=2.4.1]
+"
+fi
+
 BUGS_TO="alip@exherbo.org"
 
 REMOTE_IDS="launchpad:mixxx"
