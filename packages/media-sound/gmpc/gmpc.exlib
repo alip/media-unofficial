@@ -1,7 +1,7 @@
 # Copyright 2008 Thomas Anderson
 # Distributed under the terms of the GNU General Public License v2
 
-myexparam vala_slots=[ 0.16 0.14 ]
+myexparam vala_slots=[ 0.20 0.18 0.16 0.14 ]
 
 require vala [ vala_dep=true vala_slots=[ $(exparam vala_slots[@]) ] ] gtk-icon-cache
 

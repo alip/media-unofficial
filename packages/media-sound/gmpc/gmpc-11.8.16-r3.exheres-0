@@ -1,7 +1,7 @@
 # Copyright 2008 Thomas Anderson
 # Distributed under the terms of the GNU General Public License v2
 
-require gmpc [ vala_slots=[ 0.12 ] ]
+require gmpc
 
 DOWNLOADS="http://download.sarine.nl/Programs/${PN}/$(ever range 1-2)/${PNV}.tar.gz"
 
