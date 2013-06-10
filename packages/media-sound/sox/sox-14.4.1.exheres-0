@@ -24,7 +24,7 @@ BUGS_TO="alip@exherbo.org"
 LICENCES="LGPL-2.1 GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="alsa ao debug ffmpeg flac id3tag ladspa ogg png pulseaudio sndfile wavpack
+MYOPTIONS="alsa ao debug flac id3tag ladspa ogg png pulseaudio sndfile wavpack
     mp3 [[ description = [ Support for mp3 encoding with lame, and decoding with mad ] ]]
 "
 
@@ -33,7 +33,6 @@ DEPENDENCIES="
         sys-apps/file
         alsa? ( sys-sound/alsa-lib )
         ao? ( media-libs/libao )
-        ffmpeg? ( || ( media/ffmpeg media/libav ) )
         flac? ( media-libs/flac )
         id3tag? ( media-libs/libid3tag )
         ladspa? ( media-libs/ladspa-sdk )
@@ -48,8 +47,6 @@ DEPENDENCIES="
         wavpack? ( media-sound/wavpack )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-Fix-ffmpeg-deprecations.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --with-distro=Exherbo
     --with-ladspa-path=/usr/${LIBDIR}/ladspa
@@ -60,10 +57,11 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --without-oss
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( alsa ao ffmpeg flac id3tag ladspa mp3 'mp3 lame' 'mp3 mad'
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( alsa ao flac id3tag ladspa mp3 'mp3 lame' 'mp3 mad'
                                      'ogg oggvorbis' png pulseaudio sndfile wavpack )
 
 src_install() {
     default
     keepdir /usr/"${LIBDIR}"/sox
 }
+
