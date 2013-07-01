@@ -19,6 +19,7 @@ HOMEPAGE="http://gmpclient.org/"
 LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="
+    X
     xspf   [[ description = [ XSPF playlists ] ]]
 "
 
@@ -40,6 +41,7 @@ DEPENDENCIES="
         dev-libs/libxml2:2.0
         gnome-desktop/libsoup:2.4
         media-libs/libmpd[>=11.8.17]
+        X? ( x11-libs/libX11 )
         xspf? ( media-libs/libxspf )
 "
 
@@ -53,6 +55,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'X mmkeys'
     'xspf libxspf'
 )
 
