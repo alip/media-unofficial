@@ -11,7 +11,7 @@ PLATFORMS="~amd64 ~x86"
 DEPENDENCIES="
     build+run:
         media-libs/glyr
-        x11-libs/gtk+:3
+        x11-libs/gtk+:3[X?]
 "
 
 AT_M4DIR=( m4 )
