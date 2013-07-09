@@ -4,8 +4,8 @@
 require common-metadata
 
 DOWNLOADS=""
-SCM_REPOSITORY="http://mutagen.googlecode.com/svn"
-require scm-svn
+SCM_REPOSITORY="https://code.google.com/p/mutagen"
+require scm-hg
 
 BUGS_TO="alip@exherbo.org"
 
