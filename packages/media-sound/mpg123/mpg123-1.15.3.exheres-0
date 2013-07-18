@@ -30,7 +30,7 @@ DEPENDENCIES="
         jack? ( media-sound/jack-audio-connection-kit[multibuild_c:*(-)?] )
         openal? ( media-libs/openal[multibuild_c:*(-)?] )
         pulseaudio? ( media-sound/pulseaudio[multibuild_c:*(-)?] )
-        sdl? ( media-libs/SDL[multibuild_c:*(-)?] )
+        sdl? ( media-libs/SDL:0[multibuild_c:*(-)?] )
 "
 
 configure_one_multibuild() {
