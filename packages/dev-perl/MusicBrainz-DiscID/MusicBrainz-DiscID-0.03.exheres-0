@@ -1,0 +1,34 @@
+# Copyright 2013 Thomas Witt
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=NJH ]
+
+SUMMARY="Perl interface for the MusicBrainz libdiscid library"
+
+LICENCES="|| ( GPL-2 GPL-3 )"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-perl/Module-Build
+        dev-perl/Test-Pod
+        dev-perl/Test-Simple
+        virtual/pkg-config
+    build+run:
+        media-libs/libdiscid
+"
+
+BUGS_TO="thomas@thwitt.de"
+
+pkg_setup() {
+    # Uses LD where it means CC, unconfuse it
+    export LD="${CC}"
+}
+
+src_prepare() {
+    # bad encoding makes test fail
+    edo perl -p -i -e "s/don.t/don\'t/" "${WORK}/lib/MusicBrainz/DiscID.pm"
+}
+
