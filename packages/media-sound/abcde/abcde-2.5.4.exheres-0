@@ -8,7 +8,8 @@ SUMMARY="A Better CD Encoder"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="aac flac mp3 normalize speex vorbis"
+MYOPTIONS="aac flac mp3 normalize speex vorbis 
+    musicbrainz [[ description = [ Install a perl script to work with the MusicBrainz API ] ]]"
 
 DEPENDENCIES="
     run:
@@ -19,6 +20,11 @@ DEPENDENCIES="
         normalize? ( media-sound/normalize )
         speex? ( media-libs/speex )
         vorbis? ( media-sound/vorbis-tools )
+        musicbrainz? (
+            dev-perl/Digest-SHA
+            dev-perl/MusicBrainz-DiscID
+            dev-perl/WebService-MusicBrainz
+        )
     recommendation:
         media/cdparanoia
         vorbis? ( media-sound/vorbisgain )
@@ -27,6 +33,11 @@ DEPENDENCIES="
 "
 
 src_install() {
+    if ! optionq musicbrainz ; then
+        edo sed -i -e '/abcde-musicbrainz-tool/d' Makefile
+        edo rm abcde-musicbrainz-tool examples/musicbrainz-get-tracks
+    fi
+
     default
     docinto examples/
     dodoc examples/*
