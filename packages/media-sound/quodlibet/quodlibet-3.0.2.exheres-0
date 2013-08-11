@@ -1,0 +1,86 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Copyright 2013 Thomas Witt
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.6 ] googlecode [ suffix=tar.gz ]
+
+SUMMARY="GTK+-based audio player written in Python, using the Mutagen tagging library"
+DESCRIPTION="Quod Libet is a GTK+-based audio player written in Python, using 
+the Mutagen tagging library. It's designed around the idea that you know how 
+to organize your music better than we do. It lets you make playlists based on 
+regular expressions (don't worry, regular searches work too). It lets you 
+display and edit any tags you want in the file. And it lets you do this for all
+the file formats it supports -- Ogg Vorbis, FLAC, MP3, Musepack, and MOD.
+
+Quod Libet easily scales to libraries of thousands of songs. It also supports 
+most of the features you expect from a modern media player, like Unicode 
+support, multimedia keys, and tag editing. 
+
+Ex Falso is a program that uses the same tag editing backend as Quod Libet, but
+isn't connected to an audio player. If you're perfectly happy with your favorite
+player and just want something that can handle tagging, Ex Falso is for you.
+"
+
+DOWNLOADS+=" plugins? ( https://bitbucket.org/lazka/${PN}-files/raw/default/releases/${PN}-plugins-${PV}.tar.gz )"
+
+UPSTREAM_CHANGELOG="https://quodlibet.readthedocs.org/en/latest/changelog.html"
+
+BUGS_TO="pyromaniac@thwitt.de"
+
+LICENCES="GPL-2"
+PLATFORMS="~amd64"
+SLOT="0"
+MYOPTIONS="plugins [[ description = [ Installs the plugin pack. Some of these plugins suggest extra dependencies.  ] ]]"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        sys-devel/gettext
+    build+run:
+        gnome-bindings/pygobject:3[>=3.4.0][cairo]
+        x11-libs/gtk+:3[>=3.2.0]
+    run:
+        dev-python/dbus-python
+        dev-python/mutagen[>=1.14]
+        media-libs/gstreamer:1.0
+    suggestion:
+        (
+            media-plugins/gst-plugins-base:1.0
+            media-plugins/gst-plugins-good:1.0
+            media-plugins/gst-plugins-bad:1.0
+            media-plugins/gst-plugins-ugly:1.0
+        ) [[ *description = [ Plugins for Gstreamer; select GST_PLUGINS for the outputs and codecs you need. ] ]]
+
+        dev-libs/keybinder[>=0.3.0] [[ description = [ Register global hotkeys ] ]]
+        dev-python/feedparser [[ description = [ Support for audio feeds ] ]]
+        media-libs/libgpod [[ description = [ Access the contents of an iPod ] ]]
+        sys-apps/udisks:0 [[ description = [ Device support ] ]]
+        plugins? (
+            dev-libs/pyinotify [[ description = [ Install a plugin to automatically update the library ] ]]
+            dev-python/python-musicbrainz2 [[ description = [ Install a plugin for MusicBrainz tagging ] ]]
+            media-plugins/gst-plugins-bad:1.0[gstreamer_plugins:chromaprint] [[ description = [ Install a plugin for audio fingerprinting ] ]]
+            dev-libs/zeitgeist [[ description = [ Install the Zeitgeist (activity tracker) plugin ] ]]
+        )
+"
+            # TODO these should go to ::unwritten sometime
+            #dev-python/cddb-py [[ description = [ plugin: CDDB ] ]]
+            # some-category/kakasi [[ description = [ plugin: kakasi ] ]]
+
+src_install() {
+    distutils_src_install
+
+    if option plugins ; then
+        edo cd "${WORKBASE}/quodlibet-plugins-${PV}"
+        insinto /usr/share/${PN}/plugins
+        doins -r editing events gstreamer playorder songsmenu
+        newdoc README README.plugins
+    fi
+}
+
+pkg_postinst() {
+    if option plugins ; then
+        elog "The plugins are in /usr/share/${PN}/plugins. To use them, link"
+        elog "~/.quodlibet/plugins to that directory"
+    fi
+}
+
