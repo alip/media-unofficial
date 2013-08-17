@@ -5,16 +5,16 @@
 require distutils [ python_dep=2.6 ] googlecode [ suffix=tar.gz ]
 
 SUMMARY="GTK+-based audio player written in Python, using the Mutagen tagging library"
-DESCRIPTION="Quod Libet is a GTK+-based audio player written in Python, using 
-the Mutagen tagging library. It's designed around the idea that you know how 
-to organize your music better than we do. It lets you make playlists based on 
-regular expressions (don't worry, regular searches work too). It lets you 
+DESCRIPTION="Quod Libet is a GTK+-based audio player written in Python, using
+the Mutagen tagging library. It's designed around the idea that you know how
+to organize your music better than we do. It lets you make playlists based on
+regular expressions (don't worry, regular searches work too). It lets you
 display and edit any tags you want in the file. And it lets you do this for all
 the file formats it supports -- Ogg Vorbis, FLAC, MP3, Musepack, and MOD.
 
-Quod Libet easily scales to libraries of thousands of songs. It also supports 
-most of the features you expect from a modern media player, like Unicode 
-support, multimedia keys, and tag editing. 
+Quod Libet easily scales to libraries of thousands of songs. It also supports
+most of the features you expect from a modern media player, like Unicode
+support, multimedia keys, and tag editing.
 
 Ex Falso is a program that uses the same tag editing backend as Quod Libet, but
 isn't connected to an audio player. If you're perfectly happy with your favorite
