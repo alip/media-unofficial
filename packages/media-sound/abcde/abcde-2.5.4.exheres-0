@@ -8,8 +8,10 @@ SUMMARY="A Better CD Encoder"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="aac flac mp3 normalize speex vorbis 
-    musicbrainz [[ description = [ Install a perl script to work with the MusicBrainz API ] ]]"
+MYOPTIONS="
+    aac flac mp3 normalize speex vorbis
+    musicbrainz [[ description = [ Install a perl script to work with the MusicBrainz API ] ]]
+"
 
 DEPENDENCIES="
     run:
