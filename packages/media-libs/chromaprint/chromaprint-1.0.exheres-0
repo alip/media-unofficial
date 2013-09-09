@@ -4,7 +4,7 @@
 require cmake [ api=2 ]
 
 SLOT="0"
-DOWNLOADS="https://github.com/downloads/lalinsky/${PN}/${PNV}.tar.gz"
+DOWNLOADS="http://bitbucket.org/acoustid/${PN}/downloads/${PNV}.tar.gz"
 HOMEPAGE="http://acoustid.org/chromaprint"
 LICENCES="LGPL-2.1"
 SUMMARY="A library that implements an algorithm for extracting fingerprints from any audio source."
@@ -18,8 +18,6 @@ MYOPTIONS="
 "
 BUGS_TO="calvin.walton@kepstin.ca"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-libav9.patch" )
-
-CMAKE_SRC_CONFIGURE_PARAMS=( -DWITH_AVFFT=1 )
-CMAKE_SRC_CONFIGURE_OPTION_BUILDS=( examples EXAMPLES )
+CMAKE_SRC_CONFIGURE_PARAMS=( -DWITH_AVFFT:BOOL=TRUE )
+CMAKE_SRC_CONFIGURE_OPTION_BUILDS=( "examples EXAMPLES" )
 
