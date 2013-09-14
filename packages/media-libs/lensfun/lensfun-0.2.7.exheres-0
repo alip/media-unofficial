@@ -20,18 +20,13 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        virtual/pkg-config
         doc? ( app-doc/doxygen )
     build+run:
         dev-libs/glib:2
         media-libs/libpng
         sys-libs/zlib
 "
-
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/${PN}-0.2.6-cmake_LIB_SUFFIX.patch
-    "${FILES}"/${PN}-0.2.6-cmake_pkgconfig.patch
-)
 
 CMAKE_SRC_CONFIGURE_PARAMS+=(
     -DBUILD_AUXFUN:BOOL=TRUE
