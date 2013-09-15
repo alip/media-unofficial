@@ -43,6 +43,10 @@ DEPENDENCIES="
         gnome-desktop/librsvg[>=2.14.0]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES+=(
+    "${FILES}"/${PNV}-Build-with-LibRaw-0.15-Closes-7012.patch
+)
+
 src_configure() {
     # not autoconf based
     edo ./configure                         \
