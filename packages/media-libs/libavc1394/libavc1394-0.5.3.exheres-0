@@ -1,11 +1,11 @@
 # Copyright 2010 Xavier Barrachina <xabarci@doctor.upv.es>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ suffix=tar.gz project=libavc1394 ]
+require sourceforge [ suffix=tar.gz ]
 
 SUMMARY="programming interface for the 1394 Trade Association AV/C Digital Interface Command Set."
 
-LICENCES="LGPL"
+LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
