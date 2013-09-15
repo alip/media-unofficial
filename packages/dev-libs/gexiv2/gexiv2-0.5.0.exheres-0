@@ -36,6 +36,6 @@ DEFAULT_SRC_INSTALL_PARAMS=( "LIB=${LIBDIR}" )
 
 src_install() {
     default
-    python_bytecompile
+    option gobject-introspection && python_bytecompile
 }
 
