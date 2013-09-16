@@ -59,7 +59,7 @@ DEPENDENCIES="
             dev-libs/pyinotify [[ description = [ Install a plugin to automatically update the library ] ]]
             dev-python/python-musicbrainz2 [[ description = [ Install a plugin for MusicBrainz tagging ] ]]
             media-plugins/gst-plugins-bad:1.0[gstreamer_plugins:chromaprint] [[ description = [ Install a plugin for audio fingerprinting ] ]]
-            dev-libs/zeitgeist [[ description = [ Install the Zeitgeist (activity tracker) plugin ] ]]
+            dev-libs/zeitgeist:2.0 [[ description = [ Install the Zeitgeist (activity tracker) plugin ] ]]
         )
 "
             # TODO these should go to ::unwritten sometime
