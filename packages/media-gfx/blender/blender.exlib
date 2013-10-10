@@ -45,7 +45,7 @@ DEPENDENCIES="
         ffmpeg?     ( media/ffmpeg )
         fftw?       ( sci-libs/fftw[>=3.0] )
         jack?       ( media-sound/jack-audio-connection-kit )
-        jpeg2000?   ( media-libs/OpenJPEG )
+        jpeg2000?   ( media-libs/OpenJPEG:0 )
         openal?     ( media-libs/openal )
         openexr?    ( media-libs/openexr )
         sdl?        ( media-libs/SDL )
