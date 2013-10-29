@@ -8,5 +8,3 @@ DOWNLOADS="http://mirror.cs.umn.edu/blender.org/source/${PNV}.tar.gz"
 
 PLATFORMS="~amd64"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-ffmpeg-0.11.patch" )
-

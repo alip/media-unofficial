@@ -2,7 +2,7 @@
 # Copyright 2011 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require cmake [ cmake_minimum_version=2.8 ] freedesktop-desktop python [ python_dep=3.2 ]
+require cmake [ cmake_minimum_version=2.8 ] freedesktop-desktop python [ python_dep=3.3 ]
 
 export_exlib_phases src_install
 
@@ -32,6 +32,8 @@ DEPENDENCIES="
         dev-util/intltool
         sys-devel/gettext
     build+run:
+        dev-libs/boost[>=1.51.0]
+        dev-python/numpy[>=1.7.0]
         media-libs/freetype:2
         media-libs/glew
         media-libs/jpeg
@@ -54,14 +56,15 @@ DEPENDENCIES="
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
-    -DWITH_BUILTIN_GLEW:BOOL=FALSE
-    -DWITH_CARVE:BOOL=FALSE
+    -DWITH_BOOST:BOOL=TRUE
     -DWITH_CYCLES:BOOL=FALSE
     -DWITH_INPUT_NDOF:BOOL=FALSE
     -DWITH_INSTALL_PORTABLE:BOOL=FALSE
     -DWITH_INTERNATIONAL:BOOL=TRUE
-    -DWITH_OPENMP:BOOL=FALSE
+    -DWITH_LLVM:BOOL=FALSE
+    -DWITH_OPENCOLORIO:BOOL=FALSE
     -DWITH_PYTHON_INSTALL:BOOL=FALSE
+    -DWITH_PYTHON_INSTALL_NUMPY:BOOL=FALSE
 )
 
 CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
