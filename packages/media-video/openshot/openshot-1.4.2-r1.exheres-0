@@ -24,7 +24,7 @@ DEPENDENCIES="
         gnome-bindings/pygtk:2
         gnome-desktop/librsvg:2
         media/ffmpeg
-        media/mlt[python]
+        media/mlt[python][xml]
         media-libs/fontconfig
         media-libs/SDL[pulseaudio]
         media-libs/x264
