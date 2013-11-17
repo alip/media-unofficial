@@ -3,7 +3,7 @@
 #   Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-require flag-o-matic autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
+require flag-o-matic autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.10 ] ]
 
 SUMMARY="Audio processing library for changing tempo, pitch and playback rates"
 DESCRIPTION="
@@ -27,26 +27,27 @@ BUGS_TO="alip@exherbo.org"
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS=""
+MYOPTIONS="
+    platform: amd64
+    x86_cpu_features: sse2
+"
 
 DEPENDENCIES=""
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-Makefile.patch )
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-shared --disable-integer-samples )
+
 WORK="${WORKBASE}"/${PN}
 
-src_prepare() {
-    default
-    # Doesn't compile with optimizations enabled
-    sed -i \
-        -e '/^.*#define ALLOW_X86_OPTIMIZATIONS.*$/d' \
-        include/STTypes.h || die "failed to disable optimizations"
-    eautomake
-}
+DEFAULT_SRC_INSTALL_PARAMS=( pkgdocdir="/usr/share/doc/${PNVR}" )
 
-src_install() {
-    emake DESTDIR="${IMAGE}" pkgdocdir="/usr/share/doc/${PNVR}" install ||\
-        die "emake install failed"
-    emagicdocs
+src_configure() {
+    local myconf=()
+    myconf+=( --enable-shared --disable-integer-samples )
+    if optionq platform:amd64; then
+        myconf+=( --enable-sse2 )
+    else
+        myconf+=( $(option_enable x86_cpu_features:sse2) )
+    fi
+    econf "${myconf[@]}"
 }
 
