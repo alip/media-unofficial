@@ -18,11 +18,10 @@ PLATFORMS="~amd64 ~x86"
 SLOT="0"
 MYOPTIONS=""
 
-src_prepare() {
-    edo sed -i -e 's/$(INSTALL) -s/$(INSTALL)/' Makefile
-}
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( COPYING )
+DEFAULT_SRC_INSTALL_PARAMS=( STRIP="/bin/true" PREFIX="/usr" )
 
 src_compile() {
-    emake CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+    emake CFLAGS="-DVERSION=\"${PV}\" ${CFLAGS}" LDFLAGS="${LDFLAGS}"
 }
 
