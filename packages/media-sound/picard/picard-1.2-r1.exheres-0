@@ -1,9 +1,10 @@
+# Copyright 2013 Calvin Walton
 # Copyright 2009, 2010 Michael Forney
 # Distributed under the terms of the GNU General Public License v2
 # Based in part upon 'picard-0.11.ebuild' from Gentoo, which is:
 #     Copyright 1999-2009 Gentoo Foundation
 
-require distutils [ python_dep=2.6 ] freedesktop-desktop gtk-icon-cache
+require setup-py [ import=distutils blacklist=3 multibuild=false ] freedesktop-desktop gtk-icon-cache
 
 SUMMARY="Picard is the next generation MusicBrainz tagging application"
 HOMEPAGE="http://musicbrainz.org/doc/Picard_Tagger"
@@ -15,6 +16,9 @@ WORK="${WORKBASE}/${MY_PNV}"
 
 BUGS_TO="michael@obberon.com calvin.walton@kepstin.ca"
 
+# Tests only work if you do a special "in-place" build
+RESTRICT="test"
+
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
@@ -22,17 +26,12 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-python/PyQt4[>=4.5]
-        dev-python/mutagen[>=1.20]
+        dev-python/PyQt4[>=4.5][python_abis:*(?)?]
+        dev-python/mutagen[>=1.20][python_abis:*(-)?]
         media-libs/libdiscid
-        x11-libs/qt:4[>=4.5]
     suggestion:
         media-libs/chromaprint[examples] [[ description = [ Support for finding AcoustID fingerprints of audio files ] ]]
 "
-
-src_configure() {
-    edo ${PYTHON} -B setup.py config
-}
 
 pkg_postinst() {
     freedesktop-desktop_pkg_postinst
