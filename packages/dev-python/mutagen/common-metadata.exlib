@@ -1,7 +1,7 @@
 # Copyright 2009 Ali Polatel <alip@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils [ python_dep=2.3 ] googlecode [ suffix=tar.gz ]
+require setup-py [ import=distutils blacklist=3 ] 
 
 SUMMARY="Python module to handle audio metadata."
 DESCRIPTION="
@@ -13,10 +13,25 @@ ID3 and APEv2 tags can be edited regardless of audio format. It can also
 manipulate Ogg streams on an individual packet/page level.
 "
 
+DOWNLOADS="https://bitbucket.org/lazka/${PN}/downloads/${PNV}.tar.gz"
+
 REMOTE_IDS="pypi:${PN}"
 LICENCES="GPL-2"
 
+# Disable tests for now; they fail (with a floating-point exception in flac?)
+# for me when run in sandbox
+RESTRICT="test"
+
 MYOPTIONS=""
 
-DEPENDENCIES=""
+DEPENDENCIES="
+    test:
+        media-libs/faad2
+        media-libs/flac[ogg]
+        media-sound/vorbis-tools
+"
+
+setup-py_test_one_multibuild() {
+    edo ${PYTHON} -B setup.py test
+}
 
