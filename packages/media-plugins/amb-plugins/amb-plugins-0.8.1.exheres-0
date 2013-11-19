@@ -28,10 +28,10 @@ WORK="${WORKBASE}"/${MY_PNV}
 src_prepare() {
     default
 
-    sed -i \
+    edo sed -i \
         -e "s/-O3/${CFLAGS}/" \
         -e "s/g++/${CXX}/" \
-        Makefile || die "failed to set CFLAGS"
+        Makefile
 }
 
 src_install() {
