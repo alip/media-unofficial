@@ -1,7 +1,0 @@
-# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
-# Distributed under the terms of the GNU General Public License
-
-require rubyripper
-
-PLATFORMS="~amd64 ~x86"
-

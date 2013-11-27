@@ -1,7 +1,0 @@
-# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
-# Distributed under the terms of the GNU General Public License v2
-
-require glyr
-
-PLATFORMS="~amd64"
-

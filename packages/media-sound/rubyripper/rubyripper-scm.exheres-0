@@ -1,8 +1,0 @@
-# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
-# Distributed under the terms of the GNU General Public License
-
-SCM_REPOSITORY="https://code.google.com/p/${PN}/"
-require scm-git rubyripper
-
-PLATFORMS="~amd64"
-
