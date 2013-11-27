@@ -1,0 +1,23 @@
+Title: Repository moved
+Author: Wulf C. Krueger <philantrop@exherbo.org>
+Content-Type: text/plain
+Posted: 2013-11-27
+Revision: 1
+News-Item-Format: 1.0
+
+This repository was moved to
+
+https://github.com/Exherbo/media-unofficial
+
+git clone URL: git://github.com/Exherbo/media-unofficial.git
+HTTPS clone URL: https://github.com/Exherbo/media-unofficial.git
+
+To move to the new repository location in your Paludis configuration,
+please change /etc/paludis/repositories/media-unofficial.conf's "sync ="
+entry from git://github.com/alip/media-unofficial.git to
+git://github.com/Exherbo/media-unofficial.git.
+
+Existing contributors were added to the new location.
+If I missed you, let me know.
+
+Wulf "Philantrop" Krueger
